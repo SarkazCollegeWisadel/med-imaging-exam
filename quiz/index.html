@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>阅片抽考 · 两道难题</title>
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    margin: 0; padding: 16px;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f5f6f8; color: #1f2328; line-height: 1.7;
+  }
+  .wrap { max-width: 780px; margin: 0 auto; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  .sub { font-size: 13px; color: #6b7280; margin-bottom: 18px; }
+  .card {
+    background: #fff; border-radius: 14px; padding: 14px; margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.07);
+  }
+  .tag {
+    display: inline-block; font-size: 12px; font-weight: 600;
+    background: #eef2ff; color: #4338ca; padding: 2px 9px;
+    border-radius: 6px; margin-bottom: 10px;
+  }
+  .card img {
+    width: 100%; height: auto; display: block; border-radius: 8px;
+    background: #111;
+  }
+  .prompt {
+    font-size: 14px; margin: 12px 0 0; padding: 10px 12px;
+    background: #f9fafb; border-left: 3px solid #6366f1; border-radius: 4px;
+  }
+  .prompt b { color: #4338ca; }
+  .prompt ol { margin: 6px 0 0; padding-left: 20px; }
+  .prompt li { margin: 2px 0; }
+  .hint {
+    font-size: 13px; color: #6b7280; margin-top: 10px;
+    padding-top: 10px; border-top: 1px dashed #e5e7eb;
+  }
+  details {
+    margin-top: 12px; background: #fffbeb; border-radius: 8px;
+    padding: 10px 12px; border: 1px solid #fde68a;
+  }
+  summary {
+    cursor: pointer; font-weight: 600; color: #b45309;
+    font-size: 14px; outline: none;
+  }
+  details[open] summary { margin-bottom: 8px; }
+  details p { margin: 6px 0; font-size: 14px; }
+  details .ans { color: #b91c1c; font-weight: 700; }
+  .bar {
+    position: sticky; bottom: 0; background: rgba(245,246,248,.94);
+    backdrop-filter: blur(8px); padding: 10px 0 2px;
+    display: flex; gap: 8px; margin-top: 8px;
+  }
+  .bar button {
+    flex: 1; font-size: 14px; padding: 11px; border-radius: 10px;
+    border: 1px solid #d1d5db; background: #fff; color: #374151;
+    cursor: pointer; font-family: inherit;
+  }
+  .bar button.on { background: #4338ca; color: #fff; border-color: #4338ca; }
+  .foot { font-size: 12px; color: #9ca3af; text-align: center; margin: 18px 0 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>阅片抽考 · 两道难题</h1>
+  <div class="sub">出自老师那份「最重要」PPT（22 页真题），第 10 页与第 15 页。<br>图上答案已去掉，先自己判断再看答案。</div>
+
+  <!-- 第一题 -->
+  <div class="card">
+    <span class="tag">第一题 · 胸片正侧位</span>
+    <img src="q1_chest.png" alt="胸片正位与侧位">
+    <div class="prompt">
+      <b>给你的信息</b>：无病史，只有片子。
+      <ol>
+        <li>病变在哪一肺野、哪一侧？</li>
+        <li>是什么诊断？</li>
+        <li>依据是什么征象？</li>
+      </ol>
+    </div>
+    <div class="hint">
+      <b>提示</b>：先比左右两肺透亮度是否对称，再沿着气管往下看肺门位置，然后看正位和侧位能不能对得上。
+    </div>
+    <details>
+      <summary>看答案</summary>
+      <p class="ans">右肺上叶中央型肺癌伴阻塞性肺不张</p>
+      <p><b>读片要点</b></p>
+      <p>① 右肺上叶呈大片致密影，下缘以水平裂为界、较清晰——说明病灶按肺叶分布，是肺叶范围的实变/不张。</p>
+      <p>② 右肺门区可见软组织肿块影，与上叶不张连成一片。</p>
+      <p>③ 水平裂上移（右上叶容积缩小），是右上叶不张的直接征象。</p>
+      <p>④ 侧位片上，右上叶对应区域密度增高，与前部对应。</p>
+      <p><b>为什么是中央型</b>：病变中心在肺门/支气管区，肺门有肿块，外围是被阻塞后的继发改变（不张）。中央型好发于主支气管、叶支气管、段支气管。</p>
+      <p><b>该想到的相关征象</b>：若右上叶不张与肺门肿块相连、形成横向的 S 形，就是「横 S 征（反 S 征）」，为右上叶中央型肺癌的特征性表现。</p>
+      <p><b>与单纯大叶性肺炎的区别</b>：肺炎按叶分布但肺门无肿块、水平裂不向上移位（反而可能略下移或不变），且抗炎后可吸收；不张是容积缩小。</p>
+    </details>
+  </div>
+
+  <!-- 第二题 -->
+  <div class="card">
+    <span class="tag">第二题 · 头颅 CT 平扫（脑窗 + 骨窗）</span>
+    <img src="q2_head.png" alt="头颅CT脑窗与骨窗">
+    <div class="prompt">
+      <b>给你的信息</b>：男，30 岁，头部外伤致头痛 3 小时。
+      <ol>
+        <li>病灶在哪一侧、什么位置？</li>
+        <li>是什么诊断？</li>
+        <li>为什么是这个，而不是另一种？</li>
+        <li>骨窗那幅还给出了什么额外信息？</li>
+      </ol>
+    </div>
+    <div class="hint">
+      <b>提示</b>：先看最外圈的颅骨，再看紧贴颅骨内板的那层东西是什么形状——梭形还是新月形？骨窗里那处凹陷说明了什么？再看中线有没有偏移。
+    </div>
+    <details>
+      <summary>看答案</summary>
+      <p class="ans">左侧额部急性硬膜外血肿，伴额部凹陷性骨折</p>
+      <p><b>读片要点</b></p>
+      <p>① 左侧额部颅骨内板下方见<b>梭形（双凸透镜形）</b>高密度影——这是硬膜外血肿最核心的形态征象。</p>
+      <p>② 高密度提示<b>急性期</b>（发病 3 小时，符合）。</p>
+      <p>③ 血肿范围较局限，未越过颅缝（颅缝处硬膜与颅骨粘连紧密，血液不易跨过）。</p>
+      <p>④ 局部脑组织受压，中线结构轻度向对侧移位。</p>
+      <p>⑤ 骨窗见左侧额部颅骨内板凹陷、皮质不连续——<b>凹陷性骨折</b>，与课件「硬膜外血肿多伴有邻近部位骨折（90%）」一致。</p>
+      <p><b>硬膜外 vs 硬膜下，怎么分</b></p>
+      <p>· 形态：<b>梭形/双凸</b>＝硬膜外；<b>新月形</b>＝硬膜下<br>
+         · 范围：<b>不越过颅缝</b>＝硬膜外；<b>范围广、不受颅缝限制</b>＝硬膜下<br>
+         · 出血源：骨折致<b>脑膜中动脉</b>破裂＝硬膜外；<b>桥静脉</b>撕裂＝硬膜下<br>
+         · 损伤类型：<b>加速性</b>＝硬膜外；<b>减速性</b>＝硬膜下<br>
+         · 病程：<b>昏迷—清醒—昏迷</b>（中间清醒期）＝硬膜外；很少有中间清醒期＝硬膜下</p>
+      <p><b>为什么不是硬膜下</b>：本例血肿是梭形、不是新月形，且伴局部骨折，符合加速性损伤致脑膜中动脉破裂的机制。</p>
+    </details>
+  </div>
+
+  <div class="bar">
+    <button id="toggleAll">展开全部答案</button>
+  </div>
+  <div class="foot">医学影像学 · 阅片复习<br>答案取自老师课件图注与「最重要」PPT 原页</div>
+</div>
+
+<script>
+(function () {
+  var ds = Array.prototype.slice.call(document.querySelectorAll('details'));
+  var btn = document.getElementById('toggleAll');
+  var open = false;
+  btn.addEventListener('click', function () {
+    open = !open;
+    ds.forEach(function (d) { d.open = open; });
+    btn.textContent = open ? '收起全部答案' : '展开全部答案';
+    btn.classList.toggle('on', open);
+  });
+})();
+</script>
+</body>
+</html>
