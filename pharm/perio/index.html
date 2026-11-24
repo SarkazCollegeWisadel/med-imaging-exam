@@ -31,6 +31,10 @@ cursor:pointer;color:var(--ink);font-family:inherit}
 .chip{flex:0 0 auto;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:4px 10px;
 font-size:.74rem;cursor:pointer;white-space:nowrap;color:var(--sub)}
 .chip.on{background:var(--hl);border-color:var(--hl);color:#fff}
+.note.srcbox{background:#eef2fb;color:#1c2230}
+@media (prefers-color-scheme: dark){.note.srcbox{background:#232936;color:#e5e9f0}}
+.note.srcbox code{background:#d8e2f8;color:#131722}
+@media (prefers-color-scheme: dark){.note.srcbox code{background:#2c3340;color:#e5e9f0}}
 .note{background:var(--warnbg);border-radius:9px;padding:9px 11px;font-size:.82rem;margin:9px 0;line-height:1.7}
 .q{background:var(--card);border-radius:12px;padding:12px;margin:9px 0;box-shadow:0 1px 3px rgba(16,24,40,.06)}
 .qh{display:flex;gap:6px;align-items:center;margin-bottom:7px;flex-wrap:wrap}
@@ -83,7 +87,7 @@ padding:8px 10px;font-size:.86rem;display:none;white-space:pre-wrap;line-height:
 <b>为什么有这一页：</b>老师只发了 5 套作业，<b>牙周病用药和口腔黏膜病用药两章一道题都没有</b>，但教学大纲写着「掌握」。这页用开源题库补上。
 </div>
 
-<div class="note" style="background:#eef2fb">
+<div class="note srcbox">
 <b>来源与校验（可回查）：</b><br>
 题库 <code>nanguaguag/yibubang</code>（MIT 许可）· 口腔期末库 v3.0.0<br>
 压缩包 sha256 <code>cb9870e6…33f76f</code> · 解出的 sqlite sha256 <code>574aaa4c…47ce536</code>，两值与官方清单<b>逐字相符</b><br>
