@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#f5f6fa">
+<title>口腔临床药物学 · 学习指南</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232563eb'/%3E%3Ctext x='16' y='23' font-size='18' text-anchor='middle' fill='%23fff' font-family='sans-serif'%3E%E8%8D%AF%3C/text%3E%3C/svg%3E">
+<style>
+:root{--bg:#f5f6fa;--card:#fff;--ink:#1c2230;--sub:#6b7280;--line:#dfe3ea;
+--ok:#0f7a3d;--okbg:#e9f8ef;--bad:#b3261e;--hl:#2563eb;--warn:#8a5a00;--warnbg:#fff6e0;--code:#f0f2f7}
+@media (prefers-color-scheme: dark){
+  :root{--bg:#14171e;--card:#1c2029;--ink:#e5e9f0;--sub:#98a2b3;--line:#2c3340;
+  --ok:#4ade80;--okbg:#14301f;--bad:#f87171;--hl:#60a5fa;--warn:#fbbf24;--warnbg:#332a10;--code:#232936}
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;font-size:16.5px;padding:0 0 80px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:780px;margin:0 auto;padding:0 14px}
+header{background:var(--card);border-bottom:1px solid var(--line);padding:16px 0 14px;margin-bottom:14px;position:sticky;top:0;z-index:30}
+header .wrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+header h1{font-size:1.06rem;line-height:1.35;flex:1 1 auto;min-width:0}
+header .sub{color:var(--sub);font-size:.74rem;flex:1 1 100%;margin-top:2px}
+.btn{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:5px 9px;font-size:.74rem;
+cursor:pointer;color:var(--ink);font-family:inherit;white-space:nowrap;flex:0 0 auto}
+.btn:active{transform:scale(.96)}
+.btn.on{background:var(--hl);border-color:var(--hl);color:#fff}
+#toc{background:var(--card);border-radius:12px;padding:0;margin:0 0 14px;box-shadow:0 1px 3px rgba(16,24,40,.07);overflow:hidden}
+#toc summary{cursor:pointer;padding:11px 14px;font-weight:600;font-size:.9rem;list-style:none}
+#toc summary::-webkit-details-marker{display:none}
+#toc summary::before{content:"▸ ";color:var(--hl)}
+#toc[open] summary::before{content:"▾ "}
+#toc .list{padding:0 14px 13px;font-size:.86rem}
+#toc a{display:block;padding:3px 0;color:var(--hl);text-decoration:none;border-bottom:1px dotted var(--line)}
+#toc a.lv3{padding-left:16px;color:var(--sub);font-size:.82rem}
+#toc a.lv4{padding-left:30px;color:var(--sub);font-size:.8rem}
+article h1{font-size:1.22rem;margin:22px 0 10px;line-height:1.4}
+article h2{font-size:1.08rem;margin:26px 0 10px;padding:8px 0 8px 10px;border-left:4px solid var(--hl);
+background:linear-gradient(90deg,var(--code),transparent);border-radius:0 8px 8px 0;line-height:1.45;scroll-margin-top:70px}
+article h3{font-size:.99rem;margin:20px 0 8px;color:var(--ink);scroll-margin-top:70px}
+article h4{font-size:.93rem;margin:16px 0 6px;color:var(--sub);scroll-margin-top:70px}
+article p{margin:9px 0}
+article ul,article ol{margin:9px 0 9px 22px}
+article li{margin:4px 0}
+article li>ul,article li>ol{margin:3px 0 3px 18px}
+article strong{color:var(--ink);font-weight:700}
+article a{color:var(--hl)}
+article blockquote{margin:11px 0;padding:9px 12px;background:var(--warnbg);border-left:3px solid var(--warn);
+border-radius:0 8px 8px 0;color:var(--ink);font-size:.9rem}
+article blockquote p{margin:3px 0}
+article code{background:var(--code);border-radius:4px;padding:1px 5px;font-size:.86em;
+font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+article pre{background:var(--code);border-radius:9px;padding:11px 12px;overflow-x:auto;margin:11px 0}
+article pre code{background:none;padding:0;font-size:.82rem;line-height:1.6}
+.tw{overflow-x:auto;margin:11px 0;-webkit-overflow-scrolling:touch;border-radius:9px;border:1px solid var(--line)}
+article table{border-collapse:collapse;width:100%;font-size:.83rem;min-width:420px;background:var(--card)}
+article th,article td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+article th{background:var(--code);font-weight:600;white-space:nowrap}
+article hr{border:none;border-top:1px solid var(--line);margin:22px 0}
+.top{position:fixed;right:14px;bottom:20px;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);
+background:var(--card);color:var(--ink);font-size:1.1rem;display:none;align-items:center;justify-content:center;
+box-shadow:0 2px 8px rgba(0,0,0,.14);z-index:40;cursor:pointer}
+.top.on{display:flex}
+footer{margin-top:26px;padding-top:14px;border-top:1px solid var(--line);color:var(--sub);font-size:.74rem;line-height:1.8}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1>口腔临床药物学 · 学习指南</h1>
+  <button class="btn" id="fsDn">A−</button>
+  <button class="btn" id="fsUp">A+</button>
+  <div class="sub">2026-11-24 · 依据 7 份课件 644 页 + 两份大纲 + 75 道作业 + 20 道课件真题</div>
+</div></header>
+<div class="wrap">
+<details id="toc"><summary>目录</summary><div class="list"><a class="lv2" href="#一先说结论这门课和药理学的差别在哪">一、先说结论：这门课和药理学的差别在哪</a>
+<a class="lv3" href="#s-1-考查对象换了从药变成局部场景">1. 考查对象换了：从&quot;药&quot;变成&quot;局部场景&quot;</a>
+<a class="lv3" href="#s-2-考法换了机制退居二线数字与禁忌上台">2. 考法换了：机制退居二线，数字与禁忌上台</a>
+<a class="lv3" href="#s-3-多了一套行政规则处方与药品管理">3. 多了一套&quot;行政规则&quot;：处方与药品管理</a>
+<a class="lv3" href="#s-4-同一个药两种考法的具体例子">4. &quot;同一个药，两种考法&quot;的具体例子</a>
+<a class="lv3" href="#s-5-一句话学习策略">5. 一句话学习策略</a>
+<a class="lv2" href="#二学时与题量的对应关系大纲权威数据">二、学时与题量的对应关系（大纲权威数据）</a>
+<a class="lv2" href="#三老师出题倾向75-道作业题实测">三、老师出题倾向：75 道作业题实测</a>
+<a class="lv3" href="#s-31-结构极规整">3.1 结构极规整</a>
+<a class="lv3" href="#s-32-单选题的四种句式50-道实测">3.2 单选题的四种句式（50 道实测）</a>
+<a class="lv3" href="#s-33-填空题只考三样东西25-道实测">3.3 填空题只考三样东西（25 道实测）</a>
+<a class="lv3" href="#s-34-一条重要情报这-5-套作业的正确率">3.4 一条重要情报：这 5 套作业的正确率</a>
+<a class="lv2" href="#四逐章考点地图按学时权重排序">四、逐章考点地图（按学时权重排序）</a>
+<a class="lv3" href="#⭐⭐⭐-第十七章-牙体牙髓病用药6-学时-101-页课件-15-题作业">⭐⭐⭐ 第十七章 牙体牙髓病用药（6 学时 / 101 页课件 / 15 题作业）</a>
+<a class="lv3" href="#⭐⭐-第八章-局部麻醉药2-学时-107-页-15-题-12-道课件真题">⭐⭐ 第八章 局部麻醉药（2 学时 / 107 页 / 15 题 + 12 道课件真题）</a>
+<a class="lv3" href="#⭐⭐-第六章-抗微生物药2-学时-99-页-15-题-3-道课件练习题">⭐⭐ 第六章 抗微生物药（2 学时 / 99 页 / 15 题 + 3 道课件练习题）</a>
+<a class="lv3" href="#⭐⭐-第十六章-消毒防腐药2-学时-95-页-15-题-老师发的-xlsx-表">⭐⭐ 第十六章 消毒防腐药（2 学时 / 95 页 / 15 题 + 老师发的 xlsx 表）</a>
+<a class="lv3" href="#⭐-第三章-药物剂型与处方2-学时-99-页-15-题">⭐ 第三章 药物剂型与处方（2 学时 / 99 页 / 15 题）</a>
+<a class="lv3" href="#⭐-第十八章-牙周病用药1-学时-73-页-无作业">⭐ 第十八章 牙周病用药（1 学时 / 73 页 / 无作业）</a>
+<a class="lv3" href="#⭐-第十九章-口腔黏膜病用药1-学时-70-页-无作业">⭐ 第十九章 口腔黏膜病用药（1 学时 / 70 页 / 无作业）</a>
+<a class="lv3" href="#⚪-学时-0-的-14-章自学">⚪ 学时 0 的 14 章（自学）</a>
+<a class="lv2" href="#五最大盲区期末题型里有作业没练过的三种">五、最大盲区：期末题型里有作业没练过的三种</a>
+<a class="lv3" href="#s-51-老师自己在课件末尾出的思考题论述题的最近线索">5.1 老师自己在课件末尾出的思考题（论述题的最近线索）</a>
+<a class="lv2" href="#六复习排期建议按-12-12-之后期末推算自行调整">六、复习排期建议（按 12-12 之后期末推算，自行调整）</a>
+<a class="lv2" href="#七资料位置">七、资料位置</a>
+<a class="lv2" href="#八边界说明哪些不是我说的">八、边界说明（哪些不是我说的）</a></div></details>
+<article><blockquote>
+<p>全部条目来源可查：<br />
+- <strong>考试大纲</strong>：<code>_ocs_raw\22级口腔临床药物学考试大纲.pdf</code>（3 页）<br />
+- <strong>教学大纲</strong>：<code>_ocs_raw\22级口腔临床药物学教学大纲.pdf</code>（7 页，含 16 学时分配）<br />
+- <strong>老师课件</strong>：7 份 PPT，共 644 页（<code>_ocs_raw\ppt\*.pptx</code> + 同名 <code>.txt</code> 全文）<br />
+- <strong>老师发的总结</strong>：<code>_ocs_raw\总结.pptx</code>（158 页，考前复习提纲）<br />
+- <strong>消毒防腐药知识点表</strong>：<code>_ocs_raw\口腔消毒防腐药知识点总结.xlsx</code>（谢雯 11-10 发，19 行）<br />
+- <strong>平台作业</strong>：5 套 ×15 题＝75 题（<code>_ocs_raw</code> 同目录 <code>kly_pool.json</code>）<br />
+- <strong>课件内嵌执医真题/练习题</strong>：20 题（同上 B 区）</p>
+<p>数据抓取时间：2026-11-24。作业只读，未代答、未代交。</p>
+</blockquote>
+<hr />
+<h2 id="一先说结论这门课和药理学的差别在哪">一、先说结论：这门课和药理学的差别在哪</h2>
+<p>你药理学有底子，这是好事——但<strong>这门课不是药理学的口腔版教材</strong>，它把药理学的"药物→作用→机制"链条，换成了"<strong>口腔场景→选哪个药→怎么用→不能用在哪</strong>"。同样的药，考法完全不同。</p>
+<h3 id="s-1-考查对象换了从药变成局部场景">1. 考查对象换了：从"药"变成"局部场景"</h3>
+<p>药理学按<strong>药物家族</strong>组织（β-内酰胺类、氨基糖苷类、四环素类……），一门课把全身用药讲全。这门课按<strong>口腔临床问题</strong>组织，7 章全靠临床场景命名：</p>
+<table>
+<thead>
+<tr>
+<th>章</th>
+<th>场景</th>
+<th>对应药学知识</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第三章 药物剂型与处方</td>
+<td><strong>写处方</strong></td>
+<td>药理学完全不讲</td>
+</tr>
+<tr>
+<td>第六章 抗微生物药</td>
+<td>口腔颌面部感染</td>
+<td>药理学的抗生素章</td>
+</tr>
+<tr>
+<td>第八章 局部麻醉药</td>
+<td>拔牙/牙髓/牙周局麻</td>
+<td>药理学第八章</td>
+</tr>
+<tr>
+<td>第十六章 消毒防腐药</td>
+<td>器械/黏膜/根管消毒</td>
+<td><strong>药理学不设此章</strong></td>
+</tr>
+<tr>
+<td>第十七章 牙体牙髓病用药</td>
+<td>防龋/脱敏/盖髓/失活/根管</td>
+<td><strong>药理学不设此章</strong></td>
+</tr>
+<tr>
+<td>第十八章 牙周病用药</td>
+<td>含漱/牙周袋/全身辅助</td>
+<td><strong>药理学不设此章</strong></td>
+</tr>
+<tr>
+<td>第十九章 口腔黏膜病用药</td>
+<td>疱疹/念珠菌/扁平苔藓/天疱疮</td>
+<td><strong>药理学不设此章</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>算术</strong>：7 章里 5 章是药理学没有的内容。药理学那套"抗菌机制/受体/药动学"只能当背景，真正要背的是<strong>浓度、疗程、适应证、禁用人群</strong>。</p>
+<h3 id="s-2-考法换了机制退居二线数字与禁忌上台">2. 考法换了：机制退居二线，数字与禁忌上台</h3>
+<p>作业 75 题实测（题型统计在第三节）：</p>
+<ul>
+<li><strong>数值型题干占 40%</strong>（50 道单选里 20 道带浓度/剂量/时间/体重数字）；</li>
+<li><strong>填空题 25 道里，数字类 9 道、机制/分类名词 6 道、药名/成分/别名 5 道</strong>——纯机制只占 6 道；</li>
+<li>药理学里最重的"药理作用及机制"，在这门课的大纲里常写成"<strong>了解</strong>"。</li>
+</ul>
+<p>对照考试大纲原文（第 1–2 页）：</p>
+<blockquote>
+<p>第六章 抗微生物药：1.<strong>掌握</strong>各类抗微生物药的药理作用、临床应用及用法用量。2.<strong>了解</strong>各类抗微生物药的不良反应及注意事项。</p>
+</blockquote>
+<p>→ 也就是说，"用法用量"要和药理作用同级掌握，"不良反应"反而只要求了解。这在药理学里是反过来的。</p>
+<h3 id="s-3-多了一套行政规则处方与药品管理">3. 多了一套"行政规则"：处方与药品管理</h3>
+<p>第三章整章、以及散落在各章的"（执医）"标记，是<strong>法规+制度</strong>，药理学完全没有：</p>
+<ul>
+<li>处方颜色（普通白/急诊淡黄/儿科淡绿/麻醉+精一淡红/精二白）</li>
+<li>处方限量（普通 7 日；急诊 3 日；麻醉药品注射剂门急诊 1 次常用量、癌痛 3 日；哌甲酯 15 日；哌替啶限院内）</li>
+<li>保存年限（普通 1 年/毒性+精二 2 年/麻醉+精一 3 年）</li>
+<li>妊娠用药分级（青霉素 G = <strong>B 级</strong>）</li>
+</ul>
+<p>这部分不能靠"理解"，只能背。好消息是量小、结构规整，一页表就能兜住。</p>
+<h3 id="s-4-同一个药两种考法的具体例子">4. "同一个药，两种考法"的具体例子</h3>
+<table>
+<thead>
+<tr>
+<th>药</th>
+<th>药理学考法</th>
+<th>这门课的考法（作业真题）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>利多卡因</td>
+<td>抗室性心律失常机制、Na⁺通道阻滞</td>
+<td>又名<strong>赛罗卡因</strong>；4% 阿替卡因注射速度<strong>≤1 mL/min</strong>；2% 利多卡因一次<strong>≤20 mL</strong>；扩散性强<strong>不宜蛛网膜下腔麻醉</strong>；心律失常患者<strong>禁用</strong>含肾上腺素局麻药</td>
+</tr>
+<tr>
+<td>四环素</td>
+<td>抑菌机制（30S）、二重感染</td>
+<td><strong>8 岁以下禁用</strong>；米诺环素抗菌活性最强；<strong>唯一能使已萌出牙和牙龈变色</strong>；龈沟液浓度为血药 <strong>2~10 倍</strong></td>
+</tr>
+<tr>
+<td>甲硝唑</td>
+<td>抗厌氧菌机制、双硫仑反应</td>
+<td>专性厌氧菌感染<strong>首选</strong>；牙周炎 <strong>0.2g tid ×3 日</strong>；HIV 相关牙周炎 <strong>0.4g bid ×5 天</strong>；儿童 <strong>15–22.5 mg/kg/d</strong></td>
+</tr>
+<tr>
+<td>氢氧化钙</td>
+<td>通常不作为独立考点</td>
+<td><strong>pH 9~12</strong>（MTA 调和后凝胶 pH <strong>12.5</strong>）；根管消毒封药 <strong>7 天</strong>；抗菌机制为<strong>细菌蛋白质变性</strong>；赋形剂分水性（甲基纤维素）/黏性（甘油）/油性（樟脑对氯酚）</td>
+</tr>
+</tbody>
+</table>
+<p>→ 结论：<strong>药理学帮你理解"为什么"，这门课要你记住"多少、几天、给谁、不给谁"</strong>。理解的活已经干完了，接下来是把数字和禁忌钉牢。</p>
+<h3 id="s-5-一句话学习策略">5. 一句话学习策略</h3>
+<blockquote>
+<p><strong>药理学负责"懂了"，这门课负责"报得出数"。</strong><br />
+复习时不要重读药理机制，直接做三件事：①每章一张「数字表」②每章一张「禁用/慎用人群表」③把 75 道作业题＋20 道课件真题刷两遍。</p>
+</blockquote>
+<hr />
+<h2 id="二学时与题量的对应关系大纲权威数据">二、学时与题量的对应关系（大纲权威数据）</h2>
+<p>教学大纲第 1–2 页的学时表（原文照录）：</p>
+<table>
+<thead>
+<tr>
+<th>章节</th>
+<th>总学时</th>
+<th>理论</th>
+<th>实验</th>
+<th>作业</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第三章 药物剂型与处方</td>
+<td>2</td>
+<td>2</td>
+<td>—</td>
+<td>有（15 题）</td>
+</tr>
+<tr>
+<td>第六章 抗微生物药</td>
+<td>2</td>
+<td>2</td>
+<td>—</td>
+<td>有（15 题）</td>
+</tr>
+<tr>
+<td>第八章 局部麻醉药</td>
+<td>2</td>
+<td>2</td>
+<td>—</td>
+<td>有（15 题）</td>
+</tr>
+<tr>
+<td>第十六章 消毒防腐药</td>
+<td>2</td>
+<td>2</td>
+<td>—</td>
+<td>有（15 题）</td>
+</tr>
+<tr>
+<td><strong>第十七章 牙体牙髓病用药</strong></td>
+<td><strong>6</strong></td>
+<td><strong>2</strong></td>
+<td><strong>4</strong></td>
+<td>有（15 题）</td>
+</tr>
+<tr>
+<td>第十八章 牙周病用药</td>
+<td>1</td>
+<td>1</td>
+<td>—</td>
+<td>无</td>
+</tr>
+<tr>
+<td>第十九章 口腔黏膜病用药</td>
+<td>1</td>
+<td>1</td>
+<td>—</td>
+<td>无</td>
+</tr>
+<tr>
+<td>其余 14 章（概述/药动学/临床试验/不良反应/抗肿瘤/镇痛/镇静/全麻/凝血/激素/免疫/维生素/其他/急救）</td>
+<td><strong>0</strong></td>
+<td>0</td>
+<td>—</td>
+<td>无</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td><strong>16</strong></td>
+<td><strong>12</strong></td>
+<td><strong>4</strong></td>
+<td>5 套</td>
+</tr>
+</tbody>
+</table>
+<p><strong>这张表决定复习权重，三条硬结论：</strong></p>
+<ol>
+<li><strong>第十七章牙体牙髓病用药占 6 学时（全课 37.5%）</strong>，是绝对核心，且是唯一有实验课的章——实验 4 学时意味着<strong>大概率有实验随堂测验</strong>（大纲写明"实验随堂测验占平时分 15%"）。</li>
+<li><strong>第十八、十九章各 1 学时、平台没发作业</strong>——按大纲仍是"掌握"级考点（第十八章：掌握含漱剂、牙周袋用药、牙周塞治剂的应用；掌握抗生素类、非激素类抗炎药物的应用），<strong>不能因为没作业就跳过</strong>。</li>
+<li><strong>剩下 14 章学时全为 0、教学大纲标注"自学法"</strong>——大纲里仍列了"掌握"要求（如第五章药物不良反应、第十章抗焦虑药、第二十一章急救用药），但既然 0 学时，出大题概率低。<strong>优先级最低，考前扫一遍名词即可</strong>。</li>
+</ol>
+<hr />
+<h2 id="三老师出题倾向75-道作业题实测">三、老师出题倾向：75 道作业题实测</h2>
+<h3 id="s-31-结构极规整">3.1 结构极规整</h3>
+<p>5 套作业，每套<strong>恰好 15 题 = 10 单选（2 分）+ 5 填空（2 分），满分 30</strong>。五个章一一对应，没有一道多选、判断、简答、论述。</p>
+<p>考试大纲第 2–3 页写题型是"单选/填空/<strong>B1 型题</strong>/案例分析/论述"，题量 70–80 题、90 分钟。→ <strong>作业只练了前两种，期末那三种（B1、案例、论述）没有样题</strong>，这是最大盲区，见第五节。</p>
+<h3 id="s-32-单选题的四种句式50-道实测">3.2 单选题的四种句式（50 道实测）</h3>
+<table>
+<thead>
+<tr>
+<th>句式</th>
+<th>全课</th>
+<th>牙体牙髓</th>
+<th>消毒防腐</th>
+<th>局部麻醉</th>
+<th>抗微生物</th>
+<th>剂型处方</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>案例壳</strong>（"患者，女，44 岁…"）</td>
+<td>23/50</td>
+<td><strong>7/10</strong></td>
+<td>3/10</td>
+<td><strong>8/10</strong></td>
+<td>4/10</td>
+<td>1/10</td>
+</tr>
+<tr>
+<td><strong>数字型</strong>（浓度/剂量/时间/体重）</td>
+<td>20/50</td>
+<td><strong>7/10</strong></td>
+<td>3/10</td>
+<td><strong>8/10</strong></td>
+<td>2/10</td>
+<td><strong>0/10</strong></td>
+</tr>
+<tr>
+<td><strong>正误判断</strong>（"说法正确/错误/不宜/不能"）</td>
+<td>12/50</td>
+<td>3/10</td>
+<td>1/10</td>
+<td>2/10</td>
+<td>3/10</td>
+<td>3/10</td>
+</tr>
+<tr>
+<td><strong>归类</strong>（"属于/不属于"）</td>
+<td>7/50</td>
+<td>1/10</td>
+<td><strong>4/10</strong></td>
+<td>1/10</td>
+<td>1/10</td>
+<td>0/10</td>
+</tr>
+<tr>
+<td><strong>"最/首选/最佳"</strong></td>
+<td>7/50</td>
+<td>2/10</td>
+<td>0/10</td>
+<td>0/10</td>
+<td><strong>4/10</strong></td>
+<td>1/10</td>
+</tr>
+</tbody>
+</table>
+<p><strong>读出来的三个习惯：</strong></p>
+<ol>
+<li><strong>临床两章（局部麻醉、牙体牙髓）偏爱"病例 + 数字"双壳</strong>——16/20 道单选都是这两类。题干给年龄、体重、诊断，问的就是剂量上限、封药时间、涂药分钟数。→ <strong>这两章必须背数字，只背机制会全错。</strong></li>
+<li><strong>消毒防腐药偏爱"归类 + 正误"</strong>——"下述属于低效消毒防腐药的是""下列不属于卤素类的是""下述属于氧化剂类的是"。→ 这章要做<strong>分类树</strong>（酚/醛/酸/碱/卤素/氧化剂/表面活性剂/染料），把每个药挂到枝上。</li>
+<li><strong>抗微生物药偏爱"最"字题</strong>——"相对安全的品种""抗菌活性最强""对β-内酰胺酶稳定性最好"。→ 这章考<strong>排序和比较</strong>，不是孤立的药。</li>
+</ol>
+<h3 id="s-33-填空题只考三样东西25-道实测">3.3 填空题只考三样东西（25 道实测）</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>数量</th>
+<th>实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>数字</strong>（浓度/剂量/天数/分级）</td>
+<td><strong>9</strong></td>
+<td>氟化钠局部涂擦 <strong>2%</strong>；EDTA <strong>17%</strong>；氟化钠甘油 <strong>75%</strong>；涂氟后 <strong>30</strong> 分钟不进食；酸性磷酸氟第 1 年每季度 1 次；乙醇 <strong>70-75%</strong>；阿替卡因 <strong>≤1 mL/min</strong>；四环素 <strong>8</strong> 岁以下禁用；癌痛麻醉药品注射剂 <strong>3</strong> 日常用量；哌甲酯 <strong>15</strong> 日常用量</td>
+</tr>
+<tr>
+<td><strong>机制/分类名词</strong></td>
+<td><strong>6</strong></td>
+<td>氨基酮类（局麻药分类）；硬膜外麻醉；细胞壁（青霉素机制）；二氢叶酸（磺胺机制）；首过效应/首关效应；缓释颗粒</td>
+</tr>
+<tr>
+<td><strong>药名/成分/别名</strong></td>
+<td><strong>5</strong></td>
+<td>赛罗卡因（利多卡因别名）；对氨基苯甲酸（普鲁卡因代谢产物）；次氯酸钠（84 消毒液）；碘（碘酊）；氧气（过氧化氢释放）</td>
+</tr>
+<tr>
+<td>其他</td>
+<td>4</td>
+<td>HEMA（复合脱敏剂）、小（聚维酮碘刺激性）、过敏反应、字母分级 B（青霉素 G 妊娠分级）</td>
+</tr>
+</tbody>
+</table>
+<p>→ <strong>填空题拿分靠卡片，不靠理解</strong>。每章做一张「数字+别名+机制」三栏卡，25 道填空能兜住 20 道。</p>
+<h3 id="s-34-一条重要情报这-5-套作业的正确率">3.4 一条重要情报：这 5 套作业的正确率</h3>
+<p>平台对前三套（牙体牙髓、消毒防腐、局部麻醉）保留了标准答案，你的 30 道单选<strong>全对</strong>。后两套（抗微生物、剂型处方）平台没存标准答案，只有你的作答记录——<strong>这两套的答案我不能替你确认</strong>，抽查版里会明确标注"平台未存标准答案，仅展示你的作答"。</p>
+<hr />
+<h2 id="四逐章考点地图按学时权重排序">四、逐章考点地图（按学时权重排序）</h2>
+<h3 id="⭐⭐⭐-第十七章-牙体牙髓病用药6-学时-101-页课件-15-题作业">⭐⭐⭐ 第十七章 牙体牙髓病用药（6 学时 / 101 页课件 / 15 题作业）</h3>
+<p>课件 p91 老师自己做的课堂小结，可直接当骨架：</p>
+<blockquote>
+<p>抗牙本质敏感药：氟化钠甘油、草酸钾、硝酸钾<br />
+牙漂白药：过氧化氢、过氧化脲、过硼酸钠<br />
+防龋药（氟化钠、氟化亚锡、酸性磷酸氟）<br />
+盖髓术药（氢氧化钙、MTA、氧化锌丁香油）<br />
+牙髓切断术药（FC、戊二醛）<br />
+牙髓失活剂（多聚甲醛、金属砷、无水亚砷酸）<br />
+根管治疗药（冲洗药：次氯酸钠、氯己定、EDTA、过氧化氢；消毒药：氢氧化钙、碘仿）</p>
+</blockquote>
+<p><strong>必背数字表</strong></p>
+<table>
+<thead>
+<tr>
+<th>药/环节</th>
+<th>数字</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>氟化钠局部涂擦</td>
+<td><strong>2%</strong>，牙萌出后 2~3 年为最佳，保持湿润 4 min，<strong>30 min</strong> 内不漱口不进食；每周 1 次、4 次一疗程</td>
+<td>课件 p18</td>
+</tr>
+<tr>
+<td>氟化钠含漱三档</td>
+<td><strong>0.2%</strong> 每周 1 次 / <strong>0.05%</strong> 每日 1 次 / <strong>0.02%</strong> 每日 2 次</td>
+<td>课件 p18</td>
+</tr>
+<tr>
+<td>氟化亚锡涂擦</td>
+<td><strong>8%</strong>；含漱 <strong>0.1%</strong> 每日 1 次；须新鲜配，<strong>1 h</strong> 内用完</td>
+<td>课件 p24–25</td>
+</tr>
+<tr>
+<td>酸性磷酸氟</td>
+<td>专业凝胶 <strong>1.23%</strong>、个人 <strong>0.5%</strong>；<strong>第 1 年每季度 1 次、第 2 年每半年 1 次</strong></td>
+<td>课件 p28</td>
+</tr>
+<tr>
+<td>75% 氟化钠甘油</td>
+<td>涂擦 <strong>2~3 分钟</strong>，每周 1 次、4 次一疗程</td>
+<td>课件 p36</td>
+</tr>
+<tr>
+<td>草酸钾</td>
+<td><strong>30%</strong> 涂 2 min，再用 3% 草酸氢钾 2 min</td>
+<td>课件 p37</td>
+</tr>
+<tr>
+<td>过氧化氢漂白</td>
+<td><strong>35%</strong> 诊室漂白；加热 2 min/牙 或 漂白灯 8~12 min/牙弓</td>
+<td>课件 p45–46</td>
+</tr>
+<tr>
+<td>过氧化脲家庭漂白</td>
+<td>10% 夜间 8~10 h；<strong>15% 夜间 4~6 h / 白天每 1.5~2 h 更换</strong>；疗程 2~4 周</td>
+<td>课件 p49</td>
+</tr>
+<tr>
+<td>EDTA</td>
+<td><strong>17%</strong>，先 5.25% 次氯酸钠再 EDTA</td>
+<td>课件 p83</td>
+</tr>
+<tr>
+<td>次氯酸钠根管冲洗</td>
+<td>常用 <strong>5.25%</strong>，可稀释至 2.5%、1.25%；量 <strong>≥1~2 mL</strong></td>
+<td>课件 p82</td>
+</tr>
+<tr>
+<td>多聚甲醛失活</td>
+<td>封药 <strong>2 周</strong>左右</td>
+<td>课件 p74</td>
+</tr>
+<tr>
+<td>氢氧化钙根管消毒</td>
+<td>封药 <strong>7 天</strong>（课件 p92 真题答案 E）</td>
+<td>课件 p92</td>
+</tr>
+<tr>
+<td>MTA 调和后凝胶</td>
+<td><strong>pH 12.5</strong>，可维持高 pH 24 h 以上；固化约 <strong>4 h</strong></td>
+<td>课件 p63 / p94</td>
+</tr>
+<tr>
+<td>碘仿糊剂</td>
+<td>封入根管 <strong>10~14 天</strong>；碘仿纱条干槽症 <strong>8~10 天</strong>；局部总量 <strong>≤2 g</strong></td>
+<td>课件 p89 / 消毒章 p66</td>
+</tr>
+</tbody>
+</table>
+<p><strong>必背禁用/慎用</strong></p>
+<ul>
+<li>四环素、米诺环素：<strong>8 岁以下</strong>儿童、妊娠哺乳期禁用</li>
+<li>氧化锌丁香油（ZOE）：<strong>禁用于直接盖髓</strong>（致牙髓慢性炎症→坏死，无修复性牙本质）</li>
+<li>甲醛甲酚（FC）：只用于<strong>乳牙</strong>活髓切断；禁用于年轻恒牙</li>
+<li>过氧化氢 35% 漂白：<strong>16 岁以下、孕妇、哺乳期</strong>禁</li>
+<li>多聚甲醛：不得用于感染、坏死性根髓；乳牙列用可能损害继承恒牙胚</li>
+</ul>
+<h3 id="⭐⭐-第八章-局部麻醉药2-学时-107-页-15-题-12-道课件真题">⭐⭐ 第八章 局部麻醉药（2 学时 / 107 页 / 15 题 + 12 道课件真题）</h3>
+<p>这是<strong>课件真题密度最高的一章</strong>（17 处"执医真题"标记），说明老师认为这章最容易考。</p>
+<p><strong>必背对照表</strong></p>
+<table>
+<thead>
+<tr>
+<th>药</th>
+<th>别名</th>
+<th>起效/维持</th>
+<th>强度与毒性（vs 普鲁卡因）</th>
+<th>关键禁用/注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>普鲁卡因</td>
+<td>奴佛卡因</td>
+<td>2~5 min / 30~60 min（短效）</td>
+<td>基准；血管舒张作用最强</td>
+<td>通透性差<strong>不能表麻</strong>；浓度 &gt;5% 致神经损伤；中毒血药浓度 <strong>6 μg/mL</strong>；不宜与磺胺合用</td>
+</tr>
+<tr>
+<td>氯普鲁卡因</td>
+<td>—</td>
+<td>6~12 min / 30~60 min</td>
+<td>强 2 倍、毒性 0.5 倍</td>
+<td>酯类过敏者禁用</td>
+</tr>
+<tr>
+<td>丁卡因</td>
+<td>地卡因</td>
+<td>表麻 1~3 min / 20~40 min（长效）</td>
+<td><strong>强 10 倍、毒性大 10 倍</strong></td>
+<td><strong>禁用于浸润麻醉</strong>、禁静注静滴；先少量观察 <strong>5 min</strong>；注射液不稳定，冷藏 ≤1 年</td>
+</tr>
+<tr>
+<td>利多卡因</td>
+<td><strong>赛罗卡因</strong></td>
+<td>比普鲁卡因快 1 倍、维持长 1 倍</td>
+<td>强度大 2 倍</td>
+<td>一次最大 <strong>300~400 mg</strong>；2% 一次 <strong>≤20 mL</strong>；抗室性心律失常首选；扩散性强<strong>不宜蛛网膜下腔</strong></td>
+</tr>
+<tr>
+<td>阿替卡因</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>4% 溶液注射速度 <strong>≤1 mL/min</strong>；成人 <strong>≤7 mg/kg</strong>、儿童（4 岁以上）<strong>≤5 mg/kg</strong>、老年人减半；<strong>4 岁以下禁用</strong>；高血压/严重肝功不全/心律失常/卟啉症/甲亢/窄角青光眼禁用；糖尿病及 MAOI 合用慎用</td>
+</tr>
+<tr>
+<td>布比卡因</td>
+<td>丁哌卡因</td>
+<td>维持 <strong>5~10 h</strong></td>
+<td>强 4~5 倍、毒性 3~4 倍</td>
+<td>长效，适合费时手术</td>
+</tr>
+</tbody>
+</table>
+<p><strong>普鲁卡因皮试判读（课件 p44，作业真题考过）</strong><br />
+阴性—无红斑或硬结；<strong>可疑阳性—红斑或硬结 &lt;5 mm</strong>；阳性—5~9 mm；强阳性—≥10 mm</p>
+<p><strong>血管收缩剂</strong>：加肾上腺素减少吸收、延长作用、减少出血；<strong>加肾上腺素不超过 0.3 mg</strong>；高血压、心脏病、心功能不全<strong>禁用</strong>；心律失常患者禁用含肾上腺素局麻药。</p>
+<h3 id="⭐⭐-第六章-抗微生物药2-学时-99-页-15-题-3-道课件练习题">⭐⭐ 第六章 抗微生物药（2 学时 / 99 页 / 15 题 + 3 道课件练习题）</h3>
+<p>课件 p4 的目的要求写得最具体：</p>
+<blockquote>
+<p>掌握阿莫西林、甲硝唑的药理作用、临床应用<br />
+<strong>熟悉</strong>四代头孢菌素的作用特点及临床应用；四环素类对口腔的作用特点；口腔感染及颌面部感染的治疗原则<br />
+了解抗菌药物的概念、作用机制及按结构的分类</p>
+</blockquote>
+<p><strong>注意</strong>：老师明确把"阿莫西林 + 甲硝唑"定为掌握级，其余抗生素降为熟悉/了解。复习倾斜应该跟着走。</p>
+<p><strong>必背要点</strong></p>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>关键点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>青霉素 G</td>
+<td>过敏反应<strong>最常见</strong>（与剂量无关，降解产物诱发，休克用<strong>肾上腺素</strong>）；赫氏反应（梅毒/钩端）；青霉素脑病；<strong>妊娠分级 B 级</strong>；用前皮试（任何给药途径）；新鲜配制</td>
+</tr>
+<tr>
+<td>阿莫西林</td>
+<td>广谱半合成；口腔颌面部感染；与硝基咪唑类联用治重度慢性牙周炎/侵袭性牙周炎；心内膜炎预防：术前 <strong>1 h</strong> 成人 <strong>2 g</strong>、儿童 <strong>50 mg/kg</strong></td>
+</tr>
+<tr>
+<td>四代头孢</td>
+<td>一代 G+ +++、肾毒性 +++；三代 G− +++、<strong>基本无肾毒性</strong>、β-内酰胺酶稳定性 ++++、<strong>头孢他啶抗铜绿假单胞菌最强</strong>；四代广谱</td>
+</tr>
+<tr>
+<td>氨基糖苷类</td>
+<td>抑制蛋白质合成（30S）；<strong>主要不良反应＝耳毒性（不可逆）</strong>；不可快速静注（呼吸麻痹）</td>
+</tr>
+<tr>
+<td>四环素类</td>
+<td><strong>8 岁以下禁用</strong>；米诺环素抗菌活性最强、<strong>唯一使已萌出牙和牙龈变色</strong>；多西环素抗胶原活性最强、口服吸收不受离子/抗酸剂影响；龈沟液浓度为血药 <strong>2~10 倍</strong></td>
+</tr>
+<tr>
+<td>甲硝唑</td>
+<td>专性厌氧菌感染<strong>首选</strong>；抑制乙醛脱氢酶→<strong>双硫仑反应</strong>，停药后 <strong>1 周内</strong>禁酒；妊娠/哺乳禁用</td>
+</tr>
+<tr>
+<td>喹诺酮</td>
+<td>禁 <strong>18 岁以下</strong>（软骨损害）；肌腱断裂风险（60 岁以上、合用甾体、有肌腱病史）</td>
+</tr>
+<tr>
+<td>抗真菌</td>
+<td>制霉菌素只治<strong>局部</strong>念珠菌（口服/口腔/皮肤/阴道），<strong>不宜用于深部真菌感染</strong></td>
+</tr>
+<tr>
+<td>抗病毒</td>
+<td>阿昔洛韦<strong>不可快速静滴</strong>（作业真题考点）；口腔病毒性感染宜<strong>发病早期</strong>用药</td>
+</tr>
+</tbody>
+</table>
+<p><strong>合理用药三条硬数字</strong>（课件 p61–62）：住院患者抗菌药物使用前微生物送检率 <strong>≥30%</strong>；限制使用级 <strong>≥50%</strong>；特殊使用级 <strong>≥80%</strong>。</p>
+<h3 id="⭐⭐-第十六章-消毒防腐药2-学时-95-页-15-题-老师发的-xlsx-表">⭐⭐ 第十六章 消毒防腐药（2 学时 / 95 页 / 15 题 + 老师发的 xlsx 表）</h3>
+<p>这章<strong>老师另外发了一份 Excel 知识点表</strong>（谢雯 11-10），本身就是"这就是考点"的信号。表里 19 行按 类别→代表药物→作用特点→口腔临床应用→注意事项 排列，直接背这张表效率最高。</p>
+<p><strong>分类骨架</strong>（课件 p93 老师自己写的小结）<br />
+酚类：苯酚、甲酚、麝香草酚、丁香酚 / 醛类：甲醛、多聚甲醛、戊二醛 / 酸类：硼酸、枸橼酸 / 碱类：硼砂、碳酸氢钠、氢氧化钙 / 卤素类：次氯酸钠、碘伏及碘仿 / 氧化剂：过氧化氢、高锰酸钾 / 表面活性剂：氯己定 / 染料类：依沙吖啶、甲紫</p>
+<p><strong>效价分级</strong>（课件 p96，作业真题考过）<br />
+- <strong>高效</strong>：杀灭一切病原微生物含芽孢 → 甲醛、戊二醛、次氯酸钠<br />
+- <strong>中效</strong>：杀灭繁殖体和多数真菌病毒，不杀芽孢 → 含碘类、酚类<br />
+- <strong>低效</strong>：杀灭部分繁殖体、真菌、病毒，不杀芽孢和 HBV → <strong>表面活性剂、染料类（依沙吖啶）</strong></p>
+<p><strong>必背数字</strong></p>
+<table>
+<thead>
+<tr>
+<th>药</th>
+<th>数字</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>乙醇</td>
+<td><strong>70~75%</strong> 杀菌最强；低于 50% 迅速下降；不破坏芽孢</td>
+</tr>
+<tr>
+<td>苯酚</td>
+<td>0.2% 抑菌 / 1% 杀菌 / 1.3% 杀真菌 / 5% 杀结核杆菌（24 h）；体表水溶液 <strong>≤2%</strong>；口服 <strong>1 g</strong> 以下可致死</td>
+</tr>
+<tr>
+<td>甲酚皂（来苏儿）</td>
+<td><strong>1~2%</strong> 手消毒；<strong>5~10%</strong> 环境/器皿/排泄物</td>
+</tr>
+<tr>
+<td>戊二醛</td>
+<td><strong>2% 碱性溶液</strong>（pH 7.5~8.5）器械消毒 <strong>10 h 以上</strong>；化学稳定期 <strong>14 天</strong>；与氢氧化钙配伍作牙髓切断覆盖剂（<strong>2%</strong>）</td>
+</tr>
+<tr>
+<td>碳酸氢钠</td>
+<td>口腔真菌感染 <strong>3~5%</strong> 含漱 10 mL tid；婴幼儿 <strong>2%</strong> 清洗口腔</td>
+</tr>
+<tr>
+<td>聚维酮碘</td>
+<td>术前皮肤手消毒 <strong>5%</strong> 涂擦 2 次；口腔外用 <strong>1%</strong>、含漱 <strong>0.5%</strong>、牙周袋冲洗 <strong>1%</strong>、义齿 <strong>0.05%</strong></td>
+</tr>
+<tr>
+<td>过氧化氢</td>
+<td>口腔抗感染：坏死性龈口炎 <strong>3%</strong>、牙周炎+冠周炎 <strong>1%</strong>、干槽症 <strong>1~3%</strong>；根管冲洗 <strong>3%</strong>、<strong>5 mL</strong>；漂白 <strong>30%</strong></td>
+</tr>
+<tr>
+<td>高锰酸钾</td>
+<td>白色念珠菌/坏死性龈口炎 <strong>0.2~1%</strong>；含漱 0.02~0.5%；0.1% 清洗创口</td>
+</tr>
+<tr>
+<td>碘仿</td>
+<td>敷用总量 <strong>≤2 g</strong>（大面积长期用可中毒）</td>
+</tr>
+<tr>
+<td>硼砂</td>
+<td>成人致死 <strong>15 g</strong>、儿童 <strong>5 g</strong>、婴儿 <strong>2~3 g</strong></td>
+</tr>
+<tr>
+<td>氯己定</td>
+<td>含漱 <strong>0.1~0.2%</strong>；防菌斑 0.2% 10 mL/次 或 0.12% 15 mL/次，含漱 1 min bid；牙周袋冲洗 0.2%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="⭐-第三章-药物剂型与处方2-学时-99-页-15-题">⭐ 第三章 药物剂型与处方（2 学时 / 99 页 / 15 题）</h3>
+<p><strong>这章全是记诵，没有机制</strong>，但结构最规整。</p>
+<p><strong>必背</strong></p>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>处方颜色</td>
+<td>普通白；急诊<strong>淡黄</strong>（"急诊"）；儿科<strong>淡绿</strong>（"儿科"）；麻醉+精一<strong>淡红</strong>（"麻、精一"）；精二白（"精二"）</td>
+</tr>
+<tr>
+<td>通用限量</td>
+<td>普通处方 <strong>≤7 日</strong>；急诊 <strong>≤3 日</strong></td>
+</tr>
+<tr>
+<td>麻醉/精一</td>
+<td>注射剂：门急诊 1 次常用量、癌痛 <strong>3 日</strong>、住院逐日 1 日常用量；其他剂型：3 日常用量、癌痛 7 日；控缓释：7 日常用量、癌痛 15 日</td>
+</tr>
+<tr>
+<td>精二</td>
+<td>≤7 日常用量；慢性病可延长并注明理由</td>
+</tr>
+<tr>
+<td>特殊</td>
+<td>哌甲酯（精一）儿童多动症 <strong>≤15 日</strong>；哌替啶 1 次常用量限院内；二氢埃托啡 1 次常用量限二级以上医院</td>
+</tr>
+<tr>
+<td>保存</td>
+<td>普通 1 年；毒性+精二 2 年；麻醉+精一 <strong>3 年</strong>；期满经主要负责人批准、登记备案方可销毁</td>
+</tr>
+<tr>
+<td>有效期</td>
+<td>开具<strong>当日有效</strong>，特殊情况最长不超过 <strong>3 日</strong></td>
+</tr>
+<tr>
+<td>书写</td>
+<td>限 <strong>1 名</strong>患者/张；涂改须签名+日期；不得用"自用""遵医嘱"；完毕画<strong>斜线</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>剂型部分</strong>：吸收速率顺序 <strong>静脉注射 &gt; 吸入 &gt; 肌内注射（i.m）&gt; 皮下注射（i.h）&gt; 口服（p.o）&gt; 直肠给药 &gt; 贴皮给药</strong>（课件 p14，作业真题考过）；缓释=非恒速、控释=<strong>恒速</strong>；最古老剂型=<strong>丸剂</strong>；直肠给药=<strong>栓剂</strong>；首过效应定义与避免方法=<strong>肠道外给药</strong>。</p>
+<h3 id="⭐-第十八章-牙周病用药1-学时-73-页-无作业">⭐ 第十八章 牙周病用药（1 学时 / 73 页 / <strong>无作业</strong>）</h3>
+<p>大纲要求"掌握含漱剂、牙周袋用药、牙周塞治剂的应用；掌握抗生素类、非激素类抗炎药物的应用"——<strong>没有作业但有掌握要求，这是最容易漏掉的一章</strong>。</p>
+<p><strong>必背</strong></p>
+<ul>
+<li>局部用药优点：剂量小、局部浓度高、毒副作用小、<strong>避免首过反应</strong>；疗效取决于「能否到达 + 浓度是否足够 + 作用时间是否够长」</li>
+<li>氯己定：<strong>0.12%~0.2%</strong> 含漱；含漱后约 <strong>30%</strong> 吸附黏膜牙面、<strong>8~12 h</strong> 缓慢释放；<strong>含漱剂金标准</strong>；副作用味苦、易着色</li>
+<li>甲硝唑含漱液：<strong>0.5%</strong>，每日 2~3 次；<strong>禁酒</strong></li>
+<li>盐酸米诺环素软膏（派丽奥）：<strong>10 mg/0.5 g/支</strong>，1 次/周 × 4 次，注入牙周袋至充满</li>
+<li>阿莫西林：重度慢性牙周炎 <strong>7 日</strong> 1 疗程；急性牙周脓肿切开后 <strong>0.5 g tid ×7 日</strong>；心内膜炎预防术前 <strong>1 h</strong> 成人 <strong>2 g</strong>/儿童 <strong>50 mg/kg</strong></li>
+<li>甲硝唑：急性坏死性溃疡性龈炎 <strong>0.2 g tid ×3 日</strong>；HIV 相关牙周炎 <strong>0.4 g bid ×5 天</strong>；儿童 <strong>15~22.5 mg/kg/d</strong> 分 3 次</li>
+<li>奥硝唑：成人 <strong>500 mg bid ×3 日</strong></li>
+<li>布洛芬：片剂 <strong>200~400 mg tid，3~7 日</strong>；缓释胶囊 300~600 mg bid</li>
+<li>多西环素小剂量：<strong>20 mg bid，3 个月</strong> 1 疗程</li>
+<li>牙周冲洗常用药：<strong>3% 过氧化氢</strong>、<strong>0.12%~0.2% 氯己定</strong>、聚维酮碘（<strong>0.5%~1%</strong> 冲洗，肾衰者不宜局部长期用）</li>
+<li>缓释/控释区别：缓释=<strong>一级</strong>消除动力学（缓慢非恒速）；控释=<strong>零级</strong>（恒速）。米诺环素软膏注入后可维持有效抗菌浓度约<strong>一周</strong>，需重复放置 4 次</li>
+<li>牙周塞治剂三大作用：<strong>保护创面、止血、止痛</strong>（含丁香油安抚镇痛）——<strong>注意：此条出自老师《总结.pptx》p129，第十八章课件本身未讲塞治剂</strong>，但教学大纲要求"掌握牙周塞治剂的应用"，故并列在此</li>
+</ul>
+<h3 id="⭐-第十九章-口腔黏膜病用药1-学时-70-页-无作业">⭐ 第十九章 口腔黏膜病用药（1 学时 / 70 页 / <strong>无作业</strong>）</h3>
+<p><strong>必背</strong></p>
+<ul>
+<li>用药原则：病情轻→局部；较重→局部+全身联合；个体化；合理停药；<strong>重视心理治疗</strong>；监测不良反应</li>
+<li>单纯疱疹：抗病毒宜在<strong>发病 3~4 日内</strong>；<strong>原则上禁用糖皮质激素</strong>；阿昔洛韦 <strong>200 mg 5 次/日 ×5 日</strong>（原发）；复发间歇疗法在<strong>前驱症状或病损出现 24 h 内</strong>开始，5 天一疗程；一年复发 <strong>&gt;6 次</strong>者可长期抑制治疗 6~12 个月</li>
+<li>带状疱疹：病损出现后 <strong>24~72 h</strong> 内开始抗病毒</li>
+<li>口腔念珠菌病：局部一线=<strong>制霉菌素</strong>；全身一线=<strong>氟康唑</strong>（用于伴全身系统性因素的非克柔念珠菌）；疗程要足，症状消失后仍需 <strong>1~3 周</strong>；婴幼儿/孕妇/哺乳期<strong>不宜全身用药</strong></li>
+<li>天疱疮：<strong>糖皮质激素为首选</strong>，原则"<strong>足量、从速、渐减、忌躁</strong>"，分起始/控制/巩固/维持四阶段</li>
+<li>白斑：维 A 酸局部 <strong>0.1~0.3%</strong>，每日 1~2 次；口服初始 <strong>5 mg</strong> 每日 2~3 次，可加至 <strong>20~30 mg/d</strong></li>
+<li>沙利度胺：<strong>可致畸胎</strong>（妊娠前 3 个月，尤其 45~55 天）</li>
+<li>免疫增强药（胸腺素/转移因子/左旋咪唑）：<strong>自身免疫病不可用</strong>，如天疱疮</li>
+</ul>
+<h3 id="⚪-学时-0-的-14-章自学">⚪ 学时 0 的 14 章（自学）</h3>
+<p>教学大纲标注"自学法、0 课时"。其中仍写着"掌握"的有：第五章药物不良反应（临床表现形式及分级）、第十章抗焦虑及镇静催眠药、第十一章全麻药、第十二章促凝血药、第十三章糖皮质激素、第十四章免疫调节药、第十五章维生素及微量元素、第二十一章口腔科急救用药。</p>
+<p><strong>建议</strong>：只做名词级记忆（各章代表药 + 一句作用），不投入背数字的时间。考到就是白捡，考不到不亏。</p>
+<hr />
+<h2 id="五最大盲区期末题型里有作业没练过的三种">五、最大盲区：期末题型里有作业没练过的三种</h2>
+<p>考试大纲第 2–3 页原文列了五种题型，而平台作业<strong>只出现单选和填空</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>题型</th>
+<th>作业里有吗</th>
+<th>大纲描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单选题</td>
+<td>✅ 50 道</td>
+<td>"把一个问题的若干答案中选出正确的"</td>
+</tr>
+<tr>
+<td>填空题</td>
+<td>✅ 25 道</td>
+<td>"对重要知识点要精确掌握"</td>
+</tr>
+<tr>
+<td><strong>B1 型题</strong></td>
+<td>❌ <strong>0 道</strong></td>
+<td>"先给出 ABCDE 五个选项，然后根据这些选项会出一系列题，几道题的答案要从这五个选项中选择"</td>
+</tr>
+<tr>
+<td><strong>案例分析题</strong></td>
+<td>❌ <strong>0 道</strong></td>
+<td>"先给出某个病人的临床症状、体征，部分辅助检查结果，然后学生综合分析下诊断，写出分析思路，还需要做哪些检查及原因"</td>
+</tr>
+<tr>
+<td><strong>论述题</strong></td>
+<td>❌ <strong>0 道</strong></td>
+<td>"包括内容多、广、活"</td>
+</tr>
+</tbody>
+</table>
+<p><strong>这意味着两件事：</strong></p>
+<ol>
+<li><strong>B1 型题最适合这七章的知识结构</strong>（同一类药的一组参数共用五个选项），几乎必然会出。练法：把上文的数字表当 B1 题源——例如给出五个"3 日 / 7 日 / 15 日 / 1 年 / 3 年"，然后连续问"哌甲酯处方限量""麻醉药品注射剂癌痛限量""精一处方保存年限"。</li>
+<li><strong>案例分析题最可能落在第十七章牙体牙髓（6 学时 + 4 学时实验）或第十九章黏膜病</strong>——因为这两章课件里案例最多（牙体牙髓课件开头就是完整病例；黏膜病课件有 AIDS 合并念珠菌、手足口病等 4 个病例）。<strong>练法：把课件里的病例当素材，自己写"诊断→用药→为什么不用另一个药→还需要什么检查"四段</strong>，不要背结论。</li>
+</ol>
+<p>命题原则也写在大纲里，可以直接当难度预期：</p>
+<blockquote>
+<p>题目数量多、份量小、范围广，最基本的知识一般要占 <strong>60%</strong> 左右，稍微灵活一点的题目要占 <strong>30%</strong> 左右，较难的题目要占 <strong>10%</strong> 左右……客观性的题目应占比较重的份量。</p>
+</blockquote>
+<p>→ 60% 是基础题，就是把上面这些表背下来能拿的分。<strong>先把 60% 拿稳，再谈那 10% 的灵活题。</strong></p>
+<h3 id="s-51-老师自己在课件末尾出的思考题论述题的最近线索">5.1 老师自己在课件末尾出的思考题（论述题的最近线索）</h3>
+<p>五份课件末尾都有「思考题」，<strong>这是全书唯一接近论述题的素材</strong>，而且没给答案。原文照录：</p>
+<p><strong>第三章 药物剂型与处方（p98）</strong><br />
+1. 常用药物剂型有哪些？<br />
+2. 举例说明控释制剂与缓释制剂在口腔临床方面的应用？<br />
+3. 处方书写规则及处方限量有何规定？</p>
+<p><strong>第六章 抗微生物药（p98）</strong><br />
+1. 抗菌药物的作用机制包括什么？<br />
+2. 简述青霉素 G 的临床应用和主要不良反应。<br />
+3. 抗菌药物联合使用时有哪些注意事项？<br />
+4. 试述抗菌药物在口腔颌面部感染中的应用。</p>
+<p><strong>第八章 局部麻醉药（p106）</strong><br />
+1. 酯类与酰胺类局麻药的区别？<br />
+2. 口腔临床应用局麻药物时要注意哪些事项？</p>
+<p><strong>第十六章 消毒防腐药（p94）</strong><br />
+1. 消毒药和防腐药的定义是什么？二者有何区别？<br />
+2. 影响消毒防腐药作用的因素有哪些？<br />
+3. 各类消毒防腐药代表药杀菌或抑菌的主要特点是什么？<br />
+4. 氢氧化钙的药理作用</p>
+<p><strong>第十七章 牙体牙髓病用药（p100）</strong><br />
+1. 常见牙髓牙体病药物的药理作用？<br />
+2. 简述氟化物的防龋机制<br />
+3. 盖髓术药的种类及药理作用有哪些？<br />
+4. 理想的根管消毒剂应具备的条件是什么？</p>
+<p><strong>注意</strong>：第十七章第 4 题「理想的根管消毒剂应具备的条件」和第十六章第 4 题「氢氧化钙的药理作用」，<strong>答案就在课件正文里</strong>（p87 列了 10 条理想根管消毒药条件；消毒章 p56–57 讲了氢氧化钙的诱导矿化与抗菌作用）——这两题最适合拿来练笔，写完能立刻用课件原文自查。</p>
+<p>至于第五章里那些开放题（"试述抗菌药物在口腔颌面部感染中的应用"），课件没给标准答案。练法：按「病原菌→选药→剂量疗程→联合用药→特殊情况」五段写，每段从第六章课件里找依据，不自己发挥。</p>
+<hr />
+<h2 id="六复习排期建议按-12-12-之后期末推算自行调整">六、复习排期建议（按 12-12 之后期末推算，自行调整）</h2>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>做什么</th>
+<th>验收</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第 1 轮（2 天）</td>
+<td>按第四节的五张「必背数字表」逐条背，不看机制</td>
+<td>能合上书默写每章 ≥80% 数字</td>
+</tr>
+<tr>
+<td>第 2 轮（1 天）</td>
+<td>刷抽查版 95 题（75 作业 + 20 课件真题），错题标红</td>
+<td>正确率 ≥85%</td>
+</tr>
+<tr>
+<td>第 3 轮（1 天）</td>
+<td>第十八、十九章（无作业两章）精读课件 + 背本节清单</td>
+<td>能说出两章各 10 个药的关键数字</td>
+</tr>
+<tr>
+<td>第 4 轮（半天）</td>
+<td>B1 型题自练（拿数字表互换选项）+ 案例四段式口述各 1 例</td>
+<td>能口述完整四段不卡</td>
+</tr>
+<tr>
+<td>考前（2 h）</td>
+<td>只看错题 + 处方规则一页表 + 消毒防腐药分类树</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="七资料位置">七、资料位置</h2>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>考试大纲 / 教学大纲 / 课程简介</td>
+<td><code>D:\文献\AAA\大三\口腔临床药物学\_ocs_raw\*.pdf</code>（+ 同名 <code>.txt</code> 全文）</td>
+</tr>
+<tr>
+<td>老师 7 份课件 PPT</td>
+<td><code>_ocs_raw\ppt\*.pptx</code>（+ 同名 <code>.txt</code> 全文）</td>
+</tr>
+<tr>
+<td>老师总结 PPT（158 页）</td>
+<td><code>_ocs_raw\总结.pptx</code> / <code>总结.txt</code></td>
+</tr>
+<tr>
+<td>消毒防腐药知识点表</td>
+<td><code>_ocs_raw\口腔消毒防腐药知识点总结.xlsx</code> / <code>.txt</code></td>
+</tr>
+<tr>
+<td>课件附带文献 9 篇</td>
+<td><code>_ocs_raw\refs\*.pdf</code></td>
+</tr>
+<tr>
+<td>结构化题库（75+20 题）</td>
+<td><code>C:\我与你的杂谈\_预览\ocsp\kly_pool.json</code></td>
+</tr>
+<tr>
+<td>本指南</td>
+<td><code>C:\我与你的杂谈\口腔临床药物学_学习指南.md</code></td>
+</tr>
+<tr>
+<td>抽查版（自测页）</td>
+<td><code>C:\我与你的杂谈\口腔临床药物学_抽查版.html</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="八边界说明哪些不是我说的">八、边界说明（哪些不是我说的）</h2>
+<ol>
+<li><strong>作业后两套（第六章抗微生物、第三章剂型处方）平台未存标准答案</strong>，只有你的作答记录。抽查版中这两套的 30 道单选标注为「平台未存标准答案 · 以下为你的作答」，<strong>不作对错判定</strong>。</li>
+<li><strong>课件里内嵌的真题答案</strong>取自课件当页原文（选项后单独一行的字母），未经二次推断；若课件本身有误，我没改。</li>
+<li><strong>B1 型题、案例分析题、论述题没有任何样题</strong>，第五节里给的是基于大纲描述与课件素材的<strong>练法建议</strong>，不是真题预测。</li>
+<li><strong>教材 PDF 只用来核对章节页码与章号偏移</strong>（OCS 目录的「第九章局麻」「第二十章牙体牙髓」等与教材第 5 版章号不一致，已在第四节各章标题处标明教材章号），未从教材摘抄内容充当课件原文。</li>
+<li>平台作业 5 套已全部是「已完成」状态，本轮只读取、未改动、未提交任何作答。</li>
+</ol></article>
+</div>
+<button class="top" id="toTop">↑</button>
+<script>
+(function(){
+  var KEY='md_fs';
+  var fs=parseFloat(localStorage.getItem(KEY)||'16.5');
+  function apply(){document.body.style.fontSize=fs+'px';}
+  apply();
+  document.getElementById('fsUp').onclick=function(){fs=Math.min(22,fs+1);localStorage.setItem(KEY,fs);apply();};
+  document.getElementById('fsDn').onclick=function(){fs=Math.max(13,fs-1);localStorage.setItem(KEY,fs);apply();};
+  var t=document.getElementById('toTop');
+  window.addEventListener('scroll',function(){t.classList.toggle('on',window.scrollY>500);},{passive:true});
+  t.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
+  document.querySelectorAll('article table').forEach(function(tb){
+    if(tb.parentElement.classList.contains('tw'))return;
+    var w=document.createElement('div');w.className='tw';tb.parentNode.insertBefore(w,tb);w.appendChild(tb);
+  });
+})();
+</script>
+</body>
+</html>

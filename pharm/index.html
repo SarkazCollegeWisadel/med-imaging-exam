@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>口腔临床药物学 · 抽查版</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232563eb'/%3E%3Ctext x='16' y='23' font-size='19' text-anchor='middle' fill='%23fff' font-family='sans-serif'%3E药%3C/text%3E%3C/svg%3E">
+<style>
+:root{--bg:#f5f6fa;--card:#fff;--ink:#1c2230;--sub:#6b7280;--line:#dfe3ea;
+--ok:#0f7a3d;--okbg:#e9f8ef;--bad:#b3261e;--badbg:#fdecea;--hl:#2563eb;
+--warn:#8a5a00;--warnbg:#fff6e0;}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.6;padding:10px 10px 90px;max-width:760px;margin:0 auto;
+font-size:16px;-webkit-text-size-adjust:100%}
+h1{font-size:1.18rem;line-height:1.4}
+.sub{color:var(--sub);font-size:.78rem;margin:3px 0 10px}
+.bar{position:sticky;top:0;z-index:20;background:var(--bg);padding:7px 0 8px;border-bottom:1px solid var(--line);
+display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.bar .score{font-size:.82rem;color:var(--ink);font-weight:600;margin-right:auto}
+.bar .score span{color:var(--sub);font-weight:400}
+.btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:6px 10px;font-size:.78rem;
+cursor:pointer;color:var(--ink);font-family:inherit}
+.btn:active{transform:scale(.97)}
+.btn.on{background:var(--hl);border-color:var(--hl);color:#fff}
+.filters{display:flex;gap:6px;overflow-x:auto;padding:9px 0 3px;-webkit-overflow-scrolling:touch}
+.filters::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 11px;
+font-size:.76rem;cursor:pointer;white-space:nowrap;color:var(--sub)}
+.chip.on{background:var(--hl);border-color:var(--hl);color:#fff}
+.chip .n{opacity:.7;margin-left:3px}
+.card{background:var(--card);border-radius:13px;padding:13px;margin:10px 0;box-shadow:0 1px 3px rgba(16,24,40,.07)}
+.card.hide{display:none}
+.head{display:flex;gap:7px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
+.tag{font-size:.68rem;padding:2px 7px;border-radius:6px;background:#eef2fb;color:#26418f}
+.tag.b{background:#f3ecff;color:#5b21b6}
+.tag.f{background:#e8f5f2;color:#0f766e}
+.src{font-size:.68rem;color:var(--sub);margin-left:auto}
+.stem{font-size:.94rem;white-space:pre-wrap}
+.opts{margin-top:9px;display:flex;flex-direction:column;gap:7px}
+.opt{border:1.5px solid var(--line);border-radius:10px;padding:9px 11px;font-size:.9rem;background:#fff;
+text-align:left;cursor:pointer;font-family:inherit;color:var(--ink);display:flex;gap:7px;line-height:1.5}
+.opt .lb{font-weight:700;color:var(--hl);flex:0 0 auto}
+.opt.right{border-color:var(--ok);background:var(--okbg)}
+.opt.right .lb{color:var(--ok)}
+.opt.wrong{border-color:var(--bad);background:var(--badbg)}
+.opt.wrong .lb{color:var(--bad)}
+.opt.mine:not(.right):not(.wrong){border-color:var(--warn);background:var(--warnbg)}
+.opt.lock{pointer-events:none}
+.ans{margin-top:10px;border-left:3px solid var(--hl);background:#f0f5ff;border-radius:0 9px 9px 0;
+padding:9px 11px;font-size:.87rem;display:none;white-space:pre-wrap}
+.ans.on{display:block}
+.ans b{color:var(--hl)}
+.ans.warn{background:var(--warnbg);border-left-color:var(--warn)}
+.ans.warn b{color:var(--warn)}
+.acts{margin-top:9px;display:flex;gap:7px;flex-wrap:wrap}
+.empty{text-align:center;color:var(--sub);font-size:.86rem;padding:26px 0}
+details{background:var(--card);border-radius:13px;margin:12px 0;box-shadow:0 1px 3px rgba(16,24,40,.07)}
+summary{cursor:pointer;padding:12px 13px;font-weight:600;font-size:.92rem;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"▸ ";color:var(--hl)}
+details[open] summary::before{content:"▾ "}
+.inner{padding:0 13px 13px;font-size:.86rem}
+table{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:6px}
+td,th{border:1px solid var(--line);padding:6px 7px;text-align:left;vertical-align:top}
+th{background:#f0f2f7;font-weight:600}
+td.pg{color:var(--sub);white-space:nowrap;font-size:.72rem}
+.foot{color:var(--sub);font-size:.74rem;margin-top:14px;line-height:1.7}
+</style>
+</head>
+<body>
+<h1>口腔临床药物学 · 抽查版</h1>
+<div class="sub">95 题 · 平台作业原文 75 题 + 课件内嵌真题 20 题 · 点选项即判 · 进度自动存本机</div>
+
+<div class="bar">
+  <div class="score" id="score">已答 0 / 66<span> · 自动判分题</span></div>
+  <button class="btn" id="btnShuffle">乱序</button>
+  <button class="btn" id="btnReset">重来</button>
+</div>
+<div class="filters" id="filters"></div>
+
+<div id="list"></div>
+<div class="empty" id="empty" style="display:none">这个筛选下没有题。</div>
+
+<details>
+<summary>📌 数字速记（考前 15 分钟 · 每条带课件页码）</summary>
+<div class="inner">
+<p style="color:#6b7280;font-size:.8rem;margin-bottom:6px">下表逐条取自老师课件原文，页码为 PPT 页序号，可回原文核对。</p>
+<table><tr><th>考点</th><th>数字 / 内容</th><th>出处</th></tr><tr><td>氟化钠局部涂擦浓度 / 涂后禁食时间</td><td>2%；保持湿润 4 min；30 min 内不漱口不进食；每周 1 次、4 次一疗程</td><td class="pg">牙体牙髓 p18</td></tr><tr><td>氟化钠含漱三档浓度</td><td>0.2% 每周 1 次 / 0.05% 每日 1 次 / 0.02% 每日 2 次</td><td class="pg">牙体牙髓 p18</td></tr><tr><td>酸性磷酸氟疗程</td><td>第 1 年每季度 1 次，第 2 年每半年 1 次；专业凝胶 1.23%，个人 0.5%</td><td class="pg">牙体牙髓 p28</td></tr><tr><td>75% 氟化钠甘油涂擦时间</td><td>2~3 分钟，1 次/周、4 次一疗程</td><td class="pg">牙体牙髓 p36</td></tr><tr><td>EDTA 浓度</td><td>17%，先用 5.25% 次氯酸钠</td><td class="pg">牙体牙髓 p83</td></tr><tr><td>次氯酸钠根管冲洗</td><td>常用 5.25%（可稀释 2.5%、1.25%）；冲洗液量 ≥1~2 mL</td><td class="pg">牙体牙髓 p82</td></tr><tr><td>多聚甲醛失活封药</td><td>2 周左右</td><td class="pg">牙体牙髓 p74</td></tr><tr><td>氢氧化钙根管消毒封药</td><td>7 天</td><td class="pg">牙体牙髓 p92（真题）</td></tr><tr><td>MTA 调和后 pH / 固化时间</td><td>pH 12.5，维持高 pH 24 h 以上；固化约 4 h</td><td class="pg">牙体牙髓 p63、p94</td></tr><tr><td>碘仿糊剂封药 / 纱条 / 总量</td><td>糊剂 10~14 天；纱条 8~10 天；局部总量 ≤2 g</td><td class="pg">牙体牙髓 p89；消毒 p66</td></tr><tr><td>过氧化氢漂白</td><td>诊室内 35%，加热 2 min/牙 或漂白灯 8~12 min/牙弓</td><td class="pg">牙体牙髓 p45–46</td></tr><tr><td>过氧化脲家庭漂白</td><td>10% 夜间 8~10 h；15% 夜间 4~6 h、白天每 1.5~2 h 换药</td><td class="pg">牙体牙髓 p49</td></tr><tr><td>四环素禁用年龄</td><td>8 岁以下儿童；妊娠、哺乳期妇女</td><td class="pg">抗微生物 p46；牙周 p24</td></tr><tr><td>喹诺酮禁用年龄</td><td>18 岁以下</td><td class="pg">抗微生物 p51</td></tr><tr><td>阿替卡因注射速度 / 剂量上限</td><td>4% 溶液 ≤1 mL/min；成人 ≤7 mg/kg；4 岁以上儿童 ≤5 mg/kg；老人减半</td><td class="pg">局麻 p87–88</td></tr><tr><td>利多卡因一次最大量 / 2% 一次用量</td><td>300~400 mg；2% 一次 ≤20 mL</td><td class="pg">局麻 p55、p99（真题）</td></tr><tr><td>普鲁卡因中毒血药浓度</td><td>6 μg/mL</td><td class="pg">局麻 p45（真题）</td></tr><tr><td>普鲁卡因皮试可疑阳性</td><td>红斑或硬结 &lt;5 mm（阳性 5~9 mm、强阳性 ≥10 mm）</td><td class="pg">局麻 p44</td></tr><tr><td>加肾上腺素上限</td><td>≤0.3 mg；高血压、心脏病、心功能不全禁用</td><td class="pg">局麻 p44</td></tr><tr><td>乙醇消毒最佳浓度</td><td>70~75%；低于 50% 杀菌活性迅速下降</td><td class="pg">消毒 p97</td></tr><tr><td>甲酚皂溶液浓度</td><td>1%~2% 手消毒；5%~10% 环境、器皿、排泄物</td><td class="pg">消毒 p99</td></tr><tr><td>戊二醛器械消毒</td><td>2% 碱性溶液 pH 7.5~8.5，浸泡 10 h 以上；化学稳定期 14 天</td><td class="pg">消毒 p43–44</td></tr><tr><td>碳酸氢钠含漱</td><td>3%~5%，10 mL/次，tid；婴幼儿 2%</td><td class="pg">消毒 p104；黏膜 p54</td></tr><tr><td>聚维酮碘分档浓度</td><td>皮肤手 5%；口腔外用 1%、含漱 0.5%；牙周袋冲洗 1%；义齿 0.05%</td><td class="pg">消毒 p68</td></tr><tr><td>氯己定含漱浓度</td><td>0.1%~0.2%；防菌斑 0.2% 10 mL 或 0.12% 15 mL，含漱 1 min，每日 2 次</td><td class="pg">消毒 p80；牙周 p54</td></tr><tr><td>甲硝唑牙周用法</td><td>ANUG 0.2 g tid×3 日；HIV 相关 0.4 g bid×5 天；儿童 15~22.5 mg/kg/d</td><td class="pg">牙周 p29–30</td></tr><tr><td>阿莫西林心内膜炎预防</td><td>术前 1 h，成人 2 g，儿童 50 mg/kg</td><td class="pg">牙周 p21；抗微生物 p31</td></tr><tr><td>米诺环素软膏</td><td>10 mg/0.5 g/支，1 次/周×4 次</td><td class="pg">抗微生物 p47–48</td></tr><tr><td>处方通用限量</td><td>普通 ≤7 日用量；急诊 ≤3 日用量</td><td class="pg">剂型处方 p23</td></tr><tr><td>麻醉药品注射剂限量</td><td>门急诊 1 次常用量；癌痛 ≤3 日常用量；住院逐日 1 日常用量</td><td class="pg">剂型处方 p24</td></tr><tr><td>哌甲酯限量</td><td>儿童多动症每张 ≤15 日常用量</td><td class="pg">剂型处方 p25</td></tr><tr><td>处方保存年限</td><td>普通 1 年 / 毒性+精二 2 年 / 麻醉+精一 3 年</td><td class="pg">剂型处方 p27</td></tr><tr><td>处方颜色</td><td>普通白 / 急诊淡黄 / 儿科淡绿 / 麻+精一淡红 / 精二白</td><td class="pg">剂型处方 p17</td></tr><tr><td>吸收速率顺序</td><td>静脉注射 &gt; 吸入 &gt; 肌注 &gt; 皮下 &gt; 口服 &gt; 直肠 &gt; 贴皮</td><td class="pg">剂型处方 p14</td></tr><tr><td>抗菌药物送检率</td><td>住院 ≥30%；限制使用级 ≥50%；特殊使用级 ≥80%</td><td class="pg">抗微生物 p61–62</td></tr></table>
+</div>
+</details>
+
+<details>
+<summary>⚠️ 边界说明（这份材料哪里不能全信）</summary>
+<div class="inner">
+<p>1. <b>平台后两套作业（第六章抗微生物药、第三章药物剂型与处方）未存标准答案</b>，平台只保留了你的作答。这 30 题在页面里标黄，<b>不作对错判定</b>，请回课件核对。</p>
+<p>2. 前三套（牙体牙髓、消毒防腐、局部麻醉）30 道单选有平台标准答案，你当时全部答对。</p>
+<p>3. 课件内嵌真题的答案字母取自课件当页原文（选项后单独一行），<b>未经二次推断</b>；课件若有误，本页未改。</p>
+<p>4. 题干与选项均<b>逐字照抄</b>平台作业与课件原文，没有改写、没有补造、没有新增题目。</p>
+<p>5. 老师考试大纲写的题型里，<b>B1 型题、案例分析题、论述题在平台作业中一道都没有</b>——本页无法覆盖这三种，需另练。</p>
+</div>
+</details>
+
+<div class="foot">
+数据抓取 2026-11-24 · 来源：OCS/学习通「口腔临床药物学(3)」作业区 + 章节任务点课件<br>
+作业只读：未代答、未代交、未改动任何作答。
+</div>
+
+<script>
+const DATA = {"cards":[{"id":"A第三章-第三章 药物剂型与处方-1","ch":"第三章","kind":"single","src":"作业「第三章 药物剂型与处方」第 1 题","stem":"1．关于控释制剂，下列说法不正确的是","opts":[["A","能长时间维持血药浓度"],["B","能在设定的时间内自动以设定速度释放"],["C","在规定的释放介质中，能按要求缓慢地非恒速释放"],["D","包括囗服、眼用、肌注及皮下植入等多种用药方式"],["E","只有在规定的介质中才能按要求缓慢地恒速释放药物"]],"ans":"","mine":"E","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定","cross":""},{"id":"A第三章-第三章 药物剂型与处方-2","ch":"第三章","kind":"single","src":"作业「第三章 药物剂型与处方」第 2 题","stem":"第一类精神药品处方至少需保存","opts":[["A","1年"],["B","2年"],["C","3年"],["D","5年"],["E","10年"]],"ans":"","mine":"C","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定","cross":""},{"id":"A第三章-第三章 药物剂型与处方-3","ch":"第三章","kind":"single","src":"作业「第三章 药物剂型与处方」第 3 题","stem":"直肠给药一般适用的剂型为","opts":[["A","注射液"],["B","胶囊剂"],["C","栓剂"],["D","糊剂"],["E","散剂"]],"ans":"","mine":"C","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定","cross":""},{"id":"A第三章-第三章 药物剂型与处方-4","ch":"第三章","kind":"single","src":"作业「第三章 药物剂型与处方」第 4 题","stem":"关于控、缓释制剂和传统制剂的比较，下列说法错误的是","opts":[["A","可减少用药次数，使用方便"],["B","可提高患者服药的顺应性"],["C","使血药浓度平稳"],["D","有利于降低药物的毒副作用"],["E","用最小的剂量达到预期疗效，但不能减少用药的总剂量"]],"ans":"","mine":"E","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定","cross":""},{"id":"A第三章-第三章 药物剂型与处方-5","ch":"第三章","kind":"single","src":"作业「第三章 药物剂型与处方」第 5 题","stem":"门（急）诊患者开具的第二类精神药品，每张处方的常用量一般不得超过","opts":[["A","1次"],["B","1日"],["C","3日"],["D","7日"],["E","半月"]],"ans":"","mine":"D","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定","cross":""},{"id":"A第三章-第三章 药物剂型与处方-6","ch":"第三章","kind":"single","src":"作业「第三章 药物剂型与处方」第 6 题","stem":"关于每张处方的用药，下列说法正确的是","opts":[["A","只限于1名患者使用"],["B","病情一致的可以供2名患者共用"],["C","普通用药可以多名患者通用"],["D","外用药可以多名患者通用"],["E","急诊患者由于急救需要，可以多名患者通用"]],"ans":"","mine":"A","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定","cross":""},{"id":"A第三章-第三章 药物剂型与处方-7","ch":"第三章","kind":"single","src":"作业「第三章 药物剂型与处方」第 7 题","stem":"医师开具处方的法律依据是","opts":[["A","《处方应用办法》"],["B","《处方管理办法》"],["C","《处方管理要求》"],["D","《处方应用要求》"],["E","《药剂管理办法》"]],"ans":"","mine":"B","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定","cross":""},{"id":"A第三章-第三章 药物剂型与处方-8","ch":"第三章","kind":"single","src":"作业「第三章 药物剂型与处方」第 8 题","stem":"麻醉药品和第一类精神药品处方印刷用纸颜色为","opts":[["A","白色"],["B","淡绿色"],["C","淡黄色"],["D","淡红色"],["E","淡蓝色"]],"ans":"","mine":"D","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定","cross":""},{"id":"A第三章-第三章 药物剂型与处方-9","ch":"第三章","kind":"single","src":"作业「第三章 药物剂型与处方」第 9 题","stem":"以下剂型是最古老的剂型的是","opts":[["A","片剂"],["B","栓剂"],["C","糊剂"],["D","丸剂"],["E","乳膏剂"]],"ans":"","mine":"D","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定","cross":""},{"id":"A第三章-第三章 药物剂型与处方-10","ch":"第三章","kind":"single","src":"作业「第三章 药物剂型与处方」第 10 题","stem":"代表处方完毕时应在处方的空白处画的线条是","opts":[["A","斜线"],["B","竖戔"],["C","横线"],["D","虚线"],["E","波浪线"]],"ans":"","mine":"A","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定","cross":""},{"id":"A第三章-第三章 药物剂型与处方-11","ch":"第三章","kind":"fill","src":"作业「第三章 药物剂型与处方」第 11 题","stem":"门诊癌症疼痛患者患者和中、重度慢性疼痛患者开具的麻醉药品、第一类精神药品注射剂，每张处方不得超过          日常用量。","ans":"","mine":"3","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定"},{"id":"A第三章-第三章 药物剂型与处方-12","ch":"第三章","kind":"fill","src":"作业「第三章 药物剂型与处方」第 12 题","stem":"哌甲酯治疗儿童多动症时，每张处方不得超过         日常用量","ans":"","mine":"15","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定"},{"id":"A第三章-第三章 药物剂型与处方-13","ch":"第三章","kind":"fill","src":"作业「第三章 药物剂型与处方」第 13 题","stem":"各种制剂吸收速率快慢顺序为静脉注射>                >肌内注射（i.m）>皮下注射（i.h）>口服（p.o）>直肠给药>贴皮给药","ans":"","mine":"吸入","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定"},{"id":"A第三章-第三章 药物剂型与处方-14","ch":"第三章","kind":"fill","src":"作业「第三章 药物剂型与处方」第 14 题","stem":"某些药物经胃肠道给药，在尚未吸收进入血液循环之前，在肠黏膜和肝脏被代谢，而进入血液循环的原形药量减少的现象称为            。","ans":"","mine":"首过效应/首关效应","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定"},{"id":"A第三章-第三章 药物剂型与处方-15","ch":"第三章","kind":"fill","src":"作业「第三章 药物剂型与处方」第 15 题","stem":"颗粒剂可分为：可溶颗粒、混悬颗粒、泡腾颗粒、肠溶颗粒、                       和控释颗粒等。","ans":"","mine":"缓释颗粒","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定"},{"id":"A第六章-第六章抗微生物药-1","ch":"第六章","kind":"single","src":"作业「第六章抗微生物药」第 1 题","stem":"老年人和儿童在选用抗菌药物时，相对安全的品种是","opts":[["A","β-内酰胺类"],["B","氨基糖苷类"],["C","氟喹诺酮类"],["D","氯霉素类"],["E","四环素类"]],"ans":"","mine":"A","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定","cross":""},{"id":"A第六章-第六章抗微生物药-2","ch":"第六章","kind":"single","src":"作业「第六章抗微生物药」第 2 题","stem":"四环素类药物中抗菌活性最强的是","opts":[["A","四环素"],["B","土霉素"],["C","金霉素"],["D","多西环素"],["E","米诺环素"]],"ans":"","mine":"E","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定","cross":""},{"id":"A第六章-第六章抗微生物药-3","ch":"第六章","kind":"single","src":"作业「第六章抗微生物药」第 3 题","stem":"下列抗菌药物不属于抗生素的是","opts":[["A","青霉素"],["B","万古霉素"],["C","莫西沙星"],["D","林可霉素"],["E","克拉霉素"]],"ans":"","mine":"C","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定","cross":""},{"id":"A第六章-第六章抗微生物药-4","ch":"第六章","kind":"single","src":"作业「第六章抗微生物药」第 4 题","stem":"患者，男性，32岁，确诊为梅毒Ⅱ期，青霉素皮试结果阳性，该患者治疗药物首选为","opts":[["A","红霉素"],["B","氯霉素"],["C","链霉素"],["D","青霉素G"],["E","环丙沙星"]],"ans":"","mine":"A","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定","cross":""},{"id":"A第六章-第六章抗微生物药-5","ch":"第六章","kind":"single","src":"作业「第六章抗微生物药」第 5 题","stem":"氨基糖苷类抗生素的主要不良反应是","opts":[["A","抑制骨髓"],["B","耳毒性"],["C","肝毒性"],["D","心脏毒性"],["E","消化道反应"]],"ans":"B","mine":"B","graded":true,"note":"","cross":95},{"id":"A第六章-第六章抗微生物药-6","ch":"第六章","kind":"single","src":"作业「第六章抗微生物药」第 6 题","stem":"药物抑制或杀灭病原微生物的能力称","opts":[["A","抗菌药物"],["B","抗菌谱"],["C","抗菌活性"],["D","耐受性"],["E","化疗指数"]],"ans":"","mine":"C","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定","cross":""},{"id":"A第六章-第六章抗微生物药-7","ch":"第六章","kind":"single","src":"作业「第六章抗微生物药」第 7 题","stem":"患儿，女，6岁，由于龋齿没有及时治疗造成了根尖牙周脓肿。下列药物不能使用的是","opts":[["A","布洛芬"],["B","甲硝唑"],["C","四环素"],["D","维生素C"],["E","阿莫西林"]],"ans":"","mine":"C","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定","cross":""},{"id":"A第六章-第六章抗微生物药-8","ch":"第六章","kind":"single","src":"作业「第六章抗微生物药」第 8 题","stem":"患者，女，诊断为单纯疱疹病毒感染，症状较轻，拟用阿昔洛韦治疗，以下说法错误的是","opts":[["A","局部用药可能引起灼烧感"],["B","静脉给药宜快速给药完毕"],["C","可仅适用阿昔洛韦局部软膏涂抹"],["D","口服200mg,一日5次,疗程7~10天"],["E","肾功能减退患者全身应用，药物半衰期明显延长"]],"ans":"","mine":"B","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定","cross":""},{"id":"A第六章-第六章抗微生物药-9","ch":"第六章","kind":"single","src":"作业「第六章抗微生物药」第 9 题","stem":"患者，男，因慢性牙周炎需服用抗菌药物治疗，该患者有轻度的肾功能损伤，以下说法正确的是","opts":[["A","如疗程较长，使用阿莫西林也需要定期检查肾功能"],["B","无论应用何种抗菌药物均无需调整剂量"],["C","该患者可应用局部抗菌药物进行治疗"],["D","若服用甲硝唑，则期间可以少量饮酒"],["E","应用甲硝唑治疗必须调整剂量"]],"ans":"","mine":"B","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定","cross":""},{"id":"A第六章-第六章抗微生物药-10","ch":"第六章","kind":"single","src":"作业「第六章抗微生物药」第 10 题","stem":"下列头孢类抗菌药物中对β-内酰胺酶稳定性最好的是","opts":[["A","头孢孟多"],["B","头孢克洛"],["C","头孢拉定"],["D","头孢他啶"],["E","头孢氨苄"]],"ans":"","mine":"D","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定","cross":""},{"id":"A第六章-第六章抗微生物药-11","ch":"第六章","kind":"fill","src":"作业「第六章抗微生物药」第 11 题","stem":"青霉素类药物的作用机制是抑制细菌                的合成。","ans":"","mine":"细胞壁","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定"},{"id":"A第六章-第六章抗微生物药-12","ch":"第六章","kind":"fill","src":"作业「第六章抗微生物药」第 12 题","stem":"四环素类药物因可能导致儿童牙齿黄染和骨骼发育不良，故        岁以下儿童禁用。","ans":"","mine":"8","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定"},{"id":"A第六章-第六章抗微生物药-13","ch":"第六章","kind":"fill","src":"作业「第六章抗微生物药」第 13 题","stem":"青霉素G属于妊娠用药分级中的           级。","ans":"","mine":"B","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定"},{"id":"A第六章-第六章抗微生物药-14","ch":"第六章","kind":"fill","src":"作业「第六章抗微生物药」第 14 题","stem":"磺胺类药物的作用机制是抑制细菌______的合成","ans":"","mine":"二氢叶酸","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定"},{"id":"A第六章-第六章抗微生物药-15","ch":"第六章","kind":"fill","src":"作业「第六章抗微生物药」第 15 题","stem":"青霉素最常见的不良反应是______。","ans":"","mine":"过敏反应","graded":false,"note":"平台未存标准答案 · 以下仅为你当时的作答，不作对错判定"},{"id":"B第六章-13","ch":"第六章","kind":"single","src":"课件 第六章 抗微生物药 第 33 页","stem":"患者，女，17岁，十二指肠溃疡，幽门螺杆菌（+），宜选用与抑酸剂联合治疗的药物是（）","opts":[["A","双氯西林"],["B","苄星青霉素"],["C","万古霉素"],["D","阿莫西林"],["E","羧苄西林"]],"ans":"D","mine":"","graded":true,"note":"答案字母取自课件当页原文（选项后单独一行），未经二次推断","cross":"课件 第六章 抗微生物药 第 33 页"},{"id":"B第六章-14","ch":"第六章","kind":"single","src":"课件 第六章 抗微生物药 第 37 页","stem":"第三代头孢菌素的特点，叙述错误的是（）。","opts":[["A","基本无肾毒性"],["B","对G-作用强于第一、第二代"],["C","对G+作用强于第一、第二代"],["D","对各种β-内酰胺酶较高稳定"],["E","体内分布较广，一般从肾脏排泄"]],"ans":"C","mine":"","graded":true,"note":"答案字母取自课件当页原文（选项后单独一行），未经二次推断","cross":"课件 第六章 抗微生物药 第 37 页"},{"id":"B第六章-15","ch":"第六章","kind":"single","src":"课件 第六章 抗微生物药 第 38 页","stem":"抗铜绿假单胞菌作用最强的头孢菌素是（）。","opts":[["A","头孢拉定"],["B","头孢他定"],["C","头孢呋辛"],["D","头孢克洛"],["E","头孢氨苄"]],"ans":"B","mine":"","graded":true,"note":"答案字母取自课件当页原文（选项后单独一行），未经二次推断","cross":"课件 第六章 抗微生物药 第 38 页"},{"id":"A第八章-第九章局部麻醉药-1","ch":"第八章","kind":"single","src":"作业「第九章局部麻醉药」第 1 题","stem":"患者，女，59岁，60kg，拔牙时拟用4%阿替卡因进行局部浸润麻醉，在行浸润麻醉进行相关检查时，以下情形应谨慎使用的是","opts":[["A","糖尿病"],["B","高血压"],["C","心律失常"],["D","窄角青光眼"],["E","甲状腺功能亢进"]],"ans":"A","mine":"A","graded":true,"note":"","cross":71},{"id":"A第八章-第九章局部麻醉药-2","ch":"第八章","kind":"single","src":"作业「第九章局部麻醉药」第 2 题","stem":"下列为短效局麻药的是","opts":[["A","利多卡因"],["B","普鲁卡因"],["C","布比卡因"],["D","丙胺卡因"],["E","阿替卡因"]],"ans":"B","mine":"B","graded":true,"note":"","cross":""},{"id":"A第八章-第九章局部麻醉药-3","ch":"第八章","kind":"single","src":"作业「第九章局部麻醉药」第 3 题","stem":"患者，男性，28岁，过敏体质，血压120/80mmHg。拟行扁桃体摘除术。在使用普鲁卡因前行皮试，下列结果可判断为可疑阳性的是","opts":[["A","局部无红斑"],["B","局部无硬结"],["C","有红斑或硬结,<5mm"],["D","有红斑或硬结,5~9mm"],["E","有红斑或硬结,≥10mm"]],"ans":"C","mine":"C","graded":true,"note":"","cross":46},{"id":"A第八章-第九章局部麻醉药-4","ch":"第八章","kind":"single","src":"作业「第九章局部麻醉药」第 4 题","stem":"患儿，男，10岁，40kg，牙髓治疗时拟用0.5%利多卡因行浸润麻醉，其一次给药总量不得超过","opts":[["A","40mg"],["B","80mg"],["C","120mg"],["D","180mg"],["E","500mg"]],"ans":"D","mine":"D","graded":true,"note":"","cross":65},{"id":"A第八章-第九章局部麻醉药-5","ch":"第八章","kind":"single","src":"作业「第九章局部麻醉药」第 5 题","stem":"下列何者属于局部麻醉药","opts":[["A","乙醚"],["B","氟烷"],["C","利多卡因"],["D","盐酸氯胺酮"],["E","羟丁酸钠"]],"ans":"C","mine":"C","graded":true,"note":"","cross":""},{"id":"A第八章-第九章局部麻醉药-6","ch":"第八章","kind":"single","src":"作业「第九章局部麻醉药」第 6 题","stem":"患者，女，已婚，25岁，怀孕6个月，拔除智齿进行局部麻醉，无过敏史，为保证孕妇及胎儿的安全，临床常选用","opts":[["A","利多卡因"],["B","丙胺卡因"],["C","布比卡因"],["D","氯普鲁卡因"],["E","左布比卡因"]],"ans":"A","mine":"A","graded":true,"note":"","cross":""},{"id":"A第八章-第九章局部麻醉药-7","ch":"第八章","kind":"single","src":"作业「第九章局部麻醉药」第 7 题","stem":"患者，男，29岁，55kg，因牙周治疗拟用丁卡因作为局部麻醉药，下列用法正确的是","opts":[["A","可用其进行浸润麻醉"],["B","应选择静脉注射的给药方式"],["C","应选择静脉滴注的给药方式"],["D","水溶液稳定，贮存1年以上不会分解"],["E","先使用少量，观察5分钟，如无不良反应时再追加至预定剂量"]],"ans":"E","mine":"E","graded":true,"note":"","cross":""},{"id":"A第八章-第九章局部麻醉药-8","ch":"第八章","kind":"single","src":"作业「第九章局部麻醉药」第 8 题","stem":"患者，女，36岁，因深部真菌感染使用两性霉素B进行治疗，此次入院需行口腔局部麻醉手术，以下局麻药不宜使用","opts":[["A","普鲁卡因"],["B","利多卡因"],["C","甲哌卡因"],["D","丙胺卡"],["E","左布比卡因"]],"ans":"B","mine":"B","graded":true,"note":"","cross":""},{"id":"A第八章-第九章局部麻醉药-9","ch":"第八章","kind":"single","src":"作业「第九章局部麻醉药」第 9 题","stem":"患者，女，46岁，使用局部麻醉药后，出现高铁血红蛋白血症，其浓度达一定量时应按急诊处理，否则可危及生命。该浓度","opts":[["A","0.05"],["B","0.1"],["C","0.2"],["D","0.25"],["E","30%以上"]],"ans":"E","mine":"E","graded":true,"note":"","cross":""},{"id":"A第八章-第九章局部麻醉药-10","ch":"第八章","kind":"single","src":"作业「第九章局部麻醉药」第 10 题","stem":"患者，男，65岁，70kg。拟用0.25%普鲁卡因行浸润麻醉。下述情况可引起中毒反应的是","opts":[["A","过敏体质患者"],["B","注射剂量过大，血药浓度达4ug/ml以上"],["C","注射剂量过大，血药浓度达6ug/ml以上"],["D","短时间内经静脉注入，血药浓度低于6ug/ml视觉异常"],["E","短时间内经静脉注入，血药浓度达4ug/mll以上呼吸系统抑制"]],"ans":"C","mine":"C","graded":true,"note":"","cross":45},{"id":"A第八章-第九章局部麻醉药-11","ch":"第八章","kind":"fill","src":"作业「第九章局部麻醉药」第 11 题","stem":"利多卡因又称","ans":"赛罗卡因","mine":"赛罗卡因","graded":true,"note":""},{"id":"A第八章-第九章局部麻醉药-12","ch":"第八章","kind":"fill","src":"作业「第九章局部麻醉药」第 12 题","stem":"局部麻醉药的分类为酯类、酰胺类、氨基醚类、           、氨基甲酸酯类和脒类。","ans":"氨基酮类","mine":"氨基酮类","graded":true,"note":""},{"id":"A第八章-第九章局部麻醉药-13","ch":"第八章","kind":"fill","src":"作业「第九章局部麻醉药」第 13 题","stem":"按局部麻醉药的应用方式不同，局部麻醉药的临床应用类型为表面麻醉 、浸润麻醉、传导麻醉、                      和蛛网膜下腔麻醉。","ans":"硬膜外麻醉","mine":"硬膜外麻醉","graded":true,"note":""},{"id":"A第八章-第九章局部麻醉药-14","ch":"第八章","kind":"fill","src":"作业「第九章局部麻醉药」第 14 题","stem":"4%的阿替卡因溶液注射速度不得超过每分钟        mL。","ans":"1","mine":"1","graded":true,"note":""},{"id":"A第八章-第九章局部麻醉药-15","ch":"第八章","kind":"fill","src":"作业「第九章局部麻醉药」第 15 题","stem":"普鲁卡因是一种酯类局部麻醉药，其代谢产物对______过敏者可能引发过敏反应。因此，在使用前需进行皮肤试验以评估患者是否对该药过敏。","ans":"对氨基苯甲酸","mine":"对氨基苯甲酸","graded":true,"note":""},{"id":"B第八章-1","ch":"第八章","kind":"single","src":"课件 第九章 局部麻醉药 第 64 页","stem":"与2%普鲁卡因比较，以下哪项不是2%利多卡因的特点（）","opts":[["A","毒性较大，但可用作表面麻醉"],["B","有较强的组织穿透性和扩散性"],["C","麻效强，起效快"],["D","有抗室性心律失常作用"],["E","维持时间较短"]],"ans":"E","mine":"","graded":true,"note":"答案字母取自课件当页原文（选项后单独一行），未经二次推断","cross":"课件 第九章 局部麻醉药 第 64 页"},{"id":"B第八章-2","ch":"第八章","kind":"single","src":"课件 第九章 局部麻醉药 第 94 页","stem":"下列局部麻醉药中表面麻醉作用最强的是","opts":[["A","2%盐酸丁卡因"],["B","4%盐酸可卡因"],["C","0.5%盐酸达克罗宁"],["D","0.5%布比卡因"],["E","2%利多卡因"]],"ans":"A","mine":"","graded":true,"note":"答案字母取自课件当页原文（选项后单独一行），未经二次推断","cross":"课件 第九章 局部麻醉药 第 94 页"},{"id":"B第八章-3","ch":"第八章","kind":"single","src":"课件 第九章 局部麻醉药 第 95 页","stem":"下列关于局部麻醉药物的描述哪个是正确的","opts":[["A","心律失常患者常用的局麻药为酯类"],["B","普鲁卡因的效能强度高于酰胺类局麻药"],["C","阿替卡因适用于所有患者"],["D","丁卡因常用于浸润麻醉"],["E","利多 卡因的常用阻滞麻醉浓度为1% ~ 2%"]],"ans":"E","mine":"","graded":true,"note":"答案字母取自课件当页原文（选项后单独一行），未经二次推断","cross":"课件 第九章 局部麻醉药 第 95 页"},{"id":"B第八章-4","ch":"第八章","kind":"single","src":"课件 第九章 局部麻醉药 第 96 页","stem":"临床上一般不用作浸润麻醉的药物是","opts":[["A","普鲁卡因"],["B","利多卡因"],["C","布比卡因"],["D","地卡因"],["E","美匹卡因"]],"ans":"D","mine":"","graded":true,"note":"答案字母取自课件当页原文（选项后单独一行），未经二次推断","cross":"课件 第九章 局部麻醉药 第 96 页"},{"id":"B第八章-5","ch":"第八章","kind":"single","src":"课件 第九章 局部麻醉药 第 97 页","stem":"毒性强度最小的局麻药物是","opts":[["A","普鲁卡因"],["B","布比卡因"],["C","利多卡因"],["D","阿替卡因"],["E","丁卡因"]],"ans":"A","mine":"","graded":true,"note":"答案字母取自课件当页原文（选项后单独一行），未经二次推断","cross":"课件 第九章 局部麻醉药 第 97 页"},{"id":"B第八章-6","ch":"第八章","kind":"single","src":"课件 第九章 局部麻醉药 第 98 页","stem":"加有肾上腺素的局部麻醉药不能用于","opts":[["A","儿童"],["B","月经期妇女"],["C","血小板减少的患者"],["D","健康老年人"],["E","心律失常患者"]],"ans":"E","mine":"","graded":true,"note":"答案字母取自课件当页原文（选项后单独一行），未经二次推断","cross":"课件 第九章 局部麻醉药 第 98 页"},{"id":"B第八章-7","ch":"第八章","kind":"single","src":"课件 第九章 局部麻醉药 第 100 页","stem":"上3腭侧有下列神经吻合","opts":[["A","上牙槽前神经与上牙槽中神经"],["B","鼻腭神经与腭中神经"],["C","腭前神经与腭中神经"],["D","腭中神经与腭后神经"],["E","腭前神经与鼻腭神经"]],"ans":"E","mine":"","graded":true,"note":"答案字母取自课件当页原文（选项后单独一行），未经二次推断","cross":"课件 第九章 局部麻醉药 第 100 页"},{"id":"B第八章-8","ch":"第八章","kind":"single","src":"课件 第九章 局部麻醉药 第 101 页","stem":"上颌切牙拔除时不能选择的麻醉方法是","opts":[["A","唇侧浸润麻醉"],["B","腭侧浸润麻醉"],["C","眶下孔阻滞麻醉"],["D","切牙孔阻滞麻醉"],["E","腭大孔阻滞麻醉"]],"ans":"E","mine":"","graded":true,"note":"答案字母取自课件当页原文（选项后单独一行），未经二次推断","cross":"课件 第九章 局部麻醉药 第 101 页"},{"id":"B第八章-9","ch":"第八章","kind":"single","src":"课件 第九章 局部麻醉药 第 102 页","stem":"患者女性30岁，于拔除过程中因疼痛紧张,而出现胸闷、心慌、面色苍白、四肢湿冷、脉快而弱，此情况属于","opts":[["A","肾上腺素反应"],["B","麻药中毒"],["C","癔病"],["D","麻药过敏"],["E","晕厥"]],"ans":"E","mine":"","graded":true,"note":"答案字母取自课件当页原文（选项后单独一行），未经二次推断","cross":"课件 第九章 局部麻醉药 第 102 页"},{"id":"B第八章-10","ch":"第八章","kind":"single","src":"课件 第九章 局部麻醉药 第 103 页","stem":"关于局部麻醉药，下列描述正确的是","opts":[["A","血浆蛋白结合率低者作用时间长"],["B","酸性强度接近组织PH者则起效慢"],["C","脂溶性强者麻醉效果及作用时间增强"],["D","血循环丰富的器官，局部麻醉药分布少"],["E","神经纤维粗细对局部麻醉药的敏感程度无影响"]],"ans":"C","mine":"","graded":true,"note":"答案字母取自课件当页原文（选项后单独一行），未经二次推断","cross":"课件 第九章 局部麻醉药 第 103 页"},{"id":"B第八章-11","ch":"第八章","kind":"single","src":"课件 第九章 局部麻醉药 第 104 页","stem":"患者，男，45岁，使用局部麻醉药后，出现不良反应，下列不易出现的是","opts":[["A","皮疹"],["B","血压降低"],["C","白细胞减少"],["D","血管神经性水肿"],["E","高铁血红蛋白血症"]],"ans":"C","mine":"","graded":true,"note":"答案字母取自课件当页原文（选项后单独一行），未经二次推断","cross":"课件 第九章 局部麻醉药 第 104 页"},{"id":"B第八章-12","ch":"第八章","kind":"single","src":"课件 第九章 局部麻醉药 第 105 页","stem":"患者，男，60岁，65kg，此次拟选用利多卡因行局部麻醉，因其扩散性强，不宜用作","opts":[["A","表面麻醉"],["B","浸润麻醉"],["C","阻滞麻醉"],["D","硬膜外麻醉"],["E","蛛网膜下腔麻醉"]],"ans":"E","mine":"","graded":true,"note":"答案字母取自课件当页原文（选项后单独一行），未经二次推断","cross":"课件 第九章 局部麻醉药 第 105 页"},{"id":"A第十六章-第十六章消毒防腐药-1","ch":"第十六章","kind":"single","src":"作业「第十六章消毒防腐药」第 1 题","stem":"甲酚皂溶液用于器械、环境消毒的浓度为","opts":[["A","1%~2%"],["B","3%~4%"],["C","5%~10%"],["D","11%~15%"],["E","16%~20%"]],"ans":"C","mine":"C","graded":true,"note":"","cross":""},{"id":"A第十六章-第十六章消毒防腐药-2","ch":"第十六章","kind":"single","src":"作业「第十六章消毒防腐药」第 2 题","stem":"苯酚对下述病原微生物引起的感染无效的是","opts":[["A","双球菌"],["B","球菌"],["C","杆菌"],["D","真菌"],["E","芽孢"]],"ans":"E","mine":"E","graded":true,"note":"","cross":""},{"id":"A第十六章-第十六章消毒防腐药-3","ch":"第十六章","kind":"single","src":"作业「第十六章消毒防腐药」第 3 题","stem":"下述属于低效消毒防腐药的是","opts":[["A","苯酚"],["B","甲醛"],["C","氯己定"],["D","次氯酸钠"],["E","依沙吖啶"]],"ans":"E","mine":"E","graded":true,"note":"","cross":""},{"id":"A第十六章-第十六章消毒防腐药-4","ch":"第十六章","kind":"single","src":"作业「第十六章消毒防腐药」第 4 题","stem":"患儿，女，1岁，因胃口不佳、啼哭、哺乳困难来院就诊。口腔检查见：颊、舌、软腭黏膜出现乳白色、微高起的斑膜，周围无炎症反应，似奶块，无痛，擦去斑膜后，可见下方不出血的红色创面。该患儿治疗过程中可用到的药物是","opts":[["A","0.05%甲紫水溶液"],["B","1.5%过氧化氯溶液"],["C","2%四环素溶液"],["D","2%碳酸氢钠溶液"],["E","3%硼酸溶液"]],"ans":"D","mine":"D","graded":true,"note":"","cross":""},{"id":"A第十六章-第十六章消毒防腐药-5","ch":"第十六章","kind":"single","src":"作业「第十六章消毒防腐药」第 5 题","stem":"患者，女，38岁，为中度四环素牙，因牙齿颜色灰黄对美观影响较大，患者要求美白牙齿。漂白牙齿可使用的药物是","opts":[["A","2%戊二醛"],["B","2%高锰酸钾"],["C","3%过氧化氢"],["D","30%过氧化氢"],["E","5.25%次氯酸钠"]],"ans":"D","mine":"D","graded":true,"note":"","cross":""},{"id":"A第十六章-第十六章消毒防腐药-6","ch":"第十六章","kind":"single","src":"作业「第十六章消毒防腐药」第 6 题","stem":"下述属于氧化剂类消毒防腐药的是","opts":[["A","多聚甲醛"],["B","氢氧化钙"],["C","高锰酸剂"],["D","次氯酸钠"],["E","地喹氯铵"]],"ans":"C","mine":"C","graded":true,"note":"","cross":""},{"id":"A第十六章-第十六章消毒防腐药-7","ch":"第十六章","kind":"single","src":"作业「第十六章消毒防腐药」第 7 题","stem":"_________与氢氧化钙配伍可作为牙髓切断后的覆盖剂。","opts":[["A","1%戊二醛"],["B","2%戊二醛"],["C","3%戊二醛"],["D","10%戊二醛"],["E","20%戊二醛"]],"ans":"B","mine":"B","graded":true,"note":"","cross":""},{"id":"A第十六章-第十六章消毒防腐药-8","ch":"第十六章","kind":"single","src":"作业「第十六章消毒防腐药」第 8 题","stem":"患者女，46岁，3天前拔除48，现右下颌拔牙窝出现剧烈疼痛，疼痛向耳颞部、下颌下区或头顶部放射。检查：48牙槽窝内空虚，有腐臭味。临床处理过程中需用的药物是","opts":[["A","碘仿纱条"],["B","氯胺-T溶液"],["C","高锰酸钾溶液"],["D","次氯酸钠溶液"],["E","麝香草酚乙醇溶液"]],"ans":"A","mine":"A","graded":true,"note":"","cross":""},{"id":"A第十六章-第十六章消毒防腐药-9","ch":"第十六章","kind":"single","src":"作业「第十六章消毒防腐药」第 9 题","stem":"下述属于聚维酮碘临床应用的是","opts":[["A","牙周袋内冲洗"],["B","环境消毒"],["C","根管冲洗"],["D","根管消毒"],["E","窝洞消毒"]],"ans":"A","mine":"A","graded":true,"note":"","cross":""},{"id":"A第十六章-第十六章消毒防腐药-10","ch":"第十六章","kind":"single","src":"作业「第十六章消毒防腐药」第 10 题","stem":"下列不属于卤素类消毒防腐药的是","opts":[["A","次氯酸钠"],["B","聚维酮碘"],["C","西吡氯铵"],["D","氯胺-T"],["E","碘仿"]],"ans":"C","mine":"C","graded":true,"note":"","cross":""},{"id":"A第十六章-第十六章消毒防腐药-11","ch":"第十六章","kind":"fill","src":"作业「第十六章消毒防腐药」第 11 题","stem":"84消毒液的主要有效成分是             ，使用时需注意避免与酸性物质混合。","ans":"次氯酸钠","mine":"次氯酸钠","graded":true,"note":""},{"id":"A第十六章-第十六章消毒防腐药-12","ch":"第十六章","kind":"fill","src":"作业「第十六章消毒防腐药」第 12 题","stem":"醇类消毒防腐药中，               %浓度的乙醇消毒效果最佳，过高浓度会影响杀菌能力。","ans":"70-75","mine":"75","graded":true,"note":""},{"id":"A第十六章-第十六章消毒防腐药-13","ch":"第十六章","kind":"fill","src":"作业「第十六章消毒防腐药」第 13 题","stem":"碘酊的主要有效成分是            ，消毒后需用乙醇脱碘，以防皮肤刺激。","ans":"碘","mine":"碘","graded":true,"note":""},{"id":"A第十六章-第十六章消毒防腐药-14","ch":"第十六章","kind":"fill","src":"作业「第十六章消毒防腐药」第 14 题","stem":"过氧化氢溶液遇有机物时释放              ，产生泡沫，可用于伤口清创消毒。","ans":"氧气","mine":"氧气","graded":true,"note":""},{"id":"A第十六章-第十六章消毒防腐药-15","ch":"第十六章","kind":"fill","src":"作业「第十六章消毒防腐药」第 15 题","stem":"聚维酮碘是碘与聚维酮的复合物，刺激性较碘酊           ，可用于黏膜消毒。","ans":"小","mine":"小","graded":true,"note":""},{"id":"A第十七章-第二十章牙体牙髓病用药-1","ch":"第十七章","kind":"single","src":"作业「第二十章牙体牙髓病用药」第 1 题","stem":"关于酸性磷酸氟用法，下列说法正确是","opts":[["A","第一年每月使用1次，第二年每季度使用1次"],["B","第一年每月使用1次，第二年每半年使用1次"],["C","第一年每季度使用1次，第二年每季度使用1次"],["D","第一年每季度使用1次，第二年每半年使用1次"],["E","第一年每半年使用1次，第二年每年使用1次"]],"ans":"D","mine":"D","graded":true,"note":"","cross":""},{"id":"A第十七章-第二十章牙体牙髓病用药-2","ch":"第十七章","kind":"single","src":"作业「第二十章牙体牙髓病用药」第 2 题","stem":"以下属于氢氧化钙水性赋形剂的是","opts":[["A","丙二醇"],["B","聚乙二醇"],["C","甲基纤维"],["D","樟脑对氯酚"],["E","醋酸间甲酚酯"]],"ans":"C","mine":"C","graded":true,"note":"","cross":""},{"id":"A第十七章-第二十章牙体牙髓病用药-3","ch":"第十七章","kind":"single","src":"作业「第二十章牙体牙髓病用药」第 3 题","stem":"以下关于戊二醛的说法错误的是","opts":[["A","性质不稳定，使用前需新鲜配制"],["B","可对牙髓组织产生快速固定作用"],["C","可以产生抗原性，抗原性较甲醛甲酚强"],["D","固定效果好，作用缓慢，刺激性小，毒性低"],["E","在牙髓组织内扩散局限，对恒牙胚无明显影响"]],"ans":"C","mine":"C","graded":true,"note":"","cross":""},{"id":"A第十七章-第二十章牙体牙髓病用药-4","ch":"第十七章","kind":"single","src":"作业「第二十章牙体牙髓病用药」第 4 题","stem":"患者，男，44岁，因右上前牙肿痛而就诊，检查：11近中邻面洞，达牙本质深层，冷诊(-)，探诊(-)，叩痛(+)，唇侧近根尖部牙龈轻度红肿，牙齿无松动。X线片示11根尖周略密度减低区。11拟行根管治疗术，选用氢氧化钙进行根管消毒，其抗菌活性表现为","opts":[["A","RNA损伤"],["B","DNA重组"],["C","DNA变性"],["D","灭活脂磷壁酸"],["E","细菌蛋白质变性"]],"ans":"E","mine":"E","graded":true,"note":"","cross":""},{"id":"A第十七章-第二十章牙体牙髓病用药-5","ch":"第十七章","kind":"single","src":"作业「第二十章牙体牙髓病用药」第 5 题","stem":"患者，女，66岁，因左下后牙咬合痛而就诊。检查：36牙合面洞，达髓腔，冷诊(-)，探诊(+)，叩诊不适，牙龈无红肿。X线片示36底穿，穿孔较小。36拟行髓室底穿处修补术，修补材料选用矿物三氧化物聚合物，该聚合物与水调和后形成凝胶的pH值为","opts":[["A","2.5"],["B","5.5"],["C","7.5"],["D","10.5"],["E","12.5"]],"ans":"E","mine":"E","graded":true,"note":"","cross":""},{"id":"A第十七章-第二十章牙体牙髓病用药-6","ch":"第十七章","kind":"single","src":"作业「第二十章牙体牙髓病用药」第 6 题","stem":"患者，女，27岁，自幼生活在高氟地区，牙齿发黄，影响美观而就诊。检查：全口牙齿不同程度白垩色到褐色斑块，上前牙明显，个别牙有牙釉质缺损，牙髓活力检测正常，叩诊(-)。因患者不便多次到医院就诊，拟用过氧化脲行家庭漂白术改善牙齿颜色，以下正确的使用方法为","opts":[["A","夜间治疗，15%过氧化脲佩戴1.5小时~2小时更换凝胶"],["B","夜间治疗，15%过氧化脲佩戴3小时~4小时更换凝胶"],["C","夜间治疗，15%过氧化脲佩戴7小时~8小时更换凝胶"],["D","白天治疗，15%过氧化脲佩戴1.5小时~2小时更换凝胶"],["E","白天治疗，15%过氧化脲佩戴4小时~6小时更换凝胶"]],"ans":"D","mine":"D","graded":true,"note":"","cross":""},{"id":"A第十七章-第二十章牙体牙髓病用药-7","ch":"第十七章","kind":"single","src":"作业「第二十章牙体牙髓病用药」第 7 题","stem":"患者，女，56岁，因右上后牙冷热酸甜一过性疼痛就诊。检查：14、15颈部楔缺，达牙本质浅层，探诊(+)，冷诊(+)，叩痛(-)，无松动。拟用75%氟化钠甘油糊剂行脱敏治疗，治疗过程中涂药的时间为","opts":[["A","2~3分钟"],["B","4~5分钟"],["C","6~7分钟"],["D","8~9分钟"],["E","10~11分钟"]],"ans":"A","mine":"A","graded":true,"note":"","cross":""},{"id":"A第十七章-第二十章牙体牙髓病用药-8","ch":"第十七章","kind":"single","src":"作业「第二十章牙体牙髓病用药」第 8 题","stem":"患者，男，45岁，因上前牙冷热酸甜一过性疼痛就诊，有胃溃疡史，酗酒。检查：11、21腭面不同程度牙釉质丧失，牙表面凹陷，切端沟槽样病损，冷热敏感，叩(-)，无松动，牙龈未见明显异常。治疗过程中可选用的药物是","opts":[["A","碘仿糊剂"],["B","复合脱敏剂"],["C","戊二醛糊剂"],["D","氢氧化钙糊剂"],["E","氧化锌丁香油糊剂"]],"ans":"B","mine":"B","graded":true,"note":"","cross":""},{"id":"A第十七章-第二十章牙体牙髓病用药-9","ch":"第十七章","kind":"single","src":"作业「第二十章牙体牙髓病用药」第 9 题","stem":"患者，男，36岁。因左上后牙自发性疼痛3日就诊。来诊时患者自带一杯凉水。检查：26远中邻面龋坏,近髓,冷诊(-),热诊(++),探诊(-),叩诊不适,牙齿无松动。拟行根管治疗术，选用次氯酸钠冲洗液，其主要原因是","opts":[["A","对粪肠球菌有效"],["B","能彻底去除玷污层"],["C","能溶解坏死牙髓组织"],["D","能溶解根管内生物膜"],["E","在碱性环境中杀菌力较强"]],"ans":"C","mine":"C","graded":true,"note":"","cross":""},{"id":"A第十七章-第二十章牙体牙髓病用药-10","ch":"第十七章","kind":"single","src":"作业「第二十章牙体牙髓病用药」第 10 题","stem":"患者，女，30岁，右上后牙因深龋复合树脂充填治疗1周后出现自发痛，冷热刺激加重。检查：17远中邻牙合面树脂充填物，冷诊(+)，热诊(+)，叩诊不适，不松动度。17拟行根管治疗术，当日开髓因根髓探痛明显封多聚甲醛失活剂，封药时间为2周。其主要原因为","opts":[["A","甲醛有凝固蛋白的作用"],["B","多聚甲醛具有神经毒性"],["C","可导致平滑肌扩张、出血"],["D","引起毛细血管内皮细胞的损害"],["E","封药时间过长可引起药物性根尖周炎"]],"ans":"E","mine":"E","graded":true,"note":"","cross":""},{"id":"A第十七章-第二十章牙体牙髓病用药-11","ch":"第十七章","kind":"fill","src":"作业「第二十章牙体牙髓病用药」第 11 题","stem":"氟化钠用于防龋时局部涂擦的浓度为              %。","ans":"2","mine":"2","graded":true,"note":""},{"id":"A第十七章-第二十章牙体牙髓病用药-12","ch":"第十七章","kind":"fill","src":"作业「第二十章牙体牙髓病用药」第 12 题","stem":"复合脱敏剂的主要药理作用是通过                     与暴露的牙本质小管内的蛋白质发生化学聚合，封闭小管。","ans":"HEMA;高分子化合物2-羟乙基甲基丙烯酸甲酯","mine":"HEMA","graded":true,"note":""},{"id":"A第十七章-第二十章牙体牙髓病用药-13","ch":"第十七章","kind":"fill","src":"作业「第二十章牙体牙髓病用药」第 13 题","stem":"乙二胺四乙酸溶液的浓度通常为             %，此浓度既能有效去除玷污层，又不会过度腐蚀根管壁。","ans":"17","mine":"17","graded":true,"note":""},{"id":"A第十七章-第二十章牙体牙髓病用药-14","ch":"第十七章","kind":"fill","src":"作业「第二十章牙体牙髓病用药」第 14 题","stem":"氟化物涂布治疗后，患者需在           分钟内避免进食、饮水和漱口，确保氟化物充分渗透牙釉质。","ans":"30","mine":"30","graded":true,"note":""},{"id":"A第十七章-第二十章牙体牙髓病用药-15","ch":"第十七章","kind":"fill","src":"作业「第二十章牙体牙髓病用药」第 15 题","stem":"3.        %氟化钠甘油糊剂常用于牙本质敏感症的治疗，通过封闭牙本质小管发挥脱敏效果。","ans":"75","mine":"75","graded":true,"note":""},{"id":"B第十七章-16","ch":"第十七章","kind":"single","src":"课件 第十七章 牙体牙髓病用药 第 92 页","stem":"氢氧化钙糊剂根管消毒封药的时间是（）","opts":[["A","1天"],["B","2天"],["C","3天"],["D","4天"],["E","7天"]],"ans":"E","mine":"","graded":true,"note":"答案字母取自课件当页原文（选项后单独一行），未经二次推断","cross":"课件 第十七章 牙体牙髓病用药 第 92 页"},{"id":"B第十七章-17","ch":"第十七章","kind":"single","src":"课件 第十七章 牙体牙髓病用药 第 93 页","stem":"能预防牙本质龋的药物是（）","opts":[["A","硝酸钾"],["B","草酸钾"],["C","氟化钠"],["D","氟化亚锡"],["E","酸性磷酸氟"]],"ans":"D","mine":"","graded":true,"note":"答案字母取自课件当页原文（选项后单独一行），未经二次推断","cross":"课件 第十七章 牙体牙髓病用药 第 93 页"},{"id":"B第十七章-18","ch":"第十七章","kind":"single","src":"课件 第十七章 牙体牙髓病用药 第 94 页","stem":"关于MTA,以下说法不正确的是()","opts":[["A","MTA由粉剂和纯化水组成，粉剂主要由氧化钙，二氧化硅等组成"],["B","MTA粉剂与纯化水按比例混合均匀调拌后，待硬固后再放入穿髓处"],["C","MTA粉剂与纯化水按比例混合均匀调拌后，直接将其覆盖于穿髓处"],["D","MTA具有良好的生物相容性，生物活性和抗菌性，能够促进软硬组织的"],["E","MTA粉剂与水调和后形成pH为12.5的凝胶状胶体，并可维持高pH达24小时以上"]],"ans":"B","mine":"","graded":true,"note":"答案字母取自课件当页原文（选项后单独一行），未经二次推断","cross":"课件 第十七章 牙体牙髓病用药 第 94 页"},{"id":"B第十七章-19","ch":"第十七章","kind":"single","src":"课件 第十七章 牙体牙髓病用药 第 95 页","stem":"根管再感染时根管内常见的优势菌为()","opts":[["A","真杆菌"],["B","粪肠球菌"],["C","消化链球菌"],["D","牙龈卟啉单胞菌"],["E","牙髓卟啉单胞菌"]],"ans":"B","mine":"","graded":true,"note":"答案字母取自课件当页原文（选项后单独一行），未经二次推断","cross":"课件 第十七章 牙体牙髓病用药 第 95 页"},{"id":"B第十七章-20","ch":"第十七章","kind":"single","src":"课件 第十七章 牙体牙髓病用药 第 96 页","stem":"患儿，女，4岁，家长陪同就诊要求为患儿进行牙面涂氟防龋。检查：乳牙已全部萌出，未见龋坏。 (1).拟选用2%的氟化钠溶液局部涂擦牙面，其疗程为()","opts":[["A","每3天1次,2次为一疗程"],["B","每3天1次,4次为一疗程"],["C","每3天1次,6次为一疗程"],["D","每7天1次,2次为一疗程"],["E","每7天1次,4次为一疗程"]],"ans":"E","mine":"","graded":true,"note":"答案字母取自课件当页原文（选项后单独一行），未经二次推断","cross":"课件 第十七章 牙体牙髓病用药 第 96 页"}],"chLabel":{"第三章":"第三章 药物剂型与处方","第六章":"第六章 抗微生物药","第八章":"第八章 局部麻醉药（OCS 目录写「第九章」）","第十六章":"第十六章 消毒防腐药","第十七章":"第十七章 牙体牙髓病用药（OCS 目录写「第二十章」）","第十八章":"第十八章 牙周病用药（无平台作业）","第十九章":"第十九章 口腔黏膜病用药（无平台作业）"},"chOrder":["第三章","第六章","第八章","第十六章","第十七章","第十八章","第十九章"],"stat":{"第三章":{"n":15,"graded":0},"第六章":{"n":18,"graded":4},"第八章":{"n":27,"graded":27},"第十六章":{"n":15,"graded":15},"第十七章":{"n":20,"graded":20}}};
+const LS = 'kly_spot_v1';
+let state = {};
+try { state = JSON.parse(localStorage.getItem(LS) || '{}'); } catch (e) { state = {}; }
+let curCh = 'ALL';
+let shuffled = false;
+let order = DATA.cards.map((c, i) => i);
+
+function save() { try { localStorage.setItem(LS, JSON.stringify(state)); } catch (e) {} }
+const $ = (s) => document.querySelector(s);
+
+function renderFilters() {
+  const box = $('#filters');
+  const total = DATA.cards.length;
+  let h = '<button class="chip' + (curCh === 'ALL' ? ' on' : '') + '" data-ch="ALL">全部<span class="n">' + total + '</span></button>';
+  DATA.chOrder.forEach((ch) => {
+    const s = DATA.stat[ch];
+    if (!s) return;
+    h += '<button class="chip' + (curCh === ch ? ' on' : '') + '" data-ch="' + ch + '">' + ch + '<span class="n">' + s.n + '</span></button>';
+  });
+  box.innerHTML = h;
+  box.querySelectorAll('.chip').forEach((el) => {
+    el.onclick = () => { curCh = el.dataset.ch; renderFilters(); render(); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  });
+}
+
+function render() {
+  const list = $('#list');
+  list.innerHTML = '';
+  let shown = 0;
+  order.forEach((idx) => {
+    const c = DATA.cards[idx];
+    if (curCh !== 'ALL' && c.ch !== curCh) return;
+    shown++;
+    list.appendChild(makeCard(c));
+  });
+  $('#empty').style.display = shown ? 'none' : 'block';
+  updateScore();
+}
+
+function makeCard(c) {
+  const el = document.createElement('div');
+  el.className = 'card';
+  el.dataset.id = c.id;
+  const st = state[c.id] || {};
+
+  const kindTag = c.kind === 'single' ? '<span class="tag">单选</span>' : '<span class="tag f">填空</span>';
+  const secTag = c.id[0] === 'B' ? '<span class="tag b">课件真题</span>' : '';
+  const cross = c.cross ? '<span class="tag b">课件 p' + c.cross + ' 印证</span>' : '';
+
+  let h = '<div class="head">' + kindTag + secTag + cross +
+          '<span class="src">' + esc(c.src) + '</span></div>' +
+          '<div class="stem">' + esc(c.stem) + '</div>';
+
+  if (c.kind === 'single') {
+    h += '<div class="opts">';
+    c.opts.forEach(([lb, tx]) => {
+      h += '<button class="opt" data-lb="' + lb + '"><span class="lb">' + lb + '</span><span>' + esc(tx) + '</span></button>';
+    });
+    h += '</div>';
+  }
+  h += '<div class="ans' + (c.graded ? '' : ' warn') + '"></div>';
+  h += '<div class="acts"><button class="btn act-show">显示答案</button>' +
+       '<button class="btn act-mark" data-r="ok">记住了</button><button class="btn act-mark" data-r="no">没记住</button>' +
+       '</div>';
+
+  el.innerHTML = h;
+
+  const ansBox = el.querySelector('.ans');
+  const showBtn = el.querySelector('.act-show');
+
+  function ansHTML() {
+    if (c.graded) {
+      if (c.kind === 'single') {
+        const t = (c.opts.find((o) => o[0] === c.ans) || ['', ''])[1];
+        return '<b>正确答案 ' + c.ans + '</b>' + (t ? ' · ' + esc(t) : '');
+      }
+      const parts = c.ans.split(/[;；]/).map((s) => s.trim()).filter(Boolean);
+      return '<b>正确答案</b>' + esc(parts[0] || '') +
+             (parts.length > 1 ? '<br><span style="color:#6b7280">同上可接受写法：' + esc(parts.slice(1).join('；')) + '</span>' : '');
+    }
+    let s = '<b>⚠ ' + esc(c.note) + '</b>';
+    if (c.mine) {
+      if (c.kind === 'single') {
+        const t = (c.opts.find((o) => o[0] === c.mine) || ['', ''])[1];
+        s += '<br>你当时的作答：<b>' + c.mine + '</b>' + (t ? ' · ' + esc(t) : '');
+      } else {
+        s += '<br>你当时的作答：<b>' + esc(c.mine) + '</b>';
+      }
+    } else {
+      s += '<br>（平台未记录你的作答）';
+    }
+    s += '<br><span style="color:#6b7280;font-size:.82em">请对照课件相应页自行核对，本页不替你判定。</span>';
+    return s;
+  }
+
+  function reveal(open) {
+    ansBox.innerHTML = ansHTML();
+    ansBox.classList.toggle('on', open);
+    if (showBtn) showBtn.textContent = open ? '遮住答案' : '显示答案';
+    st.shown = open;
+    state[c.id] = st; save();
+  }
+
+  if (showBtn) {
+    showBtn.onclick = () => reveal(!ansBox.classList.contains('on'));
+  }
+
+  if (c.kind === 'single') {
+    const optEls = [...el.querySelectorAll('.opt')];
+    const apply = () => {
+      const pick = st.pick;
+      optEls.forEach((o) => {
+        o.classList.remove('right', 'wrong', 'mine', 'lock');
+        const lb = o.dataset.lb;
+        if (!pick) return;
+        if (c.graded) {
+          if (lb === c.ans) o.classList.add('right');
+          if (lb === pick && pick !== c.ans) o.classList.add('wrong');
+        } else if (lb === pick) {
+          o.classList.add('mine');
+        }
+      });
+      if (c.graded && pick) {
+        optEls.forEach((o) => o.classList.add('lock'));
+        reveal(true);
+      }
+    };
+    optEls.forEach((o) => {
+      o.onclick = () => {
+        if (c.graded && st.pick) return;
+        if (!c.graded && st.pick === o.dataset.lb) { st.pick = null; state[c.id] = st; save(); apply(); updateScore(); return; }
+        st.pick = o.dataset.lb;
+        state[c.id] = st; save();
+        apply(); updateScore();
+      };
+    });
+    apply();
+  }
+  // 填空题：无选项，靠 showBtn 显隐答案（已在上面处理）
+
+  if (st.shown) reveal(true);
+
+  el.querySelectorAll('.act-mark').forEach((b) => {
+    b.onclick = () => {
+      st.mark = b.dataset.r === 'ok' ? (st.mark === 'ok' ? null : 'ok') : (st.mark === 'no' ? null : 'no');
+      state[c.id] = st; save();
+      el.style.borderLeft = st.mark === 'no' ? '4px solid #b3261e' : (st.mark === 'ok' ? '4px solid #0f7a3d' : '');
+      updateScore();
+    };
+  });
+  if (st.mark === 'no') el.style.borderLeft = '4px solid #b3261e';
+  if (st.mark === 'ok') el.style.borderLeft = '4px solid #0f7a3d';
+
+  return el;
+}
+
+function updateScore() {
+  let grad = 0, done = 0, right = 0, noMark = 0;
+  DATA.cards.forEach((c) => {
+    const st = state[c.id] || {};
+    if (st.mark === 'no') noMark++;
+    if (!c.graded) return;
+    grad++;
+    if (st.pick) { done++; if (st.pick === c.ans) right++; }
+  });
+  const pct = done ? Math.round(right * 100 / done) : 0;
+  $('#score').innerHTML = '已答 ' + done + ' / ' + grad + ' · 正确 <b style="color:#0f7a3d">' + right + '</b>' +
+    (done ? '（' + pct + '%）' : '') + '<span> · 自动判分题</span>' +
+    (noMark ? '<span> · 标「没记住」' + noMark + '</span>' : '');
+}
+
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+}
+
+$('#btnShuffle').onclick = () => {
+  shuffled = !shuffled;
+  $('#btnShuffle').classList.toggle('on', shuffled);
+  if (shuffled) {
+    for (let i = order.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [order[i], order[j]] = [order[j], order[i]];
+    }
+  } else {
+    order = DATA.cards.map((c, i) => i);
+  }
+  render();
+};
+
+$('#btnReset').onclick = () => {
+  if (!confirm('清空本机保存的作答与标记？')) return;
+  state = {};
+  save();
+  render();
+};
+
+renderFilters();
+render();
+</script>
+</body>
+</html>
