@@ -59,9 +59,92 @@ padding:8px 10px;font-size:.86rem;display:none;white-space:pre-wrap;line-height:
 @media (prefers-color-scheme: dark){.ans{background:#221c33}}
 .ans.on{display:block}
 .acts{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+<style>
+:root{--bg:#f5f6fa;--card:#fff;--ink:#1c2230;--sub:#6b7280;--line:#dfe3ea;
+--ok:#0f7a3d;--okbg:#e9f8ef;--bad:#b3261e;--badbg:#fdecea;--hl:#b45309;--hl2:#2563eb;
+--warn:#8a5a00;--warnbg:#fff6e0}
+@media (prefers-color-scheme: dark){:root{--bg:#14171e;--card:#1c2029;--ink:#e5e9f0;--sub:#98a2b3;--line:#2c3340;
+--ok:#4ade80;--okbg:#14301f;--bad:#f87171;--badbg:#301a18;--hl:#fbbf24;--hl2:#60a5fa;--warn:#fbbf24;--warnbg:#332a10}}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.72;font-size:16px;padding:0 0 60px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:780px;margin:0 auto;padding:0 12px}
+header{background:var(--card);border-bottom:1px solid var(--line);padding:13px 0 11px;position:sticky;top:0;z-index:30}
+header .wrap{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+header h1{font-size:1.05rem;line-height:1.35;flex:1 1 auto}
+header .sub{color:var(--sub);font-size:.72rem;flex:1 1 100%}
+.urgent{background:var(--badbg);color:var(--bad);border-radius:8px;padding:7px 10px;font-size:.82rem;margin:10px 0;font-weight:600}
+.hero{background:var(--card);border-radius:13px;padding:13px;margin:11px 0;box-shadow:0 1px 3px rgba(16,24,40,.07)}
+.hero h2{font-size:.96rem;margin-bottom:7px;color:var(--hl)}
+.hero p{font-size:.9rem;margin:5px 0}
+.hero b{color:var(--hl)}
+details.sec{background:var(--card);border-radius:13px;margin:10px 0;box-shadow:0 1px 3px rgba(16,24,40,.07);overflow:hidden}
+details.sec>summary{cursor:pointer;padding:12px 13px;font-weight:700;font-size:.95rem;list-style:none;
+display:flex;align-items:center;gap:9px}
+details.sec>summary::-webkit-details-marker{display:none}
+details.sec>summary .no{background:var(--hl);color:#fff;font-size:.7rem;padding:2px 7px;border-radius:6px;flex:0 0 auto}
+details.sec>summary .nm{flex:1}
+details.sec>summary::after{content:"▾";color:var(--sub);font-size:.8rem}
+details.sec:not([open])>summary::after{content:"▸"}
+.lead{padding:0 13px 9px;color:var(--sub);font-size:.85rem;line-height:1.65}
+.card{border-top:1px solid var(--line);padding:12px 13px}
+.ct{font-weight:600;font-size:.9rem;color:var(--hl2);margin-bottom:7px;line-height:1.5}
+.card .body{font-size:.9rem}
+.card .body table{width:100%;border-collapse:collapse;font-size:.82rem;margin:6px 0;display:block;overflow-x:auto}
+.card .body th,.card .body td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+.card .body th{background:#f0f2f7;font-weight:600;white-space:nowrap}
+@media (prefers-color-scheme: dark){.card .body th{background:#232936}}
+.card .body li{margin:3px 0}
+.numt{width:100%;border-collapse:collapse;font-size:.82rem}
+.numt td,.numt th{border:1px solid var(--line);padding:6px 8px;vertical-align:top}
+.numt th{background:#f0f2f7}
+.numt td.pg{color:var(--sub);white-space:nowrap;font-size:.74rem}
+@media (prefers-color-scheme: dark){.numt th{background:#232936}}
+.bar{position:sticky;top:56px;z-index:20;background:var(--bg);padding:6px 0;display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-size:.78rem}
+.bar .sc{font-weight:600;margin-right:auto}
+.bar .sc span{color:var(--sub);font-weight:400}
+.btn{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:5px 9px;font-size:.75rem;
+cursor:pointer;color:var(--ink);font-family:inherit}
+.btn:active{transform:scale(.96)}
+.q{background:var(--card);border-radius:12px;padding:12px;margin:9px 0;box-shadow:0 1px 3px rgba(16,24,40,.06)}
+.q .qh{display:flex;gap:6px;align-items:center;margin-bottom:7px;flex-wrap:wrap}
+.tag{font-size:.66rem;padding:2px 6px;border-radius:5px;background:#eef2fb;color:#26418f}
+.tag.b{background:#f3ecff;color:#5b21b6}
+.tag.f{background:#e8f5f2;color:#0f766e}
+.q .s{margin-left:auto;font-size:.66rem;color:var(--sub)}
+.q .st{font-size:.92rem;white-space:pre-wrap}
+.opts{margin-top:8px;display:flex;flex-direction:column;gap:6px}
+.opt{border:1.5px solid var(--line);border-radius:9px;padding:8px 10px;font-size:.87rem;background:var(--card);
+text-align:left;cursor:pointer;font-family:inherit;color:var(--ink);display:flex;gap:7px;line-height:1.5}
+.opt .lb{font-weight:700;color:var(--hl2);flex:0 0 auto}
+.opt.right{border-color:var(--ok);background:var(--okbg)}
+.opt.wrong{border-color:var(--bad);background:var(--badbg)}
+.opt.lock{pointer-events:none}
+.ans{margin-top:8px;border-left:3px solid var(--hl2);background:#f0f5ff;border-radius:0 8px 8px 0;padding:8px 10px;
+font-size:.85rem;display:none;white-space:pre-wrap}
+.ans.on{display:block}
+@media (prefers-color-scheme: dark){.ans{background:#1b2333}}
+.acts{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+</style>
+<style>
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:desk-page-out .2s ease both}
+::view-transition-new(root){animation:desk-page-in .36s cubic-bezier(.22,1,.36,1) both}
+@keyframes desk-page-out{to{opacity:0;transform:translateY(-4px)}}
+@keyframes desk-page-in{from{opacity:0;transform:translateY(9px)}}
+@media(prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+
+.study-desk-nav{display:block;box-sizing:border-box;position:relative;inset:auto;z-index:auto;max-width:none;background:#f2edf1;color:#463747;border:0;border-bottom:1px solid #8d718b38;padding:8px clamp(12px,4vw,48px);font:14px/1.5 system-ui,"Microsoft YaHei",sans-serif}
+.study-desk-nav .study-desk-links{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;max-width:1440px;margin:auto}
+.study-desk-nav a,.study-desk-nav a:visited{display:inline-flex;align-items:center;min-height:34px;box-sizing:border-box;margin:0;padding:3px 10px;border:1px solid #8d718b60;border-radius:100px;background:#ffffff87;color:#4c3c4a;text-decoration:none;font:inherit;white-space:nowrap}
+.study-desk-nav a:hover{background:white;color:#332332}
+.study-desk-nav a:focus-visible{outline:2px solid #74546d;outline-offset:2px}
+</style>
 </style>
 </head>
 <body>
+<div class="study-desk-nav" role="navigation" aria-label="学习台导航"><div class="study-desk-links"><a href="../../index.html">← 返回学习台</a><a href="../index.html">口腔临床药物学</a><span>牙周病与黏膜病用药</span></div></div>
 <header><div class="wrap">
 <h1>平台缺口补题 · 牙周病与黏膜病用药</h1>
 <div class="sub">第十八、十九章平台零作业 · 197 题 · 来源：医不帮开源题库「口腔期末」（牙周病学·药物治疗 + 口腔黏膜病学用药相关）</div>
