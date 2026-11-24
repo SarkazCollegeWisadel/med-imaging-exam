@@ -1,0 +1,893 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>口腔组织病理学期末学习台 · 学习台</title>
+<link rel="stylesheet" href="../finals/review.css"><link rel="stylesheet" href="../learn/transfer.css"><script defer src="../finals/review.js"></script><script defer src="../learn/transfer.js"></script><style id="study-desk-theme">
+@font-face {
+  font-family: "Desk Song";
+  src: local("STSong"), local("华文宋体");
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --desk-bg: #f3f0f1;
+  --desk-paper: #fffdfd;
+  --desk-ink: #2d272e;
+  --desk-muted: #625561;
+  --desk-line: #dcd1da;
+  --desk-fold: #ede4eb;
+  --desk-accent: #60475a;
+  --desk-hover: #75576e;
+  --desk-glass: linear-gradient(151deg, #fffdfdf2, #eee6eddb);
+  --desk-shadow: 0 2px 4px #392f3609, 0 8px 24px #392f3608;
+  --desk-song: "Desk Song", "STSong", "华文宋体", "Songti SC", SimSun, serif;
+  --desk-width: 820px;
+
+  /* Existing pages use several names for the same roles. */
+  --bg: var(--desk-bg);
+  --card: var(--desk-paper);
+  --card2: var(--desk-fold);
+  --ink: var(--desk-ink);
+  --tx: var(--desk-ink);
+  --sub: var(--desk-muted);
+  --dim: var(--desk-muted);
+  --line: var(--desk-line);
+  --hl: var(--desk-accent);
+  --hl2: var(--desk-accent);
+  --acc: var(--desk-accent);
+  --accent: var(--desk-accent);
+  --code: var(--desk-fold);
+  --ok: #226040;
+  --okbg: #e8f4eb;
+  --bad: #922f34;
+  --badbg: #faebec;
+  --warn: #744c1b;
+  --warnbg: #f7f0e3;
+}
+
+body.study-page {
+  background: radial-gradient(ellipse at 85% 0, #eee6ed, transparent 550px), var(--desk-bg);
+  color: var(--desk-ink);
+  font-family: "Segoe UI Variable", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.study-page :is(h1, h2, .stem, .st, .ask, .card header h3, .ans .dx),
+.study-page[data-desk-page="premed-quiz"] .q,
+.study-page[data-desk-page="odontogenic"] .card > .q {
+  font-family: var(--desk-song);
+  font-weight: 400;
+  text-wrap: pretty;
+}
+
+.study-page :is(h1, h2, h3, h4) { color: var(--desk-ink); }
+.study-page a { color: var(--desk-accent); }
+.study-page :is(.sub, .foot, .src, .hint, .cap, figcaption, .who) { color: var(--desk-muted); }
+.study-page :is(a, button, summary, input, textarea):focus-visible {
+  outline: 2px solid var(--desk-accent);
+  outline-offset: 3px;
+}
+
+.study-page .study-desk-nav {
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+  padding-inline: clamp(10px, 3vw, 22px);
+  border-bottom: 0;
+}
+
+.study-page .study-desk-nav::after {
+  content: "";
+  position: absolute;
+  inset: auto max(12px, calc((100% - var(--desk-width)) / 2)) 0;
+  border-bottom: 1px solid var(--desk-line);
+  pointer-events: none;
+}
+
+.study-page .study-desk-links { max-width: var(--desk-width); }
+.study-page .study-desk-links > span {
+  margin-inline-start: auto;
+  color: var(--desk-muted);
+  font-size: .83em;
+}
+
+.study-page :is(.study-desk-nav a, .btn, .bar button, .tools button, .chip, .acts button, .copy, .jump a, :where(#toTop)) {
+  min-height: 34px;
+  border: 1px solid var(--desk-line);
+  border-radius: 100px;
+  background: var(--desk-glass);
+  color: var(--desk-accent);
+  box-shadow: inset 0 1px 0 #fff, 0 2px 5px #5034480d;
+  transition: transform .26s cubic-bezier(.2, 1.25, .4, 1), background-color .18s, border-color .18s;
+}
+
+.study-page :is(.study-desk-nav a, .btn, .bar button, .tools button, .chip, .acts button, .copy, .jump a, :where(#toTop)):hover {
+  background: #fff;
+  border-color: #af96aa;
+}
+
+.study-page :is(.btn, .bar button, .tools button, .chip, .acts button, .copy, :where(#toTop)):active {
+  transform: scale(.965);
+}
+
+.study-page :is(.btn.on, .bar button.on, .bar button.primary, .tools button.on, .chip.on, .acts button.on) {
+  background: var(--desk-accent);
+  border-color: var(--desk-accent);
+  color: #fff;
+  box-shadow: none;
+}
+
+.study-page :is(.btn.on, .bar button.on, .bar button.primary, .tools button.on, .chip.on, .acts button.on):hover {
+  background: var(--desk-hover);
+  color: #fff;
+}
+
+.study-page :is(.copy.done, .acts button.ok) {
+  background: var(--okbg);
+  border-color: var(--ok);
+  color: var(--ok);
+}
+
+.study-page :is(.acts button.bad, .acts button.wrong) {
+  background: var(--badbg);
+  border-color: var(--bad);
+  color: var(--bad);
+}
+
+.study-page button:disabled { opacity: .55; }
+
+.study-page > :is(header, .top),
+.study-page .study-hero,
+.study-page[data-desk-page="premed-quiz"] > .bar {
+  position: relative;
+  isolation: isolate;
+  z-index: auto;
+  max-width: var(--desk-width);
+  margin: 10px auto 14px;
+  padding: clamp(16px, 3vw, 27px);
+  border: 1px solid var(--desk-line);
+  border-radius: 13px;
+  background: linear-gradient(135deg, #fffdfd 46%, #f0e8ef);
+  box-shadow: var(--desk-shadow);
+}
+
+/* A fold on the heading surface leaves the exercise and source areas quiet. */
+.study-page > :is(header, .top)::after,
+.study-page .study-hero::after,
+.study-page[data-desk-page="premed-quiz"] > .bar::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  width: min(33%, 185px);
+  height: 100%;
+  background: linear-gradient(142deg, #d5c3d1 13%, #eee5ed 13% 38%, #d9c8d5 38% 51%, #f1eaf0 51%);
+  clip-path: polygon(66% 0, 100% 0, 100% 82%, 59% 100%, 0 100%, 42% 61%);
+  border-radius: 0 13px 13px 0;
+  opacity: .53;
+  pointer-events: none;
+}
+
+.study-page > :is(header, .top) h1,
+.study-page .study-hero h1,
+.study-page[data-desk-page="premed-quiz"] .bar h1 {
+  margin: 0 0 6px;
+  padding: 0;
+  border: 0;
+  color: var(--desk-ink);
+  font: 400 clamp(26px, 4.8vw, 43px)/1.2 var(--desk-song);
+  letter-spacing: -.025em;
+  overflow-wrap: anywhere;
+}
+
+.study-page > header .wrap { padding-inline: 0; }
+.study-page > :is(header, .top, .study-hero) :is(.sub, p) { color: var(--desk-muted); }
+.study-page .study-hero .sub { margin-bottom: 0; }
+.study-page .wrap { max-width: var(--desk-width); }
+.study-page .study-course-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 12px;
+}
+.study-page .study-course-links a {
+  padding: 7px 10px;
+  background: #fffdfd99;
+  border: 1px solid var(--desk-line);
+  border-radius: 7px;
+  color: var(--desk-accent);
+  font-size: .82em;
+  text-decoration: none;
+}
+.study-page .study-course-links a:hover { background: var(--desk-fold); }
+
+.study-page .bar,
+.study-page .tools,
+.study-page .filters,
+.study-page > nav:not(.study-desk-nav),
+.study-page .jump,
+.study-page #score.score {
+  position: static;
+  inset: auto;
+  z-index: auto;
+}
+
+.study-page :is(.bar, .tools, .filters, .jump) { color: var(--desk-muted); }
+.study-page :is(.tools, .filters, .jump) { align-items: center; }
+.study-page .tools { margin-top: 12px; }
+.study-page .filters { padding-block: 9px; }
+.study-page .bar {
+  background: var(--desk-glass);
+  backdrop-filter: blur(18px) saturate(135%);
+  border: 1px solid var(--desk-line);
+  border-radius: 10px;
+  padding: 7px 9px;
+}
+.study-page .bar .score { color: var(--ok); font-family: system-ui, sans-serif; letter-spacing: 0; }
+.study-page .bar .sc { color: var(--desk-ink); }
+.study-page header .bar { margin-top: 12px; }
+.study-page > nav:not(.study-desk-nav) {
+  max-width: var(--desk-width);
+  margin: 0 auto;
+  background: transparent;
+  border-color: var(--desk-line);
+}
+.study-page > nav:not(.study-desk-nav) a {
+  background: var(--desk-fold);
+  color: var(--desk-accent);
+  border: 1px solid var(--desk-line);
+}
+.study-page > nav:not(.study-desk-nav) a:hover,
+.study-page > nav:not(.study-desk-nav) a.hl {
+  background: var(--desk-accent);
+  color: #fff;
+}
+.study-page .jump {
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: var(--desk-width);
+  margin: 8px auto 0;
+  padding-inline: 14px;
+}
+.study-page .study-section-jump { margin-top: 12px; padding: 0; }
+.study-page .jump a { display: inline-flex; align-items: center; }
+.study-page #toTop {
+  position: static;
+  justify-content: center;
+  margin: 12px auto;
+}
+
+.study-page :is(.qi, .card, .b1box, .essay, .hero, .q:has(> .qh), details.sec, details.honesty, #toc) {
+  background: var(--desk-paper);
+  border: 1px solid var(--desk-line);
+  border-radius: 13px;
+  box-shadow: var(--desk-shadow);
+}
+.study-page .sec .card { border-width: 1px 0 0; border-radius: 0; box-shadow: none; }
+.study-page :is(.qi img, .imgs img, .card > img) { border-color: var(--desk-line); }
+.study-page :is(.stem, .st, .ask, .card header h3) {
+  font-size: clamp(17px, 2.35vw, 20px);
+  line-height: 1.48;
+}
+.study-page :is(.tag:not(.warn, .ok, .n, .g, .bad), .b.sub) {
+  background: var(--desk-fold);
+  color: var(--desk-accent);
+  border-color: #d8c9d6;
+}
+.study-page :is(.tag.warn, .noimg, .b.warn) {
+  background: var(--warnbg);
+  color: var(--warn);
+  border-color: #d7bd91;
+}
+.study-page :is(.tag.g, .tag.ok, .b.exam) { background: var(--okbg); color: var(--ok); }
+.study-page :is(.tag.bad, .tag.n) { background: var(--badbg); color: var(--bad); }
+.study-page .opt {
+  background: #fdfafb;
+  border-color: var(--desk-line);
+  color: var(--desk-ink);
+}
+.study-page :is(.opt.sel, button.opt:hover):not(.right, .wrong, .wrongpick) { background: var(--desk-fold); }
+.study-page .opt :is(.lb, .k) { color: var(--desk-accent); }
+.study-page:not([data-desk-page="premed-quiz"]) .opt.right,
+.study-page .card.ans-on .opt.right {
+  background: var(--okbg);
+  border-color: var(--ok);
+}
+.study-page:not([data-desk-page="premed-quiz"]) .opt.right :is(.k, .lb),
+.study-page .card.ans-on .opt.right :is(.k, .lb) { color: var(--ok); }
+.study-page :is(.opt.wrong, .card.ans-on .opt.wrongpick) {
+  background: var(--badbg);
+  border-color: var(--bad);
+}
+.study-page :is(.opt.wrong, .card.ans-on .opt.wrongpick) :is(.k, .lb) { color: var(--bad); }
+.study-page .opt.mine:not(.right, .wrong, .wrongpick) { background: var(--warnbg); border-color: var(--warn); }
+.study-page .card.ok { border-left: 3px solid var(--ok); }
+.study-page .card.wrong { border-left: 3px solid var(--bad); }
+.study-page .ans {
+  background: linear-gradient(148deg, #fbf5f9, var(--desk-fold));
+  border-color: #bca3b6;
+  color: var(--desk-ink);
+  transform-origin: top center;
+}
+.study-page .ans.warn { background: var(--warnbg); border-color: var(--warn); }
+.study-page .ansline b { color: var(--ok); }
+.study-page .mine { color: var(--desk-muted); }
+.study-page :is(.note.srcbox, .note.mid, .note.none, .ans .src, .src.no, .card .src:not(span), .prompt, .b1lead) {
+  background: #f4eef3;
+  color: var(--desk-muted);
+  border-color: #cdbac9;
+}
+.study-page .note.srcbox code {
+  background: #e8dce6;
+  color: #493646;
+  overflow-wrap: anywhere;
+}
+.study-page .src::before,
+.study-page .src.no::before { color: var(--desk-muted); }
+.study-page :is(details pre, code, th) { background: #f2ebf0; }
+.study-page :is(th, td) { border-color: var(--desk-line); }
+.study-page :is(h2.part, article h2) {
+  background: linear-gradient(113deg, var(--desk-fold) 64%, transparent 64%);
+  border-color: #aa8fa3;
+}
+
+.study-page[data-desk-page="premed-guide"] :is(main p, main li, td, strong) { color: var(--desk-ink); }
+.study-page[data-desk-page="premed-guide"] :is(blockquote, blockquote p, th) { color: var(--desk-muted); }
+.study-page[data-desk-page="premed-guide"] :is(blockquote, tr:nth-child(even) td) { background: #f4edf2; border-color: var(--desk-line); }
+.study-page[data-desk-page="premed-guide"] :is(code, hr, .foot) { border-color: var(--desk-line); }
+.study-page[data-desk-page="premed-guide"] code { color: var(--desk-accent); }
+.study-page[data-desk-page="premed-guide"] .go a { background: var(--desk-accent); color: #fff; }
+.study-page[data-desk-page="premed-guide"] .go a:hover { background: var(--desk-hover); }
+
+.study-page[data-desk-page="premed-quiz"] .q {
+  font-size: clamp(17px, 2.35vw, 20px);
+  line-height: 1.48;
+}
+.study-page[data-desk-page="premed-quiz"] .bar h1 {
+  display: flex;
+  flex-wrap: wrap;
+}
+.study-page[data-desk-page="premed-quiz"] .bar h1 span {
+  color: var(--desk-muted);
+  font-family: system-ui, sans-serif;
+}
+.study-page[data-desk-page="premed-quiz"] .bar h1 .score { color: var(--ok); }
+.study-page[data-desk-page="premed-quiz"] .hd { color: var(--desk-muted); }
+.study-page[data-desk-page="premed-quiz"] button.show {
+  background: var(--desk-accent);
+  border-color: var(--desk-accent);
+  color: #fff;
+}
+.study-page[data-desk-page="premed-quiz"] button.show:hover { background: var(--desk-hover); }
+.study-page[data-desk-page="odontogenic"] #score {
+  max-width: var(--desk-width);
+  margin: 0 auto 12px;
+  background: var(--desk-glass);
+  border: 1px solid var(--desk-line);
+  border-radius: 11px;
+}
+.study-page[data-desk-page="odontogenic"] .card > .q { font-size: 20px; }
+.study-page.hide-ans[data-desk-page="imaging-list"] .ans b { background: #d9ccd6; color: transparent; }
+.study-page[data-desk-page="imaging-quiz"] :is(.prompt b, summary) { color: var(--desk-accent); }
+.study-page[data-desk-page="imaging-quiz"] details { background: #f5eef4; border-color: var(--desk-line); }
+.study-page[data-desk-page="imaging-quiz"] details .ans { background: transparent; color: var(--desk-accent); font-family: var(--desk-song); font-size: 18px; }
+.study-page[data-desk-page="pharm"] details { border: 1px solid var(--desk-line); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .study-page .ans.on,
+  .study-page:not(:has(#revealAll.on)) .ans.show,
+  .study-page:not(.showAll) .card.shown .ans,
+  .study-page[data-desk-page="imaging-quiz"] details[open] > p:first-of-type {
+    animation: desk-unfold .34s cubic-bezier(.19, 1, .36, 1) both;
+  }
+  .study-page:has(#showAll.on) .ans.on { animation: none; }
+}
+
+@keyframes desk-unfold {
+  from { opacity: .28; transform: perspective(460px) rotateX(-30deg); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 860px) {
+  .study-page > :is(header, .top),
+  .study-page[data-desk-page="premed-quiz"] > .bar { margin-inline: 12px; }
+  .study-page[data-desk-page="odontogenic"] #score { margin-inline: 14px; }
+}
+
+@media (max-width: 520px) {
+  .study-page .study-desk-links { gap: 5px 9px; }
+  .study-page .study-desk-links > span { margin-inline-start: 0; }
+  .study-page > :is(header, .top),
+  .study-page .study-hero,
+  .study-page[data-desk-page="premed-quiz"] > .bar { padding: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .study-page :is(a, button) { transition: none !important; }
+}
+</style>
+</head>
+<body data-course="oral" class="study-page" data-desk-page="oral-index"><div class="study-desk-nav"><nav class="study-desk-links"><a href="../learn/">← 帮学总入口</a></nav></div>
+<main class="desk"><header class="study-hero"><h1>口腔组织病理学期末学习台</h1><p class="sub">从教师课件的学习要求出发，用遮答切片复述病变，再做对应章节的作业。</p></header><nav class="actions"><a class="btn" href="#focus">复习重点</a><a class="btn" href="plan.html">10 天复习计划</a><a class="btn" href="materials.html">教师资料与出处</a><a class="btn" href="practice.html">开始做题</a><a class="btn" href="#outline">逐章复习</a></nav><h2 id="clinic">切片辨认</h2><p>先说标本来自哪里，再指两处结构，最后说诊断。每个答案可回到教师课件整页。</p><details class="module"><summary>实验四 · 课件第 5 页</summary><img class="slide" src="view-1.jpg" loading="lazy" alt="待辨认的镜下视野 1"><p>这一视野属于哪一种龋？病变的三角形朝向是怎样的？</p><details class="solution"><summary>核对课件</summary><p><strong>釉质平滑面龋</strong></p><p>纵切面三角形，基底部—釉质表面，顶—釉牙本质界</p></details><p><a href="../patho/index.html#case-实验四-05">查看课件原页与图注</a></p></details><details class="module"><summary>实验五 · 课件第 44 页</summary><img class="slide" src="view-2.jpg" loading="lazy" alt="待辨认的镜下视野 2"><p>这一视野的诊断是什么？图中标注了哪些结构？</p><details class="solution"><summary>核对课件</summary><p><strong>天疱疮</strong></p><p>Pemphigus Vulgaris ×40</p></details><p><a href="../patho/index.html#case-实验五-44">查看课件原页与图注</a></p></details><details class="module"><summary>实验六 · 课件第 25 页</summary><img class="slide" src="view-3.jpg" loading="lazy" alt="待辨认的镜下视野 3"><p>这一视野的诊断是什么？可见哪些结构？</p><details class="solution"><summary>核对课件</summary><p><strong>多形性腺瘤</strong></p><p>多形性腺瘤：腺管样结构和黏液软骨样组织</p></details><p><a href="../patho/index.html#case-实验六-25">查看课件原页与图注</a></p></details><h2 id="compare">闭卷辨别：同一张片上的线索</h2><p>先说区分依据再展开。括号内是学习通节号和课件阅读版页码。</p>
+<details class="module"><summary>龈沟上皮和结合上皮都可无角化，凭什么分？</summary><p>先找牙面和龈沟。龈沟上皮覆盖龈沟软组织壁；结合上皮向根方延伸，借内基底板及半桥粒附着于牙面。若看不见牙与上皮的关系，只凭“无角化”不足以定位。</p><p><a href="materials.html#source-4">牙周组织 · 4.1，第 19、22–23 页；章末第 83 页</a></p></details>
+<details class="module"><summary>硬腭和口底都取到复层鳞状上皮，接下来找什么？</summary><p>看表层角化，再看组织与深面的连接。硬腭承担摩擦，属于咀嚼黏膜；口底需要伸展，属于被覆黏膜。舌背另列特殊黏膜，辨认时要找乳头或味蕾。</p><p><a href="materials.html#source-5">口腔黏膜 · 5.1，第 3、40–41 页</a></p></details>
+<details class="module"><summary>腮腺、下颌下腺、舌下腺怎样用同一条线索比较？</summary><p>先判腺泡分泌性质。腮腺为纯浆液性；下颌下腺为以浆液性腺泡为主的混合腺；舌下腺也为混合腺，黏液性腺泡占多数。再观察导管和间质，为第一判断找第二条证据。</p><p><a href="materials.html#source-6">唾液腺 · 6.1，第 59、67、74 页</a></p></details>
+<details class="module"><summary>融合牙和结合牙，最有区分力的是牙数还是连接组织？</summary><p>先看连接组织。融合牙来自两个牙胚联合，可见牙本质相连；结合牙的连接限于牙骨质。涉及额外牙胚时，单纯数牙不能可靠区分。</p><p><a href="materials.html#source-7">牙发育异常 · 7.1，第 28、96 页</a></p></details>
+<details class="module"><summary>筛孔样肿瘤细胞团与含牙冠的囊腔，各要再找什么？</summary><p>前者找肿瘤细胞团内的筛孔和腔内物质，支持腺样囊性癌的筛状结构；后者要确认囊壁附着在未萌牙牙颈部。前一问主要考细胞排列，后一问还要结合牙冠和囊壁的空间关系。</p><p><a href="materials.html#source-14">唾液腺肿瘤 · 14.1，第 81 页</a> · <a href="materials.html#source-15">颌骨囊肿 · 15.1，第 8–11 页</a></p></details>
+<details class="module"><summary>为什么观察到转移，还要描述细胞异型性？</summary><p>课件将组织学貌似良性却发生转移的成釉细胞瘤，与出现明显细胞异型、核分裂增多的成釉细胞癌分开。答题时把临床行为和镜下证据写成两句，再说明哪条证据支持分型。</p><p><a href="materials.html#source-17">牙源性肿瘤续篇 · 17.1 第一份，第 66–68 页</a></p></details>
+<nav class="actions"><a class="btn" href="materials.html#lab-goals">六次实验的教师要求</a><a class="btn" href="../patho/">全部切片</a><a class="btn" href="../odontogenic/">牙源性病变图谱</a></nav><h2 id="focus">复习侧重</h2>
+<article class="panel">
+<h3>优先练 · 作业和切片同时出现</h3>
+<p>龋病与牙髓根尖周病、牙周炎、黏膜病、唾液腺病、囊肿及牙源性肿瘤。把每个诊断写成“部位＋可见结构＋最接近的鉴别点”。</p>
+</article>
+<article class="panel">
+<h3>每天保留一组 · 正常组织与发育</h3>
+<p>第五章和第六章各有 10 道已完成作业。暑假材料还练牙胚来源、牙体组织、填空、名解和简答。先从正常结构出发，避免只会认异常图。</p>
+</article>
+<p><a href="../patho/">实验四至九 · 64 张切片与抽背卡</a>　<a href="../odontogenic/">牙源性肿瘤 · 25 张专项卡</a>
+</p>
+<p class="source">两套切片有重叠，分开计数。实验九总结过的内容适合先练；期末各章分值尚未公布。课程“牙源性角化囊性瘤”等旧称按原目录显示，切片台也用“牙源性角化囊肿”。</p>
+<h2 id="objectives">课件明确要求掌握什么</h2>
+<p>按首批 10 份教师课件的 PDF 物理页核对。课件使用的“掌握、熟悉、了解”和章末思考题分别标出，方便安排背诵顺序。</p>
+<article class="panel">
+<h3>颌面部发育 · 当前课件第 4、60 页（旧版第 9、70 页）</h3>
+<p>掌握神经嵴、鳃弓、咽囊，以及面部与腭的形成和常见畸形。自测时画出面突、写衍生结构，再反推融合障碍。舌发育列在“熟悉”。</p>
+</article>
+<article class="panel">
+<h3>牙的发育 · 第 3–4 页</h3>
+<p>掌握牙胚组成、组织来源和去向，蕾状期、帽状期、钟状期的结构，牙根形成和三种上皮的来源、位置及结局。矿化与萌出次序列在“了解”。</p>
+</article>
+<article class="panel">
+<h3>牙体组织 · 第 3–4 页</h3>
+<p>第 3 页将釉质组织及表面结构、牙本质、牙髓、牙骨质的组织结构列入掌握。用一张牙纵切图逐一定位，再说三种硬组织和一种软组织的临床意义。</p>
+</article>
+<article class="panel">
+<h3>龋病 · 第 2 页</h3>
+<p>掌握釉质龋与牙本质龋的病理变化；熟悉病因、发病机制和四联因素；了解菌斑形成。优先画出两种龋的分层，分别指出进展前沿。</p>
+</article>
+<article class="panel">
+<h3>牙髓及根尖周病 · 第 48、98 页</h3>
+<p>章末思考题要求描述急、慢性牙髓炎的形态，并区分坏死与坏疽；根尖周部分追问急性炎症、排脓途径、肉芽肿、慢性脓肿和囊肿。这两页属于思考题。</p>
+</article>
+<article class="panel">
+<h3>牙周组织病 · 第 3、102 页</h3>
+<p>掌握牙周炎的病理发展过程及改变；熟悉病因、发病机制与牙龈病特点。章末用“牙周袋怎样形成”把发展过程连回切片。</p>
+</article>
+<article class="panel">
+<h3>口腔黏膜病（一）、（二）· 各第 2 页</h3>
+<p>先掌握基本病变，再逐一比较白斑、黏膜下纤维化、扁平苔藓、盘状红斑狼疮、天疱疮与类天疱疮。复发性阿弗他溃疡的病理和常见临床表现列在“熟悉”。</p>
+</article>
+<article class="panel">
+<h3>颌骨疾病 · 第 1 页</h3>
+<p>掌握不同类型骨髓炎、纤维结构不良与骨化纤维瘤的区别、朗格汉斯细胞组织细胞增生症的病理表现。复述时分别报告骨与纤维成分、病变边界和主要细胞。</p>
+</article>
+<article class="panel">
+<h3>唾液腺非肿瘤性疾病 · 第 3 页</h3>
+<p>掌握急慢性唾液腺炎与舍格伦综合征的病理变化；熟悉病因和发病因素。由腺泡、导管、炎细胞三处分别作答。</p>
+</article>
+<article class="panel"><h3>牙周组织 · 4.1 / 第 3、83 页</h3><p>掌握牙龈、牙周膜、牙槽骨的组织结构。按章末思考题比较牙龈上皮、龈沟上皮和结合上皮，再说明主纤维束的功能。</p></article><article class="panel"><h3>口腔黏膜、唾液腺 · 5.1、6.1 / 各第 3 页</h3><p>掌握黏膜基本结构、咀嚼与被覆黏膜的区别；掌握腺体基本结构及各大唾液腺的识别依据。先观察上皮或腺泡，后命名器官。</p></article><article class="panel"><h3>牙发育异常 · 7.1 / 第 96 页</h3><p>课件章末用融合牙与结合牙、氟斑牙、遗传性乳光牙及四环素牙出思考题。分别问哪种组织受累、发生在什么阶段、镜下如何解释。</p></article><article class="panel"><h3>唾液腺肿瘤 · 14.1 / 第 3 页</h3><p>课件要求掌握五类肿瘤的病理和生物学特点。把多形性腺瘤、腺淋巴瘤、腺样囊性癌、黏液表皮样癌、恶性多形性腺瘤列成五行，逐项遮答。</p></article><article class="panel"><h3>颌骨囊肿 · 15.1 / 第 2 页</h3><p>掌握常见牙源性发育性囊肿的病理和常见软组织囊肿的特征；熟悉组织来源、临床与生物学特点。切片能回答衬里，定位还需牙位与影像。</p></article><article class="panel"><h3>牙源性肿瘤 · 16.1 / 第 2 页</h3><p>课件明确要求连起临床表现、病理改变、生物学行为和组织发生。每次说出一种镜下形态，再解释它能支持什么、还缺什么。</p></article><article class="panel"><h3>牙源性及其他来源肿瘤 · 17.1</h3><p>这一个节点实际有两份课件。第一份继续牙源性病变，第二份讲其他组织来源的病变。结合实验七、八区分影细胞、钙化和浸润性鳞状上皮巢。</p></article><h2 id="outline">逐章复习大纲</h2>
+<p>每项先做一个闭卷问题，再展开核对。章序沿用学习通；书页按对应版本标注。</p>
+<details class="module" id="unit-1">
+<summary>01　颌面部发育</summary><p><a href="materials.html#source-1">本章教师资料</a></p>
+<h3>上唇与腭分别由哪些突起参与形成？</h3>
+<p>用两幅草图分开画。上唇涉及上颌突与内侧鼻突；继发腭由两侧腭突形成。再说出融合障碍对应的裂隙位置。</p>
+<p class="source">第3版 PDF 28–49</p>
+<details class="catalog">
+<summary>课程原目录 · 第一章 口腔颌面部的发育</summary>
+<ul>
+<li>1.1 口腔颌面部发育ppt</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-2">
+<summary>02　牙及支持组织发育</summary><p><a href="materials.html#source-2">本章教师资料</a></p>
+<h3>牙胚三部分各留下什么？</h3>
+<p>成釉器→釉质；牙乳头→牙本质、牙髓；牙囊→牙骨质、牙周膜和牙槽骨。画完再解释牙本质形成与釉质形成的先后。</p>
+<p class="source">第3版 PDF 50–85；暑假简答 2</p>
+<details class="catalog">
+<summary>课程原目录 · 第二章 牙齿发育</summary>
+<ul>
+<li>2.1 牙齿发育ppt</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-3">
+<summary>03　牙体组织</summary><p><a href="materials.html#source-3">本章教师资料</a></p>
+<h3>面对磨片，怎样区分釉质、牙本质、牙骨质？</h3>
+<p>先定位冠、根、髓腔。釉质看釉柱，牙本质找小管，牙骨质沿根面找；无细胞牙骨质也属于牙骨质。补读牙髓各层。</p>
+<p class="source">第3版 PDF 88–131；暑假选择 1–7</p>
+<details class="catalog">
+<summary>课程原目录 · 第三章 牙体组织</summary>
+<ul>
+<li>3.1 牙体组织ppt</li>
+<li>3.2 牙釉质理化特性</li>
+<li>3.3 牙本质理化特性</li>
+<li>3.4 牙釉质的组织结构</li>
+<li>3.5 牙本质的组织结构</li>
+<li>3.6 牙骨质结构</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-4">
+<summary>04　牙周组织</summary><p><a href="materials.html#source-4">本章教师资料</a></p>
+<h3>牙如何把咬合力传到牙槽骨？</h3>
+<p>从牙骨质，经嵌入两端的牙周膜主纤维束连至牙槽骨；按牙槽嵴、水平、斜行、根尖和根间分组。再从牙龈结合上皮定位附着。</p>
+<p class="source">第3版 PDF 132–149、246–269；暑假选择 8–10</p>
+<details class="catalog">
+<summary>课程原目录 · 第四章 牙周组织</summary>
+<ul>
+<li>4.1 牙周组织ppt</li>
+<li>4.2 牙龈表面解剖</li>
+<li>4.3 牙龈组织结构</li>
+<li>4.4 牙周膜</li>
+<li>4.5 牙槽骨</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-5">
+<summary>05　口腔黏膜</summary><p><a href="materials.html#source-5">本章教师资料</a></p>
+<p><a href="practice.html#set-2">对应作业</a>
+</p>
+<h3>硬腭和颊黏膜在承受摩擦时，哪一层不同？</h3>
+<p>硬腭和牙龈为咀嚼黏膜，通常有角化；颊部为被覆黏膜。沿基底层、棘层、颗粒层到角化层辨认，最后单列舌背特殊黏膜。</p>
+<p class="source">第3版 PDF 150–171；第五章作业</p>
+<details class="catalog">
+<summary>课程原目录 · 第五章 口腔黏膜</summary>
+<ul>
+<li>5.1 5.口腔黏膜PPT</li>
+<li>5.2 5.1口腔黏膜组织结构</li>
+<li>5.3 5.2口腔黏膜分类、结构特点、功能</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-6">
+<summary>06　唾液腺</summary><p><a href="materials.html#source-6">本章教师资料</a></p>
+<p><a href="practice.html#set-1">对应作业</a>
+</p>
+<h3>看见深染腺泡就能确定是腮腺吗？</h3>
+<p>先辨浆液性与黏液性腺泡，再看全片比例和导管。腮腺为纯浆液性；下颌下腺混合、浆液性为主；舌下腺混合、黏液性为主。</p>
+<p class="source">第3版 PDF 172–183；第6章作业；实验九</p>
+<details class="catalog">
+<summary>课程原目录 · 第六章 唾液腺</summary>
+<ul>
+<li>6.1 6.唾液腺PPT</li>
+<li>6.2 6.1唾液腺的一般组织学结构</li>
+<li>6.3 6.2唾液腺的分类及结构特点，增龄与再生性变化</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-7">
+<summary>07　牙发育异常</summary><p><a href="materials.html#source-7">本章教师资料</a></p>
+<p><a href="practice.html#set-4">对应作业</a>
+</p>
+<h3>牙齿变色时，怎样从受累组织反推发育阶段？</h3>
+<p>区分釉质形成量不足与矿化或成熟障碍；四环素牙的主要受累组织为牙本质。赫钦森切牙与桑葚状第一磨牙配对记。</p>
+<p class="source">第八章作业 1–10；平台 7.1</p>
+<details class="catalog">
+<summary>课程原目录 · 第八章 牙发育异常</summary>
+<ul>
+<li>7.1 8.牙发育异常PPT</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-8">
+<summary>08　龋病</summary><p><a href="materials.html#source-8">本章教师资料</a></p>
+<p><a href="practice.html#set-3">对应作业</a>
+</p>
+<h3>平滑面釉质龋哪个区最深，哪个区脱矿最多？</h3>
+<p>从表面向深部依次辨表层、病损体部、暗层、透明层；体部脱矿最重，透明层为病损前沿。再与沿牙本质小管扩展的龋损对照。</p>
+<p class="source">第3版 PDF 194–245；第九章作业 4–6；实验四</p>
+<details class="catalog">
+<summary>课程原目录 · 第九章 龋病</summary>
+<ul>
+<li>8.1 9.龋病PPT</li>
+<li>8.2 9.1龋病概述</li>
+<li>8.3 9.2龋病的病因</li>
+<li>8.4 9.3龋病的分类</li>
+<li>8.5 9.4釉质龋概述</li>
+<li>8.6 9.5平滑面龋</li>
+<li>8.7 9.6牙本质龋+牙骨质龋</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-9">
+<summary>09　牙髓病与根尖周病</summary><p><a href="materials.html#source-9">本章教师资料</a></p>
+<p><a href="practice.html#set-11">对应作业</a>
+</p>
+<h3>镜下都有炎细胞，靠什么区分脓肿、肉芽肿、囊肿？</h3>
+<p>脓腔以中性粒细胞和液化坏死为线索；根尖肉芽肿见炎性肉芽组织；具有上皮衬里的囊腔支持根尖周囊肿。单见上皮团不足以认定囊肿。</p>
+<p class="source">第3版 PDF 194–245、411–426；第十、十一章作业；实验四</p>
+<details class="catalog">
+<summary>课程原目录 · 第十章牙髓病(1)第十一章根尖周病(1)</summary>
+<ul>
+<li>9.1 10. 牙髓病(1)11.根尖周病(1)PPT</li>
+<li>9.2 10.1急性牙髓炎</li>
+<li>9.3 10.2慢性牙髓炎</li>
+<li>9.4 11.1急性根尖周炎</li>
+<li>9.5 11.2根尖肉芽肿</li>
+<li>9.6 11.3根尖周脓肿</li>
+<li>9.7 11.4根尖周囊肿</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-10">
+<summary>10　牙周组织病</summary><p><a href="materials.html#source-10">本章教师资料</a></p>
+<p><a href="practice.html#set-10">对应作业</a>
+</p>
+<h3>龈袋与牙周袋如何用附着位置区分？</h3>
+<p>龈肿胀可增加探诊深度；牙周炎还要找附着丧失、结合上皮向根方迁移与牙槽骨吸收。画出釉牙骨质界作参照。</p>
+<p class="source">第3版 PDF 246–269；第十二章作业；实验四</p>
+<details class="catalog">
+<summary>课程原目录 · 第十二章 牙周组织病</summary>
+<ul>
+<li>10.1 12.牙周组织病PPT</li>
+<li>10.2 12.1牙周组织病概述</li>
+<li>10.3 12.2牙龈炎</li>
+<li>10.4 12.3牙周炎病因及发病机制</li>
+<li>10.5 12.4牙周炎病理</li>
+<li>10.6 12.5 发生在牙周组织的其他病变</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-11">
+<summary>11　黏膜基本病变与白斑</summary><p><a href="materials.html#source-11">本章教师资料</a></p>
+<h3>白色病损的临床描述与病理描述如何分开？</h3>
+<p>先描述角化层厚度及角化类型，再辨上皮异常增生。白斑是临床诊断，组织学可表现为不同程度的角化或异常增生。</p>
+<p class="source">第3版 PDF 270–308；平台 11.2–11.5；实验五</p>
+<details class="catalog">
+<summary>课程原目录 · 第十三章 口腔黏膜病（一）</summary>
+<ul>
+<li>11.1 13.口腔黏膜病(一)ppt</li>
+<li>11.2 13.1口腔黏膜病基本病理变化1</li>
+<li>11.3 13.2口腔黏膜病基本病理变化2</li>
+<li>11.4 13.3口腔黏膜病病理活检</li>
+<li>11.5 13.4白斑</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-12">
+<summary>12　黏膜病鉴别</summary><p><a href="materials.html#source-12">本章教师资料</a></p>
+<p><a href="practice.html#set-9">对应作业</a>
+</p>
+<h3>疱在上皮内还是上皮下？哪种病以界面炎为主？</h3>
+<p>寻常型天疱疮见棘层松解和上皮内疱；黏膜类天疱疮多见上皮下裂隙。扁平苔藓看基底细胞液化和固有层浅层带状淋巴细胞浸润。</p>
+<p class="source">第3版 PDF 270–308；第十三章（二）作业；实验五</p>
+<details class="catalog">
+<summary>课程原目录 · 第十三章 口腔黏膜病（二）</summary>
+<ul>
+<li>12.1 13.口腔黏膜病（二）PPT</li>
+<li>12.2 13.5口腔黏膜下纤维化</li>
+<li>12.3 13.6扁平苔藓</li>
+<li>12.4 13.7慢性盘状红斑狼疮</li>
+<li>12.5 13.8天疱疮</li>
+<li>12.6 13.9良性黏膜类天疱疮</li>
+<li>12.7 13.10复发性阿弗他溃疡</li>
+<li>12.8 13.11红斑（补充内容）</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-13">
+<summary>13　颌骨与非肿瘤性唾液腺病</summary><p><a href="materials.html#source-13">本章教师资料</a></p>
+<p><a href="practice.html#set-8">对应作业</a>
+</p>
+<h3>小叶里有淋巴细胞就能定舍格伦综合征吗？</h3>
+<p>同时观察浸润分布、腺泡萎缩、残余导管及淋巴上皮病变。颌骨部分另列骨髓炎、纤维结构不良、朗格汉斯细胞组织细胞增生症。</p>
+<p class="source">第3版 PDF 318–399；第十四章/第十六章（一）作业；实验六、八</p>
+<details class="catalog">
+<summary>课程原目录 · 第十四章颌骨疾病(1)第十六章唾液腺疾病（一）(1)</summary>
+<ul>
+<li>13.1 14.颌骨疾病(1)16.唾液腺疾病(1)PPT</li>
+<li>13.2 14.1颌骨骨髓炎</li>
+<li>13.3 14.2纤维结构不良</li>
+<li>13.4 14.3朗格汉斯细胞组织细胞增生症</li>
+<li>13.5 16.1唾液腺炎</li>
+<li>13.6 16.2舍格伦综合征</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-14">
+<summary>14　唾液腺肿瘤</summary><p><a href="materials.html#source-14">本章教师资料</a></p>
+<p><a href="practice.html#set-7">对应作业</a>
+</p>
+<h3>多形性腺瘤、沃辛瘤和两种常见癌怎样分？</h3>
+<p>多形性腺瘤看上皮成分及黏液软骨样间质；沃辛瘤看双层嗜酸性上皮和淋巴间质；腺样囊性癌找筛状区，黏液表皮样癌辨三类细胞。</p>
+<p class="source">第3版 PDF 318–375；第十六章（二）作业；实验六、九</p>
+<details class="catalog">
+<summary>课程原目录 · 十六章唾液腺肿瘤</summary>
+<ul>
+<li>14.1 十六章唾液腺疾病(二)PPT</li>
+<li>14.2 16.3组织发生学</li>
+<li>14.3 16.4多形性腺瘤</li>
+<li>14.4 16.5warthin瘤</li>
+<li>14.5 16.6腺样囊性癌</li>
+<li>14.6 16.7黏液表皮样癌</li>
+<li>14.7 16.8恶性多形性腺瘤</li>
+<li>14.8 16.9腺泡细胞癌</li>
+<li>14.9 16.10免疫组化在唾液腺肿瘤中的应用</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-15">
+<summary>15　颌面部囊肿</summary><p><a href="materials.html#source-15">本章教师资料</a></p>
+<p><a href="practice.html#set-5">对应作业</a>
+</p>
+<h3>同是上皮衬里的囊腔，为什么还要看它与牙的关系？</h3>
+<p>含牙囊肿围绕未萌牙冠，附着于釉牙骨质界；根尖周囊肿结合无活力牙根尖定位。鼻腭管囊肿可在囊壁见神经血管束；黏液外渗型通常无上皮衬里。</p>
+<p class="source">第3版 PDF 411–426；第十七章作业；实验八</p>
+<details class="catalog">
+<summary>课程原目录 · 十七章口腔颌面部囊肿</summary>
+<ul>
+<li>15.1 十七章口腔颌面部囊肿PPT</li>
+<li>15.2 17.1含牙囊肿</li>
+<li>15.3 17.2非牙源性囊肿</li>
+<li>15.4 17.3鳃裂囊肿和甲状舌管囊肿</li>
+<li>15.5 17.4皮样囊肿</li>
+<li>15.6 17.5黏液囊肿</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-16">
+<summary>16　牙源性肿瘤</summary><p><a href="materials.html#source-16">本章教师资料</a></p>
+<p><a href="practice.html#set-6">对应作业</a>
+</p>
+<h3>怎样从细胞岛边缘和中心识别滤泡型成釉细胞瘤？</h3>
+<p>外围细胞栅栏状排列并可见核极性倒置；岛中央细胞疏松似星网状层。与丛状型的吻合上皮索比较，再看棘皮瘤型中央的鳞状化生。</p>
+<p class="source">第3版 PDF 427–448；实验七、九；牙源切片台</p>
+<details class="catalog">
+<summary>课程原目录 · 十八章牙源性肿瘤</summary>
+<ul>
+<li>16.1 十八章牙源性肿瘤PPT</li>
+<li>16.2 18.1成釉细胞瘤1</li>
+<li>16.3 18.2成釉细胞瘤2</li>
+<li>16.4 18.3成釉细胞瘤3</li>
+<li>16.5 18.4成釉细胞瘤4</li>
+<li>16.6 18.5牙源性角化囊性瘤</li>
+<li>16.7 18.6牙源性腺样瘤</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-17">
+<summary>17　其他牙源性及黏膜肿瘤</summary><p><a href="materials.html#source-17">本章教师资料</a></p>
+<p><a href="practice.html#set-6">对应作业</a>
+</p>
+<h3>影细胞、同心圆钙化、角化珠各把你带向哪一组病变？</h3>
+<p>影细胞联系牙源性钙化囊肿；淀粉样物质和同心圆钙化联系牙源性钙化上皮瘤；见角化珠时继续找浸润性上皮巢，判断鳞癌。</p>
+<p class="source">第3版 PDF 411–476；第十八、十九章作业；实验七至九</p>
+<details class="catalog">
+<summary>课程原目录 · 第十八章牙源性肿瘤和瘤样病变十九章口腔颌面部其他组织来源的肿瘤和瘤样病变</summary>
+<ul>
+<li>17.1 十八章牙源性肿瘤和瘤样病变PPT十九章口腔颌面部其他组织来源的肿瘤和瘤样病变PPT</li>
+<li>17.2 18.7牙源性钙化囊性瘤</li>
+<li>17.3 18.8牙源性钙化上皮瘤</li>
+<li>17.4 18.9牙瘤</li>
+<li>17.5 18.10成釉细胞纤维瘤</li>
+<li>17.6 19.1乳头状瘤</li>
+<li>17.7 19.2血管瘤</li>
+<li>17.8 19.3牙龈瘤</li>
+<li>17.9 19.4口腔癌</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-18">
+<summary>18　实验四</summary><p><a href="materials.html#source-18">本章教师资料</a></p>
+<p> <a href="../patho/">打开实验切片台</a>
+</p>
+<h3>遮住病名后，先确定硬组织、牙髓还是根尖周。</h3>
+<p>各选一张釉质龋、牙髓炎、根尖周病、牙周炎；说位置、主要结构、支持诊断的改变，再翻课件。</p>
+<p class="source">切片台 · 实验四，42 页课件 / 12 卡</p>
+<details class="catalog">
+<summary>课程原目录 · 实验四 龋病，牙髓病，根尖周病，牙周组织病</summary>
+<ul>
+<li>18.1 课件</li>
+<li>18.2 实验目的</li>
+<li>18.3 龋病</li>
+<li>18.4 牙髓病</li>
+<li>18.5 根尖周病</li>
+<li>18.6 牙周组织病</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-19">
+<summary>19　实验五</summary><p><a href="materials.html#source-19">本章教师资料</a></p>
+<p> <a href="../patho/">打开实验切片台</a>
+</p>
+<h3>把上皮内疱、上皮下疱和带状浸润分成三组。</h3>
+<p>每组挑一张，看上皮和固有层交界，再追问白斑与扁平苔藓的组织学差别。</p>
+<p class="source">切片台 · 实验五，50 页 / 14 卡</p>
+<details class="catalog">
+<summary>课程原目录 · 实验五口腔黏膜病</summary>
+<ul>
+<li>19.1 课件</li>
+<li>19.2 (实验目的，内容，要求)口腔黏膜下纤维化</li>
+<li>19.3 白斑</li>
+<li>19.4 扁平苔藓</li>
+<li>19.5 慢性盘状红斑狼疮</li>
+<li>19.6 天疱疮</li>
+<li>19.7 良性黏膜类天疱疮(补充)</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-20">
+<summary>20　实验六</summary><p><a href="materials.html#source-20">本章教师资料</a></p>
+<p> <a href="../patho/">打开实验切片台</a>
+</p>
+<h3>哪张图更支持沃辛瘤，而非多形性腺瘤？</h3>
+<p>先说上皮，再说间质；接着用三类细胞与筛孔结构区分黏液表皮样癌和腺样囊性癌。</p>
+<p class="source">切片台 · 实验六，56 页 / 19 卡</p>
+<details class="catalog">
+<summary>课程原目录 · 实验六唾液腺疾病</summary>
+<ul>
+<li>20.1 课件</li>
+<li>20.2 实验目的，内容，要求唾液腺疾病</li>
+<li>20.3 慢性唾液性炎</li>
+<li>20.4 舍格伦综合征</li>
+<li>20.5 多形性腺瘤</li>
+<li>20.6 腺淋巴瘤</li>
+<li>20.7 黏液表皮样癌</li>
+<li>20.8 腺样囊性癌</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-21">
+<summary>21　实验七</summary><p><a href="materials.html#source-21">本章教师资料</a></p>
+<p> <a href="../patho/">打开实验切片台</a>
+</p>
+<h3>把同一肿瘤的不同组织型从不同肿瘤中分开。</h3>
+<p>先认成釉细胞瘤三种形态，然后用影细胞、淀粉样物质、腺管样结构分别做鉴别。</p>
+<p class="source">切片台 · 实验七，46 页 / 10 卡</p>
+<details class="catalog">
+<summary>课程原目录 · 实验七牙源性肿瘤</summary>
+<ul>
+<li>21.1 课件</li>
+<li>21.2 实验目的、内容、要求</li>
+<li>21.3 成釉细胞瘤（滤泡型）</li>
+<li>21.4 成釉细胞瘤（丛状型）</li>
+<li>21.5 成釉细胞瘤（棘皮瘤型）</li>
+<li>21.6 牙源性钙化上皮瘤</li>
+<li>21.7 牙源性腺样瘤</li>
+<li>21.8 牙源性角化囊性瘤</li>
+<li>21.9 牙源性钙化囊性瘤</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-22">
+<summary>22　实验八</summary><p><a href="materials.html#source-22">本章教师资料</a></p>
+<p> <a href="../patho/">打开实验切片台</a>
+</p>
+<h3>看到纤维组织或鳞状上皮，下一眼应看哪里？</h3>
+<p>先找骨小梁、囊壁或基底膜，分别回答纤维骨性病变、囊肿及鳞癌浸润的问题。</p>
+<p class="source">切片台 · 实验八，26 页 / 6 卡</p>
+<details class="catalog">
+<summary>课程原目录 · 实验八颌骨疾病、口腔颌面部囊肿及其他肿瘤和瘤样病变</summary>
+<ul>
+<li>22.1 课件</li>
+<li>22.2 实验目的，内容，要求</li>
+<li>22.3 骨纤维结构不良</li>
+<li>22.4 根尖周囊肿</li>
+<li>22.5 鳃裂囊肿</li>
+<li>22.6 鳞状细胞乳头状瘤</li>
+<li>22.7 鳞癌1级</li>
+<li>22.8 鳞癌Ⅱ级</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-23">
+<summary>23　实验九</summary><p><a href="materials.html#source-23">本章教师资料</a></p>
+<p> <a href="../patho/">打开实验切片台</a>
+</p>
+<h3>拿总结片混考，能否在命名之外说出两条可指认结构？</h3>
+<p>复看多形性腺瘤、沃辛瘤、鳞癌、成釉细胞瘤和正常下颌下腺。正常腺体可回平台 23.6；原页未印病名的卡只记录所见。</p>
+<p class="source">切片台 · 实验九，8 页 / 3 卡；平台 23.1–23.6</p>
+<details class="catalog">
+<summary>课程原目录 · 实验九切片总结</summary>
+<ul>
+<li>23.1 课件</li>
+<li>23.2 实验目的内容</li>
+<li>23.3 多形性腺瘤、腺淋巴瘤切片复习</li>
+<li>23.4 口腔鳞状细胞癌切片复习</li>
+<li>23.5 成釉细胞瘤切片复习</li>
+<li>23.6 下颌下腺切片复习</li>
+</ul>
+</details>
+</details>
+</main></body></html>

@@ -297,8 +297,25 @@ $('#foot').innerHTML=`
 </details>
 <div class="foot">长沙医学院口腔医学院 · 基础教研室 · 口腔组织病理学实验课</div>`;
 
+function openLinkedSlide() {
+  let id;
+  try { id = decodeURIComponent(location.hash.slice(6)); } catch { return; }
+  if (!location.hash.startsWith('#case-')) return;
+  const found = CARDS.find(card => card.lab + '-' + card.page === id);
+  if (!found) return;
+  filterLab = found.lab;
+  renderChips();
+  renderBrowse();
+  const card = document.querySelector('[data-id="' + CSS.escape(id) + '"]');
+  if (card) {
+    card.querySelector('[data-show]')?.click();
+    card.scrollIntoView();
+  }
+}
 renderChips();
 renderBrowse();
+openLinkedSlide();
+window.addEventListener('hashchange', openLinkedSlide);
 </script>
 </body>
 </html>

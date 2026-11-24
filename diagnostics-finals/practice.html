@@ -1,0 +1,882 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>诊断学题库 · 学习台</title>
+<link rel="stylesheet" href="../finals/review.css"><link rel="stylesheet" href="../learn/transfer.css"><script defer src="../finals/review.js"></script><script defer src="../learn/transfer.js"></script><style id="study-desk-theme">
+@font-face {
+  font-family: "Desk Song";
+  src: local("STSong"), local("华文宋体");
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --desk-bg: #f3f0f1;
+  --desk-paper: #fffdfd;
+  --desk-ink: #2d272e;
+  --desk-muted: #625561;
+  --desk-line: #dcd1da;
+  --desk-fold: #ede4eb;
+  --desk-accent: #60475a;
+  --desk-hover: #75576e;
+  --desk-glass: linear-gradient(151deg, #fffdfdf2, #eee6eddb);
+  --desk-shadow: 0 2px 4px #392f3609, 0 8px 24px #392f3608;
+  --desk-song: "Desk Song", "STSong", "华文宋体", "Songti SC", SimSun, serif;
+  --desk-width: 820px;
+
+  /* Existing pages use several names for the same roles. */
+  --bg: var(--desk-bg);
+  --card: var(--desk-paper);
+  --card2: var(--desk-fold);
+  --ink: var(--desk-ink);
+  --tx: var(--desk-ink);
+  --sub: var(--desk-muted);
+  --dim: var(--desk-muted);
+  --line: var(--desk-line);
+  --hl: var(--desk-accent);
+  --hl2: var(--desk-accent);
+  --acc: var(--desk-accent);
+  --accent: var(--desk-accent);
+  --code: var(--desk-fold);
+  --ok: #226040;
+  --okbg: #e8f4eb;
+  --bad: #922f34;
+  --badbg: #faebec;
+  --warn: #744c1b;
+  --warnbg: #f7f0e3;
+}
+
+body.study-page {
+  background: radial-gradient(ellipse at 85% 0, #eee6ed, transparent 550px), var(--desk-bg);
+  color: var(--desk-ink);
+  font-family: "Segoe UI Variable", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.study-page :is(h1, h2, .stem, .st, .ask, .card header h3, .ans .dx),
+.study-page[data-desk-page="premed-quiz"] .q,
+.study-page[data-desk-page="odontogenic"] .card > .q {
+  font-family: var(--desk-song);
+  font-weight: 400;
+  text-wrap: pretty;
+}
+
+.study-page :is(h1, h2, h3, h4) { color: var(--desk-ink); }
+.study-page a { color: var(--desk-accent); }
+.study-page :is(.sub, .foot, .src, .hint, .cap, figcaption, .who) { color: var(--desk-muted); }
+.study-page :is(a, button, summary, input, textarea):focus-visible {
+  outline: 2px solid var(--desk-accent);
+  outline-offset: 3px;
+}
+
+.study-page .study-desk-nav {
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+  padding-inline: clamp(10px, 3vw, 22px);
+  border-bottom: 0;
+}
+
+.study-page .study-desk-nav::after {
+  content: "";
+  position: absolute;
+  inset: auto max(12px, calc((100% - var(--desk-width)) / 2)) 0;
+  border-bottom: 1px solid var(--desk-line);
+  pointer-events: none;
+}
+
+.study-page .study-desk-links { max-width: var(--desk-width); }
+.study-page .study-desk-links > span {
+  margin-inline-start: auto;
+  color: var(--desk-muted);
+  font-size: .83em;
+}
+
+.study-page :is(.study-desk-nav a, .btn, .bar button, .tools button, .chip, .acts button, .copy, .jump a, :where(#toTop)) {
+  min-height: 34px;
+  border: 1px solid var(--desk-line);
+  border-radius: 100px;
+  background: var(--desk-glass);
+  color: var(--desk-accent);
+  box-shadow: inset 0 1px 0 #fff, 0 2px 5px #5034480d;
+  transition: transform .26s cubic-bezier(.2, 1.25, .4, 1), background-color .18s, border-color .18s;
+}
+
+.study-page :is(.study-desk-nav a, .btn, .bar button, .tools button, .chip, .acts button, .copy, .jump a, :where(#toTop)):hover {
+  background: #fff;
+  border-color: #af96aa;
+}
+
+.study-page :is(.btn, .bar button, .tools button, .chip, .acts button, .copy, :where(#toTop)):active {
+  transform: scale(.965);
+}
+
+.study-page :is(.btn.on, .bar button.on, .bar button.primary, .tools button.on, .chip.on, .acts button.on) {
+  background: var(--desk-accent);
+  border-color: var(--desk-accent);
+  color: #fff;
+  box-shadow: none;
+}
+
+.study-page :is(.btn.on, .bar button.on, .bar button.primary, .tools button.on, .chip.on, .acts button.on):hover {
+  background: var(--desk-hover);
+  color: #fff;
+}
+
+.study-page :is(.copy.done, .acts button.ok) {
+  background: var(--okbg);
+  border-color: var(--ok);
+  color: var(--ok);
+}
+
+.study-page :is(.acts button.bad, .acts button.wrong) {
+  background: var(--badbg);
+  border-color: var(--bad);
+  color: var(--bad);
+}
+
+.study-page button:disabled { opacity: .55; }
+
+.study-page > :is(header, .top),
+.study-page .study-hero,
+.study-page[data-desk-page="premed-quiz"] > .bar {
+  position: relative;
+  isolation: isolate;
+  z-index: auto;
+  max-width: var(--desk-width);
+  margin: 10px auto 14px;
+  padding: clamp(16px, 3vw, 27px);
+  border: 1px solid var(--desk-line);
+  border-radius: 13px;
+  background: linear-gradient(135deg, #fffdfd 46%, #f0e8ef);
+  box-shadow: var(--desk-shadow);
+}
+
+/* A fold on the heading surface leaves the exercise and source areas quiet. */
+.study-page > :is(header, .top)::after,
+.study-page .study-hero::after,
+.study-page[data-desk-page="premed-quiz"] > .bar::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  width: min(33%, 185px);
+  height: 100%;
+  background: linear-gradient(142deg, #d5c3d1 13%, #eee5ed 13% 38%, #d9c8d5 38% 51%, #f1eaf0 51%);
+  clip-path: polygon(66% 0, 100% 0, 100% 82%, 59% 100%, 0 100%, 42% 61%);
+  border-radius: 0 13px 13px 0;
+  opacity: .53;
+  pointer-events: none;
+}
+
+.study-page > :is(header, .top) h1,
+.study-page .study-hero h1,
+.study-page[data-desk-page="premed-quiz"] .bar h1 {
+  margin: 0 0 6px;
+  padding: 0;
+  border: 0;
+  color: var(--desk-ink);
+  font: 400 clamp(26px, 4.8vw, 43px)/1.2 var(--desk-song);
+  letter-spacing: -.025em;
+  overflow-wrap: anywhere;
+}
+
+.study-page > header .wrap { padding-inline: 0; }
+.study-page > :is(header, .top, .study-hero) :is(.sub, p) { color: var(--desk-muted); }
+.study-page .study-hero .sub { margin-bottom: 0; }
+.study-page .wrap { max-width: var(--desk-width); }
+.study-page .study-course-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 12px;
+}
+.study-page .study-course-links a {
+  padding: 7px 10px;
+  background: #fffdfd99;
+  border: 1px solid var(--desk-line);
+  border-radius: 7px;
+  color: var(--desk-accent);
+  font-size: .82em;
+  text-decoration: none;
+}
+.study-page .study-course-links a:hover { background: var(--desk-fold); }
+
+.study-page .bar,
+.study-page .tools,
+.study-page .filters,
+.study-page > nav:not(.study-desk-nav),
+.study-page .jump,
+.study-page #score.score {
+  position: static;
+  inset: auto;
+  z-index: auto;
+}
+
+.study-page :is(.bar, .tools, .filters, .jump) { color: var(--desk-muted); }
+.study-page :is(.tools, .filters, .jump) { align-items: center; }
+.study-page .tools { margin-top: 12px; }
+.study-page .filters { padding-block: 9px; }
+.study-page .bar {
+  background: var(--desk-glass);
+  backdrop-filter: blur(18px) saturate(135%);
+  border: 1px solid var(--desk-line);
+  border-radius: 10px;
+  padding: 7px 9px;
+}
+.study-page .bar .score { color: var(--ok); font-family: system-ui, sans-serif; letter-spacing: 0; }
+.study-page .bar .sc { color: var(--desk-ink); }
+.study-page header .bar { margin-top: 12px; }
+.study-page > nav:not(.study-desk-nav) {
+  max-width: var(--desk-width);
+  margin: 0 auto;
+  background: transparent;
+  border-color: var(--desk-line);
+}
+.study-page > nav:not(.study-desk-nav) a {
+  background: var(--desk-fold);
+  color: var(--desk-accent);
+  border: 1px solid var(--desk-line);
+}
+.study-page > nav:not(.study-desk-nav) a:hover,
+.study-page > nav:not(.study-desk-nav) a.hl {
+  background: var(--desk-accent);
+  color: #fff;
+}
+.study-page .jump {
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: var(--desk-width);
+  margin: 8px auto 0;
+  padding-inline: 14px;
+}
+.study-page .study-section-jump { margin-top: 12px; padding: 0; }
+.study-page .jump a { display: inline-flex; align-items: center; }
+.study-page #toTop {
+  position: static;
+  justify-content: center;
+  margin: 12px auto;
+}
+
+.study-page :is(.qi, .card, .b1box, .essay, .hero, .q:has(> .qh), details.sec, details.honesty, #toc) {
+  background: var(--desk-paper);
+  border: 1px solid var(--desk-line);
+  border-radius: 13px;
+  box-shadow: var(--desk-shadow);
+}
+.study-page .sec .card { border-width: 1px 0 0; border-radius: 0; box-shadow: none; }
+.study-page :is(.qi img, .imgs img, .card > img) { border-color: var(--desk-line); }
+.study-page :is(.stem, .st, .ask, .card header h3) {
+  font-size: clamp(17px, 2.35vw, 20px);
+  line-height: 1.48;
+}
+.study-page :is(.tag:not(.warn, .ok, .n, .g, .bad), .b.sub) {
+  background: var(--desk-fold);
+  color: var(--desk-accent);
+  border-color: #d8c9d6;
+}
+.study-page :is(.tag.warn, .noimg, .b.warn) {
+  background: var(--warnbg);
+  color: var(--warn);
+  border-color: #d7bd91;
+}
+.study-page :is(.tag.g, .tag.ok, .b.exam) { background: var(--okbg); color: var(--ok); }
+.study-page :is(.tag.bad, .tag.n) { background: var(--badbg); color: var(--bad); }
+.study-page .opt {
+  background: #fdfafb;
+  border-color: var(--desk-line);
+  color: var(--desk-ink);
+}
+.study-page :is(.opt.sel, button.opt:hover):not(.right, .wrong, .wrongpick) { background: var(--desk-fold); }
+.study-page .opt :is(.lb, .k) { color: var(--desk-accent); }
+.study-page:not([data-desk-page="premed-quiz"]) .opt.right,
+.study-page .card.ans-on .opt.right {
+  background: var(--okbg);
+  border-color: var(--ok);
+}
+.study-page:not([data-desk-page="premed-quiz"]) .opt.right :is(.k, .lb),
+.study-page .card.ans-on .opt.right :is(.k, .lb) { color: var(--ok); }
+.study-page :is(.opt.wrong, .card.ans-on .opt.wrongpick) {
+  background: var(--badbg);
+  border-color: var(--bad);
+}
+.study-page :is(.opt.wrong, .card.ans-on .opt.wrongpick) :is(.k, .lb) { color: var(--bad); }
+.study-page .opt.mine:not(.right, .wrong, .wrongpick) { background: var(--warnbg); border-color: var(--warn); }
+.study-page .card.ok { border-left: 3px solid var(--ok); }
+.study-page .card.wrong { border-left: 3px solid var(--bad); }
+.study-page .ans {
+  background: linear-gradient(148deg, #fbf5f9, var(--desk-fold));
+  border-color: #bca3b6;
+  color: var(--desk-ink);
+  transform-origin: top center;
+}
+.study-page .ans.warn { background: var(--warnbg); border-color: var(--warn); }
+.study-page .ansline b { color: var(--ok); }
+.study-page .mine { color: var(--desk-muted); }
+.study-page :is(.note.srcbox, .note.mid, .note.none, .ans .src, .src.no, .card .src:not(span), .prompt, .b1lead) {
+  background: #f4eef3;
+  color: var(--desk-muted);
+  border-color: #cdbac9;
+}
+.study-page .note.srcbox code {
+  background: #e8dce6;
+  color: #493646;
+  overflow-wrap: anywhere;
+}
+.study-page .src::before,
+.study-page .src.no::before { color: var(--desk-muted); }
+.study-page :is(details pre, code, th) { background: #f2ebf0; }
+.study-page :is(th, td) { border-color: var(--desk-line); }
+.study-page :is(h2.part, article h2) {
+  background: linear-gradient(113deg, var(--desk-fold) 64%, transparent 64%);
+  border-color: #aa8fa3;
+}
+
+.study-page[data-desk-page="premed-guide"] :is(main p, main li, td, strong) { color: var(--desk-ink); }
+.study-page[data-desk-page="premed-guide"] :is(blockquote, blockquote p, th) { color: var(--desk-muted); }
+.study-page[data-desk-page="premed-guide"] :is(blockquote, tr:nth-child(even) td) { background: #f4edf2; border-color: var(--desk-line); }
+.study-page[data-desk-page="premed-guide"] :is(code, hr, .foot) { border-color: var(--desk-line); }
+.study-page[data-desk-page="premed-guide"] code { color: var(--desk-accent); }
+.study-page[data-desk-page="premed-guide"] .go a { background: var(--desk-accent); color: #fff; }
+.study-page[data-desk-page="premed-guide"] .go a:hover { background: var(--desk-hover); }
+
+.study-page[data-desk-page="premed-quiz"] .q {
+  font-size: clamp(17px, 2.35vw, 20px);
+  line-height: 1.48;
+}
+.study-page[data-desk-page="premed-quiz"] .bar h1 {
+  display: flex;
+  flex-wrap: wrap;
+}
+.study-page[data-desk-page="premed-quiz"] .bar h1 span {
+  color: var(--desk-muted);
+  font-family: system-ui, sans-serif;
+}
+.study-page[data-desk-page="premed-quiz"] .bar h1 .score { color: var(--ok); }
+.study-page[data-desk-page="premed-quiz"] .hd { color: var(--desk-muted); }
+.study-page[data-desk-page="premed-quiz"] button.show {
+  background: var(--desk-accent);
+  border-color: var(--desk-accent);
+  color: #fff;
+}
+.study-page[data-desk-page="premed-quiz"] button.show:hover { background: var(--desk-hover); }
+.study-page[data-desk-page="odontogenic"] #score {
+  max-width: var(--desk-width);
+  margin: 0 auto 12px;
+  background: var(--desk-glass);
+  border: 1px solid var(--desk-line);
+  border-radius: 11px;
+}
+.study-page[data-desk-page="odontogenic"] .card > .q { font-size: 20px; }
+.study-page.hide-ans[data-desk-page="imaging-list"] .ans b { background: #d9ccd6; color: transparent; }
+.study-page[data-desk-page="imaging-quiz"] :is(.prompt b, summary) { color: var(--desk-accent); }
+.study-page[data-desk-page="imaging-quiz"] details { background: #f5eef4; border-color: var(--desk-line); }
+.study-page[data-desk-page="imaging-quiz"] details .ans { background: transparent; color: var(--desk-accent); font-family: var(--desk-song); font-size: 18px; }
+.study-page[data-desk-page="pharm"] details { border: 1px solid var(--desk-line); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .study-page .ans.on,
+  .study-page:not(:has(#revealAll.on)) .ans.show,
+  .study-page:not(.showAll) .card.shown .ans,
+  .study-page[data-desk-page="imaging-quiz"] details[open] > p:first-of-type {
+    animation: desk-unfold .34s cubic-bezier(.19, 1, .36, 1) both;
+  }
+  .study-page:has(#showAll.on) .ans.on { animation: none; }
+}
+
+@keyframes desk-unfold {
+  from { opacity: .28; transform: perspective(460px) rotateX(-30deg); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 860px) {
+  .study-page > :is(header, .top),
+  .study-page[data-desk-page="premed-quiz"] > .bar { margin-inline: 12px; }
+  .study-page[data-desk-page="odontogenic"] #score { margin-inline: 14px; }
+}
+
+@media (max-width: 520px) {
+  .study-page .study-desk-links { gap: 5px 9px; }
+  .study-page .study-desk-links > span { margin-inline-start: 0; }
+  .study-page > :is(header, .top),
+  .study-page .study-hero,
+  .study-page[data-desk-page="premed-quiz"] > .bar { padding: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .study-page :is(a, button) { transition: none !important; }
+}
+</style>
+</head>
+<body data-course="diagnosis" class="study-page" data-desk-page="diagnosis-practice"><div class="study-desk-nav"><nav class="study-desk-links"><a href="../learn/">← 帮学总入口</a><a href="index.html">诊断学</a></nav></div>
+<main class="desk"><header class="study-hero"><h1>诊断学题库</h1><p class="sub">按作业名称或题号回练，保留每一道题的来源与核对提示。</p></header><nav class="actions"><a class="btn" href="index.html#outline">查本章重点</a><a class="btn" href="plan.html">复习计划</a><a class="btn" href="materials.html">查原资料</a></nav><p><a href="#ecg">直达课堂心电图 15 题</a></p><h2 id="practice">遮答回练</h2>
+<p>选好答案后点“核对作答”。答错的题会加入回练，填空和简答可先闭卷口述。平台题标明作业名和原题号；暑假附件保留自身的编号和答案措辞。</p><div class="tools" id="filters" hidden>
+<label>查看 <select id="filter"><option value="all">全部题目</option><option value="again">我的回练</option><option value="check">有核对提示</option></select>
+</label><span role="status" id="count"></span></div>
+<details class="group" id="set-1">
+<summary>脊柱四肢神经检查 <small>· 10 题</small>
+</summary>
+<article id="g1-q1" class="question"><small class="tag">脊柱四肢神经检查 · 第 1 题 · 单选题</small>
+<h3>下列哪项是检查脑膜刺激征?</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g1-q1" value="A"><span>A. Babinski征</span></label><label><input type="radio" name="g1-q1" value="B"><span>B. Oppenheim征</span></label><label><input type="radio" name="g1-q1" value="C"><span>C. Hoffmann征</span></label><label><input type="radio" name="g1-q1" value="D"><span>D. Kernig征</span></label><label><input type="radio" name="g1-q1" value="E"><span>E. Chaddock征</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　D · Kernig征</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g1-q2" class="question"><small class="tag">脊柱四肢神经检查 · 第 2 题 · 单选题</small>
+<h3>下列哪项是上肢锥体束征:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g1-q2" value="A"><span>A. Babinski征</span></label><label><input type="radio" name="g1-q2" value="B"><span>B. Oppenheim征</span></label><label><input type="radio" name="g1-q2" value="C"><span>C. Gordon征</span></label><label><input type="radio" name="g1-q2" value="D"><span>D. Hoffmann征</span></label><label><input type="radio" name="g1-q2" value="E"><span>E. Chaddock征</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　D · Hoffmann征</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g1-q3" class="question"><small class="tag">脊柱四肢神经检查 · 第 3 题 · 单选题</small>
+<h3>关于病理反射,正确的是:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g1-q3" value="A"><span>A. 指锥体束病损时,大脑失去了对脑干和脊髓的抑制作用而出现的异常反射</span></label><label><input type="radio" name="g1-q3" value="B"><span>B. 1岁半以内的婴幼儿由于神经系统发育不完善,不会出现病理反射</span></label><label><input type="radio" name="g1-q3" value="C"><span>C. 成人在正常时亦可出现病理反射</span></label><label><input type="radio" name="g1-q3" value="D"><span>D. 跟腱反射和膝反射属于病理反射</span></label><label><input type="radio" name="g1-q3" value="E"><span>E. 巴氏征不属于病理反射</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　A · 指锥体束病损时,大脑失去了对脑干和脊髓的抑制作用而出现的异常反射</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g1-q4" class="question"><small class="tag">脊柱四肢神经检查 · 第 4 题 · 单选题</small>
+<h3>患者为缺铁性贫血,检查时常见:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g1-q4" value="A"><span>A. 杵状指</span></label><label><input type="radio" name="g1-q4" value="B"><span>B. 匙状指</span></label><label><input type="radio" name="g1-q4" value="C"><span>C. 膝内翻</span></label><label><input type="radio" name="g1-q4" value="D"><span>D. 水肿</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 匙状指</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g1-q5" class="question"><small class="tag">脊柱四肢神经检查 · 第 5 题 · 单选题</small>
+<h3>浮髌现象阳性,常提示患者有:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g1-q5" value="A"><span>A. 关节内结核病变</span></label><label><input type="radio" name="g1-q5" value="B"><span>B. 类风湿性关节炎</span></label><label><input type="radio" name="g1-q5" value="C"><span>C. 腱鞘囊肿</span></label><label><input type="radio" name="g1-q5" value="D"><span>D. 关节腔积液</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　D · 关节腔积液</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g1-q6" class="question"><small class="tag">脊柱四肢神经检查 · 第 6 题 · 单选题</small>
+<h3>尺神经损伤可见:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g1-q6" value="A"><span>A. 腕垂症</span></label><label><input type="radio" name="g1-q6" value="B"><span>B. 猿掌</span></label><label><input type="radio" name="g1-q6" value="C"><span>C. 爪形手</span></label><label><input type="radio" name="g1-q6" value="D"><span>D. 餐叉样畸形</span></label><label><input type="radio" name="g1-q6" value="E"><span>E. 以上都不是</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 爪形手</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g1-q7" class="question"><small class="tag">脊柱四肢神经检查 · 第 7 题 · 单选题</small>
+<h3>引起膝内外翻最常见的病因是:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g1-q7" value="A"><span>A. 缺铁性贫血</span></label><label><input type="radio" name="g1-q7" value="B"><span>B. 脊髓灰质炎</span></label><label><input type="radio" name="g1-q7" value="C"><span>C. 慢性肺气肿</span></label><label><input type="radio" name="g1-q7" value="D"><span>D. 佝偻病</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　D · 佝偻病</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g1-q8" class="question"><small class="tag">脊柱四肢神经检查 · 第 8 题 · 单选题</small>
+<h3>关于类风湿性关节炎关节病变的特点,下列哪项是错误的：</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g1-q8" value="A"><span>A. 为指间关节增生、肿胀呈梭形畸形</span></label><label><input type="radio" name="g1-q8" value="B"><span>B. 多为对称性病变</span></label><label><input type="radio" name="g1-q8" value="C"><span>C. 早期局部红、肿及痛</span></label><label><input type="radio" name="g1-q8" value="D"><span>D. 晚期明显强直,活动受限,手腕及手指向尺侧偏斜</span></label><label><input type="radio" name="g1-q8" value="E"><span>E. 可见痛风结石</span></label></fieldset><button hidden type="button" data-grade="E">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　E · 可见痛风结石</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g1-q9" class="question"><small class="tag">脊柱四肢神经检查 · 第 9 题 · 单选题</small>
+<h3>下列情况中,往往会出现脊柱前凸的是:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g1-q9" value="A"><span>A. 佝偻病</span></label><label><input type="radio" name="g1-q9" value="B"><span>B. 大量腹水</span></label><label><input type="radio" name="g1-q9" value="C"><span>C. 骨质退行性变</span></label><label><input type="radio" name="g1-q9" value="D"><span>D. 胸椎结核</span></label><label><input type="radio" name="g1-q9" value="E"><span>E. 强直性脊柱炎</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 大量腹水</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g1-q10" class="question"><small class="tag">脊柱四肢神经检查 · 第 10 题 · 单选题</small>
+<h3>脊柱器质性侧凸的特点是:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g1-q10" value="A"><span>A. 可见于正常人</span></label><label><input type="radio" name="g1-q10" value="B"><span>B. 改变体位不能使侧弯得到纠正</span></label><label><input type="radio" name="g1-q10" value="C"><span>C. 平卧时可消失</span></label><label><input type="radio" name="g1-q10" value="D"><span>D. 向前弯腰时可消失</span></label><label><input type="radio" name="g1-q10" value="E"><span>E. 解除病理因素不可纠正</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 改变体位不能使侧弯得到纠正</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+</details>
+<details class="group" id="set-2">
+<summary>一般状态头颈部检查课后作业 <small>· 10 题</small>
+</summary>
+<article id="g2-q1" class="question"><small class="tag">一般状态头颈部检查课后作业 · 第 1 题 · 单选题</small>
+<h3>关于蜘蛛痣的描述不正确的是:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g2-q1" value="A"><span>A. 大小不等</span></label><label><input type="radio" name="g2-q1" value="B"><span>B. 是皮肤小动脉末端扩张所致</span></label><label><input type="radio" name="g2-q1" value="C"><span>C. 多见于下腔静脉分布区</span></label><label><input type="radio" name="g2-q1" value="D"><span>D. 是雌激素增高所致</span></label><label><input type="radio" name="g2-q1" value="E"><span>E. 多分布于头部、上臂及肩背部等处</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 多见于下腔静脉分布区</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g2-q2" class="question"><small class="tag">一般状态头颈部检查课后作业 · 第 2 题 · 单选题</small>
+<h3>某肾病患者,长期用药治疗,检查面部饱满,皮肤发红,伴痤疮,该患者属何种面容:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g2-q2" value="A"><span>A. 肾病面容</span></label><label><input type="radio" name="g2-q2" value="B"><span>B. 满月面容</span></label><label><input type="radio" name="g2-q2" value="C"><span>C. 甲亢面容</span></label><label><input type="radio" name="g2-q2" value="D"><span>D. 急性病容</span></label><label><input type="radio" name="g2-q2" value="E"><span>E. 二尖瓣面容</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 满月面容</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g2-q3" class="question"><small class="tag">一般状态头颈部检查课后作业 · 第 3 题 · 单选题</small>
+<h3>某患者 21 岁,左颈部有 3 个肿大的淋巴结,质地稍硬,其中一个坏死、破溃,形成瘘管,该患者下列哪种疾病可能性较大:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g2-q3" value="A"><span>A. 急性淋巴结炎</span></label><label><input type="radio" name="g2-q3" value="B"><span>B. 慢性淋巴结炎</span></label><label><input type="radio" name="g2-q3" value="C"><span>C. 淋巴结结核</span></label><label><input type="radio" name="g2-q3" value="D"><span>D. 淋巴瘤</span></label><label><input type="radio" name="g2-q3" value="E"><span>E. 恶性肿瘤淋巴结转移</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 淋巴结结核</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g2-q4" class="question"><small class="tag">一般状态头颈部检查课后作业 · 第 4 题 · 单选题</small>
+<h3>缺铁性贫血患者舌呈</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g2-q4" value="A"><span>A. 地图舌</span></label><label><input type="radio" name="g2-q4" value="B"><span>B. 草莓舌</span></label><label><input type="radio" name="g2-q4" value="C"><span>C. 牛肉舌</span></label><label><input type="radio" name="g2-q4" value="D"><span>D. 镜面舌</span></label><label><input type="radio" name="g2-q4" value="E"><span>E. 以上均不是</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　D · 镜面舌</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g2-q5" class="question"><small class="tag">一般状态头颈部检查课后作业 · 第 5 题 · 单选题</small>
+<h3>外耳道有血液或脑脊液流出，应考虑到为</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g2-q5" value="A"><span>A. 外耳道炎</span></label><label><input type="radio" name="g2-q5" value="B"><span>B. 颅底骨折</span></label><label><input type="radio" name="g2-q5" value="C"><span>C. 急性中耳炎</span></label><label><input type="radio" name="g2-q5" value="D"><span>D. 疖肿</span></label><label><input type="radio" name="g2-q5" value="E"><span>E. 外耳道狭窄、耵聍</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 颅底骨折</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g2-q6" class="question"><small class="tag">一般状态头颈部检查课后作业 · 第 6 题 · 单选题</small>
+<h3>颈静脉怒张见于</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g2-q6" value="A"><span>A. 右心功能不全</span></label><label><input type="radio" name="g2-q6" value="B"><span>B. 主动脉瓣关闭不全</span></label><label><input type="radio" name="g2-q6" value="C"><span>C. 贫血</span></label><label><input type="radio" name="g2-q6" value="D"><span>D. 甲亢</span></label><label><input type="radio" name="g2-q6" value="E"><span>E. 营养不良</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　A · 右心功能不全</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g2-q7" class="question"><small class="tag">一般状态头颈部检查课后作业 · 第 7 题 · 单选题</small>
+<h3>气管向患侧移位见于</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g2-q7" value="A"><span>A. 大量胸腔积液</span></label><label><input type="radio" name="g2-q7" value="B"><span>B. 气胸</span></label><label><input type="radio" name="g2-q7" value="C"><span>C. 肺气肿</span></label><label><input type="radio" name="g2-q7" value="D"><span>D. 广泛胸腔粘连</span></label><label><input type="radio" name="g2-q7" value="E"><span>E. 肺炎</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　D · 广泛胸腔粘连</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g2-q8" class="question"><small class="tag">一般状态头颈部检查课后作业 · 第 8 题 · 单选题</small>
+<h3>可鉴别肿大的甲状腺与颈前其他包块的是：</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g2-q8" value="A"><span>A. 表面是否光滑</span></label><label><input type="radio" name="g2-q8" value="B"><span>B. 是否位于甲状软骨下方</span></label><label><input type="radio" name="g2-q8" value="C"><span>C. 是否可随吞咽动作上下移动</span></label><label><input type="radio" name="g2-q8" value="D"><span>D. 是否为弥漫性肿大</span></label><label><input type="radio" name="g2-q8" value="E"><span>E. 是否为对称性肿大</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 是否可随吞咽动作上下移动</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g2-q9" class="question" data-check="yes"><small class="tag">一般状态头颈部检查课后作业 · 第 9 题 · 单选题</small>
+<h3>甲状腺功能亢进会出现</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g2-q9" value="A"><span>A. 甲状腺肿大并低调的连续性静脉“嗡鸣”音</span></label><label><input type="radio" name="g2-q9" value="B"><span>B. 甲状腺肿大，包块有结节感，不规则，质硬</span></label><label><input type="radio" name="g2-q9" value="C"><span>C. 甲状腺肿大，并收缩期动脉杂音</span></label><label><input type="radio" name="g2-q9" value="D"><span>D. 甲状腺肿大很突出，不伴有甲亢体征</span></label><label><input type="radio" name="g2-q9" value="E"><span>E. 青年女性，甲状腺稍大，无症状</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　A · 甲状腺肿大并低调的连续性静脉“嗡鸣”音</p>
+<p class="note">此题平台键为 A，但甲亢可闻甲状腺血管杂音，C 也有依据。按课件复核时相、部位，不将此题作为唯一答案练习。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g2-q10" class="question"><small class="tag">一般状态头颈部检查课后作业 · 第 10 题 · 单选题</small>
+<h3>双侧瞳孔缩小见于</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g2-q10" value="A"><span>A. 阿托品中毒</span></label><label><input type="radio" name="g2-q10" value="B"><span>B. 有机磷中毒</span></label><label><input type="radio" name="g2-q10" value="C"><span>C. 视神经萎缩</span></label><label><input type="radio" name="g2-q10" value="D"><span>D. 颈交感神经受刺激</span></label><label><input type="radio" name="g2-q10" value="E"><span>E. 以上均不是</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 有机磷中毒</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+</details>
+<details class="group" id="set-3">
+<summary>血尿 <small>· 8 题</small>
+</summary>
+<article id="g3-q1" class="question" data-check="yes"><small class="tag">血尿 · 第 1 题 · 单选题</small>
+<h3>血尿伴肾绞痛最常见的疾病是:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g3-q1" value="A"><span>A. 肾小球肾炎</span></label><label><input type="radio" name="g3-q1" value="B"><span>B. 输尿管结石</span></label><label><input type="radio" name="g3-q1" value="C"><span>C. 多囊肾</span></label><label><input type="radio" name="g3-q1" value="D"><span>D. 膀胱结石</span></label><label><input type="radio" name="g3-q1" value="E"><span>E. 肾结核</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 输尿管结石</p>
+<p class="note">原解析末尾的字母与本题答案栏冲突。答案区以本题选项文字对照；请用知识点复核。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g3-q2" class="question"><small class="tag">血尿 · 第 2 题 · 单选题</small>
+<h3>血尿是指尿离心沉淀后镜检每高倍视野红细胞</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g3-q2" value="A"><span>A. 0个以上</span></label><label><input type="radio" name="g3-q2" value="B"><span>B. 3个以上</span></label><label><input type="radio" name="g3-q2" value="C"><span>C. 5个</span></label><label><input type="radio" name="g3-q2" value="D"><span>D. 2个</span></label><label><input type="radio" name="g3-q2" value="E"><span>E. 1一2个</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 3个以上</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g3-q3" class="question" data-check="yes"><small class="tag">血尿 · 第 3 题 · 单选题</small>
+<h3>下列情况可出现红细胞尿,但除外:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g3-q3" value="A"><span>A. SLE</span></label><label><input type="radio" name="g3-q3" value="B"><span>B. 白血病</span></label><label><input type="radio" name="g3-q3" value="C"><span>C. 肾结核</span></label><label><input type="radio" name="g3-q3" value="D"><span>D. 急性溶血</span></label><label><input type="radio" name="g3-q3" value="E"><span>E. 感染性心内膜炎</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　D · 急性溶血</p>
+<p class="note">原解析末尾的字母与本题答案栏冲突。答案区以本题选项文字对照；请用知识点复核。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g3-q4" class="question" data-check="yes"><small class="tag">血尿 · 第 4 题 · 单选题</small>
+<h3>男,19岁,受凉后咽痛,发热,咳嗽,一周后出现颜面及下肢浮肿,查尿蛋白++,尿红细胞125000/ml,异形为80%,血尿最可能的诊断为:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g3-q4" value="A"><span>A. 慢性肾小球肾炎</span></label><label><input type="radio" name="g3-q4" value="B"><span>B. 急性肾小球肾炎</span></label><label><input type="radio" name="g3-q4" value="C"><span>C. 败血症</span></label><label><input type="radio" name="g3-q4" value="D"><span>D. 猩红热</span></label><label><input type="radio" name="g3-q4" value="E"><span>E. 感染性间质性肾炎</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 急性肾小球肾炎</p>
+<p class="note">原解析末尾的字母与本题答案栏冲突。答案区以本题选项文字对照；请用知识点复核。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g3-q5" class="question"><small class="tag">血尿 · 第 5 题 · 单选题</small>
+<h3>一60岁男性,无症状性血尿首先应考虑:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g3-q5" value="A"><span>A. 膀胱结核</span></label><label><input type="radio" name="g3-q5" value="B"><span>B. 膀胱炎</span></label><label><input type="radio" name="g3-q5" value="C"><span>C. 肾结石</span></label><label><input type="radio" name="g3-q5" value="D"><span>D. 前列腺增生</span></label><label><input type="radio" name="g3-q5" value="E"><span>E. 膀胱癌</span></label></fieldset><button hidden type="button" data-grade="E">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　E · 膀胱癌</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g3-q6" class="question"><small class="tag">血尿 · 第 6 题 · 单选题</small>
+<h3>下列药物中,哪种可引起假性血尿:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g3-q6" value="A"><span>A. 磺胺药</span></label><label><input type="radio" name="g3-q6" value="B"><span>B. 吲哚美辛</span></label><label><input type="radio" name="g3-q6" value="C"><span>C. 利福平</span></label><label><input type="radio" name="g3-q6" value="D"><span>D. 环磷酞胺</span></label><label><input type="radio" name="g3-q6" value="E"><span>E. 甘露醇</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 利福平</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g3-q7" class="question"><small class="tag">血尿 · 第 7 题 · 单选题</small>
+<h3>下列引起血尿的疾病中哪种不属于全身性疾病:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g3-q7" value="A"><span>A. 肾病综合征</span></label><label><input type="radio" name="g3-q7" value="B"><span>B. 狼疮肾病全</span></label><label><input type="radio" name="g3-q7" value="C"><span>C. 败血症</span></label><label><input type="radio" name="g3-q7" value="D"><span>D. 再障</span></label><label><input type="radio" name="g3-q7" value="E"><span>E. 紫癜性肾炎</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　A · 肾病综合征</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g3-q8" class="question" data-check="yes"><small class="tag">血尿 · 第 8 题 · 单选题</small>
+<h3>男,21岁,自幼发现心脏杂音,最近因淋雨后出现高热,活动后气促,并出现肉眼血尿,可能的原因是:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g3-q8" value="A"><span>A. 心力衰竭</span></label><label><input type="radio" name="g3-q8" value="B"><span>B. 再障</span></label><label><input type="radio" name="g3-q8" value="C"><span>C. 亚急性细菌性心内膜炎</span></label><label><input type="radio" name="g3-q8" value="D"><span>D. 猩红热</span></label><label><input type="radio" name="g3-q8" value="E"><span>E. 败血症</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 亚急性细菌性心内膜炎</p>
+<p class="note">原解析末尾的字母与本题答案栏冲突。答案区以本题选项文字对照；请用知识点复核。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+</details>
+<details class="group" id="set-4">
+<summary>呕血 <small>· 10 题</small>
+</summary>
+<article id="g4-q1" class="question"><small class="tag">呕血 · 第 1 题 · 单选题</small>
+<h3>呕血伴黄疸最常见于：</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g4-q1" value="A"><span>A. 消化性溃疡</span></label><label><input type="radio" name="g4-q1" value="B"><span>B. 胆道结石并梗阻</span></label><label><input type="radio" name="g4-q1" value="C"><span>C. 幽门撕裂</span></label><label><input type="radio" name="g4-q1" value="D"><span>D. 胃粘膜脱垂</span></label><label><input type="radio" name="g4-q1" value="E"><span>E. 慢性胃炎</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 胆道结石并梗阻</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g4-q2" class="question"><small class="tag">呕血 · 第 2 题 · 单选题</small>
+<h3>呕血是指：</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g4-q2" value="A"><span>A. 十二指肠以上的消化道出血</span></label><label><input type="radio" name="g4-q2" value="B"><span>B. 幽门以上的消化道出血</span></label><label><input type="radio" name="g4-q2" value="C"><span>C. 小肠以上的消化道出血</span></label><label><input type="radio" name="g4-q2" value="D"><span>D. 屈氏韧带以上的消化道出血</span></label><label><input type="radio" name="g4-q2" value="E"><span>E. 结肠以上的消化道出血</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　D · 屈氏韧带以上的消化道出血</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g4-q3" class="question"><small class="tag">呕血 · 第 3 题 · 单选题</small>
+<h3>中老年男性反复腹痛10余年，近1月明显纳差，乏力，体重下降5公斤，突发呕血，应考虑：</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g4-q3" value="A"><span>A. 慢性胃炎</span></label><label><input type="radio" name="g4-q3" value="B"><span>B. 胃癌</span></label><label><input type="radio" name="g4-q3" value="C"><span>C. 慢性胰腺炎</span></label><label><input type="radio" name="g4-q3" value="D"><span>D. 消化性溃疡</span></label><label><input type="radio" name="g4-q3" value="E"><span>E. 食管胃底静脉曲张破裂出血</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 胃癌</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g4-q4" class="question"><small class="tag">呕血 · 第 4 题 · 单选题</small>
+<h3>呕血的颜色：</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g4-q4" value="A"><span>A. 出血量小时鲜红色</span></label><label><input type="radio" name="g4-q4" value="B"><span>B. 出血速度快时咖啡色</span></label><label><input type="radio" name="g4-q4" value="C"><span>C. 出血量大速度快时鲜红色</span></label><label><input type="radio" name="g4-q4" value="D"><span>D. 出血速度慢时鲜红色</span></label><label><input type="radio" name="g4-q4" value="E"><span>E. 出血量大时咖啡色</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 出血量大速度快时鲜红色</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g4-q5" class="question"><small class="tag">呕血 · 第 5 题 · 单选题</small>
+<h3>呕血最常见的疾病是：</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g4-q5" value="A"><span>A. 消化性溃疡</span></label><label><input type="radio" name="g4-q5" value="B"><span>B. 食管胃底静脉曲张破裂出血</span></label><label><input type="radio" name="g4-q5" value="C"><span>C. 急性出血性胃炎</span></label><label><input type="radio" name="g4-q5" value="D"><span>D. 恒径动脉综合征</span></label><label><input type="radio" name="g4-q5" value="E"><span>E. 胃癌</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　A · 消化性溃疡</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g4-q6" class="question" data-check="yes"><small class="tag">呕血 · 第 6 题 · 单选题</small>
+<h3>女性40岁，有消化性溃疡病史1年，2小时前因呕血入院。自觉心慌，出汗。查体：心率120次/分，四肢湿冷。请问你估计出血量至少有多少？</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g4-q6" value="A"><span>A. ＞300ml</span></label><label><input type="radio" name="g4-q6" value="B"><span>B. ＞100ml</span></label><label><input type="radio" name="g4-q6" value="C"><span>C. ＞350ml</span></label><label><input type="radio" name="g4-q6" value="D"><span>D. ＞200ml</span></label><label><input type="radio" name="g4-q6" value="E"><span>E. ＞400ml</span></label></fieldset><button hidden type="button" data-grade="E">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　E · ＞400ml</p>
+<p class="note">这是课堂单选题的估计区间；个体实际失血量不能凭几项体征精确反算。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g4-q7" class="question"><small class="tag">呕血 · 第 7 题 · 单选题</small>
+<h3>关于呕血下列哪项不正确？</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g4-q7" value="A"><span>A. 呕血前有上腹部不适，恶心，呕吐</span></label><label><input type="radio" name="g4-q7" value="B"><span>B. 血中可混有食物残渣</span></label><label><input type="radio" name="g4-q7" value="C"><span>C. 有黑便一定有呕血</span></label><label><input type="radio" name="g4-q7" value="D"><span>D. 消化性溃疡是最常见的病因</span></label><label><input type="radio" name="g4-q7" value="E"><span>E. 出血方式多为呕出</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 有黑便一定有呕血</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g4-q8" class="question"><small class="tag">呕血 · 第 8 题 · 多选题</small>
+<h3>大量呕血后可出现</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="checkbox" name="g4-q8" value="A"><span>A. 黑便</span></label><label><input type="checkbox" name="g4-q8" value="B"><span>B. 氮质血症</span></label><label><input type="checkbox" name="g4-q8" value="C"><span>C. 周围循环衰竭</span></label><label><input type="checkbox" name="g4-q8" value="D"><span>D. 发热</span></label><label><input type="checkbox" name="g4-q8" value="E"><span>E. 肝脾大</span></label></fieldset><button hidden type="button" data-grade="ABCD">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　ABCD · 黑便、氮质血症、周围循环衰竭、发热</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g4-q9" class="question"><small class="tag">呕血 · 第 9 题 · 判断题</small>
+<h3>呕血与咯血的区别可根据是否有黑便</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g4-q9" value="A"><span>A. 对</span></label><label><input type="radio" name="g4-q9" value="B"><span>B. 错</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　错</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g4-q10" class="question"><small class="tag">呕血 · 第 10 题 · 判断题</small>
+<h3>有呕血一定是上消化道出血，上消化道出血一定有呕血</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g4-q10" value="A"><span>A. 对</span></label><label><input type="radio" name="g4-q10" value="B"><span>B. 错</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　错</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+</details>
+<details class="group" id="set-5">
+<summary>黄疸课后作业 <small>· 10 题</small>
+</summary>
+<article id="g5-q1" class="question" data-check="yes"><small class="tag">黄疸课后作业 · 第 1 题 · 单选题</small>
+<h3>全身黄疸,粪便呈白陶土色,可见于:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g5-q1" value="A"><span>A. 溶血性贫血</span></label><label><input type="radio" name="g5-q1" value="B"><span>B. 肝硬化</span></label><label><input type="radio" name="g5-q1" value="C"><span>C. 重症肝炎</span></label><label><input type="radio" name="g5-q1" value="D"><span>D. 钩端螺旋体病</span></label><label><input type="radio" name="g5-q1" value="E"><span>E. 胰头癌</span></label></fieldset><button hidden type="button" data-grade="E">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　E · 胰头癌</p>
+<p class="note">原解析末尾的字母与本题答案栏冲突。答案区以本题选项文字对照；请用知识点复核。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g5-q2" class="question"><small class="tag">黄疸课后作业 · 第 2 题 · 单选题</small>
+<h3>引起黄疸的疾病中,下列不是后天获得性溶血性黄疸的是:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g5-q2" value="A"><span>A. 海洋性贫血</span></label><label><input type="radio" name="g5-q2" value="B"><span>B. 自身免疫性溶血性贫血</span></label><label><input type="radio" name="g5-q2" value="C"><span>C. 新生儿溶血</span></label><label><input type="radio" name="g5-q2" value="D"><span>D. 蛇毒引起的贫血</span></label><label><input type="radio" name="g5-q2" value="E"><span>E. 伯氨喹啉引起的溶血</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　A · 海洋性贫血</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g5-q3" class="question" data-check="yes"><small class="tag">黄疸课后作业 · 第 3 题 · 单选题</small>
+<h3>下列有助于鉴别肝细胞性黄疸和胆汁瘀积性黄疸的是:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g5-q3" value="A"><span>A. 有无血红蛋白尿</span></label><label><input type="radio" name="g5-q3" value="B"><span>B. 尿胆原定性和定量检查</span></label><label><input type="radio" name="g5-q3" value="C"><span>C. 血中结合胆红素增高</span></label><label><input type="radio" name="g5-q3" value="D"><span>D. 尿胆红素阳性</span></label><label><input type="radio" name="g5-q3" value="E"><span>E. 皮肤粘膜颜色</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 尿胆原定性和定量检查</p>
+<p class="note">原解析末尾的字母与本题答案栏冲突。答案区以本题选项文字对照；请用知识点复核。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g5-q4" class="question" data-check="yes"><small class="tag">黄疸课后作业 · 第 4 题 · 单选题</small>
+<h3>下列不属于先天性黄疸的是:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g5-q4" value="A"><span>A. Mirizzi综合征</span></label><label><input type="radio" name="g5-q4" value="B"><span>B. Roter综合征</span></label><label><input type="radio" name="g5-q4" value="C"><span>C. Dubin-Johnson综合征</span></label><label><input type="radio" name="g5-q4" value="D"><span>D. Girlbert综合征</span></label><label><input type="radio" name="g5-q4" value="E"><span>E. Charcot三联征</span></label></fieldset><button hidden type="button" data-grade="E">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　E · Charcot三联征</p>
+<p class="note">原解析末尾的字母与本题答案栏冲突。答案区以本题选项文字对照；请用知识点复核。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g5-q5" class="question" data-check="yes"><small class="tag">黄疸课后作业 · 第 5 题 · 单选题</small>
+<h3>旁路胆红素不包括</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g5-q5" value="A"><span>A. 幼稚红细胞</span></label><label><input type="radio" name="g5-q5" value="B"><span>B. 细胞色素氧化酶</span></label><label><input type="radio" name="g5-q5" value="C"><span>C. 衰老红细胞</span></label><label><input type="radio" name="g5-q5" value="D"><span>D. 肌红蛋白</span></label><label><input type="radio" name="g5-q5" value="E"><span>E. 过氧化物酶</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 衰老红细胞</p>
+<p class="note">原解析末尾的字母与本题答案栏冲突。答案区以本题选项文字对照；请用知识点复核。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g5-q6" class="question" data-check="yes"><small class="tag">黄疸课后作业 · 第 6 题 · 单选题</small>
+<h3>下列可引起肝细胞性疾病黄疸的疾病是:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g5-q6" value="A"><span>A. 毛细胆管型炎病毒性肝炎</span></label><label><input type="radio" name="g5-q6" value="B"><span>B. 原发性胆汁性肝硬化</span></label><label><input type="radio" name="g5-q6" value="C"><span>C. 胆总管结石</span></label><label><input type="radio" name="g5-q6" value="D"><span>D. 中毒性肝炎</span></label><label><input type="radio" name="g5-q6" value="E"><span>E. 蚕豆病</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　D · 中毒性肝炎</p>
+<p class="note">原解析末尾的字母与本题答案栏冲突。答案区以本题选项文字对照；请用知识点复核。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g5-q7" class="question" data-check="yes"><small class="tag">黄疸课后作业 · 第 7 题 · 单选题</small>
+<h3>血总胆红素,非结合胆红素增高,结合胆红素下降,粪便颜色加深,提示:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g5-q7" value="A"><span>A. 胆汁瘀积性黄疸</span></label><label><input type="radio" name="g5-q7" value="B"><span>B. Roter综合征</span></label><label><input type="radio" name="g5-q7" value="C"><span>C. 核黄疸</span></label><label><input type="radio" name="g5-q7" value="D"><span>D. 肝细胞性黄疸</span></label><label><input type="radio" name="g5-q7" value="E"><span>E. 溶血性黄疸</span></label></fieldset><button hidden type="button" data-grade="E">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　E · 溶血性黄疸</p>
+<p class="note">原解析末尾的字母与本题答案栏冲突。答案区以本题选项文字对照；请用知识点复核。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g5-q8" class="question" data-check="yes"><small class="tag">黄疸课后作业 · 第 8 题 · 单选题</small>
+<h3>区别肝外或肝内胆管阻塞的部位,下列最好的检查是:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g5-q8" value="A"><span>A. X线检查</span></label><label><input type="radio" name="g5-q8" value="B"><span>B. B型超声波</span></label><label><input type="radio" name="g5-q8" value="C"><span>C. ERCP</span></label><label><input type="radio" name="g5-q8" value="D"><span>D. CT</span></label><label><input type="radio" name="g5-q8" value="E"><span>E. PTC</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · ERCP</p>
+<p class="note">原解析末尾的字母与本题答案栏冲突。答案区以本题选项文字对照；请用知识点复核。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g5-q9" class="question" data-check="yes"><small class="tag">黄疸课后作业 · 第 9 题 · 单选题</small>
+<h3>下列不属于胆汁瘀积性黄疸的是:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g5-q9" value="A"><span>A. 肝内胆管结石</span></label><label><input type="radio" name="g5-q9" value="B"><span>B. 毛细胆管型病毒性肝炎</span></label><label><input type="radio" name="g5-q9" value="C"><span>C. 肝硬化</span></label><label><input type="radio" name="g5-q9" value="D"><span>D. 妊娠复发性黄疸</span></label><label><input type="radio" name="g5-q9" value="E"><span>E. 长期服用甲基睾丸酮所致黄疸</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 肝硬化</p>
+<p class="note">原解析末尾的字母与本题答案栏冲突。答案区以本题选项文字对照；请用知识点复核。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g5-q10" class="question" data-check="yes"><small class="tag">黄疸课后作业 · 第 10 题 · 单选题</small>
+<h3>主下述药物易出现溶血性黄疸的是:</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g5-q10" value="A"><span>A. 卡铂</span></label><label><input type="radio" name="g5-q10" value="B"><span>B. 甲基睾丸酮</span></label><label><input type="radio" name="g5-q10" value="C"><span>C. 甲基硫氧嘧啶</span></label><label><input type="radio" name="g5-q10" value="D"><span>D. 伯氨喹啉</span></label><label><input type="radio" name="g5-q10" value="E"><span>E. 氯丙嗪</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　D · 伯氨喹啉</p>
+<p class="note">原解析末尾的字母与本题答案栏冲突。答案区以本题选项文字对照；请用知识点复核。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+</details>
+<details class="group" id="ecg"><summary>心电图课堂作业 · 15 道口述练习</summary><p>按学习通 9.9.9《心电图课堂作业》题序改为闭卷提问。第 2–9 页有原题和选项，参考解析由学习台编写。课堂课件题与平台已批作业分别计数。</p><article id="ecg-q1" class="question"><small>课件第 2 页 · 原题 1</small><h3>标定为 10 mm/mV，纵向一小格相当于多少电压？</h3><details class="solution"><summary>查看解析</summary><p>1 mm ÷ 10 mm/mV = 0.1 mV。先看定标，再报振幅。</p></details><button type="button" hidden data-mark>加入回练</button></article><article id="ecg-q2" class="question"><small>课件第 2 页 · 原题 2</small><h3>QT 间期能否脱离心率，用一个固定秒数判正常？</h3><details class="solution"><summary>查看解析</summary><p>课件第 2 题的选项中有 0.32–0.44 秒。QT 随心率变化，解释实测值要考虑心率与校正方法，不能把该选项当所有人的正常界限。</p></details><button type="button" hidden data-mark>加入回练</button></article><article id="ecg-q3" class="question"><small>课件第 3 页 · 原题 3</small><h3>纸速为 25 mm/s，横向一小格等于多久？</h3><details class="solution"><summary>查看解析</summary><p>1 mm ÷ 25 mm/s = 0.04 秒。若纸速加倍，同样一格代表的时间减半。</p></details><button type="button" hidden data-mark>加入回练</button></article><article id="ecg-q4" class="question"><small>课件第 3 页 · 原题 4</small><h3>成年人的 PR 间期为 0.28 秒，每个 P 波后均有 QRS，这提示什么？</h3><details class="solution"><summary>查看解析</summary><p>PR 超过 0.20 秒且仍保持 1∶1 房室传导，符合一度房室传导阻滞。把传导时间和有无脱落分别说清。</p></details><button type="button" hidden data-mark>加入回练</button></article><article id="ecg-q5" class="question"><small>课件第 4 页 · 原题 5</small><h3>规则心律，RR 为 0.8 秒，心率是多少？</h3><details class="solution"><summary>查看解析</summary><p>每分钟 60 秒，60 ÷ 0.8 = 75 次/分。节律明显不齐时，单个 RR 只代表该心动周期。</p></details><button type="button" hidden data-mark>加入回练</button></article><article id="ecg-q6" class="question"><small>课件第 4 页 · 原题 6</small><h3>通常所说的平均心电轴指哪一平面、哪一组波？</h3><details class="solution"><summary>查看解析</summary><p>额面平均 QRS 电轴，描述心室除极平均电向量在额面的方向。</p></details><button type="button" hidden data-mark>加入回练</button></article><article id="ecg-q7" class="question"><small>课件第 5 页 · 原题 7</small><h3>Ⅰ 和 aVF 导联 QRS 主波均向上，电轴落在哪个象限？</h3><details class="solution"><summary>查看解析</summary><p>在 0° 至 +90° 之间，位于通常的正常象限。</p></details><button type="button" hidden data-mark>加入回练</button></article><article id="ecg-q8" class="question"><small>课件第 5 页 · 原题 8</small><h3>胸前导联 R/S 过渡直到 V5 才出现，按本题术语怎样描述？</h3><details class="solution"><summary>查看解析</summary><p>过渡区向左胸导联延迟，题中对应顺时针转位；这是胸前导联过渡区的描述。</p></details><button type="button" hidden data-mark>加入回练</button></article><article id="ecg-q9" class="question"><small>课件第 6 页 · 原题 9</small><h3>标准纸速和增益下，P 波宽两格、高一格。分别换算。</h3><details class="solution"><summary>查看解析</summary><p>时间 = 2 × 0.04 = 0.08 秒；电压 = 1 × 0.1 = 0.1 mV。</p></details><button type="button" hidden data-mark>加入回练</button></article><article id="ecg-q10" class="question"><small>课件第 6 页 · 原题 10</small><h3>目测额面电轴时，看哪组导联、哪一组波？</h3><details class="solution"><summary>查看解析</summary><p>比较肢体导联的 QRS 净方向，常从 Ⅰ、aVF 入手；Ⅰ 正而 aVF 负时，可用 Ⅱ 导联进一步判断。</p></details><button type="button" hidden data-mark>加入回练</button></article><article id="ecg-q11" class="question"><small>课件第 7 页 · 原题 11</small><h3>哪一个波形主要反映心室复极？</h3><details class="solution"><summary>查看解析</summary><p>T 波。读图时将它与代表心室除极的 QRS 波群区分。</p></details><button type="button" hidden data-mark>加入回练</button></article><article id="ecg-q12" class="question"><small>课件第 7 页 · 原题 12</small><h3>左锁骨中线与第五肋间交点是哪一个胸导联？</h3><details class="solution"><summary>查看解析</summary><p>V4。先找肋间再找锁骨中线。</p></details><button type="button" hidden data-mark>加入回练</button></article><article id="ecg-q13" class="question"><small>课件第 8 页 · 原题 13</small><h3>与 V4 在同一水平、位于左腋前线的是哪一个胸导联？</h3><details class="solution"><summary>查看解析</summary><p>V5。原题只写腋前线；实际定位还要与 V4 同一水平。</p></details><button type="button" hidden data-mark>加入回练</button></article><article id="ecg-q14" class="question"><small>课件第 8 页 · 原题 14</small><h3>正常窦性 P 波在哪个加压肢体导联呈倒置？</h3><details class="solution"><summary>查看解析</summary><p>aVR。正常心房除极的主方向背离该导联的正极。</p></details><button type="button" hidden data-mark>加入回练</button></article><article id="ecg-q15" class="question"><small>课件第 9 页 · 原题 15</small><h3>QRS 波群里第一个正向偏转叫什么？</h3><details class="solution"><summary>查看解析</summary><p>R 波。若继首次正向波后再有正向偏转，后者记作 R′。</p></details><button type="button" hidden data-mark>加入回练</button></article><p><a href="materials.html#source-9">回查心电图课堂课件</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/19228821/">QT 测量及校正的学会声明</a></p></details></main></body></html>

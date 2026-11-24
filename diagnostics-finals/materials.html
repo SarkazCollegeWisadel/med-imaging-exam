@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>诊断学教师资料与出处 · 学习台</title>
+<link rel="stylesheet" href="../finals/review.css"><link rel="stylesheet" href="../learn/transfer.css"><script defer src="../finals/review.js"></script><script defer src="../learn/transfer.js"></script><style id="study-desk-theme">
+@font-face {
+  font-family: "Desk Song";
+  src: local("STSong"), local("华文宋体");
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --desk-bg: #f3f0f1;
+  --desk-paper: #fffdfd;
+  --desk-ink: #2d272e;
+  --desk-muted: #625561;
+  --desk-line: #dcd1da;
+  --desk-fold: #ede4eb;
+  --desk-accent: #60475a;
+  --desk-hover: #75576e;
+  --desk-glass: linear-gradient(151deg, #fffdfdf2, #eee6eddb);
+  --desk-shadow: 0 2px 4px #392f3609, 0 8px 24px #392f3608;
+  --desk-song: "Desk Song", "STSong", "华文宋体", "Songti SC", SimSun, serif;
+  --desk-width: 820px;
+
+  /* Existing pages use several names for the same roles. */
+  --bg: var(--desk-bg);
+  --card: var(--desk-paper);
+  --card2: var(--desk-fold);
+  --ink: var(--desk-ink);
+  --tx: var(--desk-ink);
+  --sub: var(--desk-muted);
+  --dim: var(--desk-muted);
+  --line: var(--desk-line);
+  --hl: var(--desk-accent);
+  --hl2: var(--desk-accent);
+  --acc: var(--desk-accent);
+  --accent: var(--desk-accent);
+  --code: var(--desk-fold);
+  --ok: #226040;
+  --okbg: #e8f4eb;
+  --bad: #922f34;
+  --badbg: #faebec;
+  --warn: #744c1b;
+  --warnbg: #f7f0e3;
+}
+
+body.study-page {
+  background: radial-gradient(ellipse at 85% 0, #eee6ed, transparent 550px), var(--desk-bg);
+  color: var(--desk-ink);
+  font-family: "Segoe UI Variable", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.study-page :is(h1, h2, .stem, .st, .ask, .card header h3, .ans .dx),
+.study-page[data-desk-page="premed-quiz"] .q,
+.study-page[data-desk-page="odontogenic"] .card > .q {
+  font-family: var(--desk-song);
+  font-weight: 400;
+  text-wrap: pretty;
+}
+
+.study-page :is(h1, h2, h3, h4) { color: var(--desk-ink); }
+.study-page a { color: var(--desk-accent); }
+.study-page :is(.sub, .foot, .src, .hint, .cap, figcaption, .who) { color: var(--desk-muted); }
+.study-page :is(a, button, summary, input, textarea):focus-visible {
+  outline: 2px solid var(--desk-accent);
+  outline-offset: 3px;
+}
+
+.study-page .study-desk-nav {
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+  padding-inline: clamp(10px, 3vw, 22px);
+  border-bottom: 0;
+}
+
+.study-page .study-desk-nav::after {
+  content: "";
+  position: absolute;
+  inset: auto max(12px, calc((100% - var(--desk-width)) / 2)) 0;
+  border-bottom: 1px solid var(--desk-line);
+  pointer-events: none;
+}
+
+.study-page .study-desk-links { max-width: var(--desk-width); }
+.study-page .study-desk-links > span {
+  margin-inline-start: auto;
+  color: var(--desk-muted);
+  font-size: .83em;
+}
+
+.study-page :is(.study-desk-nav a, .btn, .bar button, .tools button, .chip, .acts button, .copy, .jump a, :where(#toTop)) {
+  min-height: 34px;
+  border: 1px solid var(--desk-line);
+  border-radius: 100px;
+  background: var(--desk-glass);
+  color: var(--desk-accent);
+  box-shadow: inset 0 1px 0 #fff, 0 2px 5px #5034480d;
+  transition: transform .26s cubic-bezier(.2, 1.25, .4, 1), background-color .18s, border-color .18s;
+}
+
+.study-page :is(.study-desk-nav a, .btn, .bar button, .tools button, .chip, .acts button, .copy, .jump a, :where(#toTop)):hover {
+  background: #fff;
+  border-color: #af96aa;
+}
+
+.study-page :is(.btn, .bar button, .tools button, .chip, .acts button, .copy, :where(#toTop)):active {
+  transform: scale(.965);
+}
+
+.study-page :is(.btn.on, .bar button.on, .bar button.primary, .tools button.on, .chip.on, .acts button.on) {
+  background: var(--desk-accent);
+  border-color: var(--desk-accent);
+  color: #fff;
+  box-shadow: none;
+}
+
+.study-page :is(.btn.on, .bar button.on, .bar button.primary, .tools button.on, .chip.on, .acts button.on):hover {
+  background: var(--desk-hover);
+  color: #fff;
+}
+
+.study-page :is(.copy.done, .acts button.ok) {
+  background: var(--okbg);
+  border-color: var(--ok);
+  color: var(--ok);
+}
+
+.study-page :is(.acts button.bad, .acts button.wrong) {
+  background: var(--badbg);
+  border-color: var(--bad);
+  color: var(--bad);
+}
+
+.study-page button:disabled { opacity: .55; }
+
+.study-page > :is(header, .top),
+.study-page .study-hero,
+.study-page[data-desk-page="premed-quiz"] > .bar {
+  position: relative;
+  isolation: isolate;
+  z-index: auto;
+  max-width: var(--desk-width);
+  margin: 10px auto 14px;
+  padding: clamp(16px, 3vw, 27px);
+  border: 1px solid var(--desk-line);
+  border-radius: 13px;
+  background: linear-gradient(135deg, #fffdfd 46%, #f0e8ef);
+  box-shadow: var(--desk-shadow);
+}
+
+/* A fold on the heading surface leaves the exercise and source areas quiet. */
+.study-page > :is(header, .top)::after,
+.study-page .study-hero::after,
+.study-page[data-desk-page="premed-quiz"] > .bar::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  width: min(33%, 185px);
+  height: 100%;
+  background: linear-gradient(142deg, #d5c3d1 13%, #eee5ed 13% 38%, #d9c8d5 38% 51%, #f1eaf0 51%);
+  clip-path: polygon(66% 0, 100% 0, 100% 82%, 59% 100%, 0 100%, 42% 61%);
+  border-radius: 0 13px 13px 0;
+  opacity: .53;
+  pointer-events: none;
+}
+
+.study-page > :is(header, .top) h1,
+.study-page .study-hero h1,
+.study-page[data-desk-page="premed-quiz"] .bar h1 {
+  margin: 0 0 6px;
+  padding: 0;
+  border: 0;
+  color: var(--desk-ink);
+  font: 400 clamp(26px, 4.8vw, 43px)/1.2 var(--desk-song);
+  letter-spacing: -.025em;
+  overflow-wrap: anywhere;
+}
+
+.study-page > header .wrap { padding-inline: 0; }
+.study-page > :is(header, .top, .study-hero) :is(.sub, p) { color: var(--desk-muted); }
+.study-page .study-hero .sub { margin-bottom: 0; }
+.study-page .wrap { max-width: var(--desk-width); }
+.study-page .study-course-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 12px;
+}
+.study-page .study-course-links a {
+  padding: 7px 10px;
+  background: #fffdfd99;
+  border: 1px solid var(--desk-line);
+  border-radius: 7px;
+  color: var(--desk-accent);
+  font-size: .82em;
+  text-decoration: none;
+}
+.study-page .study-course-links a:hover { background: var(--desk-fold); }
+
+.study-page .bar,
+.study-page .tools,
+.study-page .filters,
+.study-page > nav:not(.study-desk-nav),
+.study-page .jump,
+.study-page #score.score {
+  position: static;
+  inset: auto;
+  z-index: auto;
+}
+
+.study-page :is(.bar, .tools, .filters, .jump) { color: var(--desk-muted); }
+.study-page :is(.tools, .filters, .jump) { align-items: center; }
+.study-page .tools { margin-top: 12px; }
+.study-page .filters { padding-block: 9px; }
+.study-page .bar {
+  background: var(--desk-glass);
+  backdrop-filter: blur(18px) saturate(135%);
+  border: 1px solid var(--desk-line);
+  border-radius: 10px;
+  padding: 7px 9px;
+}
+.study-page .bar .score { color: var(--ok); font-family: system-ui, sans-serif; letter-spacing: 0; }
+.study-page .bar .sc { color: var(--desk-ink); }
+.study-page header .bar { margin-top: 12px; }
+.study-page > nav:not(.study-desk-nav) {
+  max-width: var(--desk-width);
+  margin: 0 auto;
+  background: transparent;
+  border-color: var(--desk-line);
+}
+.study-page > nav:not(.study-desk-nav) a {
+  background: var(--desk-fold);
+  color: var(--desk-accent);
+  border: 1px solid var(--desk-line);
+}
+.study-page > nav:not(.study-desk-nav) a:hover,
+.study-page > nav:not(.study-desk-nav) a.hl {
+  background: var(--desk-accent);
+  color: #fff;
+}
+.study-page .jump {
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: var(--desk-width);
+  margin: 8px auto 0;
+  padding-inline: 14px;
+}
+.study-page .study-section-jump { margin-top: 12px; padding: 0; }
+.study-page .jump a { display: inline-flex; align-items: center; }
+.study-page #toTop {
+  position: static;
+  justify-content: center;
+  margin: 12px auto;
+}
+
+.study-page :is(.qi, .card, .b1box, .essay, .hero, .q:has(> .qh), details.sec, details.honesty, #toc) {
+  background: var(--desk-paper);
+  border: 1px solid var(--desk-line);
+  border-radius: 13px;
+  box-shadow: var(--desk-shadow);
+}
+.study-page .sec .card { border-width: 1px 0 0; border-radius: 0; box-shadow: none; }
+.study-page :is(.qi img, .imgs img, .card > img) { border-color: var(--desk-line); }
+.study-page :is(.stem, .st, .ask, .card header h3) {
+  font-size: clamp(17px, 2.35vw, 20px);
+  line-height: 1.48;
+}
+.study-page :is(.tag:not(.warn, .ok, .n, .g, .bad), .b.sub) {
+  background: var(--desk-fold);
+  color: var(--desk-accent);
+  border-color: #d8c9d6;
+}
+.study-page :is(.tag.warn, .noimg, .b.warn) {
+  background: var(--warnbg);
+  color: var(--warn);
+  border-color: #d7bd91;
+}
+.study-page :is(.tag.g, .tag.ok, .b.exam) { background: var(--okbg); color: var(--ok); }
+.study-page :is(.tag.bad, .tag.n) { background: var(--badbg); color: var(--bad); }
+.study-page .opt {
+  background: #fdfafb;
+  border-color: var(--desk-line);
+  color: var(--desk-ink);
+}
+.study-page :is(.opt.sel, button.opt:hover):not(.right, .wrong, .wrongpick) { background: var(--desk-fold); }
+.study-page .opt :is(.lb, .k) { color: var(--desk-accent); }
+.study-page:not([data-desk-page="premed-quiz"]) .opt.right,
+.study-page .card.ans-on .opt.right {
+  background: var(--okbg);
+  border-color: var(--ok);
+}
+.study-page:not([data-desk-page="premed-quiz"]) .opt.right :is(.k, .lb),
+.study-page .card.ans-on .opt.right :is(.k, .lb) { color: var(--ok); }
+.study-page :is(.opt.wrong, .card.ans-on .opt.wrongpick) {
+  background: var(--badbg);
+  border-color: var(--bad);
+}
+.study-page :is(.opt.wrong, .card.ans-on .opt.wrongpick) :is(.k, .lb) { color: var(--bad); }
+.study-page .opt.mine:not(.right, .wrong, .wrongpick) { background: var(--warnbg); border-color: var(--warn); }
+.study-page .card.ok { border-left: 3px solid var(--ok); }
+.study-page .card.wrong { border-left: 3px solid var(--bad); }
+.study-page .ans {
+  background: linear-gradient(148deg, #fbf5f9, var(--desk-fold));
+  border-color: #bca3b6;
+  color: var(--desk-ink);
+  transform-origin: top center;
+}
+.study-page .ans.warn { background: var(--warnbg); border-color: var(--warn); }
+.study-page .ansline b { color: var(--ok); }
+.study-page .mine { color: var(--desk-muted); }
+.study-page :is(.note.srcbox, .note.mid, .note.none, .ans .src, .src.no, .card .src:not(span), .prompt, .b1lead) {
+  background: #f4eef3;
+  color: var(--desk-muted);
+  border-color: #cdbac9;
+}
+.study-page .note.srcbox code {
+  background: #e8dce6;
+  color: #493646;
+  overflow-wrap: anywhere;
+}
+.study-page .src::before,
+.study-page .src.no::before { color: var(--desk-muted); }
+.study-page :is(details pre, code, th) { background: #f2ebf0; }
+.study-page :is(th, td) { border-color: var(--desk-line); }
+.study-page :is(h2.part, article h2) {
+  background: linear-gradient(113deg, var(--desk-fold) 64%, transparent 64%);
+  border-color: #aa8fa3;
+}
+
+.study-page[data-desk-page="premed-guide"] :is(main p, main li, td, strong) { color: var(--desk-ink); }
+.study-page[data-desk-page="premed-guide"] :is(blockquote, blockquote p, th) { color: var(--desk-muted); }
+.study-page[data-desk-page="premed-guide"] :is(blockquote, tr:nth-child(even) td) { background: #f4edf2; border-color: var(--desk-line); }
+.study-page[data-desk-page="premed-guide"] :is(code, hr, .foot) { border-color: var(--desk-line); }
+.study-page[data-desk-page="premed-guide"] code { color: var(--desk-accent); }
+.study-page[data-desk-page="premed-guide"] .go a { background: var(--desk-accent); color: #fff; }
+.study-page[data-desk-page="premed-guide"] .go a:hover { background: var(--desk-hover); }
+
+.study-page[data-desk-page="premed-quiz"] .q {
+  font-size: clamp(17px, 2.35vw, 20px);
+  line-height: 1.48;
+}
+.study-page[data-desk-page="premed-quiz"] .bar h1 {
+  display: flex;
+  flex-wrap: wrap;
+}
+.study-page[data-desk-page="premed-quiz"] .bar h1 span {
+  color: var(--desk-muted);
+  font-family: system-ui, sans-serif;
+}
+.study-page[data-desk-page="premed-quiz"] .bar h1 .score { color: var(--ok); }
+.study-page[data-desk-page="premed-quiz"] .hd { color: var(--desk-muted); }
+.study-page[data-desk-page="premed-quiz"] button.show {
+  background: var(--desk-accent);
+  border-color: var(--desk-accent);
+  color: #fff;
+}
+.study-page[data-desk-page="premed-quiz"] button.show:hover { background: var(--desk-hover); }
+.study-page[data-desk-page="odontogenic"] #score {
+  max-width: var(--desk-width);
+  margin: 0 auto 12px;
+  background: var(--desk-glass);
+  border: 1px solid var(--desk-line);
+  border-radius: 11px;
+}
+.study-page[data-desk-page="odontogenic"] .card > .q { font-size: 20px; }
+.study-page.hide-ans[data-desk-page="imaging-list"] .ans b { background: #d9ccd6; color: transparent; }
+.study-page[data-desk-page="imaging-quiz"] :is(.prompt b, summary) { color: var(--desk-accent); }
+.study-page[data-desk-page="imaging-quiz"] details { background: #f5eef4; border-color: var(--desk-line); }
+.study-page[data-desk-page="imaging-quiz"] details .ans { background: transparent; color: var(--desk-accent); font-family: var(--desk-song); font-size: 18px; }
+.study-page[data-desk-page="pharm"] details { border: 1px solid var(--desk-line); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .study-page .ans.on,
+  .study-page:not(:has(#revealAll.on)) .ans.show,
+  .study-page:not(.showAll) .card.shown .ans,
+  .study-page[data-desk-page="imaging-quiz"] details[open] > p:first-of-type {
+    animation: desk-unfold .34s cubic-bezier(.19, 1, .36, 1) both;
+  }
+  .study-page:has(#showAll.on) .ans.on { animation: none; }
+}
+
+@keyframes desk-unfold {
+  from { opacity: .28; transform: perspective(460px) rotateX(-30deg); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 860px) {
+  .study-page > :is(header, .top),
+  .study-page[data-desk-page="premed-quiz"] > .bar { margin-inline: 12px; }
+  .study-page[data-desk-page="odontogenic"] #score { margin-inline: 14px; }
+}
+
+@media (max-width: 520px) {
+  .study-page .study-desk-links { gap: 5px 9px; }
+  .study-page .study-desk-links > span { margin-inline-start: 0; }
+  .study-page > :is(header, .top),
+  .study-page .study-hero,
+  .study-page[data-desk-page="premed-quiz"] > .bar { padding: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .study-page :is(a, button) { transition: none !important; }
+}
+</style>
+</head>
+<body data-course="diagnosis" class="study-page" data-desk-page="diagnosis-materials"><div class="study-desk-nav"><nav class="study-desk-links"><a href="../learn/">← 帮学总入口</a><a href="index.html">诊断学</a></nav></div>
+<main class="desk"><header class="study-hero"><h1>诊断学教师资料与出处</h1><p class="sub">章节内共 68 份文档，包含 3 份教师教案。另列资料区的技能评分表及配套讲义。按节号和原文件名查找。</p></header><nav class="actions"><a class="btn" href="index.html#focus">复习侧重</a><a class="btn" href="plan.html">每日计划</a><a class="btn" href="practice.html">练习题库</a></nav><article class="panel"><h3>先看三份教师教案</h3><p>5.1 基本方法、6.2 一般检查和 8.3 胸部检查均有单独的 Word 教案。两份谭珊教案的封面标为 2019–2020 学年，胸部教案的授课时间留空。课程中的其他附件也含教材配套课件。</p><p><a href="index.html#objectives">读掌握要求、重难点与自测</a></p></article><h2 id="documents">按章找原件</h2><p><a href="https://mooc1.chaoxing.com/mooc-ans/course/portal/79uAqumBB9v6oyKfHr4JUg==">打开学习通课程门户</a>，进入已选课程的“章节”，按下列节号和原文件名查找。</p><details class="module" data-local-picker hidden><summary>用本机已下载的课件</summary><p>选择本课的“期末教师资料_20261125”文件夹，页面会把原件与节号配对。本次选择只在这个标签页有效。</p><label>选择资料文件夹 <input type="file" webkitdirectory multiple></label> <output role="status"></output></details><div data-shelf-search class="shelf-search" hidden><label>查找课件 <input type="search" placeholder="输入章名、文件名或教案"></label><output aria-live="polite">68 份</output></div><details class="module" data-files id="source-1"><summary>01　2019年省级精品在线开放课程选题申报展示视频 · 2 份</summary><ul><li>甲状腺--诊断学模板.pdf <small>· 1.1 · 章节课件</small><span data-local-paths="[&quot;原件/1.1-1 甲状腺--诊断学模板.pdf&quot;]"></span></li><li>心脏检查 .pptx <small>· 1.2 · 章节课件</small><span data-local-paths="[&quot;阅读版/1.2-1 心脏检查 .pdf&quot;, &quot;原件/1.2-1 心脏检查 .pptx&quot;]"></span></li></ul><p><a href="index.html#unit-1">本章复习与自测</a></p></details><details class="module" data-files id="source-2"><summary>02　绪论 · 1 份</summary><ul><li>绪论.pptx <small>· 2.1 · 章节课件</small><span data-local-paths="[&quot;阅读版/2.1-1 绪论.pdf&quot;, &quot;原件/2.1-1 绪论.pptx&quot;]"></span></li></ul><p><a href="index.html#unit-2">本章复习与自测</a></p></details><details class="module" data-files id="source-3"><summary>03　第一篇 症状学 · 3 份</summary><ul><li>1、发热.pdf <small>· 3.1 · 章节课件</small><span data-local-paths="[&quot;原件/3.1-1 1、发热.pdf&quot;]"></span></li><li>5、咳嗽与咳痰.pdf <small>· 3.2 · 章节课件</small><span data-local-paths="[&quot;原件/3.2-1 5、咳嗽与咳痰.pdf&quot;]"></span></li><li>少尿无尿多尿-上传.ppt <small>· 3.3 · 章节课件</small><span data-local-paths="[&quot;阅读版/3.3-1 少尿无尿多尿-上传.pdf&quot;, &quot;原件/3.3-1 少尿无尿多尿-上传.ppt&quot;]"></span></li></ul><p><a href="index.html#unit-3">本章复习与自测</a></p></details><details class="module" data-files id="source-4"><summary>04　第二篇 问诊 · 1 份</summary><ul><li>问诊.pdf <small>· 4.1 · 章节课件</small><span data-local-paths="[&quot;原件/4.1-1 问诊.pdf&quot;]"></span></li></ul><p><a href="index.html#unit-4">本章复习与自测</a></p></details><details class="module" data-files id="source-5"><summary>05　第一章 基本方法 · 2 份</summary><ul><li>基本方法.pptx <small>· 5.1 · 章节课件</small><span data-local-paths="[&quot;阅读版/5.1-1 基本方法.pdf&quot;, &quot;原件/5.1-1 基本方法.pptx&quot;]"></span></li><li>诊断学基本方法教案.doc <small>· 5.1 · 教师教案</small><span data-local-paths="[&quot;阅读版/5.1-2 诊断学基本方法教案.pdf&quot;, &quot;原件/5.1-2 诊断学基本方法教案.doc&quot;]"></span></li></ul><p><a href="index.html#unit-5">本章复习与自测</a></p></details><details class="module" data-files id="source-6"><summary>06　第二章 一般检查 · 3 份</summary><ul><li>一般检查 -人卫版.ppt <small>· 6.2 · 章节课件</small><span data-local-paths="[&quot;阅读版/6.2-1 一般检查 -人卫版.pdf&quot;, &quot;原件/6.2-1 一般检查 -人卫版.ppt&quot;]"></span></li><li>诊断学一般检查教案.doc <small>· 6.2 · 教师教案</small><span data-local-paths="[&quot;阅读版/6.2-2 诊断学一般检查教案.pdf&quot;, &quot;原件/6.2-2 诊断学一般检查教案.doc&quot;]"></span></li><li>第一节 发热.pptx <small>· 6.6 · 章节课件</small><span data-local-paths="[&quot;阅读版/6.6-1 第一节 发热.pdf&quot;, &quot;原件/6.6-1 第一节 发热.pptx&quot;]"></span></li></ul><p><a href="index.html#unit-6">本章复习与自测</a></p></details><details class="module" data-files id="source-7"><summary>07　第三章 头颈部检查 · 2 份</summary><ul><li>头部检查理论课件-彭可昕.pptx <small>· 7.2 · 章节课件</small><span data-local-paths="[&quot;阅读版/7.2-1 头部检查理论课件-彭可昕.pdf&quot;, &quot;原件/7.2-1 头部检查理论课件-彭可昕.pptx&quot;]"></span></li><li>颈部检查理论课件-陈琳.pptx <small>· 7.3 · 章节课件</small><span data-local-paths="[&quot;阅读版/7.3-1 颈部检查理论课件-陈琳.pdf&quot;, &quot;原件/7.3-1 颈部检查理论课件-陈琳.pptx&quot;]"></span></li></ul><p><a href="index.html#unit-7">本章复习与自测</a></p></details><details class="module" data-files id="source-8"><summary>08　第四章 胸肺部检查 · 6 份</summary><ul><li>1.胸部检查胸壁胸廓检查-诊断学.pptx <small>· 8.1 · 章节课件</small><span data-local-paths="[&quot;阅读版/8.1-1 1.胸部检查胸壁胸廓检查-诊断学.pdf&quot;, &quot;原件/8.1-1 1.胸部检查胸壁胸廓检查-诊断学.pptx&quot;]"></span></li><li>2.胸部检查乳房检查-诊断学.pptx <small>· 8.2 · 章节课件</small><span data-local-paths="[&quot;阅读版/8.2-1 2.胸部检查乳房检查-诊断学.pdf&quot;, &quot;原件/8.2-1 2.胸部检查乳房检查-诊断学.pptx&quot;]"></span></li><li>徐赛群教案-胸部检查.doc <small>· 8.3 · 教师教案</small><span data-local-paths="[&quot;阅读版/8.3-1 徐赛群教案-胸部检查.pdf&quot;, &quot;原件/8.3-1 徐赛群教案-胸部检查.doc&quot;]"></span></li><li>3.胸部检查-肺部视触叩诊.pptx <small>· 8.3 · 章节课件</small><span data-local-paths="[&quot;阅读版/8.3-2 3.胸部检查-肺部视触叩诊.pdf&quot;, &quot;原件/8.3-2 3.胸部检查-肺部视触叩诊.pptx&quot;]"></span></li><li>肺部检查听诊.pptx <small>· 8.4 · 章节课件</small><span data-local-paths="[&quot;阅读版/8.4-1 肺部检查听诊.pdf&quot;, &quot;原件/8.4-1 肺部检查听诊.pptx&quot;]"></span></li><li>呼吸困难2020.pptx <small>· 8.7 · 章节课件</small><span data-local-paths="[&quot;阅读版/8.7-1 呼吸困难2020.pdf&quot;, &quot;原件/8.7-1 呼吸困难2020.pptx&quot;]"></span></li></ul><p><a href="index.html#unit-8">本章复习与自测</a></p></details><details class="module" data-files id="source-9"><summary>09　第五章 心脏检查 · 16 份</summary><ul><li>心脏视诊、触诊(1).pdf <small>· 9.1 · 章节课件</small><span data-local-paths="[&quot;原件/9.1-1 心脏视诊、触诊(1).pdf&quot;]"></span></li><li>心脏叩诊.pdf <small>· 9.2 · 章节课件</small><span data-local-paths="[&quot;原件/9.2-1 心脏叩诊.pdf&quot;]"></span></li><li>心脏听诊要点.pdf <small>· 9.3.1 · 章节课件</small><span data-local-paths="[&quot;原件/9.3.1-1 心脏听诊要点.pdf&quot;]"></span></li><li>心脏听诊正常心音.pdf <small>· 9.3.2 · 章节课件</small><span data-local-paths="[&quot;原件/9.3.2-1 心脏听诊正常心音.pdf&quot;]"></span></li><li>心脏听诊——额外心音.pdf <small>· 9.3.3 · 章节课件</small><span data-local-paths="[&quot;原件/9.3.3-1 心脏听诊——额外心音.pdf&quot;]"></span></li><li>心脏杂音.pdf <small>· 9.3.4 · 章节课件</small><span data-local-paths="[&quot;原件/9.3.4-1 心脏杂音.pdf&quot;]"></span></li><li>血管检查.pdf <small>· 9.4 · 章节课件</small><span data-local-paths="[&quot;原件/9.4-1 血管检查.pdf&quot;]"></span></li><li>心血管系统常见症状及体征.pdf <small>· 9.5 · 章节课件</small><span data-local-paths="[&quot;原件/9.5-1 心血管系统常见症状及体征.pdf&quot;]"></span></li><li>胸痛(3).pdf <small>· 9.7 · 章节课件</small><span data-local-paths="[&quot;原件/9.7-1 胸痛(3).pdf&quot;]"></span></li><li>心电图基础1.ppt <small>· 9.9.1 · 章节课件 · 本地保存原 PPT，阅读可用学习通预览</small><span data-local-paths="[&quot;原件/9.9.1-1 心电图基础1.ppt&quot;]"></span></li><li>心电图测量及正常值(1).ppt <small>· 9.9.3 · 章节课件</small><span data-local-paths="[&quot;阅读版/9.9.3-1 心电图测量及正常值(1).pdf&quot;, &quot;原件/9.9.3-1 心电图测量及正常值(1).ppt&quot;]"></span></li><li>心电图3(心房与心室肥大).ppt <small>· 9.9.5 · 章节课件</small><span data-local-paths="[&quot;阅读版/9.9.5-1 心电图3(心房与心室肥大).pdf&quot;, &quot;原件/9.9.5-1 心电图3(心房与心室肥大).ppt&quot;]"></span></li><li>心电图3(心房与心室肥大)(1).ppt <small>· 9.9.6 · 章节课件</small><span data-local-paths="[&quot;阅读版/9.9.6-1 心电图3(心房与心室肥大)(1).pdf&quot;, &quot;原件/9.9.6-1 心电图3(心房与心室肥大)(1).ppt&quot;]"></span></li><li>第四节_心肌缺血和_心肌梗死.ppt <small>· 9.9.7 · 章节课件</small><span data-local-paths="[&quot;阅读版/9.9.7-1 第四节_心肌缺血和_心肌梗死.pdf&quot;, &quot;原件/9.9.7-1 第四节_心肌缺血和_心肌梗死.ppt&quot;]"></span></li><li>心律失常改版.ppt <small>· 9.9.8 · 章节课件</small><span data-local-paths="[&quot;阅读版/9.9.8-1 心律失常改版.pdf&quot;, &quot;原件/9.9.8-1 心律失常改版.ppt&quot;]"></span></li><li>心电图课堂作业.pptx <small>· 9.9.9 · 章节课件</small><span data-local-paths="[&quot;阅读版/9.9.9-1 心电图课堂作业.pdf&quot;, &quot;原件/9.9.9-1 心电图课堂作业.pptx&quot;]"></span></li></ul><p><a href="index.html#unit-9">本章复习与自测</a></p></details><details class="module" data-files id="source-10"><summary>10　第六章 腹部检查 · 5 份</summary><ul><li>录课1-腹部检查.ppt <small>· 10.4 · 章节课件</small><span data-local-paths="[&quot;阅读版/10.4-1 录课1-腹部检查.pdf&quot;, &quot;原件/10.4-1 录课1-腹部检查.ppt&quot;]"></span></li><li>录课-腹部常见疾病的症状与体征 2.ppt <small>· 10.6 · 章节课件</small><span data-local-paths="[&quot;阅读版/10.6-1 录课-腹部常见疾病的症状与体征 2.pdf&quot;, &quot;原件/10.6-1 录课-腹部常见疾病的症状与体征 2.ppt&quot;]"></span></li><li>呕血1.pdf <small>· 10.8 · 章节课件</small><span data-local-paths="[&quot;原件/10.8-1 呕血1.pdf&quot;]"></span></li><li>黄疸.pdf <small>· 10.10 · 章节课件</small><span data-local-paths="[&quot;原件/10.10-1 黄疸.pdf&quot;]"></span></li><li>腹痛2020.ppt <small>· 10.11 · 章节课件</small><span data-local-paths="[&quot;阅读版/10.11-1 腹痛2020.pdf&quot;, &quot;原件/10.11-1 腹痛2020.ppt&quot;]"></span></li></ul><p><a href="index.html#unit-10">本章复习与自测</a></p></details><details class="module" data-files id="source-11"><summary>11　第七章 脊柱四肢、神经系统检查 · 7 份</summary><ul><li>脊柱的检查-精品课程.pptx <small>· 11.1 · 章节课件</small><span data-local-paths="[&quot;阅读版/11.1-1 脊柱的检查-精品课程.pdf&quot;, &quot;原件/11.1-1 脊柱的检查-精品课程.pptx&quot;]"></span></li><li>四肢的检查-精品课程.pptx <small>· 11.2 · 章节课件</small><span data-local-paths="[&quot;阅读版/11.2-1 四肢的检查-精品课程.pdf&quot;, &quot;原件/11.2-1 四肢的检查-精品课程.pptx&quot;]"></span></li><li>脑神经的检查-精品课程.ppt <small>· 11.3 · 章节课件</small><span data-local-paths="[&quot;阅读版/11.3-1 脑神经的检查-精品课程.pdf&quot;, &quot;原件/11.3-1 脑神经的检查-精品课程.ppt&quot;]"></span></li><li>运动、感觉功能的检查-精品课程.ppt <small>· 11.4 · 章节课件</small><span data-local-paths="[&quot;阅读版/11.4-1 运动、感觉功能的检查-精品课程.pdf&quot;, &quot;原件/11.4-1 运动、感觉功能的检查-精品课程.ppt&quot;]"></span></li><li>神经反射、自主神经检查-精品课程.ppt <small>· 11.5 · 章节课件</small><span data-local-paths="[&quot;阅读版/11.5-1 神经反射、自主神经检查-精品课程.pdf&quot;, &quot;原件/11.5-1 神经反射、自主神经检查-精品课程.ppt&quot;]"></span></li><li>眩晕-精品课程.ppt <small>· 11.6 · 章节课件</small><span data-local-paths="[&quot;阅读版/11.6-1 眩晕-精品课程.pdf&quot;, &quot;原件/11.6-1 眩晕-精品课程.ppt&quot;]"></span></li><li>意识障碍-精品课程.ppt <small>· 11.7 · 章节课件</small><span data-local-paths="[&quot;阅读版/11.7-1 意识障碍-精品课程.pdf&quot;, &quot;原件/11.7-1 意识障碍-精品课程.ppt&quot;]"></span></li></ul><p><a href="index.html#unit-11">本章复习与自测</a></p></details><details class="module" data-files id="source-12"><summary>12　第四篇 实验诊断 · 13 份</summary><ul><li>血液一般检查.pptx <small>· 12.1 · 章节课件</small><span data-local-paths="[&quot;阅读版/12.1-1 血液一般检查.pdf&quot;, &quot;原件/12.1-1 血液一般检查.pptx&quot;]"></span></li><li>第二章 临床血液学检测.pptx <small>· 12.1 · 章节课件</small><span data-local-paths="[&quot;阅读版/12.1-2 第二章 临床血液学检测.pdf&quot;, &quot;原件/12.1-2 第二章 临床血液学检测.pptx&quot;]"></span></li><li>第三章 血栓与止血检测.pptx <small>· 12.2 · 章节课件</small><span data-local-paths="[&quot;阅读版/12.2-1 第三章 血栓与止血检测.pdf&quot;, &quot;原件/12.2-1 第三章 血栓与止血检测.pptx&quot;]"></span></li><li>第四章第一节 尿液检测.pptx <small>· 12.3 · 章节课件</small><span data-local-paths="[&quot;阅读版/12.3-1 第四章第一节 尿液检测.pdf&quot;, &quot;原件/12.3-1 第四章第一节 尿液检测.pptx&quot;]"></span></li><li>第四章 第二节 粪便检测.pptx <small>· 12.4 · 章节课件</small><span data-local-paths="[&quot;阅读版/12.4-1 第四章 第二节 粪便检测.pdf&quot;, &quot;原件/12.4-1 第四章 第二节 粪便检测.pptx&quot;]"></span></li><li>第四章浆膜腔积液及脑脊液检查.pptx <small>· 12.5 · 章节课件</small><span data-local-paths="[&quot;阅读版/12.5-1 第四章浆膜腔积液及脑脊液检查.pdf&quot;, &quot;原件/12.5-1 第四章浆膜腔积液及脑脊液检查.pptx&quot;]"></span></li><li>肾小球功能检查.pptx <small>· 12.6 · 章节课件</small><span data-local-paths="[&quot;阅读版/12.6-1 肾小球功能检查.pdf&quot;, &quot;原件/12.6-1 肾小球功能检查.pptx&quot;]"></span></li><li>肾小管功能检查.pptx <small>· 12.6 · 章节课件</small><span data-local-paths="[&quot;阅读版/12.6-2 肾小管功能检查.pdf&quot;, &quot;原件/12.6-2 肾小管功能检查.pptx&quot;]"></span></li><li>第五章 常用肾脏功能实验室检测.pptx <small>· 12.6 · 章节课件</small><span data-local-paths="[&quot;阅读版/12.6-3 第五章 常用肾脏功能实验室检测.pdf&quot;, &quot;原件/12.6-3 第五章 常用肾脏功能实验室检测.pptx&quot;]"></span></li><li>第六章 肝脏病常用实验室检测.pptx <small>· 12.7 · 章节课件</small><span data-local-paths="[&quot;阅读版/12.7-1 第六章 肝脏病常用实验室检测.pdf&quot;, &quot;原件/12.7-1 第六章 肝脏病常用实验室检测.pptx&quot;]"></span></li><li>肝功能检查.pptx <small>· 12.7.1 · 章节课件</small><span data-local-paths="[&quot;阅读版/12.7.1-1 肝功能检查.pdf&quot;, &quot;原件/12.7.1-1 肝功能检查.pptx&quot;]"></span></li><li>第七章 临床常用生物化学检测.pptx <small>· 12.8 · 章节课件</small><span data-local-paths="[&quot;阅读版/12.8-1 第七章 临床常用生物化学检测.pdf&quot;, &quot;原件/12.8-1 第七章 临床常用生物化学检测.pptx&quot;]"></span></li><li>第七章 生化检查 - 副本.pdf <small>· 12.8 · 章节课件</small><span data-local-paths="[&quot;原件/12.8-2 第七章 生化检查 - 副本.pdf&quot;]"></span></li></ul><p><a href="index.html#unit-12">本章复习与自测</a></p></details><details class="module" data-files id="source-13"><summary>13　第五篇 病历书写 · 4 份</summary><ul><li>第一章 病历书写的基本要求.pptx <small>· 13.1 · 章节课件</small><span data-local-paths="[&quot;阅读版/13.1-1 第一章 病历书写的基本要求.pdf&quot;, &quot;原件/13.1-1 第一章 病历书写的基本要求.pptx&quot;]"></span></li><li>第二章 病历书写格式及内容.pptx <small>· 13.2 · 章节课件</small><span data-local-paths="[&quot;阅读版/13.2-1 第二章 病历书写格式及内容.pdf&quot;, &quot;原件/13.2-1 第二章 病历书写格式及内容.pptx&quot;]"></span></li><li>第三章 电子病历.pptx <small>· 13.3 · 章节课件</small><span data-local-paths="[&quot;阅读版/13.3-1 第三章 电子病历.pdf&quot;, &quot;原件/13.3-1 第三章 电子病历.pptx&quot;]"></span></li><li>病历书写规范.ppt <small>· 13.4 · 章节课件</small><span data-local-paths="[&quot;阅读版/13.4-1 病历书写规范.pdf&quot;, &quot;原件/13.4-1 病历书写规范.ppt&quot;]"></span></li></ul><p><a href="index.html#unit-13">本章复习与自测</a></p></details><details class="module" data-files id="source-14"><summary>14　第六篇 诊断思维 · 3 份</summary><ul><li>第一章 疾病诊断的步骤.pptx <small>· 14.1 · 章节课件</small><span data-local-paths="[&quot;阅读版/14.1-1 第一章 疾病诊断的步骤.pdf&quot;, &quot;原件/14.1-1 第一章 疾病诊断的步骤.pptx&quot;]"></span></li><li>第二章 临床思维方法.pptx <small>· 14.2 · 章节课件</small><span data-local-paths="[&quot;阅读版/14.2-1 第二章 临床思维方法.pdf&quot;, &quot;原件/14.2-1 第二章 临床思维方法.pptx&quot;]"></span></li><li>第三章 临床诊断的内容.pptx <small>· 14.3 · 章节课件</small><span data-local-paths="[&quot;阅读版/14.3-1 第三章 临床诊断的内容.pdf&quot;, &quot;原件/14.3-1 第三章 临床诊断的内容.pptx&quot;]"></span></li></ul><p><a href="index.html#unit-14">本章复习与自测</a></p></details><article class="panel"><h3>资料区的技能原件</h3><p>《第一站临床思维-病史采集》《第三站体格检查评分表》《第二站基本操作评分表》可用于对照题号口述。另有第二站体格检查六章与第三站基本操作三章配套讲义。其中含医师资格备考材料，站号和课内评分表存在差异，按技能名称配对。资料区另有考官评分表、两份操作话术及两册实践技能备考书，可供单项练习。</p><p><a href="index.html#skills">打开技能与评分项</a></p></article><h2 id="scope">范围与缺口</h2><p>展示视频和问卷已在逐章目录标出。当前课程可见十套作业，其中五套已完成并可核原题。未找到本届正式教学大纲、考试日期、题型分值或技能站次通知。</p><p><a href="https://mooc1.chaoxing.com/mooc-ans/course/portal/79uAqumBB9v6oyKfHr4JUg==">学习通课程门户</a></p><p><a href="sources.md">资料核对记录</a></p></main></body></html>

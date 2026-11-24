@@ -1,0 +1,810 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>诊断学期末学习台 · 学习台</title>
+<link rel="stylesheet" href="../finals/review.css"><link rel="stylesheet" href="../learn/transfer.css"><script defer src="../finals/review.js"></script><script defer src="../learn/transfer.js"></script><style id="study-desk-theme">
+@font-face {
+  font-family: "Desk Song";
+  src: local("STSong"), local("华文宋体");
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --desk-bg: #f3f0f1;
+  --desk-paper: #fffdfd;
+  --desk-ink: #2d272e;
+  --desk-muted: #625561;
+  --desk-line: #dcd1da;
+  --desk-fold: #ede4eb;
+  --desk-accent: #60475a;
+  --desk-hover: #75576e;
+  --desk-glass: linear-gradient(151deg, #fffdfdf2, #eee6eddb);
+  --desk-shadow: 0 2px 4px #392f3609, 0 8px 24px #392f3608;
+  --desk-song: "Desk Song", "STSong", "华文宋体", "Songti SC", SimSun, serif;
+  --desk-width: 820px;
+
+  /* Existing pages use several names for the same roles. */
+  --bg: var(--desk-bg);
+  --card: var(--desk-paper);
+  --card2: var(--desk-fold);
+  --ink: var(--desk-ink);
+  --tx: var(--desk-ink);
+  --sub: var(--desk-muted);
+  --dim: var(--desk-muted);
+  --line: var(--desk-line);
+  --hl: var(--desk-accent);
+  --hl2: var(--desk-accent);
+  --acc: var(--desk-accent);
+  --accent: var(--desk-accent);
+  --code: var(--desk-fold);
+  --ok: #226040;
+  --okbg: #e8f4eb;
+  --bad: #922f34;
+  --badbg: #faebec;
+  --warn: #744c1b;
+  --warnbg: #f7f0e3;
+}
+
+body.study-page {
+  background: radial-gradient(ellipse at 85% 0, #eee6ed, transparent 550px), var(--desk-bg);
+  color: var(--desk-ink);
+  font-family: "Segoe UI Variable", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.study-page :is(h1, h2, .stem, .st, .ask, .card header h3, .ans .dx),
+.study-page[data-desk-page="premed-quiz"] .q,
+.study-page[data-desk-page="odontogenic"] .card > .q {
+  font-family: var(--desk-song);
+  font-weight: 400;
+  text-wrap: pretty;
+}
+
+.study-page :is(h1, h2, h3, h4) { color: var(--desk-ink); }
+.study-page a { color: var(--desk-accent); }
+.study-page :is(.sub, .foot, .src, .hint, .cap, figcaption, .who) { color: var(--desk-muted); }
+.study-page :is(a, button, summary, input, textarea):focus-visible {
+  outline: 2px solid var(--desk-accent);
+  outline-offset: 3px;
+}
+
+.study-page .study-desk-nav {
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+  padding-inline: clamp(10px, 3vw, 22px);
+  border-bottom: 0;
+}
+
+.study-page .study-desk-nav::after {
+  content: "";
+  position: absolute;
+  inset: auto max(12px, calc((100% - var(--desk-width)) / 2)) 0;
+  border-bottom: 1px solid var(--desk-line);
+  pointer-events: none;
+}
+
+.study-page .study-desk-links { max-width: var(--desk-width); }
+.study-page .study-desk-links > span {
+  margin-inline-start: auto;
+  color: var(--desk-muted);
+  font-size: .83em;
+}
+
+.study-page :is(.study-desk-nav a, .btn, .bar button, .tools button, .chip, .acts button, .copy, .jump a, :where(#toTop)) {
+  min-height: 34px;
+  border: 1px solid var(--desk-line);
+  border-radius: 100px;
+  background: var(--desk-glass);
+  color: var(--desk-accent);
+  box-shadow: inset 0 1px 0 #fff, 0 2px 5px #5034480d;
+  transition: transform .26s cubic-bezier(.2, 1.25, .4, 1), background-color .18s, border-color .18s;
+}
+
+.study-page :is(.study-desk-nav a, .btn, .bar button, .tools button, .chip, .acts button, .copy, .jump a, :where(#toTop)):hover {
+  background: #fff;
+  border-color: #af96aa;
+}
+
+.study-page :is(.btn, .bar button, .tools button, .chip, .acts button, .copy, :where(#toTop)):active {
+  transform: scale(.965);
+}
+
+.study-page :is(.btn.on, .bar button.on, .bar button.primary, .tools button.on, .chip.on, .acts button.on) {
+  background: var(--desk-accent);
+  border-color: var(--desk-accent);
+  color: #fff;
+  box-shadow: none;
+}
+
+.study-page :is(.btn.on, .bar button.on, .bar button.primary, .tools button.on, .chip.on, .acts button.on):hover {
+  background: var(--desk-hover);
+  color: #fff;
+}
+
+.study-page :is(.copy.done, .acts button.ok) {
+  background: var(--okbg);
+  border-color: var(--ok);
+  color: var(--ok);
+}
+
+.study-page :is(.acts button.bad, .acts button.wrong) {
+  background: var(--badbg);
+  border-color: var(--bad);
+  color: var(--bad);
+}
+
+.study-page button:disabled { opacity: .55; }
+
+.study-page > :is(header, .top),
+.study-page .study-hero,
+.study-page[data-desk-page="premed-quiz"] > .bar {
+  position: relative;
+  isolation: isolate;
+  z-index: auto;
+  max-width: var(--desk-width);
+  margin: 10px auto 14px;
+  padding: clamp(16px, 3vw, 27px);
+  border: 1px solid var(--desk-line);
+  border-radius: 13px;
+  background: linear-gradient(135deg, #fffdfd 46%, #f0e8ef);
+  box-shadow: var(--desk-shadow);
+}
+
+/* A fold on the heading surface leaves the exercise and source areas quiet. */
+.study-page > :is(header, .top)::after,
+.study-page .study-hero::after,
+.study-page[data-desk-page="premed-quiz"] > .bar::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  width: min(33%, 185px);
+  height: 100%;
+  background: linear-gradient(142deg, #d5c3d1 13%, #eee5ed 13% 38%, #d9c8d5 38% 51%, #f1eaf0 51%);
+  clip-path: polygon(66% 0, 100% 0, 100% 82%, 59% 100%, 0 100%, 42% 61%);
+  border-radius: 0 13px 13px 0;
+  opacity: .53;
+  pointer-events: none;
+}
+
+.study-page > :is(header, .top) h1,
+.study-page .study-hero h1,
+.study-page[data-desk-page="premed-quiz"] .bar h1 {
+  margin: 0 0 6px;
+  padding: 0;
+  border: 0;
+  color: var(--desk-ink);
+  font: 400 clamp(26px, 4.8vw, 43px)/1.2 var(--desk-song);
+  letter-spacing: -.025em;
+  overflow-wrap: anywhere;
+}
+
+.study-page > header .wrap { padding-inline: 0; }
+.study-page > :is(header, .top, .study-hero) :is(.sub, p) { color: var(--desk-muted); }
+.study-page .study-hero .sub { margin-bottom: 0; }
+.study-page .wrap { max-width: var(--desk-width); }
+.study-page .study-course-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 12px;
+}
+.study-page .study-course-links a {
+  padding: 7px 10px;
+  background: #fffdfd99;
+  border: 1px solid var(--desk-line);
+  border-radius: 7px;
+  color: var(--desk-accent);
+  font-size: .82em;
+  text-decoration: none;
+}
+.study-page .study-course-links a:hover { background: var(--desk-fold); }
+
+.study-page .bar,
+.study-page .tools,
+.study-page .filters,
+.study-page > nav:not(.study-desk-nav),
+.study-page .jump,
+.study-page #score.score {
+  position: static;
+  inset: auto;
+  z-index: auto;
+}
+
+.study-page :is(.bar, .tools, .filters, .jump) { color: var(--desk-muted); }
+.study-page :is(.tools, .filters, .jump) { align-items: center; }
+.study-page .tools { margin-top: 12px; }
+.study-page .filters { padding-block: 9px; }
+.study-page .bar {
+  background: var(--desk-glass);
+  backdrop-filter: blur(18px) saturate(135%);
+  border: 1px solid var(--desk-line);
+  border-radius: 10px;
+  padding: 7px 9px;
+}
+.study-page .bar .score { color: var(--ok); font-family: system-ui, sans-serif; letter-spacing: 0; }
+.study-page .bar .sc { color: var(--desk-ink); }
+.study-page header .bar { margin-top: 12px; }
+.study-page > nav:not(.study-desk-nav) {
+  max-width: var(--desk-width);
+  margin: 0 auto;
+  background: transparent;
+  border-color: var(--desk-line);
+}
+.study-page > nav:not(.study-desk-nav) a {
+  background: var(--desk-fold);
+  color: var(--desk-accent);
+  border: 1px solid var(--desk-line);
+}
+.study-page > nav:not(.study-desk-nav) a:hover,
+.study-page > nav:not(.study-desk-nav) a.hl {
+  background: var(--desk-accent);
+  color: #fff;
+}
+.study-page .jump {
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: var(--desk-width);
+  margin: 8px auto 0;
+  padding-inline: 14px;
+}
+.study-page .study-section-jump { margin-top: 12px; padding: 0; }
+.study-page .jump a { display: inline-flex; align-items: center; }
+.study-page #toTop {
+  position: static;
+  justify-content: center;
+  margin: 12px auto;
+}
+
+.study-page :is(.qi, .card, .b1box, .essay, .hero, .q:has(> .qh), details.sec, details.honesty, #toc) {
+  background: var(--desk-paper);
+  border: 1px solid var(--desk-line);
+  border-radius: 13px;
+  box-shadow: var(--desk-shadow);
+}
+.study-page .sec .card { border-width: 1px 0 0; border-radius: 0; box-shadow: none; }
+.study-page :is(.qi img, .imgs img, .card > img) { border-color: var(--desk-line); }
+.study-page :is(.stem, .st, .ask, .card header h3) {
+  font-size: clamp(17px, 2.35vw, 20px);
+  line-height: 1.48;
+}
+.study-page :is(.tag:not(.warn, .ok, .n, .g, .bad), .b.sub) {
+  background: var(--desk-fold);
+  color: var(--desk-accent);
+  border-color: #d8c9d6;
+}
+.study-page :is(.tag.warn, .noimg, .b.warn) {
+  background: var(--warnbg);
+  color: var(--warn);
+  border-color: #d7bd91;
+}
+.study-page :is(.tag.g, .tag.ok, .b.exam) { background: var(--okbg); color: var(--ok); }
+.study-page :is(.tag.bad, .tag.n) { background: var(--badbg); color: var(--bad); }
+.study-page .opt {
+  background: #fdfafb;
+  border-color: var(--desk-line);
+  color: var(--desk-ink);
+}
+.study-page :is(.opt.sel, button.opt:hover):not(.right, .wrong, .wrongpick) { background: var(--desk-fold); }
+.study-page .opt :is(.lb, .k) { color: var(--desk-accent); }
+.study-page:not([data-desk-page="premed-quiz"]) .opt.right,
+.study-page .card.ans-on .opt.right {
+  background: var(--okbg);
+  border-color: var(--ok);
+}
+.study-page:not([data-desk-page="premed-quiz"]) .opt.right :is(.k, .lb),
+.study-page .card.ans-on .opt.right :is(.k, .lb) { color: var(--ok); }
+.study-page :is(.opt.wrong, .card.ans-on .opt.wrongpick) {
+  background: var(--badbg);
+  border-color: var(--bad);
+}
+.study-page :is(.opt.wrong, .card.ans-on .opt.wrongpick) :is(.k, .lb) { color: var(--bad); }
+.study-page .opt.mine:not(.right, .wrong, .wrongpick) { background: var(--warnbg); border-color: var(--warn); }
+.study-page .card.ok { border-left: 3px solid var(--ok); }
+.study-page .card.wrong { border-left: 3px solid var(--bad); }
+.study-page .ans {
+  background: linear-gradient(148deg, #fbf5f9, var(--desk-fold));
+  border-color: #bca3b6;
+  color: var(--desk-ink);
+  transform-origin: top center;
+}
+.study-page .ans.warn { background: var(--warnbg); border-color: var(--warn); }
+.study-page .ansline b { color: var(--ok); }
+.study-page .mine { color: var(--desk-muted); }
+.study-page :is(.note.srcbox, .note.mid, .note.none, .ans .src, .src.no, .card .src:not(span), .prompt, .b1lead) {
+  background: #f4eef3;
+  color: var(--desk-muted);
+  border-color: #cdbac9;
+}
+.study-page .note.srcbox code {
+  background: #e8dce6;
+  color: #493646;
+  overflow-wrap: anywhere;
+}
+.study-page .src::before,
+.study-page .src.no::before { color: var(--desk-muted); }
+.study-page :is(details pre, code, th) { background: #f2ebf0; }
+.study-page :is(th, td) { border-color: var(--desk-line); }
+.study-page :is(h2.part, article h2) {
+  background: linear-gradient(113deg, var(--desk-fold) 64%, transparent 64%);
+  border-color: #aa8fa3;
+}
+
+.study-page[data-desk-page="premed-guide"] :is(main p, main li, td, strong) { color: var(--desk-ink); }
+.study-page[data-desk-page="premed-guide"] :is(blockquote, blockquote p, th) { color: var(--desk-muted); }
+.study-page[data-desk-page="premed-guide"] :is(blockquote, tr:nth-child(even) td) { background: #f4edf2; border-color: var(--desk-line); }
+.study-page[data-desk-page="premed-guide"] :is(code, hr, .foot) { border-color: var(--desk-line); }
+.study-page[data-desk-page="premed-guide"] code { color: var(--desk-accent); }
+.study-page[data-desk-page="premed-guide"] .go a { background: var(--desk-accent); color: #fff; }
+.study-page[data-desk-page="premed-guide"] .go a:hover { background: var(--desk-hover); }
+
+.study-page[data-desk-page="premed-quiz"] .q {
+  font-size: clamp(17px, 2.35vw, 20px);
+  line-height: 1.48;
+}
+.study-page[data-desk-page="premed-quiz"] .bar h1 {
+  display: flex;
+  flex-wrap: wrap;
+}
+.study-page[data-desk-page="premed-quiz"] .bar h1 span {
+  color: var(--desk-muted);
+  font-family: system-ui, sans-serif;
+}
+.study-page[data-desk-page="premed-quiz"] .bar h1 .score { color: var(--ok); }
+.study-page[data-desk-page="premed-quiz"] .hd { color: var(--desk-muted); }
+.study-page[data-desk-page="premed-quiz"] button.show {
+  background: var(--desk-accent);
+  border-color: var(--desk-accent);
+  color: #fff;
+}
+.study-page[data-desk-page="premed-quiz"] button.show:hover { background: var(--desk-hover); }
+.study-page[data-desk-page="odontogenic"] #score {
+  max-width: var(--desk-width);
+  margin: 0 auto 12px;
+  background: var(--desk-glass);
+  border: 1px solid var(--desk-line);
+  border-radius: 11px;
+}
+.study-page[data-desk-page="odontogenic"] .card > .q { font-size: 20px; }
+.study-page.hide-ans[data-desk-page="imaging-list"] .ans b { background: #d9ccd6; color: transparent; }
+.study-page[data-desk-page="imaging-quiz"] :is(.prompt b, summary) { color: var(--desk-accent); }
+.study-page[data-desk-page="imaging-quiz"] details { background: #f5eef4; border-color: var(--desk-line); }
+.study-page[data-desk-page="imaging-quiz"] details .ans { background: transparent; color: var(--desk-accent); font-family: var(--desk-song); font-size: 18px; }
+.study-page[data-desk-page="pharm"] details { border: 1px solid var(--desk-line); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .study-page .ans.on,
+  .study-page:not(:has(#revealAll.on)) .ans.show,
+  .study-page:not(.showAll) .card.shown .ans,
+  .study-page[data-desk-page="imaging-quiz"] details[open] > p:first-of-type {
+    animation: desk-unfold .34s cubic-bezier(.19, 1, .36, 1) both;
+  }
+  .study-page:has(#showAll.on) .ans.on { animation: none; }
+}
+
+@keyframes desk-unfold {
+  from { opacity: .28; transform: perspective(460px) rotateX(-30deg); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 860px) {
+  .study-page > :is(header, .top),
+  .study-page[data-desk-page="premed-quiz"] > .bar { margin-inline: 12px; }
+  .study-page[data-desk-page="odontogenic"] #score { margin-inline: 14px; }
+}
+
+@media (max-width: 520px) {
+  .study-page .study-desk-links { gap: 5px 9px; }
+  .study-page .study-desk-links > span { margin-inline-start: 0; }
+  .study-page > :is(header, .top),
+  .study-page .study-hero,
+  .study-page[data-desk-page="premed-quiz"] > .bar { padding: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .study-page :is(a, button) { transition: none !important; }
+}
+</style>
+</head>
+<body data-course="diagnosis" class="study-page" data-desk-page="diagnosis-index"><div class="study-desk-nav"><nav class="study-desk-links"><a href="../learn/">← 帮学总入口</a></nav></div>
+<main class="desk"><header class="study-hero"><h1>诊断学期末学习台</h1><p class="sub">沿问诊、体格检查、诊断思维复习。每项练习可回到教师教案、课堂课件或评分表。</p></header><nav class="actions"><a class="btn" href="#focus">复习重点</a><a class="btn" href="plan.html">8 天复习计划</a><a class="btn" href="materials.html">教师资料与出处</a><a class="btn" href="practice.html">开始做题</a><a class="btn" href="#outline">逐章复习</a></nav><h2 id="clinic">从病史走到体征</h2><p>以下为依据课程资料编写的模拟口试。先口述，再逐步展开。</p><article class="panel"><h3>咳嗽、发热，一侧胸部叩诊为浊音</h3><details class="module"><summary>先问什么</summary><p>问起病时间、痰和胸痛情况，明确呼吸困难的演变。</p></details><details class="module"><summary>检查怎样改变判断</summary><p>比较双侧语颤与呼吸音。支气管通畅的实变区语颤可增强，积液区多减弱。单独的浊音不能区分两者。</p></details><p><a href="index.html#skills">对照 C-03-03 评分项</a></p></article><article class="panel"><h3>有人说“吐了血”，怎样确认来源？</h3><details class="module"><summary>先问什么</summary><p>请对方先描述血是咳出还是呕出，再问先兆、是否混痰或食物、颜色及黑便。</p></details><details class="module"><summary>检查怎样改变判断</summary><p>黑便本身不足以判别出血来源；把伴随症状、生命体征和既往病史写入初步判断。</p></details><p><a href="practice.html#set-4">回练呕血作业</a></p></article><article class="panel"><h3>皮肤黄染，粪便变浅，下一项结果怎么解释？</h3><details class="module"><summary>先问什么</summary><p>问尿色、粪色变化的先后，有无腹痛、发热、用药及肝胆疾病史。</p></details><details class="module"><summary>检查怎样改变判断</summary><p>胆汁进入肠道减少可使粪色变浅；把结合胆红素、尿胆红素与尿胆原放在一起解释，再考虑阻塞部位。</p></details><p><a href="practice.html#set-5">回练黄疸作业</a></p></article><nav class="actions"><a class="btn" href="#skills">按评分项练查体</a></nav><h2 id="focus">复习侧重</h2>
+<article class="panel">
+<h3>优先练 · 五套已批作业</h3>
+<p>脊柱四肢神经 10 题、一般状态头颈 10 题、血尿 8 题、呕血 10 题、黄疸 10 题。先做易混的三组：血尿与血红蛋白尿、呕血与咯血、溶血与胆汁淤积。</p>
+</article>
+<article class="panel">
+<h3>并行练 · 胸肺、心脏与腹部</h3>
+<p>课程介绍聚焦检体诊断；这三项也各有作业标题与体检材料。每项用一遍动作口述、一组阳性体征、一条病理生理解释收尾；心电与实验诊断另留专门单元。</p>
+</article>
+<p><a href="https://sarkazcollegewisadel.github.io/diagnostics-atlas/">诊断学随身图谱</a>　<a href="https://sarkazcollegewisadel.github.io/xinxiang-ecg-learning/">十二导联与心电病例</a>
+</p>
+<h2 id="objectives">教师教案里的掌握要求</h2><p>页码按本地阅读版从封面计。三份教案均由本课程挂在学习通章节内；前两份封面标为 2019–2020 学年，胸部教案的授课日期留空。以下按原件区分掌握要求和练习任务。</p>
+<article class="panel"><h3>基本方法 · 5.1 教案第 2 页</h3><p>掌握视、触、叩、听四种方法及适用范围，难点是触诊手法和适用范围。复述时给每个方法配一个可查出的体征。</p><details><summary>浅部触诊和深部滑行触诊各回答什么？</summary><p>浅触有助于了解局部压痛、肌紧张和浅表包块；深部滑行触诊可检查腹腔深部脏器或包块的位置、大小、质地和活动度。口述时把所选手法与要回答的问题连起来。</p></details><p><a href="materials.html#source-5">回到基本方法教案</a></p></article>
+<article class="panel"><h3>一般检查 · 6.2 教案第 2 页</h3><p>要求掌握四项生命体征的检查、正常范围与意义，以及浅表淋巴结的检查与肿大的意义。老师把蜘蛛痣和淋巴结都列入难点。教案封面与内页的教学年份不同。</p><details><summary>发现颈部淋巴结肿大，怎样报告才能让同学复查？</summary><p>说清侧别和具体部位，再报数目、大小、质地、压痛、活动度、有无粘连及表面皮肤情况。把实际摸到的表现和推测的原因分开记录。</p></details><p><a href="materials.html#source-6">回到一般检查教案</a></p></article>
+<article class="panel"><h3>胸部检查 · 8.3 教案第 3 页</h3><p>要求掌握肺部视、触、叩、听的主要内容。原件列出语颤及其意义、异常叩诊音、正常呼吸音与附加音、典型疾病的体征组合。第 4 页从咳嗽伴胸痛引入病例。</p><details><summary>同侧均叩浊，哪两项体征帮助区分肺实变和胸腔积液？</summary><p>比较语音震颤与呼吸音。支气管通畅、病灶接近胸壁的大片实变可使语颤增强，并出现支气管呼吸音；积液覆盖区语颤及呼吸音多减弱。作答时说清比较部位和适用条件。</p></details><p><a href="materials.html#source-8">回到胸部检查教案</a></p></article>
+<details class="module"><summary>另六个章节，从课件哪一页开始背？</summary><ul><li>9.3.2《心脏听诊正常心音》第 3–4 页，从心动周期解释第一心音，再用下一节的心尖与心底作比较。</li><li>10.10《黄疸》第 2–4 页，按定义、分类、鉴别三个问题闭卷复述，说明为什么先看巩膜。</li><li>11.5《神经反射、自主神经检查》第 3–4 页，给浅反射、深反射、病理反射、脑膜刺激征各举一个检查。</li><li>12.7《肝脏病常用实验室检测》第 3–4 页，结合胆红素分型解释三类黄疸，说明不同检验项目回答的问题。</li><li>13.1《病历书写的基本要求》第 3–4 页，分别说明病历与病历书写的含义，再用自己的问诊记录通读一遍。</li><li>14.2《临床思维方法》第 3–4 页，给同一初步诊断写一条支持线索、一条使你重新考虑的线索。</li></ul></details>
+<h2 id="outline">逐章复习大纲</h2>
+<p>每项先做一个闭卷问题，再展开核对。章序沿用学习通；书页按对应版本标注。</p>
+<details class="module" id="unit-1">
+<summary>01　展示视频</summary><p><a href="materials.html#source-1">本章教师资料</a></p>
+<h3>甲状腺检查和心脏检查各示范了什么？</h3>
+<p>作为操作观摩，在头颈、心脏单元按观察、手法、所获体征回练。</p>
+<p class="source">平台 1.1–1.2；与 7.1、9.6 对照</p>
+<details class="catalog">
+<summary>课程原目录 · 2019年省级精品在线开放课程选题申报展示视频</summary>
+<ul>
+<li>1.1 展示视频一：颈部检查之甲状腺</li>
+<li>1.2 展示视频二：心脏体格检查操作</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-2">
+<summary>02　绪论</summary><p><a href="materials.html#source-2">本章教师资料</a></p>
+<h3>病史、查体和辅助检查各回答什么问题？</h3>
+<p>病史建立时间线，查体取得体征，检验为假设提供支持或反证；最后汇成问题清单。</p>
+<p class="source">平台 2.1；目录占位项保留在下方</p>
+<details class="catalog">
+<summary>课程原目录 · 绪论</summary>
+<ul>
+<li>2.1 视频</li>
+<li>2.1.1 新建课程目录</li>
+<li>2.1.1.1 新建课程目录</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-3">
+<summary>03　症状学</summary><p><a href="materials.html#source-3">本章教师资料</a></p>
+<p><a href="practice.html#set-3">对应作业</a>
+</p>
+<h3>尿色变红如何区分红细胞尿、血红蛋白尿和假性血尿？</h3>
+<p>分别比较尿沉渣红细胞和尿试纸潜血，并追问用药、疼痛、发热及血块。再按发生时间和伴随表现归纳发热、咳痰和尿量变化。</p>
+<p class="source">习题集第4版书内页 1–5、55–59；血尿作业</p>
+<details class="catalog">
+<summary>课程原目录 · 第一篇 症状学</summary>
+<ul>
+<li>3.1 发热</li>
+<li>3.2 咳嗽与咳痰</li>
+<li>3.3 少尿、无尿、多尿</li>
+<li>3.4 血尿</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-4">
+<summary>04　问诊</summary><p><a href="materials.html#source-4">本章教师资料</a></p>
+<h3>如果只给你一句“昨晚吐血”，还缺哪些病史？</h3>
+<p>先请对方描述经过，再问呕吐或咳嗽、颜色、量、黑便、头晕、既往肝病及用药。把症状和时长写成主诉，按时间重建现病史。</p>
+<p class="source">平台 4.1；资料区《第一站临床思维-病史采集》</p>
+<details class="catalog">
+<summary>课程原目录 · 第二篇 问诊</summary>
+<ul>
+<li>4.1 问诊</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-5">
+<summary>05　查体基本方法</summary><p><a href="materials.html#source-5">本章教师资料</a></p>
+<h3>同一体表位置，视触叩听各能得到什么信息？</h3>
+<p>视看外观和运动；触感质地、压痛与震颤；叩比较音响和边界；听记录声音时相、部位和性质。口述一般顺序，再说明腹部听诊提前的理由。</p>
+<p class="source">《诊断学笔记》PDF 6–8；平台 5.1–5.6</p>
+<details class="catalog">
+<summary>课程原目录 · 第一章 基本方法</summary>
+<ul>
+<li>5.1 概述</li>
+<li>5.2 视诊</li>
+<li>5.3 触诊</li>
+<li>5.4 叩诊</li>
+<li>5.5 听诊、嗅诊</li>
+<li>5.6 基本检查法</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-6">
+<summary>06　一般状态与淋巴结</summary><p><a href="materials.html#source-6">本章教师资料</a></p>
+<p><a href="practice.html#set-2">对应作业</a>
+</p>
+<h3>发现颈部淋巴结后如何写成可复查的体征？</h3>
+<p>记部位、数目、大小、质地、压痛、活动、融合及皮肤。一般状态同时查生命体征、意识、面容；水肿记录部位及是否凹陷。</p>
+<p class="source">《诊断学笔记》PDF 9–16；一般状态头颈部作业</p>
+<details class="catalog">
+<summary>课程原目录 · 第二章 一般检查</summary>
+<ul>
+<li>6.1 全身状态检查（1）</li>
+<li>6.2 全身状态检查（2）</li>
+<li>6.3 全身状态检查（3）</li>
+<li>6.4 淋巴结检查</li>
+<li>6.5 一般状态及淋巴结检查</li>
+<li>6.6 常见症状-发热</li>
+<li>6.7 常见症状-水肿</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-7">
+<summary>07　头颈部</summary><p><a href="materials.html#source-7">本章教师资料</a></p>
+<p><a href="practice.html#set-2">对应作业</a>
+</p>
+<h3>颈前包块、颈静脉充盈与气管移位各提示什么？</h3>
+<p>观察包块是否随吞咽移动；记录颈静脉充盈的体位，联系右心压力；查气管时判断容积缩小牵拉或胸腔占位推移。补瞳孔、口舌和淋巴结。</p>
+<p class="source">《诊断学笔记》PDF 17–21；一般状态头颈部作业</p>
+<details class="catalog">
+<summary>课程原目录 · 第三章 头颈部检查</summary>
+<ul>
+<li>7.1 颈部检查之甲状腺（见展示视频）</li>
+<li>7.2 头部检查</li>
+<li>7.3 颈部检查</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-8">
+<summary>08　胸肺部</summary><p><a href="materials.html#source-8">本章教师资料</a></p>
+<h3>叩诊同为浊音，肺实变与胸腔积液怎样分？</h3>
+<p>支气管通畅的实变区语颤常增强，可闻支气管呼吸音；积液区语颤及呼吸音多减弱。把胸廓、乳房、呼吸运动和咯血问诊补在检查顺序中。</p>
+<p class="source">《诊断学笔记》PDF 22–47；平台 8.1–8.8</p>
+<details class="catalog">
+<summary>课程原目录 · 第四章 胸肺部检查</summary>
+<ul>
+<li>8.1 胸壁、胸廓检查</li>
+<li>8.2 乳房检查</li>
+<li>8.3 肺部视触叩诊</li>
+<li>8.4 肺部听诊</li>
+<li>8.5 呼吸系统常见疾病的主要症状和体征</li>
+<li>8.6 常见症状-咳嗽咳痰</li>
+<li>8.7 常见症状-呼吸困难</li>
+<li>8.8 常见症状-咯血</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-9">
+<summary>09　心脏、血管与心电</summary><p><a href="materials.html#source-9">本章教师资料</a></p>
+<h3>一个杂音和一张心电图各要报告哪些信息？</h3>
+<p>杂音按部位、时相、强度、性质和传导描述。心电图先核纸速增益，再看心率心律、P 与 QRS 关系、间期、电轴、ST–T；依次练肥大、缺血和心律失常。</p>
+<p class="source">《诊断学笔记》PDF 22–47、154–173；平台 9.1–9.9</p>
+<details class="catalog">
+<summary>课程原目录 · 第五章 心脏检查</summary>
+<ul>
+<li>9.1 视诊、触诊</li>
+<li>9.2 叩诊</li>
+<li>9.3 听诊</li>
+<li>9.3.1 听诊要点</li>
+<li>9.3.2 正常心音</li>
+<li>9.3.3 额外心音</li>
+<li>9.3.4 杂音</li>
+<li>9.4 血管检查</li>
+<li>9.5 循环系统常见疾病的主要症状和体征</li>
+<li>9.6 心脏体格检查</li>
+<li>9.7 常见症状-胸痛</li>
+<li>9.8 常见症状-心悸</li>
+<li>9.9 心电图检查</li>
+<li>9.9.1 心电图基础知识</li>
+<li>9.9.2 章节练习</li>
+<li>9.9.3 心电图测量与正常心电图</li>
+<li>9.9.4 新建课程目录</li>
+<li>9.9.5 异常心电图-心房肥大</li>
+<li>9.9.6 异常心电图-心室肥大</li>
+<li>9.9.7 异常心电图-心肌缺血与心肌梗死</li>
+<li>9.9.8 异常心电图-心律失常</li>
+<li>9.9.9 心电图单元测验</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-10">
+<summary>10　腹部与消化症状</summary><p><a href="materials.html#source-10">本章教师资料</a></p>
+<p><a href="practice.html#set-4">对应作业 1</a> <a href="practice.html#set-5">对应作业 2</a>
+</p>
+<h3>黄疸伴陶土色便时，哪段胆红素去路可能受阻？</h3>
+<p>结合胆红素进入肠道减少可使粪便变浅；同查尿胆红素、尿胆原与血清胆红素分型。腹部按视、听、叩、触练，区分咯血与呕血、上消化道出血与黑便。</p>
+<p class="source">《诊断学笔记》PDF 48–64；习题集书内页 33–35、44–47；呕血、黄疸作业</p>
+<details class="catalog">
+<summary>课程原目录 · 第六章 腹部检查</summary>
+<ul>
+<li>10.1 腹部概述</li>
+<li>10.2 视诊</li>
+<li>10.3 听诊</li>
+<li>10.4 叩诊</li>
+<li>10.5 触诊</li>
+<li>10.6 腹部常见疾病的主要症状和体征</li>
+<li>10.7 腹部体格检查</li>
+<li>10.8 常见症状-呕血</li>
+<li>10.9 常见症状-便血</li>
+<li>10.10 常见症状-黄疸</li>
+<li>10.11 常见症状-腹痛</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-11">
+<summary>11　脊柱四肢与神经</summary><p><a href="materials.html#source-11">本章教师资料</a></p>
+<p><a href="practice.html#set-1">对应作业</a>
+</p>
+<h3>Kernig 征、Babinski 征和浮髌试验分别在查什么？</h3>
+<p>依次联系脑膜刺激、锥体束损害和膝关节积液。整套还要复习脑神经、运动、感觉、反射、脊柱活动、眩晕和意识障碍。</p>
+<p class="source">《诊断学笔记》PDF 66–80；脊柱四肢神经作业</p>
+<details class="catalog">
+<summary>课程原目录 · 第七章 脊柱四肢、神经系统检查</summary>
+<ul>
+<li>11.1 脊柱检查</li>
+<li>11.2 四肢检查</li>
+<li>11.3 脑神经检查</li>
+<li>11.4 运动、感觉功能检查</li>
+<li>11.5 神经反射</li>
+<li>11.6 常见症状——眩晕</li>
+<li>11.7 常见症状——意识障碍</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-12">
+<summary>12　实验诊断</summary><p><a href="materials.html#source-12">本章教师资料</a></p>
+<p><a href="practice.html#set-3">对应作业 1</a> <a href="practice.html#set-5">对应作业 2</a>
+</p>
+<h3>面对异常结果，能说清测了什么以及怎样和病史互证吗？</h3>
+<p>按系列做索引：血常规与贫血、血小板和凝血、尿粪常规、浆膜腔积液与脑脊液、肾功能、肝功能、常用生化。给每组写一项标本、一种异常模式和一项干扰因素。</p>
+<p class="source">《诊断学笔记》PDF 84–146；平台 12.1–12.8</p>
+<details class="catalog">
+<summary>课程原目录 · 第四篇 实验诊断</summary>
+<ul>
+<li>12.1 第二章 第一节血液一般检测</li>
+<li>12.2 第三章 血栓与止血检测</li>
+<li>12.3 第四章 第一节 尿液检测</li>
+<li>12.4 第四章 第二节 粪便检测</li>
+<li>12.5 第四章 第四节、第五节 浆膜腔积液及脑脊液检查</li>
+<li>12.6 第五章 肾功能检查</li>
+<li>12.7 第六章 肝功能检查</li>
+<li>12.7.1 概述</li>
+<li>12.7.2 蛋白质代谢功能检测</li>
+<li>12.7.3 胆红素和胆汁酸代谢功能检测</li>
+<li>12.7.4 酶学检测</li>
+<li>12.7.5 常见肝、胆、胰疾病及其重要症状的实验诊断</li>
+<li>12.8 第七章 生化检查</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-13">
+<summary>13　病历书写</summary><p><a href="materials.html#source-13">本章教师资料</a></p>
+<h3>同一条资料该放主诉、现病史，还是查体？</h3>
+<p>主诉用症状和时长；现病史排时间并保留有诊断价值的阴性资料；查体记客观所见。电子病历也要核实信息来源和时间。</p>
+<p class="source">《听课、记忆与测试》PDF 197–202；平台 13.1–13.4</p>
+<details class="catalog">
+<summary>课程原目录 · 第五篇 病历书写</summary>
+<ul>
+<li>13.1 第一章 病历书写的基本要求</li>
+<li>13.2 第二章 病历书写格式及内容</li>
+<li>13.3 第三章 电子病历</li>
+<li>13.4 病历书写PPT</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-14">
+<summary>14　诊断思维</summary><p><a href="materials.html#source-14">本章教师资料</a></p>
+<h3>一个初步诊断怎样经得起反证？</h3>
+<p>整理问题清单，列最相关的两个假设；为每个写支持和不支持的证据，再选一项最能区分它们的检查，并说明它将如何改变判断。</p>
+<p class="source">《听课、记忆与测试》PDF 299–301；平台 14.1–14.3</p>
+<details class="catalog">
+<summary>课程原目录 · 第六篇 诊断思维</summary>
+<ul>
+<li>14.1 第一章 诊断疾病的步骤</li>
+<li>14.2 第二章 临床思维的方法</li>
+<li>14.3 第三章 临床诊断的内容</li>
+</ul>
+</details>
+</details>
+<details class="module" id="unit-15">
+<summary>15　教学问卷</summary>
+<h3>平台最后一项是教学反馈。</h3>
+<p>目录留痕，复习时直接回到临床思维或错题。</p>
+<p class="source">平台 15.1</p>
+<details class="catalog">
+<summary>课程原目录 · 诊断学线上教学问卷调查</summary>
+<ul>
+<li>15.1 （必填）</li>
+</ul>
+</details>
+</details>
+<h2 id="skills">技能口述与原评分表</h2>
+<p>先走完一次模拟，再按正文查漏。资料区同时收录了两种站号编排；下列编号只用于在附件中定位。</p>
+<article class="panel">
+<h3>病史采集 · 原件“一、病史采集模板”</h3>
+<p>以呕血为例，写明起病和诱因、血的性状与量、伴黑便或头晕、诊疗经过、一般情况，再补相关病史和药物过敏史。与模板逐栏对照，标出漏问的一栏。该原件正文含执业医师资格考试练习。</p>
+</article>
+<article class="panel">
+<h3>甲状腺 · C-02-03</h3>
+<p>在模型或同学模拟中先说明检查、取坐位，观察大小与对称性；定位峡部，随吞咽触诊，再检查两侧叶并报告。原表这道示例为 10 分钟、15 分，属于该练习题。</p>
+</article>
+<article class="panel">
+<h3>胸、心、腹 · C-03-03 / C-04-02 / C-05-06</h3>
+<p>依次练对称比较语音震颤、按瓣膜听诊区报告听诊内容、变换体位后复核浊音界。每次只做一个任务，口述“检查对象、观察结果、意义”。</p>
+</article>
+<article class="panel">
+<h3>神经与基本操作 · C-07-01 / C-07-02 / D-03-03</h3>
+<p>辨别脑膜刺激征和病理反射；基本操作选穿脱手术衣与戴无菌手套，对照实训室评分表复述准备、无菌边界及结束处理。侵入性项目安排在有指导的技能训练中。</p>
+</article>
+<details class="module">
+<summary>第三站体格检查评分表 · 可按编号回查的项目</summary>
+<ul>
+<li>C-01-01　测体温（腋测法）</li>
+<li>C-01-02　血压测量（间接测量法）</li>
+<li>C-01-03　腋窝淋巴结检查</li>
+<li>C-01-04　脉搏</li>
+<li>C-01-05　测身高</li>
+<li>C-01-08　皮肤弹性及水肿</li>
+<li>C-01-09　颈部淋巴结及锁骨窝淋巴结触诊</li>
+<li>C-01-10　腹股沟淋巴结触诊</li>
+<li>C-02-01　眼球运动</li>
+<li>C-02-02　直、间接对光反射</li>
+<li>C-02-03　甲状腺检查</li>
+<li>C-02-04　气管检查</li>
+<li>C-02-05　眼球视诊</li>
+<li>C-02-07　颈部血管</li>
+<li>C-03-01　胸部的体表标志</li>
+<li>C-03-02　胸廓扩张度</li>
+<li>C-03-03　语音震颤</li>
+<li>C-03-04　胸膜摩擦感</li>
+<li>C-03-05　肺下界叩诊</li>
+<li>C-03-08　胸壁视诊检查</li>
+<li>C-04-01　心界叩诊</li>
+<li>C-04-02　心脏瓣膜听诊区、听诊顺序、听诊内容</li>
+<li>C-04-03　心包摩擦音</li>
+<li>C-05-01　腹壁曲张静脉血流方向</li>
+<li>C-05-02　压痛及反跳痛</li>
+<li>C-05-03　肝脏触诊（双手触诊）</li>
+<li>C-05-04　脾脏触诊（双手触诊）</li>
+<li>C-05-05　液波震颤</li>
+<li>C-05-06　移动性浊音</li>
+<li>C-05-07　膀胱叩诊</li>
+<li>C-05-08　肠鸣音听诊</li>
+<li>C-05-09　腹部体表标志</li>
+<li>C-05-10　Murphy征检查</li>
+<li>C-05-11　肝上界叩诊</li>
+<li>C-05-12　测肝上下径</li>
+<li>C-05-13　肋脊角叩击痛检查</li>
+<li>C-05-14　腹部血管杂音听诊</li>
+<li>C-06-01　脊柱检查</li>
+<li>C-06-02　手部及其关节视诊检查</li>
+<li>C-06-03　小腿和膝关节检查</li>
+<li>C-06-04　直肠指诊</li>
+<li>C-07-01　脑膜刺激征</li>
+<li>C-07-02　Babinski 征</li>
+<li>C-07-03　腹壁反射检查</li>
+<li>C-07-04　肱二头肌反射检查</li>
+<li>C-07-05　膝反射</li>
+<li>C-07-06　跟腱反射</li>
+<li>D-01-01　心肺复苏</li>
+<li>D-01-03　四肢骨折现场急救外固定</li>
+<li>D-01-04　简易呼吸器简介</li>
+<li>D-02-01　腹膜腔穿刺术</li>
+<li>D-02-02　静脉穿刺</li>
+<li>D-02-03　胸腔穿刺</li>
+<li>D-03-01　手术区消毒、铺巾</li>
+<li>D-03-02　手术刷手法</li>
+<li>D-03-03　穿脱手术衣、戴无菌手套</li>
+<li>D-03-04　换药</li>
+<li>D-03-05　开放伤口的止血包扎</li>
+<li>D-03-06　、切开脓肿引流</li>
+<li>D-03-09　清创</li>
+<li>D-04-01　吸氧术</li>
+<li>D-04-02　吸痰术</li>
+<li>D-04-03　导尿术</li>
+<li>D-04-04　穿、脱隔离衣</li>
+</ul>
+</details>
+<details class="module">
+<summary>第二站基本操作评分表 · 可按编号回查的项目</summary>
+<ul>
+</ul>
+</details>
+<article class="panel">
+<h3>按分项练一次 · 语音震颤 C-03-03</h3>
+<p>原表把查体动作拆成 10 分：体位与暴露 2 分，对称放手并请受检者等强度发长音 2 分，自上而下、由内到外反复左右比较 4 分，报告结果 2 分。提问另列体征减弱的意义。练完优先回看占 4 分的比较动作。</p>
+</article>
+<h2 id="recall">三组容易混淆的结果</h2>
+<article class="panel">
+<h3>黄疸 · 先想胆红素去了哪里</h3>
+<p>溶血时非结合胆红素增多，尿胆红素通常阴性；完全胆道梗阻时结合胆红素反流入血，尿胆红素阳性、尿胆原可减少或消失，粪便变浅。肝细胞损伤常为混合改变。对应黄疸作业第 1、3、7 题。</p>
+</article>
+<article class="panel">
+<h3>凝血 · PT 和 APTT 怎么分</h3>
+<p>PT 主要反映外源及共同途径，APTT 主要反映内源及共同途径。先看是哪一项延长，再想受累途径；两者均延长时还需结合病史与其他检验。回《诊断学笔记》PDF 99–102。</p>
+</article>
+<article class="panel">
+<h3>心电 · 先核标定，再换算</h3>
+<p>走纸 25 mm/s 时横向一小格为 0.04 s；增益 10 mm/mV 时纵向一小格为 0.1 mV。先在纸上写出标定，再量 RR、PR、QRS；心律明显不齐时不要用任意单个 RR 代表平均心率。</p>
+</article>
+</main></body></html>

@@ -1,7 +1,7 @@
 *{box-sizing:border-box}
-:root{color-scheme:light;--ink:#292a35;--muted:#555c67;--accent:#56465e;--line:#d8cfd9;--paper:#fffefd;--wash:#f5f1f4;--serif:"Songti SC","STSong","华文宋体",SimSun,serif}
+:root{color-scheme:light;--ink:#292a35;--muted:#555c67;--accent:#56465e;--line:#d8cfd9;--paper:var(--desk-paper,#fffdfd);--wash:var(--desk-bg,#f3f0f1);--serif:"Songti SC","STSong","华文宋体",SimSun,serif}
 body{margin:0;background:var(--wash);color:var(--ink);font:16px/1.75 "Segoe UI","Microsoft YaHei",sans-serif}
-main{max-width:62rem;margin:auto;padding:1rem clamp(.9rem,4vw,3rem) 4rem}a{color:var(--accent);text-underline-offset:.2em}
+main{max-width:var(--desk-width,820px);margin:auto;padding:1rem clamp(.9rem,4vw,3rem) 4rem}a{color:var(--accent);text-underline-offset:.2em}
 .masthead,nav,.tools{display:flex;flex-wrap:wrap;align-items:center;gap:.65rem 1rem}.masthead{justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:.7rem}
 header{padding:1.6rem 0 .5rem}h1,h2,h3{font-family:var(--serif);line-height:1.35}h1{font-size:clamp(2rem,5vw,3.5rem);margin:0}h2{margin:2.4rem 0 .7rem;font-size:1.65rem}h3{margin:.45rem 0;font-size:1.18rem}
 header p{max-width:46em}p{margin:.55rem 0}section,details,article{scroll-margin-top:1rem}
@@ -13,3 +13,15 @@ button[aria-pressed=true]{background:#514457;color:white}input[type=checkbox]{wi
 .columns{display:grid;grid-template-columns:1fr 1fr;gap:.65rem 1.4rem}.columns p{margin:.25rem 0}a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid #956129;outline-offset:2px}
 [hidden]{display:none!important}@media(max-width:600px){.columns{grid-template-columns:1fr}.module,.group,.day{overflow-wrap:anywhere}.masthead{gap:.3rem}}
 @media print{body{background:white}main{max-width:none}.tools,.masthead,nav,.transfer-toggle{display:none}.question,.day{break-inside:avoid}}
+
+.study-desk-links{display:flex;align-items:center;flex-wrap:wrap;gap:.6rem;margin:auto;padding:.8rem 0;max-width:var(--desk-width)}
+.study-desk-links a,.actions a{padding:.25rem .85rem;text-decoration:none}
+.actions{margin:.8rem 0 1rem}
+.study-hero p{margin:0;color:var(--desk-muted)}
+.choices{border:0;padding:0;margin:.5rem 0}.choices legend{color:var(--desk-muted);font-size:.85rem}
+.choices label{display:flex;gap:.7rem;align-items:baseline;border:1px solid var(--desk-line);border-radius:8px;padding:.45rem .65rem;background:var(--desk-paper);margin:.3rem 0;cursor:pointer}
+.choices label:has(input:checked){background:var(--desk-fold);border-color:var(--desk-accent)}.choices input{accent-color:var(--desk-accent)}
+.reply{margin-inline-start:.7rem;font-size:.9rem;color:var(--desk-accent)}.solution{margin:.5rem 0}
+.slide{display:block;max-width:100%;max-height:24rem;object-fit:contain;background:#faf8fa;border-radius:8px;margin:.7rem auto}
+.shelf-search{display:flex;gap:.8rem;align-items:center;flex-wrap:wrap}.shelf-search input{font:inherit;max-width:100%;padding:.35rem .7rem;border:1px solid var(--desk-line);border-radius:8px}
+details[open]>summary{color:var(--desk-accent)}.day .actions{margin:.5rem 0}

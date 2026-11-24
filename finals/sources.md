@@ -1,6 +1,6 @@
-# 两科期末复习资料核对 · 2026-11-25
+# 首批原件核对记录 · 2026-11-25
 
-[双科计划](index.html) · [口腔组织病理学](oral.html) · [诊断学](diagnosis.html)
+本文件保留首次核对的作业与原件指纹。后续逐科核对学习通章节附件，见[口腔组织病理学资料记录](../oral-finals/sources.md)和[诊断学资料记录](../diagnostics-finals/sources.md)。
 
 ## 核对范围
 

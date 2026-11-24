@@ -1,0 +1,1928 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>口腔组织病理学题库 · 学习台</title>
+<link rel="stylesheet" href="../finals/review.css"><link rel="stylesheet" href="../learn/transfer.css"><script defer src="../finals/review.js"></script><script defer src="../learn/transfer.js"></script><style id="study-desk-theme">
+@font-face {
+  font-family: "Desk Song";
+  src: local("STSong"), local("华文宋体");
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --desk-bg: #f3f0f1;
+  --desk-paper: #fffdfd;
+  --desk-ink: #2d272e;
+  --desk-muted: #625561;
+  --desk-line: #dcd1da;
+  --desk-fold: #ede4eb;
+  --desk-accent: #60475a;
+  --desk-hover: #75576e;
+  --desk-glass: linear-gradient(151deg, #fffdfdf2, #eee6eddb);
+  --desk-shadow: 0 2px 4px #392f3609, 0 8px 24px #392f3608;
+  --desk-song: "Desk Song", "STSong", "华文宋体", "Songti SC", SimSun, serif;
+  --desk-width: 820px;
+
+  /* Existing pages use several names for the same roles. */
+  --bg: var(--desk-bg);
+  --card: var(--desk-paper);
+  --card2: var(--desk-fold);
+  --ink: var(--desk-ink);
+  --tx: var(--desk-ink);
+  --sub: var(--desk-muted);
+  --dim: var(--desk-muted);
+  --line: var(--desk-line);
+  --hl: var(--desk-accent);
+  --hl2: var(--desk-accent);
+  --acc: var(--desk-accent);
+  --accent: var(--desk-accent);
+  --code: var(--desk-fold);
+  --ok: #226040;
+  --okbg: #e8f4eb;
+  --bad: #922f34;
+  --badbg: #faebec;
+  --warn: #744c1b;
+  --warnbg: #f7f0e3;
+}
+
+body.study-page {
+  background: radial-gradient(ellipse at 85% 0, #eee6ed, transparent 550px), var(--desk-bg);
+  color: var(--desk-ink);
+  font-family: "Segoe UI Variable", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.study-page :is(h1, h2, .stem, .st, .ask, .card header h3, .ans .dx),
+.study-page[data-desk-page="premed-quiz"] .q,
+.study-page[data-desk-page="odontogenic"] .card > .q {
+  font-family: var(--desk-song);
+  font-weight: 400;
+  text-wrap: pretty;
+}
+
+.study-page :is(h1, h2, h3, h4) { color: var(--desk-ink); }
+.study-page a { color: var(--desk-accent); }
+.study-page :is(.sub, .foot, .src, .hint, .cap, figcaption, .who) { color: var(--desk-muted); }
+.study-page :is(a, button, summary, input, textarea):focus-visible {
+  outline: 2px solid var(--desk-accent);
+  outline-offset: 3px;
+}
+
+.study-page .study-desk-nav {
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+  padding-inline: clamp(10px, 3vw, 22px);
+  border-bottom: 0;
+}
+
+.study-page .study-desk-nav::after {
+  content: "";
+  position: absolute;
+  inset: auto max(12px, calc((100% - var(--desk-width)) / 2)) 0;
+  border-bottom: 1px solid var(--desk-line);
+  pointer-events: none;
+}
+
+.study-page .study-desk-links { max-width: var(--desk-width); }
+.study-page .study-desk-links > span {
+  margin-inline-start: auto;
+  color: var(--desk-muted);
+  font-size: .83em;
+}
+
+.study-page :is(.study-desk-nav a, .btn, .bar button, .tools button, .chip, .acts button, .copy, .jump a, :where(#toTop)) {
+  min-height: 34px;
+  border: 1px solid var(--desk-line);
+  border-radius: 100px;
+  background: var(--desk-glass);
+  color: var(--desk-accent);
+  box-shadow: inset 0 1px 0 #fff, 0 2px 5px #5034480d;
+  transition: transform .26s cubic-bezier(.2, 1.25, .4, 1), background-color .18s, border-color .18s;
+}
+
+.study-page :is(.study-desk-nav a, .btn, .bar button, .tools button, .chip, .acts button, .copy, .jump a, :where(#toTop)):hover {
+  background: #fff;
+  border-color: #af96aa;
+}
+
+.study-page :is(.btn, .bar button, .tools button, .chip, .acts button, .copy, :where(#toTop)):active {
+  transform: scale(.965);
+}
+
+.study-page :is(.btn.on, .bar button.on, .bar button.primary, .tools button.on, .chip.on, .acts button.on) {
+  background: var(--desk-accent);
+  border-color: var(--desk-accent);
+  color: #fff;
+  box-shadow: none;
+}
+
+.study-page :is(.btn.on, .bar button.on, .bar button.primary, .tools button.on, .chip.on, .acts button.on):hover {
+  background: var(--desk-hover);
+  color: #fff;
+}
+
+.study-page :is(.copy.done, .acts button.ok) {
+  background: var(--okbg);
+  border-color: var(--ok);
+  color: var(--ok);
+}
+
+.study-page :is(.acts button.bad, .acts button.wrong) {
+  background: var(--badbg);
+  border-color: var(--bad);
+  color: var(--bad);
+}
+
+.study-page button:disabled { opacity: .55; }
+
+.study-page > :is(header, .top),
+.study-page .study-hero,
+.study-page[data-desk-page="premed-quiz"] > .bar {
+  position: relative;
+  isolation: isolate;
+  z-index: auto;
+  max-width: var(--desk-width);
+  margin: 10px auto 14px;
+  padding: clamp(16px, 3vw, 27px);
+  border: 1px solid var(--desk-line);
+  border-radius: 13px;
+  background: linear-gradient(135deg, #fffdfd 46%, #f0e8ef);
+  box-shadow: var(--desk-shadow);
+}
+
+/* A fold on the heading surface leaves the exercise and source areas quiet. */
+.study-page > :is(header, .top)::after,
+.study-page .study-hero::after,
+.study-page[data-desk-page="premed-quiz"] > .bar::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  width: min(33%, 185px);
+  height: 100%;
+  background: linear-gradient(142deg, #d5c3d1 13%, #eee5ed 13% 38%, #d9c8d5 38% 51%, #f1eaf0 51%);
+  clip-path: polygon(66% 0, 100% 0, 100% 82%, 59% 100%, 0 100%, 42% 61%);
+  border-radius: 0 13px 13px 0;
+  opacity: .53;
+  pointer-events: none;
+}
+
+.study-page > :is(header, .top) h1,
+.study-page .study-hero h1,
+.study-page[data-desk-page="premed-quiz"] .bar h1 {
+  margin: 0 0 6px;
+  padding: 0;
+  border: 0;
+  color: var(--desk-ink);
+  font: 400 clamp(26px, 4.8vw, 43px)/1.2 var(--desk-song);
+  letter-spacing: -.025em;
+  overflow-wrap: anywhere;
+}
+
+.study-page > header .wrap { padding-inline: 0; }
+.study-page > :is(header, .top, .study-hero) :is(.sub, p) { color: var(--desk-muted); }
+.study-page .study-hero .sub { margin-bottom: 0; }
+.study-page .wrap { max-width: var(--desk-width); }
+.study-page .study-course-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 12px;
+}
+.study-page .study-course-links a {
+  padding: 7px 10px;
+  background: #fffdfd99;
+  border: 1px solid var(--desk-line);
+  border-radius: 7px;
+  color: var(--desk-accent);
+  font-size: .82em;
+  text-decoration: none;
+}
+.study-page .study-course-links a:hover { background: var(--desk-fold); }
+
+.study-page .bar,
+.study-page .tools,
+.study-page .filters,
+.study-page > nav:not(.study-desk-nav),
+.study-page .jump,
+.study-page #score.score {
+  position: static;
+  inset: auto;
+  z-index: auto;
+}
+
+.study-page :is(.bar, .tools, .filters, .jump) { color: var(--desk-muted); }
+.study-page :is(.tools, .filters, .jump) { align-items: center; }
+.study-page .tools { margin-top: 12px; }
+.study-page .filters { padding-block: 9px; }
+.study-page .bar {
+  background: var(--desk-glass);
+  backdrop-filter: blur(18px) saturate(135%);
+  border: 1px solid var(--desk-line);
+  border-radius: 10px;
+  padding: 7px 9px;
+}
+.study-page .bar .score { color: var(--ok); font-family: system-ui, sans-serif; letter-spacing: 0; }
+.study-page .bar .sc { color: var(--desk-ink); }
+.study-page header .bar { margin-top: 12px; }
+.study-page > nav:not(.study-desk-nav) {
+  max-width: var(--desk-width);
+  margin: 0 auto;
+  background: transparent;
+  border-color: var(--desk-line);
+}
+.study-page > nav:not(.study-desk-nav) a {
+  background: var(--desk-fold);
+  color: var(--desk-accent);
+  border: 1px solid var(--desk-line);
+}
+.study-page > nav:not(.study-desk-nav) a:hover,
+.study-page > nav:not(.study-desk-nav) a.hl {
+  background: var(--desk-accent);
+  color: #fff;
+}
+.study-page .jump {
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: var(--desk-width);
+  margin: 8px auto 0;
+  padding-inline: 14px;
+}
+.study-page .study-section-jump { margin-top: 12px; padding: 0; }
+.study-page .jump a { display: inline-flex; align-items: center; }
+.study-page #toTop {
+  position: static;
+  justify-content: center;
+  margin: 12px auto;
+}
+
+.study-page :is(.qi, .card, .b1box, .essay, .hero, .q:has(> .qh), details.sec, details.honesty, #toc) {
+  background: var(--desk-paper);
+  border: 1px solid var(--desk-line);
+  border-radius: 13px;
+  box-shadow: var(--desk-shadow);
+}
+.study-page .sec .card { border-width: 1px 0 0; border-radius: 0; box-shadow: none; }
+.study-page :is(.qi img, .imgs img, .card > img) { border-color: var(--desk-line); }
+.study-page :is(.stem, .st, .ask, .card header h3) {
+  font-size: clamp(17px, 2.35vw, 20px);
+  line-height: 1.48;
+}
+.study-page :is(.tag:not(.warn, .ok, .n, .g, .bad), .b.sub) {
+  background: var(--desk-fold);
+  color: var(--desk-accent);
+  border-color: #d8c9d6;
+}
+.study-page :is(.tag.warn, .noimg, .b.warn) {
+  background: var(--warnbg);
+  color: var(--warn);
+  border-color: #d7bd91;
+}
+.study-page :is(.tag.g, .tag.ok, .b.exam) { background: var(--okbg); color: var(--ok); }
+.study-page :is(.tag.bad, .tag.n) { background: var(--badbg); color: var(--bad); }
+.study-page .opt {
+  background: #fdfafb;
+  border-color: var(--desk-line);
+  color: var(--desk-ink);
+}
+.study-page :is(.opt.sel, button.opt:hover):not(.right, .wrong, .wrongpick) { background: var(--desk-fold); }
+.study-page .opt :is(.lb, .k) { color: var(--desk-accent); }
+.study-page:not([data-desk-page="premed-quiz"]) .opt.right,
+.study-page .card.ans-on .opt.right {
+  background: var(--okbg);
+  border-color: var(--ok);
+}
+.study-page:not([data-desk-page="premed-quiz"]) .opt.right :is(.k, .lb),
+.study-page .card.ans-on .opt.right :is(.k, .lb) { color: var(--ok); }
+.study-page :is(.opt.wrong, .card.ans-on .opt.wrongpick) {
+  background: var(--badbg);
+  border-color: var(--bad);
+}
+.study-page :is(.opt.wrong, .card.ans-on .opt.wrongpick) :is(.k, .lb) { color: var(--bad); }
+.study-page .opt.mine:not(.right, .wrong, .wrongpick) { background: var(--warnbg); border-color: var(--warn); }
+.study-page .card.ok { border-left: 3px solid var(--ok); }
+.study-page .card.wrong { border-left: 3px solid var(--bad); }
+.study-page .ans {
+  background: linear-gradient(148deg, #fbf5f9, var(--desk-fold));
+  border-color: #bca3b6;
+  color: var(--desk-ink);
+  transform-origin: top center;
+}
+.study-page .ans.warn { background: var(--warnbg); border-color: var(--warn); }
+.study-page .ansline b { color: var(--ok); }
+.study-page .mine { color: var(--desk-muted); }
+.study-page :is(.note.srcbox, .note.mid, .note.none, .ans .src, .src.no, .card .src:not(span), .prompt, .b1lead) {
+  background: #f4eef3;
+  color: var(--desk-muted);
+  border-color: #cdbac9;
+}
+.study-page .note.srcbox code {
+  background: #e8dce6;
+  color: #493646;
+  overflow-wrap: anywhere;
+}
+.study-page .src::before,
+.study-page .src.no::before { color: var(--desk-muted); }
+.study-page :is(details pre, code, th) { background: #f2ebf0; }
+.study-page :is(th, td) { border-color: var(--desk-line); }
+.study-page :is(h2.part, article h2) {
+  background: linear-gradient(113deg, var(--desk-fold) 64%, transparent 64%);
+  border-color: #aa8fa3;
+}
+
+.study-page[data-desk-page="premed-guide"] :is(main p, main li, td, strong) { color: var(--desk-ink); }
+.study-page[data-desk-page="premed-guide"] :is(blockquote, blockquote p, th) { color: var(--desk-muted); }
+.study-page[data-desk-page="premed-guide"] :is(blockquote, tr:nth-child(even) td) { background: #f4edf2; border-color: var(--desk-line); }
+.study-page[data-desk-page="premed-guide"] :is(code, hr, .foot) { border-color: var(--desk-line); }
+.study-page[data-desk-page="premed-guide"] code { color: var(--desk-accent); }
+.study-page[data-desk-page="premed-guide"] .go a { background: var(--desk-accent); color: #fff; }
+.study-page[data-desk-page="premed-guide"] .go a:hover { background: var(--desk-hover); }
+
+.study-page[data-desk-page="premed-quiz"] .q {
+  font-size: clamp(17px, 2.35vw, 20px);
+  line-height: 1.48;
+}
+.study-page[data-desk-page="premed-quiz"] .bar h1 {
+  display: flex;
+  flex-wrap: wrap;
+}
+.study-page[data-desk-page="premed-quiz"] .bar h1 span {
+  color: var(--desk-muted);
+  font-family: system-ui, sans-serif;
+}
+.study-page[data-desk-page="premed-quiz"] .bar h1 .score { color: var(--ok); }
+.study-page[data-desk-page="premed-quiz"] .hd { color: var(--desk-muted); }
+.study-page[data-desk-page="premed-quiz"] button.show {
+  background: var(--desk-accent);
+  border-color: var(--desk-accent);
+  color: #fff;
+}
+.study-page[data-desk-page="premed-quiz"] button.show:hover { background: var(--desk-hover); }
+.study-page[data-desk-page="odontogenic"] #score {
+  max-width: var(--desk-width);
+  margin: 0 auto 12px;
+  background: var(--desk-glass);
+  border: 1px solid var(--desk-line);
+  border-radius: 11px;
+}
+.study-page[data-desk-page="odontogenic"] .card > .q { font-size: 20px; }
+.study-page.hide-ans[data-desk-page="imaging-list"] .ans b { background: #d9ccd6; color: transparent; }
+.study-page[data-desk-page="imaging-quiz"] :is(.prompt b, summary) { color: var(--desk-accent); }
+.study-page[data-desk-page="imaging-quiz"] details { background: #f5eef4; border-color: var(--desk-line); }
+.study-page[data-desk-page="imaging-quiz"] details .ans { background: transparent; color: var(--desk-accent); font-family: var(--desk-song); font-size: 18px; }
+.study-page[data-desk-page="pharm"] details { border: 1px solid var(--desk-line); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .study-page .ans.on,
+  .study-page:not(:has(#revealAll.on)) .ans.show,
+  .study-page:not(.showAll) .card.shown .ans,
+  .study-page[data-desk-page="imaging-quiz"] details[open] > p:first-of-type {
+    animation: desk-unfold .34s cubic-bezier(.19, 1, .36, 1) both;
+  }
+  .study-page:has(#showAll.on) .ans.on { animation: none; }
+}
+
+@keyframes desk-unfold {
+  from { opacity: .28; transform: perspective(460px) rotateX(-30deg); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 860px) {
+  .study-page > :is(header, .top),
+  .study-page[data-desk-page="premed-quiz"] > .bar { margin-inline: 12px; }
+  .study-page[data-desk-page="odontogenic"] #score { margin-inline: 14px; }
+}
+
+@media (max-width: 520px) {
+  .study-page .study-desk-links { gap: 5px 9px; }
+  .study-page .study-desk-links > span { margin-inline-start: 0; }
+  .study-page > :is(header, .top),
+  .study-page .study-hero,
+  .study-page[data-desk-page="premed-quiz"] > .bar { padding: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .study-page :is(a, button) { transition: none !important; }
+}
+</style>
+</head>
+<body data-course="oral" class="study-page" data-desk-page="oral-practice"><div class="study-desk-nav"><nav class="study-desk-links"><a href="../learn/">← 帮学总入口</a><a href="index.html">口腔组织病理学</a></nav></div>
+<main class="desk"><header class="study-hero"><h1>口腔组织病理学题库</h1><p class="sub">按作业名称或题号回练，保留每一道题的来源与核对提示。</p></header><nav class="actions"><a class="btn" href="index.html#outline">查本章重点</a><a class="btn" href="plan.html">复习计划</a><a class="btn" href="materials.html">查原资料</a></nav><h2 id="practice">遮答回练</h2>
+<p>选好答案后点“核对作答”。答错的题会加入回练，填空和简答可先闭卷口述。平台题标明作业名和原题号；暑假附件保留自身的编号和答案措辞。</p><div class="tools" id="filters" hidden>
+<label>查看 <select id="filter"><option value="all">全部题目</option><option value="again">我的回练</option><option value="check">有核对提示</option></select>
+</label><span role="status" id="count"></span></div>
+<details class="group" id="set-1">
+<summary>第6章 <small>· 10 题</small>
+</summary>
+<article id="g1-q1" class="question"><small class="tag">第6章 · 第 1 题 · 单选题</small>
+<h3>全部由浆液性腺泡组成,故属纯浆液腺的是( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g1-q1" value="A"><span>A. 腮腺</span></label><label><input type="radio" name="g1-q1" value="B"><span>B. 下颌下腺</span></label><label><input type="radio" name="g1-q1" value="C"><span>C. 舌下腺</span></label><label><input type="radio" name="g1-q1" value="D"><span>D. 唇腺</span></label><label><input type="radio" name="g1-q1" value="E"><span>E. 腭腺</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　A · 腮腺</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g1-q2" class="question"><small class="tag">第6章 · 第 2 题 · 单选题</small>
+<h3>唾液腺中最大的腺体是( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g1-q2" value="A"><span>A. 腮腺</span></label><label><input type="radio" name="g1-q2" value="B"><span>B. 下颌下腺</span></label><label><input type="radio" name="g1-q2" value="C"><span>C. 舌腺</span></label><label><input type="radio" name="g1-q2" value="D"><span>D. 腭腺</span></label><label><input type="radio" name="g1-q2" value="E"><span>E. 唇腺</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　A · 腮腺</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g1-q3" class="question"><small class="tag">第6章 · 第 3 题 · 单选题</small>
+<h3>唾液分泌性IgA的主要来源( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g1-q3" value="A"><span>A. 颊腺</span></label><label><input type="radio" name="g1-q3" value="B"><span>B. 舌腺</span></label><label><input type="radio" name="g1-q3" value="C"><span>C. 腮腺</span></label><label><input type="radio" name="g1-q3" value="D"><span>D. 唇腺</span></label><label><input type="radio" name="g1-q3" value="E"><span>E. 磨牙后腺</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　D · 唇腺</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g1-q4" class="question"><small class="tag">第6章 · 第 4 题 · 单选题</small>
+<h3>舍格伦综合征进行病理检查最常见的取材部位是( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g1-q4" value="A"><span>A. 颊腺</span></label><label><input type="radio" name="g1-q4" value="B"><span>B. 舌腺</span></label><label><input type="radio" name="g1-q4" value="C"><span>C. 腮腺</span></label><label><input type="radio" name="g1-q4" value="D"><span>D. 唇腺</span></label><label><input type="radio" name="g1-q4" value="E"><span>E. 磨牙后腺</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　D · 唇腺</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g1-q5" class="question"><small class="tag">第6章 · 第 5 题 · 单选题</small>
+<h3>胞质内含有酶原颗粒的细胞是( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g1-q5" value="A"><span>A. 浆液细胞</span></label><label><input type="radio" name="g1-q5" value="B"><span>B. 黏液细胞</span></label><label><input type="radio" name="g1-q5" value="C"><span>C. 闰管细胞</span></label><label><input type="radio" name="g1-q5" value="D"><span>D. 分泌管细胞</span></label><label><input type="radio" name="g1-q5" value="E"><span>E. 肌上皮细胞</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　A · 浆液细胞</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g1-q6" class="question"><small class="tag">第6章 · 第 6 题 · 单选题</small>
+<h3>能形成半月板的结构是( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g1-q6" value="A"><span>A. 浆液腺泡</span></label><label><input type="radio" name="g1-q6" value="B"><span>B. 黏液腺泡</span></label><label><input type="radio" name="g1-q6" value="C"><span>C. 混合性腺泡</span></label><label><input type="radio" name="g1-q6" value="D"><span>D. 闰管</span></label><label><input type="radio" name="g1-q6" value="E"><span>E. 分泌管</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 混合性腺泡</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g1-q7" class="question"><small class="tag">第6章 · 第 7 题 · 单选题</small>
+<h3>以下关于浆液性腺泡的叙述,不正确的是( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g1-q7" value="A"><span>A. 呈球形,由黏液细胞组成</span></label><label><input type="radio" name="g1-q7" value="B"><span>B. 胞核为圆形,位于基底部1/3处</span></label><label><input type="radio" name="g1-q7" value="C"><span>C. 细胞呈锥体形,基底部较宽</span></label><label><input type="radio" name="g1-q7" value="D"><span>D. 可分泌酶原颗粒</span></label><label><input type="radio" name="g1-q7" value="E"><span>E. 浆液细胞主要表达α-淀粉酶</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　A · 呈球形,由黏液细胞组成</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g1-q8" class="question"><small class="tag">第6章 · 第 8 题 · 单选题</small>
+<h3>关于腺泡的叙述中正确的是( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g1-q8" value="A"><span>A. 腺泡连接于导管末端的盲囊</span></label><label><input type="radio" name="g1-q8" value="B"><span>B. 由单层腺上皮细胞组成</span></label><label><input type="radio" name="g1-q8" value="C"><span>C. 外侧为薄的基底膜包绕</span></label><label><input type="radio" name="g1-q8" value="D"><span>D. 可分为浆液性、黏液性、混合性三种</span></label><label><input type="radio" name="g1-q8" value="E"><span>E. 以上都正确</span></label></fieldset><button hidden type="button" data-grade="E">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　E · 以上都正确</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g1-q9" class="question"><small class="tag">第6章 · 第 9 题 · 单选题</small>
+<h3>以下关于黏液性腺泡的叙述,不正确的是( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g1-q9" value="A"><span>A. 呈管状,由黏液细胞组成</span></label><label><input type="radio" name="g1-q9" value="B"><span>B. 光镜下黏液细胞呈锥体形</span></label><label><input type="radio" name="g1-q9" value="C"><span>C. 胞质内含丰富的黏原颗粒</span></label><label><input type="radio" name="g1-q9" value="D"><span>D. 染色过程中见透明呈网状结构</span></label><label><input type="radio" name="g1-q9" value="E"><span>E. 能形成半月板的结构</span></label></fieldset><button hidden type="button" data-grade="E">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　E · 能形成半月板的结构</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g1-q10" class="question"><small class="tag">第6章 · 第 10 题 · 单选题</small>
+<h3>能主动吸收钠、排出钾的是( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g1-q10" value="A"><span>A. 闰管</span></label><label><input type="radio" name="g1-q10" value="B"><span>B. 分泌管</span></label><label><input type="radio" name="g1-q10" value="C"><span>C. 小叶间导管</span></label><label><input type="radio" name="g1-q10" value="D"><span>D. 排泄管</span></label><label><input type="radio" name="g1-q10" value="E"><span>E. 以上都不是</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 分泌管</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+</details>
+<details class="group" id="set-2">
+<summary>第五章 <small>· 10 题</small>
+</summary>
+<article id="g2-q1" class="question"><small class="tag">第五章 · 第 1 题 · 单选题</small>
+<h3>体积最大、数目最少的乳头是( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g2-q1" value="A"><span>A. 丝状乳头</span></label><label><input type="radio" name="g2-q1" value="B"><span>B. 菌状乳头</span></label><label><input type="radio" name="g2-q1" value="C"><span>C. 轮廓乳头</span></label><label><input type="radio" name="g2-q1" value="D"><span>D. 叶状乳头</span></label><label><input type="radio" name="g2-q1" value="E"><span>E. 以上都不是</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 轮廓乳头</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g2-q2" class="question"><small class="tag">第五章 · 第 2 题 · 单选题</small>
+<h3>下列哪项不是咀嚼黏膜的特征( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g2-q2" value="A"><span>A. 有角化层</span></label><label><input type="radio" name="g2-q2" value="B"><span>B. 颗粒层不明显</span></label><label><input type="radio" name="g2-q2" value="C"><span>C. 上皮钉突多而细长</span></label><label><input type="radio" name="g2-q2" value="D"><span>D. 固有层较厚</span></label><label><input type="radio" name="g2-q2" value="E"><span>E. 胶原纤维粗大</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 颗粒层不明显</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g2-q3" class="question"><small class="tag">第五章 · 第 3 题 · 单选题</small>
+<h3>下列哪项不是被覆黏膜的特征( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g2-q3" value="A"><span>A. 有颗粒层</span></label><label><input type="radio" name="g2-q3" value="B"><span>B. 无角化层</span></label><label><input type="radio" name="g2-q3" value="C"><span>C. 上皮钉突短</span></label><label><input type="radio" name="g2-q3" value="D"><span>D. 固有层界限不清</span></label><label><input type="radio" name="g2-q3" value="E"><span>E. 无黏膜下层</span></label></fieldset><button hidden type="button" data-grade="E">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　E · 无黏膜下层</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g2-q4" class="question"><small class="tag">第五章 · 第 4 题 · 单选题</small>
+<h3>下列关于被覆黏膜叙述错误的是( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g2-q4" value="A"><span>A. 黏膜表层无角化,富有弹性</span></label><label><input type="radio" name="g2-q4" value="B"><span>B. 上皮与结缔组织交界面凹凸不平</span></label><label><input type="radio" name="g2-q4" value="C"><span>C. 颊黏膜有时可出现成簇的粟粒状淡黄色小颗粒</span></label><label><input type="radio" name="g2-q4" value="D"><span>D. 被覆黏膜富有弹性,有一定的活动度</span></label><label><input type="radio" name="g2-q4" value="E"><span>E. 上皮一般较咀嚼黏膜厚</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 上皮与结缔组织交界面凹凸不平</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g2-q5" class="question"><small class="tag">第五章 · 第 5 题 · 单选题</small>
+<h3>下列关于特殊黏膜叙述错误的是( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g2-q5" value="A"><span>A. 特殊黏膜为舌背黏膜</span></label><label><input type="radio" name="g2-q5" value="B"><span>B. 在功能上属咀嚼黏膜</span></label><label><input type="radio" name="g2-q5" value="C"><span>C. 无延伸度</span></label><label><input type="radio" name="g2-q5" value="D"><span>D. 部分乳头上皮内还有味觉感受器</span></label><label><input type="radio" name="g2-q5" value="E"><span>E. 其表面有许多不同类型的乳头</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 无延伸度</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g2-q6" class="question"><small class="tag">第五章 · 第 6 题 · 单选题</small>
+<h3>上皮层中胞质内含嗜碱性透明角质颗粒的细胞是( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g2-q6" value="A"><span>A. 角化层</span></label><label><input type="radio" name="g2-q6" value="B"><span>B. 颗粒层</span></label><label><input type="radio" name="g2-q6" value="C"><span>C. 棘层</span></label><label><input type="radio" name="g2-q6" value="D"><span>D. 基底层</span></label><label><input type="radio" name="g2-q6" value="E"><span>E. 黑色素细胞</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 颗粒层</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g2-q7" class="question"><small class="tag">第五章 · 第 7 题 · 单选题</small>
+<h3>上皮层中层次最多,细胞为多边形的细胞是( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g2-q7" value="A"><span>A. 角化层</span></label><label><input type="radio" name="g2-q7" value="B"><span>B. 颗粒层</span></label><label><input type="radio" name="g2-q7" value="C"><span>C. 棘细胞层</span></label><label><input type="radio" name="g2-q7" value="D"><span>D. 基底层</span></label><label><input type="radio" name="g2-q7" value="E"><span>E. 黑色素细胞</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 棘细胞层</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g2-q8" class="question"><small class="tag">第五章 · 第 8 题 · 单选题</small>
+<h3>下列哪项不属于角质细胞分层( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g2-q8" value="A"><span>A. 角化层</span></label><label><input type="radio" name="g2-q8" value="B"><span>B. 粒层</span></label><label><input type="radio" name="g2-q8" value="C"><span>C. 棘细胞层</span></label><label><input type="radio" name="g2-q8" value="D"><span>D. 基底层</span></label><label><input type="radio" name="g2-q8" value="E"><span>E. 黏膜下层</span></label></fieldset><button hidden type="button" data-grade="E">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　E · 黏膜下层</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g2-q9" class="question"><small class="tag">第五章 · 第 9 题 · 单选题</small>
+<h3>下列关于角质细胞棘细胞层叙述错误的是( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g2-q9" value="A"><span>A. 位于粒层的深部、细胞体积大</span></label><label><input type="radio" name="g2-q9" value="B"><span>B. 由增生的基底细胞发育而来</span></label><label><input type="radio" name="g2-q9" value="C"><span>C. 构成桥粒的蛋白质主要有桥粒芯蛋白和桥粒胶蛋白</span></label><label><input type="radio" name="g2-q9" value="D"><span>D. 胞质常伸出许多小的刺状突起</span></label><label><input type="radio" name="g2-q9" value="E"><span>E. 细胞多呈四边形</span></label></fieldset><button hidden type="button" data-grade="E">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　E · 细胞多呈四边形</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g2-q10" class="question" data-check="yes"><small class="tag">第五章 · 第 10 题 · 单选题</small>
+<h3>下列关于角质细胞基底层叙述错误的是( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g2-q10" value="A"><span>A. 胞核卵圆形,染色深,有分裂繁殖能力</span></label><label><input type="radio" name="g2-q10" value="B"><span>B. 细胞器少,核质比例高</span></label><label><input type="radio" name="g2-q10" value="C"><span>C. 是一层圆柱形或矮柱状的细胞</span></label><label><input type="radio" name="g2-q10" value="D"><span>D. 基底细胞和深部棘层细胞亦称生发层</span></label><label><input type="radio" name="g2-q10" value="E"><span>E. 生发层的细胞含干细胞和扩增分化细胞</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 是一层圆柱形或矮柱状的细胞</p>
+<p class="note">本题问错误项。第3版口腔黏膜章节描述基底层为单层立方形或矮柱状细胞，注意 C 把前一种写成了圆柱形。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+</details>
+<details class="group" id="set-3">
+<summary>作业第九章 <small>· 6 题</small>
+</summary>
+<article id="g3-q1" class="question"><small class="tag">作业第九章 · 第 1 题 · 单选题</small>
+<h3>龋病是一种</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g3-q1" value="A"><span>A. 脱钙过程</span></label><label><input type="radio" name="g3-q1" value="B"><span>B. 软硬组织都受累</span></label><label><input type="radio" name="g3-q1" value="C"><span>C. 感染性疾病</span></label><label><input type="radio" name="g3-q1" value="D"><span>D. 酸腐蚀过程</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 感染性疾病</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g3-q2" class="question"><small class="tag">作业第九章 · 第 2 题 · 单选题</small>
+<h3>龋病的现代病因理论是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g3-q2" value="A"><span>A. 酸原学说</span></label><label><input type="radio" name="g3-q2" value="B"><span>B. 蛋白溶解学说</span></label><label><input type="radio" name="g3-q2" value="C"><span>C. 蛋白溶解-螯合学说</span></label><label><input type="radio" name="g3-q2" value="D"><span>D. 四联因素学说</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　D · 四联因素学说</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g3-q3" class="question"><small class="tag">作业第九章 · 第 3 题 · 单选题</small>
+<h3>龋病进展至牙本质浅层，属于</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g3-q3" value="A"><span>A. 浅龋</span></label><label><input type="radio" name="g3-q3" value="B"><span>B. 中龋</span></label><label><input type="radio" name="g3-q3" value="C"><span>C. 深龋</span></label><label><input type="radio" name="g3-q3" value="D"><span>D. 牙颈部龋</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 中龋</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g3-q4" class="question"><small class="tag">作业第九章 · 第 4 题 · 单选题</small>
+<h3>釉质平滑面龋病损最前沿是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g3-q4" value="A"><span>A. 透明层</span></label><label><input type="radio" name="g3-q4" value="B"><span>B. 暗层</span></label><label><input type="radio" name="g3-q4" value="C"><span>C. 病损体部</span></label><label><input type="radio" name="g3-q4" value="D"><span>D. 表层</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　A · 透明层</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g3-q5" class="question"><small class="tag">作业第九章 · 第 5 题 · 单选题</small>
+<h3>釉质平滑面龋病损脱矿最严重的是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g3-q5" value="A"><span>A. 透明层</span></label><label><input type="radio" name="g3-q5" value="B"><span>B. 暗层</span></label><label><input type="radio" name="g3-q5" value="C"><span>C. 病损体部</span></label><label><input type="radio" name="g3-q5" value="D"><span>D. 表层</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 病损体部</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g3-q6" class="question"><small class="tag">作业第九章 · 第 6 题 · 单选题</small>
+<h3>牙本质龋在备洞时应该保留并保护的是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g3-q6" value="A"><span>A. 坏死崩解层</span></label><label><input type="radio" name="g3-q6" value="B"><span>B. 细菌侵入层</span></label><label><input type="radio" name="g3-q6" value="C"><span>C. 脱矿层</span></label><label><input type="radio" name="g3-q6" value="D"><span>D. 透明层</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　D · 透明层</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+</details>
+<details class="group" id="set-4">
+<summary>第八章 <small>· 10 题</small>
+</summary>
+<article id="g4-q1" class="question"><small class="tag">第八章 · 第 1 题 · 单选题</small>
+<h3>四环素牙主要受累部位是( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g4-q1" value="A"><span>A. 牙髓</span></label><label><input type="radio" name="g4-q1" value="B"><span>B. 牙釉质</span></label><label><input type="radio" name="g4-q1" value="C"><span>C. 牙骨质</span></label><label><input type="radio" name="g4-q1" value="D"><span>D. 牙本质</span></label><label><input type="radio" name="g4-q1" value="E"><span>E. 釉牙本质界</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　D · 牙本质</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g4-q2" class="question"><small class="tag">第八章 · 第 2 题 · 单选题</small>
+<h3>下列牙齿变色属于内源性着色的是( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g4-q2" value="A"><span>A. 吸烟导致的烟斑</span></label><label><input type="radio" name="g4-q2" value="B"><span>B. 喝茶导致的牙齿染色</span></label><label><input type="radio" name="g4-q2" value="C"><span>C. 龋齿因为硝酸银处理而变黑</span></label><label><input type="radio" name="g4-q2" value="D"><span>D. 四环素导致的四环素牙</span></label><label><input type="radio" name="g4-q2" value="E"><span>E. 长时间未刷牙引起的“黄牙板”</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　D · 四环素导致的四环素牙</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g4-q3" class="question"><small class="tag">第八章 · 第 3 题 · 单选题</small>
+<h3>哈钦森牙是侵犯了哪颗牙齿( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g4-q3" value="A"><span>A. 切牙</span></label><label><input type="radio" name="g4-q3" value="B"><span>B. 尖牙</span></label><label><input type="radio" name="g4-q3" value="C"><span>C. 第一前磨牙</span></label><label><input type="radio" name="g4-q3" value="D"><span>D. 第一磨牙</span></label><label><input type="radio" name="g4-q3" value="E"><span>E. 第二磨牙</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　A · 切牙</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g4-q4" class="question"><small class="tag">第八章 · 第 4 题 · 单选题</small>
+<h3>由于孕妇感染了梅毒螺旋体造成的切牙的牙胚发育缺陷,以至于牙齿形态畸形,称为( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g4-q4" value="A"><span>A. 牛牙样牙</span></label><label><input type="radio" name="g4-q4" value="B"><span>B. 弯曲牙</span></label><label><input type="radio" name="g4-q4" value="C"><span>C. 牙外突</span></label><label><input type="radio" name="g4-q4" value="D"><span>D. 鹰爪尖</span></label><label><input type="radio" name="g4-q4" value="E"><span>E. 哈钦森牙</span></label></fieldset><button hidden type="button" data-grade="E">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　E · 哈钦森牙</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g4-q5" class="question"><small class="tag">第八章 · 第 5 题 · 单选题</small>
+<h3>桑葚牙是侵犯了哪颗牙齿( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g4-q5" value="A"><span>A. 切牙</span></label><label><input type="radio" name="g4-q5" value="B"><span>B. 尖牙</span></label><label><input type="radio" name="g4-q5" value="C"><span>C. 第一前磨牙</span></label><label><input type="radio" name="g4-q5" value="D"><span>D. 第一磨牙</span></label><label><input type="radio" name="g4-q5" value="E"><span>E. 第二磨牙</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　D · 第一磨牙</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g4-q6" class="question"><small class="tag">第八章 · 第 6 题 · 单选题</small>
+<h3>下列服用四环素后可导致恒牙变色的是( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g4-q6" value="A"><span>A. 胚胎29周之前</span></label><label><input type="radio" name="g4-q6" value="B"><span>B. 胚胎29周至胎儿出生</span></label><label><input type="radio" name="g4-q6" value="C"><span>C. 出生至8岁之间</span></label><label><input type="radio" name="g4-q6" value="D"><span>D. 8岁之后</span></label><label><input type="radio" name="g4-q6" value="E"><span>E. 以上均不正确</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 出生至8岁之间</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g4-q7" class="question"><small class="tag">第八章 · 第 7 题 · 单选题</small>
+<h3>下列哪种是釉质形成缺陷症的遗传类型( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g4-q7" value="A"><span>A. 常染色体显性遗传</span></label><label><input type="radio" name="g4-q7" value="B"><span>B. 常染色体隐性遗传</span></label><label><input type="radio" name="g4-q7" value="C"><span>C. X性连锁显性遗传</span></label><label><input type="radio" name="g4-q7" value="D"><span>D. X性连锁隐性遗传</span></label><label><input type="radio" name="g4-q7" value="E"><span>E. 以上都是</span></label></fieldset><button hidden type="button" data-grade="E">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　E · 以上都是</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g4-q8" class="question"><small class="tag">第八章 · 第 8 题 · 单选题</small>
+<h3>下列关于成熟不全型釉质形成缺陷症的表现,除外的是( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g4-q8" value="A"><span>A. 釉表面斑块状</span></label><label><input type="radio" name="g4-q8" value="B"><span>B. 釉质较正常硬</span></label><label><input type="radio" name="g4-q8" value="C"><span>C. 病变牙形态正常</span></label><label><input type="radio" name="g4-q8" value="D"><span>D. 可出现斑块状的白、黄、棕色变色不透光区</span></label><label><input type="radio" name="g4-q8" value="E"><span>E. X线检查釉质透光度与牙本质相似</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 釉质较正常硬</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g4-q9" class="question"><small class="tag">第八章 · 第 9 题 · 单选题</small>
+<h3>釉基质正常形成并开始矿化,但釉质晶体结构出现成熟障碍属于以下哪种分类的基本表现( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g4-q9" value="A"><span>A. 釉质形成不全</span></label><label><input type="radio" name="g4-q9" value="B"><span>B. 釉质成熟不全</span></label><label><input type="radio" name="g4-q9" value="C"><span>C. 釉质钙化不全</span></label><label><input type="radio" name="g4-q9" value="D"><span>D. 遗传性乳光牙本质</span></label><label><input type="radio" name="g4-q9" value="E"><span>E. 畸形中央尖</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 釉质成熟不全</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g4-q10" class="question"><small class="tag">第八章 · 第 10 题 · 单选题</small>
+<h3>在釉质形成缺陷中最常见的类型的是( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g4-q10" value="A"><span>A. 釉质形成不全</span></label><label><input type="radio" name="g4-q10" value="B"><span>B. 釉质成熟不全</span></label><label><input type="radio" name="g4-q10" value="C"><span>C. 釉质钙化不全</span></label><label><input type="radio" name="g4-q10" value="D"><span>D. 遗传性乳光牙本质</span></label><label><input type="radio" name="g4-q10" value="E"><span>E. 畸形中央尖</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 釉质钙化不全</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+</details>
+<details class="group" id="set-5">
+<summary>作业第十七章 <small>· 6 题</small>
+</summary>
+<article id="g5-q1" class="question"><small class="tag">作业第十七章 · 第 1 题 · 单选题</small>
+<h3>含牙囊肿发病部位，</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g5-q1" value="A"><span>A. 多发生于下颌第三磨牙区和下颌升支者</span></label><label><input type="radio" name="g5-q1" value="B"><span>B. 以下颌第三磨牙区多见,其次为上颌单尖牙,上颌第三磨牙和下颌前牙区者</span></label><label><input type="radio" name="g5-q1" value="C"><span>C. 位于上颌恒侧切牙和单尖牙之间</span></label><label><input type="radio" name="g5-q1" value="D"><span>D. 最常见为腭中线前部</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 以下颌第三磨牙区多见,其次为上颌单尖牙,上颌第三磨牙和下颌前牙区者</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g5-q2" class="question"><small class="tag">作业第十七章 · 第 2 题 · 单选题</small>
+<h3>鳃裂囊肿常位于胸锁乳突肌的</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g5-q2" value="A"><span>A. 内侧面</span></label><label><input type="radio" name="g5-q2" value="B"><span>B. 表面</span></label><label><input type="radio" name="g5-q2" value="C"><span>C. 前缘</span></label><label><input type="radio" name="g5-q2" value="D"><span>D. 后缘</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 前缘</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g5-q3" class="question"><small class="tag">作业第十七章 · 第 3 题 · 单选题</small>
+<h3>多数情况下，无上皮衬里的囊肿是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g5-q3" value="A"><span>A. 含牙囊肿</span></label><label><input type="radio" name="g5-q3" value="B"><span>B. 甲状舌管囊肿</span></label><label><input type="radio" name="g5-q3" value="C"><span>C. 黏液囊肿</span></label><label><input type="radio" name="g5-q3" value="D"><span>D. 鳃裂囊肿</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 黏液囊肿</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g5-q4" class="question"><small class="tag">作业第十七章 · 第 4 题 · 单选题</small>
+<h3>鼻腭管囊肿结缔组织壁内特征性的表现</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g5-q4" value="A"><span>A. 含有较大的血管和神经</span></label><label><input type="radio" name="g5-q4" value="B"><span>B. 含有淋巴滤泡</span></label><label><input type="radio" name="g5-q4" value="C"><span>C. 有皮脂细胞</span></label><label><input type="radio" name="g5-q4" value="D"><span>D. 有微小的子囊</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　A · 含有较大的血管和神经</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g5-q5" class="question"><small class="tag">作业第十七章 · 第 5 题 · 单选题</small>
+<h3>甲状舌管囊肿有以下特点，除了</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g5-q5" value="A"><span>A. 可内衬假复层纤毛柱状上皮</span></label><label><input type="radio" name="g5-q5" value="B"><span>B. 可发生于任何年龄，中青年多见</span></label><label><input type="radio" name="g5-q5" value="C"><span>C. 青少年多见</span></label><label><input type="radio" name="g5-q5" value="D"><span>D. 多可随吞咽动作而上下移动</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 可发生于任何年龄，中青年多见</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g5-q6" class="question"><small class="tag">作业第十七章 · 第 6 题 · 单选题</small>
+<h3>下列关于萌出囊肿描述哪项是错误的</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g5-q6" value="A"><span>A. 是颌骨内的含牙囊肿</span></label><label><input type="radio" name="g5-q6" value="B"><span>B. 指发生在一个正在萌出的乳牙或恒牙的牙冠表面的黏膜软组织内的含牙囊肿</span></label><label><input type="radio" name="g5-q6" value="C"><span>C. 继发炎症时，上皮增生，纤维囊壁有炎症细胞浸润</span></label><label><input type="radio" name="g5-q6" value="D"><span>D. 囊肿衬里上皮具有缩余釉上皮的特征</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　A · 是颌骨内的含牙囊肿</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+</details>
+<details class="group" id="set-6">
+<summary>作业第十八章（1）第十九章 <small>· 8 题</small>
+</summary>
+<article id="g6-q1" class="question"><small class="tag">作业第十八章（1）第十九章 · 第 1 题 · 单选题</small>
+<h3>镜下观察组合性牙瘤病理学变化正确的是？</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g6-q1" value="A"><span>A. 肿瘤内牙釉质、牙本质、牙骨质和牙髓排列如同正常牙</span></label><label><input type="radio" name="g6-q1" value="B"><span>B. 镜下肿物为排列紊乱、相互混杂的牙体组织，无典型牙齿结构</span></label><label><input type="radio" name="g6-q1" value="C"><span>C. 肿瘤上皮细胞形成玫瑰花样结构</span></label><label><input type="radio" name="g6-q1" value="D"><span>D. 肿瘤内出现广泛地角化</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　A · 肿瘤内牙釉质、牙本质、牙骨质和牙髓排列如同正常牙</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g6-q2" class="question"><small class="tag">作业第十八章（1）第十九章 · 第 2 题 · 单选题</small>
+<h3>牙源性钙化上皮瘤病理可见</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g6-q2" value="A"><span>A. 基底细胞极性倒置</span></label><label><input type="radio" name="g6-q2" value="B"><span>B. 肿瘤组织内可见到淀粉样物质钙化，呈同心圆样沉积</span></label><label><input type="radio" name="g6-q2" value="C"><span>C. 肿瘤上皮细胞形成玫瑰花样结构</span></label><label><input type="radio" name="g6-q2" value="D"><span>D. 肿瘤内出现广泛的角化</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 肿瘤组织内可见到淀粉样物质钙化，呈同心圆样沉积</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g6-q3" class="question"><small class="tag">作业第十八章（1）第十九章 · 第 3 题 · 单选题</small>
+<h3>牙源性钙化囊性瘤的诊断金标准是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g6-q3" value="A"><span>A. 钙化</span></label><label><input type="radio" name="g6-q3" value="B"><span>B. 淀粉样物质</span></label><label><input type="radio" name="g6-q3" value="C"><span>C. 影细胞</span></label><label><input type="radio" name="g6-q3" value="D"><span>D. 极性倒置</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 影细胞</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g6-q4" class="question"><small class="tag">作业第十八章（1）第十九章 · 第 4 题 · 单选题</small>
+<h3>关于口腔鳞状细胞癌，以下哪项是错误的</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g6-q4" value="A"><span>A. 是口腔中最常见的恶性肿瘤</span></label><label><input type="radio" name="g6-q4" value="B"><span>B. 以口底鳞癌最多</span></label><label><input type="radio" name="g6-q4" value="C"><span>C. 男性多于女性</span></label><label><input type="radio" name="g6-q4" value="D"><span>D. 主要危险因素是吸烟与酗酒</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 以口底鳞癌最多</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g6-q5" class="question"><small class="tag">作业第十八章（1）第十九章 · 第 5 题 · 判断题</small>
+<h3>乳头状瘤可与HPV有关。</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g6-q5" value="A"><span>A. 对</span></label><label><input type="radio" name="g6-q5" value="B"><span>B. 错</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　对</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g6-q6" class="question"><small class="tag">作业第十八章（1）第十九章 · 第 6 题 · 判断题</small>
+<h3>牙龈瘤术后不易复发。</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g6-q6" value="A"><span>A. 对</span></label><label><input type="radio" name="g6-q6" value="B"><span>B. 错</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　错</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g6-q7" class="question"><small class="tag">作业第十八章（1）第十九章 · 第 7 题 · 判断题</small>
+<h3>血管瘤常呈浸润性生长，因此是恶性肿瘤。</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g6-q7" value="A"><span>A. 对</span></label><label><input type="radio" name="g6-q7" value="B"><span>B. 错</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　错</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g6-q8" class="question"><small class="tag">作业第十八章（1）第十九章 · 第 8 题 · 判断题</small>
+<h3>口腔癌主要指发生于口腔黏膜的鳞状细胞癌。</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g6-q8" value="A"><span>A. 对</span></label><label><input type="radio" name="g6-q8" value="B"><span>B. 错</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　对</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+</details>
+<details class="group" id="set-7">
+<summary>作业第十六章（二） <small>· 8 题</small>
+</summary>
+<article id="g7-q1" class="question"><small class="tag">作业第十六章（二） · 第 1 题 · 单选题</small>
+<h3>多形性腺瘤为</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g7-q1" value="A"><span>A. 良性肿瘤，生长较快</span></label><label><input type="radio" name="g7-q1" value="B"><span>B. 良性肿瘤，生长缓慢</span></label><label><input type="radio" name="g7-q1" value="C"><span>C. 恶性肿瘤，易复发</span></label><label><input type="radio" name="g7-q1" value="D"><span>D. 恶性肿瘤，生长较快</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 良性肿瘤，生长缓慢</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g7-q2" class="question" data-check="yes"><small class="tag">作业第十六章（二） · 第 2 题 · 单选题</small>
+<h3>在高分化或低度恶性的黏液表皮样癌中，黏液细胞占</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g7-q2" value="A"><span>A. 0.3</span></label><label><input type="radio" name="g7-q2" value="B"><span>B. 0.5</span></label><label><input type="radio" name="g7-q2" value="C"><span>C. 0.65</span></label><label><input type="radio" name="g7-q2" value="D"><span>D. 0.75</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 0.5</p>
+<p class="note">选项以小数表示比例。请保留原题“高分化或低度恶性”的限定。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g7-q3" class="question"><small class="tag">作业第十六章（二） · 第 3 题 · 单选题</small>
+<h3>腺淋巴瘤上皮成分是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g7-q3" value="A"><span>A. 嗜酸细胞</span></label><label><input type="radio" name="g7-q3" value="B"><span>B. 肌上皮细胞</span></label><label><input type="radio" name="g7-q3" value="C"><span>C. 腺上皮细胞</span></label><label><input type="radio" name="g7-q3" value="D"><span>D. 表皮样细胞</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 腺上皮细胞</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g7-q4" class="question"><small class="tag">作业第十六章（二） · 第 4 题 · 单选题</small>
+<h3>腺样囊性癌预后最差的组织学类型为</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g7-q4" value="A"><span>A. 筛孔型</span></label><label><input type="radio" name="g7-q4" value="B"><span>B. 管状型</span></label><label><input type="radio" name="g7-q4" value="C"><span>C. 实性型</span></label><label><input type="radio" name="g7-q4" value="D"><span>D. 小条索型</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 实性型</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g7-q5" class="question"><small class="tag">作业第十六章（二） · 第 5 题 · 单选题</small>
+<h3>多形性腺瘤中可见下列结构，除了</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g7-q5" value="A"><span>A. 导管样结构</span></label><label><input type="radio" name="g7-q5" value="B"><span>B. 肌上皮团块</span></label><label><input type="radio" name="g7-q5" value="C"><span>C. 角化珠</span></label><label><input type="radio" name="g7-q5" value="D"><span>D. 筛孔状结构</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　D · 筛孔状结构</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g7-q6" class="question"><small class="tag">作业第十六章（二） · 第 6 题 · 单选题</small>
+<h3>黏液表皮样癌内，瘤细胞为</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g7-q6" value="A"><span>A. 鳞状细胞和腺上皮细胞</span></label><label><input type="radio" name="g7-q6" value="B"><span>B. 黏液细胞、表皮样细胞和中间细胞</span></label><label><input type="radio" name="g7-q6" value="C"><span>C. 产黏液样表皮细胞</span></label><label><input type="radio" name="g7-q6" value="D"><span>D. 黏液样表皮细胞</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 黏液细胞、表皮样细胞和中间细胞</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g7-q7" class="question"><small class="tag">作业第十六章（二） · 第 7 题 · 单选题</small>
+<h3>腺样囊性癌的细胞成分主要为</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g7-q7" value="A"><span>A. 腺上皮细胞和肌上皮细胞</span></label><label><input type="radio" name="g7-q7" value="B"><span>B. 肌上皮细胞和纤维细胞</span></label><label><input type="radio" name="g7-q7" value="C"><span>C. 黏液细胞和导管内衬上皮细胞</span></label><label><input type="radio" name="g7-q7" value="D"><span>D. 黏液细胞和软骨样细胞</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　A · 腺上皮细胞和肌上皮细胞</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g7-q8" class="question"><small class="tag">作业第十六章（二） · 第 8 题 · 单选题</small>
+<h3>不含肌上皮细胞的唾液腺肿瘤是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g7-q8" value="A"><span>A. 多形性腺瘤</span></label><label><input type="radio" name="g7-q8" value="B"><span>B. 混合瘤</span></label><label><input type="radio" name="g7-q8" value="C"><span>C. 恶性多形性腺瘤</span></label><label><input type="radio" name="g7-q8" value="D"><span>D. 腺淋巴瘤</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　D · 腺淋巴瘤</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+</details>
+<details class="group" id="set-8">
+<summary>作业第十四章 第十六章（一） <small>· 6 题</small>
+</summary>
+<article id="g8-q1" class="question"><small class="tag">作业第十四章 第十六章（一） · 第 1 题 · 单选题</small>
+<h3>朗格汉斯细胞组织细胞增生症的构成细胞，除了</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g8-q1" value="A"><span>A. 朗格汉斯细胞</span></label><label><input type="radio" name="g8-q1" value="B"><span>B. 嗜酸性粒细胞</span></label><label><input type="radio" name="g8-q1" value="C"><span>C. 泡沫细胞</span></label><label><input type="radio" name="g8-q1" value="D"><span>D. 朗格汉斯巨细胞</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　D · 朗格汉斯巨细胞</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g8-q2" class="question"><small class="tag">作业第十四章 第十六章（一） · 第 2 题 · 单选题</small>
+<h3>骨纤维结构不良的特点是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g8-q2" value="A"><span>A. 骨内纤维组织增多</span></label><label><input type="radio" name="g8-q2" value="B"><span>B. 骨内纤维组织减少</span></label><label><input type="radio" name="g8-q2" value="C"><span>C. 骨小梁增生</span></label><label><input type="radio" name="g8-q2" value="D"><span>D. 骨皮质增生</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　A · 骨内纤维组织增多</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g8-q3" class="question"><small class="tag">作业第十四章 第十六章（一） · 第 3 题 · 单选题</small>
+<h3>慢性化脓性颌骨骨髓炎特征性临床表现是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g8-q3" value="A"><span>A. 大量中性粒细胞浸润</span></label><label><input type="radio" name="g8-q3" value="B"><span>B. 窦道流脓，经久不愈</span></label><label><input type="radio" name="g8-q3" value="C"><span>C. 有新骨形成</span></label><label><input type="radio" name="g8-q3" value="D"><span>D. 坏死的炎症细胞和液化的组织共同形成脓液</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 窦道流脓，经久不愈</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g8-q4" class="question"><small class="tag">作业第十四章 第十六章（一） · 第 4 题 · 单选题</small>
+<h3>舍格伦综合征区别于慢性唾液腺炎病理改变是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g8-q4" value="A"><span>A. 腺体内淋巴细胞浸润</span></label><label><input type="radio" name="g8-q4" value="B"><span>B. 腺小叶外形轮廓保留</span></label><label><input type="radio" name="g8-q4" value="C"><span>C. 导管上皮增生</span></label><label><input type="radio" name="g8-q4" value="D"><span>D. 淋巴滤泡形成</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 腺小叶外形轮廓保留</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g8-q5" class="question"><small class="tag">作业第十四章 第十六章（一） · 第 5 题 · 单选题</small>
+<h3>患慢性唾液腺炎时，下列哪项不存在</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g8-q5" value="A"><span>A. 导管上皮呈鳞状上皮化生</span></label><label><input type="radio" name="g8-q5" value="B"><span>B. 腺泡萎缩、消失</span></label><label><input type="radio" name="g8-q5" value="C"><span>C. 胶原纤维增生</span></label><label><input type="radio" name="g8-q5" value="D"><span>D. 导管上皮增生形成肌上皮岛</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　D · 导管上皮增生形成肌上皮岛</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g8-q6" class="question"><small class="tag">作业第十四章 第十六章（一） · 第 6 题 · 单选题</small>
+<h3>舍格伦综合征病理活检取材部位是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g8-q6" value="A"><span>A. 颊腺</span></label><label><input type="radio" name="g8-q6" value="B"><span>B. 舌下腺</span></label><label><input type="radio" name="g8-q6" value="C"><span>C. 唇腺</span></label><label><input type="radio" name="g8-q6" value="D"><span>D. 腭腺</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 唇腺</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+</details>
+<details class="group" id="set-9">
+<summary>作业第十三章(二) <small>· 7 题</small>
+</summary>
+<article id="g9-q1" class="question"><small class="tag">作业第十三章(二) · 第 1 题 · 单选题</small>
+<h3>口腔黏膜病中，发病率最高的是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g9-q1" value="A"><span>A. 白斑</span></label><label><input type="radio" name="g9-q1" value="B"><span>B. 扁平苔藓</span></label><label><input type="radio" name="g9-q1" value="C"><span>C. 复发性阿弗他溃疡</span></label><label><input type="radio" name="g9-q1" value="D"><span>D. 天疱疮</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 复发性阿弗他溃疡</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g9-q2" class="question"><small class="tag">作业第十三章(二) · 第 2 题 · 单选题</small>
+<h3>口腔扁平苔藓的病理表现中不包括</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g9-q2" value="A"><span>A. 上皮钉突不规则伸长</span></label><label><input type="radio" name="g9-q2" value="B"><span>B. 棘层细胞内疱形成</span></label><label><input type="radio" name="g9-q2" value="C"><span>C. 胶样小体出现</span></label><label><input type="radio" name="g9-q2" value="D"><span>D. 基底细胞液化变性</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 棘层细胞内疱形成</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g9-q3" class="question"><small class="tag">作业第十三章(二) · 第 3 题 · 单选题</small>
+<h3>寻常型天疱疮最常见的病理改变是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g9-q3" value="A"><span>A. 基底细胞液化变性</span></label><label><input type="radio" name="g9-q3" value="B"><span>B. 基底层下疱形成</span></label><label><input type="radio" name="g9-q3" value="C"><span>C. 基底细胞空泡样变性</span></label><label><input type="radio" name="g9-q3" value="D"><span>D. 棘层松解，上皮内疱形成</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　D · 棘层松解，上皮内疱形成</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g9-q4" class="question"><small class="tag">作业第十三章(二) · 第 4 题 · 单选题</small>
+<h3>慢性盘状红斑狼疮病理改变不包括</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g9-q4" value="A"><span>A. 黏膜固有层形成淋巴细胞浸润带</span></label><label><input type="radio" name="g9-q4" value="B"><span>B. 毛细血管扩张，管腔不整</span></label><label><input type="radio" name="g9-q4" value="C"><span>C. 血管内可见玻璃样血栓</span></label><label><input type="radio" name="g9-q4" value="D"><span>D. 血管周围有淋巴细胞浸润</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　A · 黏膜固有层形成淋巴细胞浸润带</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g9-q5" class="question"><small class="tag">作业第十三章(二) · 第 5 题 · 单选题</small>
+<h3>口腔黏膜下纤维化最主要病理变化是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g9-q5" value="A"><span>A. 上皮萎缩</span></label><label><input type="radio" name="g9-q5" value="B"><span>B. 结缔组织发生纤维变性</span></label><label><input type="radio" name="g9-q5" value="C"><span>C. 胶原纤维轻度增生</span></label><label><input type="radio" name="g9-q5" value="D"><span>D. 经常出现上皮异常增生</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 结缔组织发生纤维变性</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g9-q6" class="question"><small class="tag">作业第十三章(二) · 第 6 题 · 单选题</small>
+<h3>女性，48岁，双颊黏膜白色病变1年。活检标本见上皮萎缩，表面不全角化，上皮钉突呈不规则延长，基底细胞层液化变性，固有层见淋巴细胞浸润带。病理诊断应为</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g9-q6" value="A"><span>A. 扁平苔藓</span></label><label><input type="radio" name="g9-q6" value="B"><span>B. 慢性盘状红斑狼疮</span></label><label><input type="radio" name="g9-q6" value="C"><span>C. 良性黏膜类天疱疮</span></label><label><input type="radio" name="g9-q6" value="D"><span>D. 寻常性天疱疮</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　A · 扁平苔藓</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g9-q7" class="question"><small class="tag">作业第十三章(二) · 第 7 题 · 单选题</small>
+<h3>慢性盘状红斑狼疮角化层的特征性变化为</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g9-q7" value="A"><span>A. 不全角化</span></label><label><input type="radio" name="g9-q7" value="B"><span>B. 角化层变薄</span></label><label><input type="radio" name="g9-q7" value="C"><span>C. 角质栓塞</span></label><label><input type="radio" name="g9-q7" value="D"><span>D. 无角化</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 角质栓塞</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+</details>
+<details class="group" id="set-10">
+<summary>作业第十二章 <small>· 6 题</small>
+</summary>
+<article id="g10-q1" class="question"><small class="tag">作业第十二章 · 第 1 题 · 单选题</small>
+<h3>慢性龈炎的病理变化主要有</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g10-q1" value="A"><span>A. 牙龈上皮出血</span></label><label><input type="radio" name="g10-q1" value="B"><span>B. 牙龈上皮增生</span></label><label><input type="radio" name="g10-q1" value="C"><span>C. 牙龈上皮脓肿</span></label><label><input type="radio" name="g10-q1" value="D"><span>D. 龈沟壁处有炎症细胞浸润</span></label><label><input type="radio" name="g10-q1" value="E"><span>E. 沟内上皮向根方增殖</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　D · 龈沟壁处有炎症细胞浸润</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g10-q2" class="question"><small class="tag">作业第十二章 · 第 2 题 · 单选题</small>
+<h3>被称为“假性牙周袋”的是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g10-q2" value="A"><span>A. 龈袋</span></label><label><input type="radio" name="g10-q2" value="B"><span>B. 一壁骨袋</span></label><label><input type="radio" name="g10-q2" value="C"><span>C. 骨上袋</span></label><label><input type="radio" name="g10-q2" value="D"><span>D. 二臂骨袋</span></label><label><input type="radio" name="g10-q2" value="E"><span>E. 骨内袋</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　A · 龈袋</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g10-q3" class="question"><small class="tag">作业第十二章 · 第 3 题 · 单选题</small>
+<h3>慢性龈炎的病理变化中炎症水肿型不包括</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g10-q3" value="A"><span>A. 牙龈的纤维结缔组织水肿明显</span></label><label><input type="radio" name="g10-q3" value="B"><span>B. 有大量淋巴细胞、中性粒细胞浸润</span></label><label><input type="radio" name="g10-q3" value="C"><span>C. 可见少量浆细胞</span></label><label><input type="radio" name="g10-q3" value="D"><span>D. 毛细血管增生、扩张、充血</span></label><label><input type="radio" name="g10-q3" value="E"><span>E. 上皮下纤维结缔组织增生成束</span></label></fieldset><button hidden type="button" data-grade="E">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　E · 上皮下纤维结缔组织增生成束</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g10-q4" class="question"><small class="tag">作业第十二章 · 第 4 题 · 单选题</small>
+<h3>骨上袋的病理变化主要是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g10-q4" value="A"><span>A. 假性牙周袋</span></label><label><input type="radio" name="g10-q4" value="B"><span>B. 牙槽骨无吸收</span></label><label><input type="radio" name="g10-q4" value="C"><span>C. 牙槽骨高度降低</span></label><label><input type="radio" name="g10-q4" value="D"><span>D. 固有牙槽骨吸收</span></label><label><input type="radio" name="g10-q4" value="E"><span>E. 牙周膜皮环明显</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 牙槽骨高度降低</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g10-q5" class="question"><small class="tag">作业第十二章 · 第 5 题 · 单选题</small>
+<h3>关于活动期牙周炎病理变化的描述哪项是错误的</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g10-q5" value="A"><span>A. 结合上皮向深部增生并与牙面分离，形成深牙周袋</span></label><label><input type="radio" name="g10-q5" value="B"><span>B. 基质和胶原纤维变性溶解，大都分丧失</span></label><label><input type="radio" name="g10-q5" value="C"><span>C. 牙槽骨吸收与修复都比较明显</span></label><label><input type="radio" name="g10-q5" value="D"><span>D. 炎症浸润向深部蔓延、扩展，浆细胞增多</span></label><label><input type="radio" name="g10-q5" value="E"><span>E. 牙周袋内的炎性渗出物中，抗体和补体成分较多</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　C · 牙槽骨吸收与修复都比较明显</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g10-q6" class="question"><small class="tag">作业第十二章 · 第 6 题 · 单选题</small>
+<h3>剥脱性龈病损的病理变化不包括</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g10-q6" value="A"><span>A. 上皮萎缩</span></label><label><input type="radio" name="g10-q6" value="B"><span>B. 上皮增生</span></label><label><input type="radio" name="g10-q6" value="C"><span>C. 上皮内泡</span></label><label><input type="radio" name="g10-q6" value="D"><span>D. 基底细胞液化</span></label><label><input type="radio" name="g10-q6" value="E"><span>E. 基底细胞水肿</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 上皮增生</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+</details>
+<details class="group" id="set-11">
+<summary>作业第十、十一章 <small>· 6 题</small>
+</summary>
+<article id="g11-q1" class="question"><small class="tag">作业第十、十一章 · 第 1 题 · 单选题</small>
+<h3>炎性肉芽组织形成主要见于( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g11-q1" value="A"><span>A. 釉质龋</span></label><label><input type="radio" name="g11-q1" value="B"><span>B. 牙本质龋</span></label><label><input type="radio" name="g11-q1" value="C"><span>C. 牙髓变性</span></label><label><input type="radio" name="g11-q1" value="D"><span>D. 慢性牙髓炎</span></label><label><input type="radio" name="g11-q1" value="E"><span>E. 急性牙髓炎</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　D · 慢性牙髓炎</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g11-q2" class="question"><small class="tag">作业第十、十一章 · 第 2 题 · 单选题</small>
+<h3>下列有关髓石的说法错误的是( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g11-q2" value="A"><span>A. 多位于根管内</span></label><label><input type="radio" name="g11-q2" value="B"><span>B. 由钙盐层层沉积而成</span></label><label><input type="radio" name="g11-q2" value="C"><span>C. 可能影响根管治疗</span></label><label><input type="radio" name="g11-q2" value="D"><span>D. 可附着在髓腔壁</span></label><label><input type="radio" name="g11-q2" value="E"><span>E. 可见不规则牙本质小管样结构</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　A · 多位于根管内</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g11-q3" class="question"><small class="tag">作业第十、十一章 · 第 3 题 · 单选题</small>
+<h3>表面有食物残渣，炎性渗出物及坏死组织覆盖，深部为肉芽组织的病变见于( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g11-q3" value="A"><span>A. 急性浆液性牙髓炎</span></label><label><input type="radio" name="g11-q3" value="B"><span>B. 急性化脓性牙髓炎</span></label><label><input type="radio" name="g11-q3" value="C"><span>C. 慢性闭锁性牙髓炎</span></label><label><input type="radio" name="g11-q3" value="D"><span>D. 慢性溃疡性牙髓炎</span></label><label><input type="radio" name="g11-q3" value="E"><span>E. 慢性增生性牙髓炎</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　D · 慢性溃疡性牙髓炎</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g11-q4" class="question"><small class="tag">作业第十、十一章 · 第 4 题 · 单选题</small>
+<h3>血管扩张充血，通透性增加，组织水肿，沿着血管壁有白细胞游出和纤维蛋白渗出的变化见于( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g11-q4" value="A"><span>A. 急性浆液性牙髓炎</span></label><label><input type="radio" name="g11-q4" value="B"><span>B. 急性化脓性牙髓炎</span></label><label><input type="radio" name="g11-q4" value="C"><span>C. 慢性闭锁性牙髓炎</span></label><label><input type="radio" name="g11-q4" value="D"><span>D. 慢性溃疡性牙髓炎</span></label><label><input type="radio" name="g11-q4" value="E"><span>E. 慢性增生性牙髓炎</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　A · 急性浆液性牙髓炎</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g11-q5" class="question"><small class="tag">作业第十、十一章 · 第 5 题 · 单选题</small>
+<h3>根尖周肉芽肿中增生的上皮不可能来源于( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g11-q5" value="A"><span>A. 马拉瑟上皮剩余</span></label><label><input type="radio" name="g11-q5" value="B"><span>B. 缩余釉上皮</span></label><label><input type="radio" name="g11-q5" value="C"><span>C. 牙周袋壁上皮</span></label><label><input type="radio" name="g11-q5" value="D"><span>D. 口腔粘膜上皮</span></label><label><input type="radio" name="g11-q5" value="E"><span>E. 呼吸道上皮</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　B · 缩余釉上皮</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g11-q6" class="question"><small class="tag">作业第十、十一章 · 第 6 题 · 单选题</small>
+<h3>下列有关根尖肉芽肿的描述，错误的是括号( )</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g11-q6" value="A"><span>A. 多数无明显自觉症状</span></label><label><input type="radio" name="g11-q6" value="B"><span>B. 表现以增生为主的炎症反应，有肉芽组织形成</span></label><label><input type="radio" name="g11-q6" value="C"><span>C. 可见吞噬脂质的泡沫细胞</span></label><label><input type="radio" name="g11-q6" value="D"><span>D. 可见胆固醇结晶裂隙</span></label><label><input type="radio" name="g11-q6" value="E"><span>E. 不会见到增生的上皮</span></label></fieldset><button hidden type="button" data-grade="E">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>平台答案栏　E · 不会见到增生的上皮</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+</details>
+<details class="group" id="set-12">
+<summary>暑假资料 · 单选 <small>· 50 题</small>
+</summary>
+<article id="g12-q1" class="question"><small class="tag">暑假资料 · 单选 · 第 1 题 · 单选</small>
+<h3>牙体组织中最坚硬的组织是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q1" value="A"><span>A. 牙本质</span></label><label><input type="radio" name="g12-q1" value="B"><span>B. 牙釉质</span></label><label><input type="radio" name="g12-q1" value="C"><span>C. 牙骨质</span></label><label><input type="radio" name="g12-q1" value="D"><span>D. 牙髓</span></label><label><input type="radio" name="g12-q1" value="E"><span>E. 牙周膜</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 牙釉质</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q2" class="question"><small class="tag">暑假资料 · 单选 · 第 2 题 · 单选</small>
+<h3>构成牙主体的组织是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q2" value="A"><span>A. 牙釉质</span></label><label><input type="radio" name="g12-q2" value="B"><span>B. 牙骨质</span></label><label><input type="radio" name="g12-q2" value="C"><span>C. 牙本质</span></label><label><input type="radio" name="g12-q2" value="D"><span>D. 牙髓</span></label><label><input type="radio" name="g12-q2" value="E"><span>E. 牙槽骨</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　C · 牙本质</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q3" class="question"><small class="tag">暑假资料 · 单选 · 第 3 题 · 单选</small>
+<h3>牙齿内部容纳牙髓的腔隙称为</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q3" value="A"><span>A. 牙本质小管</span></label><label><input type="radio" name="g12-q3" value="B"><span>B. 髓腔</span></label><label><input type="radio" name="g12-q3" value="C"><span>C. 釉柱</span></label><label><input type="radio" name="g12-q3" value="D"><span>D. 陷窝</span></label><label><input type="radio" name="g12-q3" value="E"><span>E. 穿通纤维</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 髓腔</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q4" class="question"><small class="tag">暑假资料 · 单选 · 第 4 题 · 单选</small>
+<h3>牙髓的组织性质属于</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q4" value="A"><span>A. 致密结缔组织</span></label><label><input type="radio" name="g12-q4" value="B"><span>B. 疏松结缔组织</span></label><label><input type="radio" name="g12-q4" value="C"><span>C. 上皮组织</span></label><label><input type="radio" name="g12-q4" value="D"><span>D. 软骨组织</span></label><label><input type="radio" name="g12-q4" value="E"><span>E. 骨组织</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 疏松结缔组织</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q5" class="question"><small class="tag">暑假资料 · 单选 · 第 5 题 · 单选</small>
+<h3>牙釉质的基本结构单位是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q5" value="A"><span>A. 牙本质小管</span></label><label><input type="radio" name="g12-q5" value="B"><span>B. 釉柱</span></label><label><input type="radio" name="g12-q5" value="C"><span>C. 球间牙本质</span></label><label><input type="radio" name="g12-q5" value="D"><span>D. 修复性牙本质</span></label><label><input type="radio" name="g12-q5" value="E"><span>E. 层板</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 釉柱</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q6" class="question"><small class="tag">暑假资料 · 单选 · 第 6 题 · 单选</small>
+<h3>牙本质小管内主要的细胞突起来自</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q6" value="A"><span>A. 成釉细胞</span></label><label><input type="radio" name="g12-q6" value="B"><span>B. 成牙本质细胞</span></label><label><input type="radio" name="g12-q6" value="C"><span>C. 破骨细胞</span></label><label><input type="radio" name="g12-q6" value="D"><span>D. 成骨细胞</span></label><label><input type="radio" name="g12-q6" value="E"><span>E. 巨噬细胞</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 成牙本质细胞</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q7" class="question"><small class="tag">暑假资料 · 单选 · 第 7 题 · 单选</small>
+<h3>覆盖在牙根表面的硬组织是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q7" value="A"><span>A. 牙釉质</span></label><label><input type="radio" name="g12-q7" value="B"><span>B. 牙本质</span></label><label><input type="radio" name="g12-q7" value="C"><span>C. 牙骨质</span></label><label><input type="radio" name="g12-q7" value="D"><span>D. 牙槽骨</span></label><label><input type="radio" name="g12-q7" value="E"><span>E. 骨小梁</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　C · 牙骨质</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q8" class="question"><small class="tag">暑假资料 · 单选 · 第 8 题 · 单选</small>
+<h3>连接牙根和牙槽骨的纤维组织是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q8" value="A"><span>A. 牙龈上皮</span></label><label><input type="radio" name="g12-q8" value="B"><span>B. 牙周膜</span></label><label><input type="radio" name="g12-q8" value="C"><span>C. 口腔黏膜</span></label><label><input type="radio" name="g12-q8" value="D"><span>D. 固有层</span></label><label><input type="radio" name="g12-q8" value="E"><span>E. 黏膜下层</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 牙周膜</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q9" class="question"><small class="tag">暑假资料 · 单选 · 第 9 题 · 单选</small>
+<h3>牙周膜中数量最多、力量最强的纤维是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q9" value="A"><span>A. 牙槽嵴组</span></label><label><input type="radio" name="g12-q9" value="B"><span>B. 水平组</span></label><label><input type="radio" name="g12-q9" value="C"><span>C. 斜行组</span></label><label><input type="radio" name="g12-q9" value="D"><span>D. 根尖组</span></label><label><input type="radio" name="g12-q9" value="E"><span>E. 根间组</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　C · 斜行组</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q10" class="question"><small class="tag">暑假资料 · 单选 · 第 10 题 · 单选</small>
+<h3>牙槽骨的生物学特点是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q10" value="A"><span>A. 不会发生吸收</span></label><label><input type="radio" name="g12-q10" value="B"><span>B. 可塑性很强，可改建</span></label><label><input type="radio" name="g12-q10" value="C"><span>C. 属于上皮组织</span></label><label><input type="radio" name="g12-q10" value="D"><span>D. 硬度大于牙釉质</span></label><label><input type="radio" name="g12-q10" value="E"><span>E. 无破骨细胞</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 可塑性很强，可改建</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q11" class="question"><small class="tag">暑假资料 · 单选 · 第 11 题 · 单选</small>
+<h3>口腔黏膜中属于咀嚼黏膜的是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q11" value="A"><span>A. 颊黏膜</span></label><label><input type="radio" name="g12-q11" value="B"><span>B. 唇黏膜</span></label><label><input type="radio" name="g12-q11" value="C"><span>C. 硬腭黏膜</span></label><label><input type="radio" name="g12-q11" value="D"><span>D. 口底黏膜</span></label><label><input type="radio" name="g12-q11" value="E"><span>E. 舌腹黏膜</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　C · 硬腭黏膜</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q12" class="question" data-check="yes"><small class="tag">暑假资料 · 单选 · 第 12 题 · 单选</small>
+<h3>舌背上感受味觉的结构是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q12" value="A"><span>A. 角质层</span></label><label><input type="radio" name="g12-q12" value="B"><span>B. 舌乳头</span></label><label><input type="radio" name="g12-q12" value="C"><span>C. 黏膜下层</span></label><label><input type="radio" name="g12-q12" value="D"><span>D. 固有层</span></label><label><input type="radio" name="g12-q12" value="E"><span>E. 基底细胞</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 舌乳头</p>
+<p class="note">原题选项以舌乳头作答；真正的味觉感受结构是味蕾，丝状乳头一般无味蕾。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q13" class="question"><small class="tag">暑假资料 · 单选 · 第 13 题 · 单选</small>
+<h3>体积最大的唾液腺是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q13" value="A"><span>A. 腮腺</span></label><label><input type="radio" name="g12-q13" value="B"><span>B. 下颌下腺</span></label><label><input type="radio" name="g12-q13" value="C"><span>C. 舌下腺</span></label><label><input type="radio" name="g12-q13" value="D"><span>D. 唇腺</span></label><label><input type="radio" name="g12-q13" value="E"><span>E. 颊腺</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　A · 腮腺</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q14" class="question"><small class="tag">暑假资料 · 单选 · 第 14 题 · 单选</small>
+<h3>腮腺主要的腺泡类型为</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q14" value="A"><span>A. 黏液腺泡</span></label><label><input type="radio" name="g12-q14" value="B"><span>B. 浆液腺泡</span></label><label><input type="radio" name="g12-q14" value="C"><span>C. 混合腺泡，黏液为主</span></label><label><input type="radio" name="g12-q14" value="D"><span>D. 肌上皮腺泡</span></label><label><input type="radio" name="g12-q14" value="E"><span>E. 皮脂腺泡</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 浆液腺泡</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q15" class="question"><small class="tag">暑假资料 · 单选 · 第 15 题 · 单选</small>
+<h3>分泌黏液为主的大唾液腺是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q15" value="A"><span>A. 腮腺</span></label><label><input type="radio" name="g12-q15" value="B"><span>B. 下颌下腺</span></label><label><input type="radio" name="g12-q15" value="C"><span>C. 舌下腺</span></label><label><input type="radio" name="g12-q15" value="D"><span>D. 腭腺</span></label><label><input type="radio" name="g12-q15" value="E"><span>E. 磨牙后腺</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　C · 舌下腺</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q16" class="question"><small class="tag">暑假资料 · 单选 · 第 16 题 · 单选</small>
+<h3>牙齿发育过程中成釉器来源于</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q16" value="A"><span>A. 外胚层上皮</span></label><label><input type="radio" name="g12-q16" value="B"><span>B. 中胚层</span></label><label><input type="radio" name="g12-q16" value="C"><span>C. 间充质</span></label><label><input type="radio" name="g12-q16" value="D"><span>D. 内胚层</span></label><label><input type="radio" name="g12-q16" value="E"><span>E. 软骨层</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　A · 外胚层上皮</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q17" class="question"><small class="tag">暑假资料 · 单选 · 第 17 题 · 单选</small>
+<h3>牙胚不包括以下哪个结构</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q17" value="A"><span>A. 成釉器</span></label><label><input type="radio" name="g12-q17" value="B"><span>B. 牙乳头</span></label><label><input type="radio" name="g12-q17" value="C"><span>C. 牙囊</span></label><label><input type="radio" name="g12-q17" value="D"><span>D. 髓鞘</span></label><label><input type="radio" name="g12-q17" value="E"><span>E. 以上都属于牙胚</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　D · 髓鞘</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q18" class="question"><small class="tag">暑假资料 · 单选 · 第 18 题 · 单选</small>
+<h3>形成牙本质的组织是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q18" value="A"><span>A. 成釉器</span></label><label><input type="radio" name="g12-q18" value="B"><span>B. 牙乳头</span></label><label><input type="radio" name="g12-q18" value="C"><span>C. 牙囊</span></label><label><input type="radio" name="g12-q18" value="D"><span>D. 星网状层</span></label><label><input type="radio" name="g12-q18" value="E"><span>E. 外釉上皮</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 牙乳头</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q19" class="question"><small class="tag">暑假资料 · 单选 · 第 19 题 · 单选</small>
+<h3>形成牙骨质、牙周膜、牙槽骨的是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q19" value="A"><span>A. 牙乳头</span></label><label><input type="radio" name="g12-q19" value="B"><span>B. 成釉器</span></label><label><input type="radio" name="g12-q19" value="C"><span>C. 牙囊</span></label><label><input type="radio" name="g12-q19" value="D"><span>D. 内釉上皮</span></label><label><input type="radio" name="g12-q19" value="E"><span>E. 中间层</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　C · 牙囊</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q20" class="question"><small class="tag">暑假资料 · 单选 · 第 20 题 · 单选</small>
+<h3>牙齿萌出指的是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q20" value="A"><span>A. 牙胚开始形成</span></label><label><input type="radio" name="g12-q20" value="B"><span>B. 牙冠突破口腔黏膜暴露于口腔</span></label><label><input type="radio" name="g12-q20" value="C"><span>C. 牙根刚刚开始发育</span></label><label><input type="radio" name="g12-q20" value="D"><span>D. 牙本质开始形成</span></label><label><input type="radio" name="g12-q20" value="E"><span>E. 釉质开始矿化</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 牙冠突破口腔黏膜暴露于口腔</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q21" class="question"><small class="tag">暑假资料 · 单选 · 第 21 题 · 单选</small>
+<h3>龋病的定义是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q21" value="A"><span>A. 牙骨质的外伤性缺损</span></label><label><input type="radio" name="g12-q21" value="B"><span>B. 细菌导致的牙体硬组织慢性破坏性疾病</span></label><label><input type="radio" name="g12-q21" value="C"><span>C. 牙髓的急性炎症</span></label><label><input type="radio" name="g12-q21" value="D"><span>D. 牙周膜坏死</span></label><label><input type="radio" name="g12-q21" value="E"><span>E. 牙槽骨吸收</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 细菌导致的牙体硬组织慢性破坏性疾病</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q22" class="question"><small class="tag">暑假资料 · 单选 · 第 22 题 · 单选</small>
+<h3>早期釉质龋病变的最先发生部位是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q22" value="A"><span>A. 牙本质深层</span></label><label><input type="radio" name="g12-q22" value="B"><span>B. 釉质表层下方</span></label><label><input type="radio" name="g12-q22" value="C"><span>C. 牙骨质</span></label><label><input type="radio" name="g12-q22" value="D"><span>D. 牙髓</span></label><label><input type="radio" name="g12-q22" value="E"><span>E. 牙周膜</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 釉质表层下方</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q23" class="question"><small class="tag">暑假资料 · 单选 · 第 23 题 · 单选</small>
+<h3>急性牙髓炎最主要的炎症细胞是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q23" value="A"><span>A. 淋巴细胞</span></label><label><input type="radio" name="g12-q23" value="B"><span>B. 中性粒细胞</span></label><label><input type="radio" name="g12-q23" value="C"><span>C. 浆细胞</span></label><label><input type="radio" name="g12-q23" value="D"><span>D. 巨噬细胞</span></label><label><input type="radio" name="g12-q23" value="E"><span>E. 嗜酸性粒细胞</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 中性粒细胞</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q24" class="question"><small class="tag">暑假资料 · 单选 · 第 24 题 · 单选</small>
+<h3>慢性牙髓炎的主要浸润炎症细胞是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q24" value="A"><span>A. 中性粒细胞</span></label><label><input type="radio" name="g12-q24" value="B"><span>B. 淋巴细胞、浆细胞</span></label><label><input type="radio" name="g12-q24" value="C"><span>C. 红细胞</span></label><label><input type="radio" name="g12-q24" value="D"><span>D. 肥大细胞</span></label><label><input type="radio" name="g12-q24" value="E"><span>E. 破骨细胞</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 淋巴细胞、浆细胞</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q25" class="question"><small class="tag">暑假资料 · 单选 · 第 25 题 · 单选</small>
+<h3>根尖周肉芽肿属于</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q25" value="A"><span>A. 急性化脓性炎症</span></label><label><input type="radio" name="g12-q25" value="B"><span>B. 慢性炎症性病变</span></label><label><input type="radio" name="g12-q25" value="C"><span>C. 肿瘤</span></label><label><input type="radio" name="g12-q25" value="D"><span>D. 发育畸形</span></label><label><input type="radio" name="g12-q25" value="E"><span>E. 生理性改变</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 慢性炎症性病变</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q26" class="question"><small class="tag">暑假资料 · 单选 · 第 26 题 · 单选</small>
+<h3>根尖周囊肿的衬里上皮大多来源于</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q26" value="A"><span>A. Malassez上皮剩余</span></label><label><input type="radio" name="g12-q26" value="B"><span>B. 口腔黏膜上皮</span></label><label><input type="radio" name="g12-q26" value="C"><span>C. 缩余釉上皮</span></label><label><input type="radio" name="g12-q26" value="D"><span>D. 牙乳头细胞</span></label><label><input type="radio" name="g12-q26" value="E"><span>E. 成釉细胞</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　A · Malassez上皮剩余</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q27" class="question"><small class="tag">暑假资料 · 单选 · 第 27 题 · 单选</small>
+<h3>慢性牙周炎主要的组织破坏是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q27" value="A"><span>A. 牙釉质崩解</span></label><label><input type="radio" name="g12-q27" value="B"><span>B. 牙周膜破坏、牙槽骨吸收</span></label><label><input type="radio" name="g12-q27" value="C"><span>C. 牙髓坏死</span></label><label><input type="radio" name="g12-q27" value="D"><span>D. 唾液腺萎缩</span></label><label><input type="radio" name="g12-q27" value="E"><span>E. 舌乳头萎缩</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 牙周膜破坏、牙槽骨吸收</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q28" class="question"><small class="tag">暑假资料 · 单选 · 第 28 题 · 单选</small>
+<h3>龈袋形成的主要原因是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q28" value="A"><span>A. 牙槽骨吸收</span></label><label><input type="radio" name="g12-q28" value="B"><span>B. 牙龈增生肿胀，无牙槽骨吸收</span></label><label><input type="radio" name="g12-q28" value="C"><span>C. 牙根吸收</span></label><label><input type="radio" name="g12-q28" value="D"><span>D. 釉质发育不全</span></label><label><input type="radio" name="g12-q28" value="E"><span>E. 牙本质龋坏</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 牙龈增生肿胀，无牙槽骨吸收</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q29" class="question" data-check="yes"><small class="tag">暑假资料 · 单选 · 第 29 题 · 单选</small>
+<h3>白斑属于</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q29" value="A"><span>A. 良性炎症，不会异常增生</span></label><label><input type="radio" name="g12-q29" value="B"><span>B. 口腔黏膜癌前病变</span></label><label><input type="radio" name="g12-q29" value="C"><span>C. 急性感染</span></label><label><input type="radio" name="g12-q29" value="D"><span>D. 唾液腺疾病</span></label><label><input type="radio" name="g12-q29" value="E"><span>E. 牙体疾病</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 口腔黏膜癌前病变</p>
+<p class="note">附件沿用“癌前病变”的旧措辞，现也称口腔潜在恶性疾患；白斑的临床诊断与组织学异型程度要分开。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q30" class="question"><small class="tag">暑假资料 · 单选 · 第 30 题 · 单选</small>
+<h3>扁平苔藓典型上皮下浸润的炎症细胞带为</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q30" value="A"><span>A. 中性粒细胞浸润带</span></label><label><input type="radio" name="g12-q30" value="B"><span>B. 淋巴细胞带状浸润</span></label><label><input type="radio" name="g12-q30" value="C"><span>C. 大量浆细胞</span></label><label><input type="radio" name="g12-q30" value="D"><span>D. 嗜酸性粒细胞聚集</span></label><label><input type="radio" name="g12-q30" value="E"><span>E. 破骨细胞聚集</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 淋巴细胞带状浸润</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q31" class="question"><small class="tag">暑假资料 · 单选 · 第 31 题 · 单选</small>
+<h3>多形性腺瘤好发部位是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q31" value="A"><span>A. 舌下腺</span></label><label><input type="radio" name="g12-q31" value="B"><span>B. 腮腺</span></label><label><input type="radio" name="g12-q31" value="C"><span>C. 下颌下腺</span></label><label><input type="radio" name="g12-q31" value="D"><span>D. 腭腺</span></label><label><input type="radio" name="g12-q31" value="E"><span>E. 唇腺</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 腮腺</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q32" class="question"><small class="tag">暑假资料 · 单选 · 第 32 题 · 单选</small>
+<h3>多形性腺瘤的性质是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q32" value="A"><span>A. 恶性肿瘤</span></label><label><input type="radio" name="g12-q32" value="B"><span>B. 良性肿瘤</span></label><label><input type="radio" name="g12-q32" value="C"><span>C. 急性炎症</span></label><label><input type="radio" name="g12-q32" value="D"><span>D. 囊肿</span></label><label><input type="radio" name="g12-q32" value="E"><span>E. 发育异常</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 良性肿瘤</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q33" class="question"><small class="tag">暑假资料 · 单选 · 第 33 题 · 单选</small>
+<h3>沃辛瘤（腺淋巴瘤）主要发生于</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q33" value="A"><span>A. 下颌下腺</span></label><label><input type="radio" name="g12-q33" value="B"><span>B. 腮腺</span></label><label><input type="radio" name="g12-q33" value="C"><span>C. 舌下腺</span></label><label><input type="radio" name="g12-q33" value="D"><span>D. 颊腺</span></label><label><input type="radio" name="g12-q33" value="E"><span>E. 舌腺</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 腮腺</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q34" class="question"><small class="tag">暑假资料 · 单选 · 第 34 题 · 单选</small>
+<h3>黏液表皮样癌来源于</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q34" value="A"><span>A. 唾液腺导管上皮</span></label><label><input type="radio" name="g12-q34" value="B"><span>B. 牙乳头</span></label><label><input type="radio" name="g12-q34" value="C"><span>C. 牙周膜上皮剩余</span></label><label><input type="radio" name="g12-q34" value="D"><span>D. 成釉细胞</span></label><label><input type="radio" name="g12-q34" value="E"><span>E. 间充质细胞</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　A · 唾液腺导管上皮</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q35" class="question"><small class="tag">暑假资料 · 单选 · 第 35 题 · 单选</small>
+<h3>成釉细胞瘤属于</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q35" value="A"><span>A. 牙源性良性肿瘤，但具有局部侵袭性</span></label><label><input type="radio" name="g12-q35" value="B"><span>B. 牙源性恶性肿瘤</span></label><label><input type="radio" name="g12-q35" value="C"><span>C. 唾液腺肿瘤</span></label><label><input type="radio" name="g12-q35" value="D"><span>D. 口腔黏膜炎症</span></label><label><input type="radio" name="g12-q35" value="E"><span>E. 根尖囊肿</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　A · 牙源性良性肿瘤，但具有局部侵袭性</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q36" class="question"><small class="tag">暑假资料 · 单选 · 第 36 题 · 单选</small>
+<h3>含牙囊肿的囊壁附着位置一般在</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q36" value="A"><span>A. 牙根尖部</span></label><label><input type="radio" name="g12-q36" value="B"><span>B. 牙颈部釉牙骨质界</span></label><label><input type="radio" name="g12-q36" value="C"><span>C. 牙根中部</span></label><label><input type="radio" name="g12-q36" value="D"><span>D. 根尖孔</span></label><label><input type="radio" name="g12-q36" value="E"><span>E. 牙本质中层</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 牙颈部釉牙骨质界</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q37" class="question"><small class="tag">暑假资料 · 单选 · 第 37 题 · 单选</small>
+<h3>始基囊肿属于</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q37" value="A"><span>A. 牙源性囊肿</span></label><label><input type="radio" name="g12-q37" value="B"><span>B. 非牙源性囊肿</span></label><label><input type="radio" name="g12-q37" value="C"><span>C. 唾液腺囊肿</span></label><label><input type="radio" name="g12-q37" value="D"><span>D. 软组织囊肿</span></label><label><input type="radio" name="g12-q37" value="E"><span>E. 炎症性囊肿</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　A · 牙源性囊肿</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q38" class="question"><small class="tag">暑假资料 · 单选 · 第 38 题 · 单选</small>
+<h3>鳃裂囊肿发生的来源是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q38" value="A"><span>A. 牙板上皮剩余</span></label><label><input type="radio" name="g12-q38" value="B"><span>B. 鳃裂上皮残余</span></label><label><input type="radio" name="g12-q38" value="C"><span>C. Malassez上皮剩余</span></label><label><input type="radio" name="g12-q38" value="D"><span>D. 缩余釉上皮</span></label><label><input type="radio" name="g12-q38" value="E"><span>E. 牙乳头</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 鳃裂上皮残余</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q39" class="question"><small class="tag">暑假资料 · 单选 · 第 39 题 · 单选</small>
+<h3>甲状舌管囊肿好发位置是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q39" value="A"><span>A. 腮腺区</span></label><label><input type="radio" name="g12-q39" value="B"><span>B. 颈侧部</span></label><label><input type="radio" name="g12-q39" value="C"><span>C. 颈中线舌骨上下</span></label><label><input type="radio" name="g12-q39" value="D"><span>D. 下颌角</span></label><label><input type="radio" name="g12-q39" value="E"><span>E. 颊部</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　C · 颈中线舌骨上下</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q40" class="question"><small class="tag">暑假资料 · 单选 · 第 40 题 · 单选</small>
+<h3>牙源性角化囊性瘤主要生物学特点</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q40" value="A"><span>A. 无侵袭性，不会复发</span></label><label><input type="radio" name="g12-q40" value="B"><span>B. 具有局部侵袭性，术后易复发</span></label><label><input type="radio" name="g12-q40" value="C"><span>C. 属于恶性肿瘤</span></label><label><input type="radio" name="g12-q40" value="D"><span>D. 来源于唾液腺</span></label><label><input type="radio" name="g12-q40" value="E"><span>E. 只会发生在上颌骨</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 具有局部侵袭性，术后易复发</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q41" class="question"><small class="tag">暑假资料 · 单选 · 第 41 题 · 单选</small>
+<h3>釉牙骨质界是指</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q41" value="A"><span>A. 牙釉质与牙本质交界处</span></label><label><input type="radio" name="g12-q41" value="B"><span>B. 牙釉质与牙骨质交界处</span></label><label><input type="radio" name="g12-q41" value="C"><span>C. 牙本质与牙骨质交界处</span></label><label><input type="radio" name="g12-q41" value="D"><span>D. 牙本质与牙髓交界处</span></label><label><input type="radio" name="g12-q41" value="E"><span>E. 牙骨质与牙周膜交界处</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 牙釉质与牙骨质交界处</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q42" class="question"><small class="tag">暑假资料 · 单选 · 第 42 题 · 单选</small>
+<h3>修复性牙本质形成的主要刺激原因是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q42" value="A"><span>A. 牙齿发育</span></label><label><input type="radio" name="g12-q42" value="B"><span>B. 磨耗、龋坏等外界刺激</span></label><label><input type="radio" name="g12-q42" value="C"><span>C. 牙齿萌出</span></label><label><input type="radio" name="g12-q42" value="D"><span>D. 唾液刺激</span></label><label><input type="radio" name="g12-q42" value="E"><span>E. 牙槽骨改建</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 磨耗、龋坏等外界刺激</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q43" class="question"><small class="tag">暑假资料 · 单选 · 第 43 题 · 单选</small>
+<h3>牙周膜内的上皮剩余为</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q43" value="A"><span>A. 成釉细胞残余</span></label><label><input type="radio" name="g12-q43" value="B"><span>B. Malassez上皮剩余</span></label><label><input type="radio" name="g12-q43" value="C"><span>C. 牙乳头残余</span></label><label><input type="radio" name="g12-q43" value="D"><span>D. 星网状层残余</span></label><label><input type="radio" name="g12-q43" value="E"><span>E. 中间层残余</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · Malassez上皮剩余</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q44" class="question"><small class="tag">暑假资料 · 单选 · 第 44 题 · 单选</small>
+<h3>下列哪一项属于被覆黏膜</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q44" value="A"><span>A. 硬腭黏膜</span></label><label><input type="radio" name="g12-q44" value="B"><span>B. 牙龈黏膜</span></label><label><input type="radio" name="g12-q44" value="C"><span>C. 颊黏膜</span></label><label><input type="radio" name="g12-q44" value="D"><span>D. 咀嚼黏膜</span></label><label><input type="radio" name="g12-q44" value="E"><span>E. 舌背黏膜</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　C · 颊黏膜</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q45" class="question"><small class="tag">暑假资料 · 单选 · 第 45 题 · 单选</small>
+<h3>牙发育时，内釉上皮细胞分化形成</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q45" value="A"><span>A. 成牙本质细胞</span></label><label><input type="radio" name="g12-q45" value="B"><span>B. 成釉细胞</span></label><label><input type="radio" name="g12-q45" value="C"><span>C. 成骨细胞</span></label><label><input type="radio" name="g12-q45" value="D"><span>D. 破骨细胞</span></label><label><input type="radio" name="g12-q45" value="E"><span>E. 肌上皮细胞</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 成釉细胞</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q46" class="question"><small class="tag">暑假资料 · 单选 · 第 46 题 · 单选</small>
+<h3>慢性根尖周炎中最多见的类型是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q46" value="A"><span>A. 急性根尖脓肿</span></label><label><input type="radio" name="g12-q46" value="B"><span>B. 根尖周肉芽肿</span></label><label><input type="radio" name="g12-q46" value="C"><span>C. 急性浆液性根尖周炎</span></label><label><input type="radio" name="g12-q46" value="D"><span>D. 牙髓充血</span></label><label><input type="radio" name="g12-q46" value="E"><span>E. 牙髓坏疽</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 根尖周肉芽肿</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q47" class="question"><small class="tag">暑假资料 · 单选 · 第 47 题 · 单选</small>
+<h3>牙周袋的主要特征是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q47" value="A"><span>A. 只有牙龈肿胀</span></label><label><input type="radio" name="g12-q47" value="B"><span>B. 伴有牙槽骨吸收，结合上皮向根方移位</span></label><label><input type="radio" name="g12-q47" value="C"><span>C. 牙髓发生坏死</span></label><label><input type="radio" name="g12-q47" value="D"><span>D. 釉质出现脱矿</span></label><label><input type="radio" name="g12-q47" value="E"><span>E. 牙骨质增厚</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 伴有牙槽骨吸收，结合上皮向根方移位</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q48" class="question"><small class="tag">暑假资料 · 单选 · 第 48 题 · 单选</small>
+<h3>下列哪项属于癌前病变</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q48" value="A"><span>A. 复发性阿弗他溃疡</span></label><label><input type="radio" name="g12-q48" value="B"><span>B. 白斑</span></label><label><input type="radio" name="g12-q48" value="C"><span>C. 单纯疱疹</span></label><label><input type="radio" name="g12-q48" value="D"><span>D. 慢性龈炎</span></label><label><input type="radio" name="g12-q48" value="E"><span>E. 沃辛瘤</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 白斑</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q49" class="question"><small class="tag">暑假资料 · 单选 · 第 49 题 · 单选</small>
+<h3>成釉细胞瘤最常见的发病部位</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q49" value="A"><span>A. 上颌尖牙区</span></label><label><input type="radio" name="g12-q49" value="B"><span>B. 下颌磨牙及升支部</span></label><label><input type="radio" name="g12-q49" value="C"><span>C. 腭部</span></label><label><input type="radio" name="g12-q49" value="D"><span>D. 舌体</span></label><label><input type="radio" name="g12-q49" value="E"><span>E. 颊部软组织</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 下颌磨牙及升支部</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g12-q50" class="question"><small class="tag">暑假资料 · 单选 · 第 50 题 · 单选</small>
+<h3>鼻腭管囊肿属于</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g12-q50" value="A"><span>A. 牙源性炎症囊肿</span></label><label><input type="radio" name="g12-q50" value="B"><span>B. 非牙源性发育性囊肿</span></label><label><input type="radio" name="g12-q50" value="C"><span>C. 牙源性肿瘤</span></label><label><input type="radio" name="g12-q50" value="D"><span>D. 唾液腺囊肿</span></label><label><input type="radio" name="g12-q50" value="E"><span>E. 根尖囊肿</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 非牙源性发育性囊肿</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+</details>
+<details class="group" id="set-13">
+<summary>暑假资料 · 配伍 <small>· 10 题</small>
+</summary>
+<article id="g13-q1" class="question"><small class="tag">暑假资料 · 配伍 · 第 1 题 · 配伍</small>
+<h3>人体最坚硬的牙体组织是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g13-q1" value="A"><span>A. 牙釉质</span></label><label><input type="radio" name="g13-q1" value="B"><span>B. 牙本质</span></label><label><input type="radio" name="g13-q1" value="C"><span>C. 牙骨质</span></label><label><input type="radio" name="g13-q1" value="D"><span>D. 牙髓</span></label><label><input type="radio" name="g13-q1" value="E"><span>E. 牙周膜</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　A · 牙釉质</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g13-q2" class="question"><small class="tag">暑假资料 · 配伍 · 第 2 题 · 配伍</small>
+<h3>构成牙齿主体的主要硬组织是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g13-q2" value="A"><span>A. 牙釉质</span></label><label><input type="radio" name="g13-q2" value="B"><span>B. 牙本质</span></label><label><input type="radio" name="g13-q2" value="C"><span>C. 牙骨质</span></label><label><input type="radio" name="g13-q2" value="D"><span>D. 牙髓</span></label><label><input type="radio" name="g13-q2" value="E"><span>E. 牙周膜</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 牙本质</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g13-q3" class="question"><small class="tag">暑假资料 · 配伍 · 第 3 题 · 配伍</small>
+<h3>人体体积最大的唾液腺是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g13-q3" value="A"><span>A. 腮腺</span></label><label><input type="radio" name="g13-q3" value="B"><span>B. 下颌下腺</span></label><label><input type="radio" name="g13-q3" value="C"><span>C. 舌下腺</span></label><label><input type="radio" name="g13-q3" value="D"><span>D. 唇腺</span></label><label><input type="radio" name="g13-q3" value="E"><span>E. 腭腺</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　A · 腮腺</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g13-q4" class="question"><small class="tag">暑假资料 · 配伍 · 第 4 题 · 配伍</small>
+<h3>以分泌黏液为主的大唾液腺是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g13-q4" value="A"><span>A. 腮腺</span></label><label><input type="radio" name="g13-q4" value="B"><span>B. 下颌下腺</span></label><label><input type="radio" name="g13-q4" value="C"><span>C. 舌下腺</span></label><label><input type="radio" name="g13-q4" value="D"><span>D. 唇腺</span></label><label><input type="radio" name="g13-q4" value="E"><span>E. 腭腺</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　C · 舌下腺</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g13-q5" class="question"><small class="tag">暑假资料 · 配伍 · 第 5 题 · 配伍</small>
+<h3>发育过程中形成牙本质的结构是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g13-q5" value="A"><span>A. 成釉器</span></label><label><input type="radio" name="g13-q5" value="B"><span>B. 牙乳头</span></label><label><input type="radio" name="g13-q5" value="C"><span>C. 牙囊</span></label><label><input type="radio" name="g13-q5" value="D"><span>D. 牙板</span></label><label><input type="radio" name="g13-q5" value="E"><span>E. 上皮剩余</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 牙乳头</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g13-q6" class="question"><small class="tag">暑假资料 · 配伍 · 第 6 题 · 配伍</small>
+<h3>发育过程中形成牙周膜与牙槽骨的结构是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g13-q6" value="A"><span>A. 成釉器</span></label><label><input type="radio" name="g13-q6" value="B"><span>B. 牙乳头</span></label><label><input type="radio" name="g13-q6" value="C"><span>C. 牙囊</span></label><label><input type="radio" name="g13-q6" value="D"><span>D. 牙板</span></label><label><input type="radio" name="g13-q6" value="E"><span>E. 上皮剩余</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　C · 牙囊</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g13-q7" class="question"><small class="tag">暑假资料 · 配伍 · 第 7 题 · 配伍</small>
+<h3>以牙槽骨吸收、牙周膜破坏为核心病变的是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g13-q7" value="A"><span>A. 急性牙髓炎</span></label><label><input type="radio" name="g13-q7" value="B"><span>B. 慢性牙髓炎</span></label><label><input type="radio" name="g13-q7" value="C"><span>C. 慢性牙周炎</span></label><label><input type="radio" name="g13-q7" value="D"><span>D. 根尖周肉芽肿</span></label><label><input type="radio" name="g13-q7" value="E"><span>E. 慢性龈炎</span></label></fieldset><button hidden type="button" data-grade="C">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　C · 慢性牙周炎</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g13-q8" class="question"><small class="tag">暑假资料 · 配伍 · 第 8 题 · 配伍</small>
+<h3>牙髓慢性炎症，以淋巴细胞、浆细胞浸润为主的是</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g13-q8" value="A"><span>A. 急性牙髓炎</span></label><label><input type="radio" name="g13-q8" value="B"><span>B. 慢性牙髓炎</span></label><label><input type="radio" name="g13-q8" value="C"><span>C. 慢性牙周炎</span></label><label><input type="radio" name="g13-q8" value="D"><span>D. 根尖周肉芽肿</span></label><label><input type="radio" name="g13-q8" value="E"><span>E. 慢性龈炎</span></label></fieldset><button hidden type="button" data-grade="B">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　B · 慢性牙髓炎</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g13-q9" class="question"><small class="tag">暑假资料 · 配伍 · 第 9 题 · 配伍</small>
+<h3>多形性腺瘤的病变性质属于</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g13-q9" value="A"><span>A. 良性唾液腺肿瘤</span></label><label><input type="radio" name="g13-q9" value="B"><span>B. 恶性唾液腺肿瘤</span></label><label><input type="radio" name="g13-q9" value="C"><span>C. 牙源性良性肿瘤</span></label><label><input type="radio" name="g13-q9" value="D"><span>D. 口腔癌前病变</span></label><label><input type="radio" name="g13-q9" value="E"><span>E. 发育性囊肿</span></label></fieldset><button hidden type="button" data-grade="A">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　A · 良性唾液腺肿瘤</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g13-q10" class="question" data-check="yes"><small class="tag">暑假资料 · 配伍 · 第 10 题 · 配伍</small>
+<h3>口腔白斑的病变性质属于</h3>
+<fieldset class="choices"><legend>作答</legend><label><input type="radio" name="g13-q10" value="A"><span>A. 良性唾液腺肿瘤</span></label><label><input type="radio" name="g13-q10" value="B"><span>B. 恶性唾液腺肿瘤</span></label><label><input type="radio" name="g13-q10" value="C"><span>C. 牙源性良性肿瘤</span></label><label><input type="radio" name="g13-q10" value="D"><span>D. 口腔癌前病变</span></label><label><input type="radio" name="g13-q10" value="E"><span>E. 发育性囊肿</span></label></fieldset><button hidden type="button" data-grade="D">核对作答</button><span role="status" class="reply"></span>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　D · 口腔癌前病变</p>
+<p class="note">附件沿用“癌前病变”的旧措辞，现也称口腔潜在恶性疾患；白斑的临床诊断与组织学异型程度要分开。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+</details>
+<details class="group" id="set-14">
+<summary>暑假资料 · 填空 <small>· 12 题</small>
+</summary>
+<article id="g14-q1" class="question"><small class="tag">暑假资料 · 填空 · 第 1 题 · 填空</small>
+<h3>牙体组织中最坚硬的硬组织是〔　〕。</h3>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　牙釉质</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g14-q2" class="question"><small class="tag">暑假资料 · 填空 · 第 2 题 · 填空</small>
+<h3>牙齿的基本组织结构包括牙釉质、牙本质、牙骨质和〔　〕。</h3>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　牙髓</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g14-q3" class="question"><small class="tag">暑假资料 · 填空 · 第 3 题 · 填空</small>
+<h3>人体最大的唾液腺是〔　〕。</h3>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　腮腺</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g14-q4" class="question"><small class="tag">暑假资料 · 填空 · 第 4 题 · 填空</small>
+<h3>牙周膜中数量最多、力量最强的纤维组是〔　〕。</h3>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　斜行组</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g14-q5" class="question" data-check="yes"><small class="tag">暑假资料 · 填空 · 第 5 题 · 填空</small>
+<h3>白斑是口腔黏膜常见的〔　〕病变。</h3>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　癌前</p>
+<p class="note">附件沿用“癌前病变”的旧措辞，现也称口腔潜在恶性疾患；白斑的临床诊断与组织学异型程度要分开。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g14-q6" class="question"><small class="tag">暑假资料 · 填空 · 第 6 题 · 填空</small>
+<h3>牙齿发育的始基为〔　〕。</h3>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　牙胚</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g14-q7" class="question"><small class="tag">暑假资料 · 填空 · 第 7 题 · 填空</small>
+<h3>急性牙髓炎的主要临床特点是〔　〕疼痛。</h3>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　自发性阵发性</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g14-q8" class="question"><small class="tag">暑假资料 · 填空 · 第 8 题 · 填空</small>
+<h3>咀嚼黏膜包括硬腭黏膜和〔　〕黏膜。</h3>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　牙龈</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g14-q9" class="question"><small class="tag">暑假资料 · 填空 · 第 9 题 · 填空</small>
+<h3>龋病发生的主要致病菌为〔　〕。</h3>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　变形链球菌</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g14-q10" class="question"><small class="tag">暑假资料 · 填空 · 第 10 题 · 填空</small>
+<h3>成釉细胞瘤好发于〔　〕磨牙及升支部。</h3>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　下颌骨</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g14-q11" class="question"><small class="tag">暑假资料 · 填空 · 第 11 题 · 填空</small>
+<h3>舌背黏膜表面分布着四种舌乳头，分别是〔　〕、〔　〕、〔　〕、〔　〕。</h3>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　丝状乳头、菌状乳头、轮廓乳头、叶状乳头</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g14-q12" class="question"><small class="tag">暑假资料 · 填空 · 第 12 题 · 填空</small>
+<h3>口腔黏膜根据功能和结构特点可分为〔　〕、〔　〕、〔　〕。</h3>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　咀嚼黏膜、被覆黏膜、特殊黏膜</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+</details>
+<details class="group" id="set-15">
+<summary>暑假资料 · 名词解释 <small>· 5 题</small>
+</summary>
+<article id="g15-q1" class="question"><small class="tag">暑假资料 · 名词解释 · 第 1 题 · 名词解释</small>
+<h3>釉柱</h3>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　釉质的基本结构，细长的柱状结构，起自釉牙本质界，贯穿釉质全层到达牙表面。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g15-q2" class="question"><small class="tag">暑假资料 · 名词解释 · 第 2 题 · 名词解释</small>
+<h3>釉牙本质界</h3>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　釉质与牙本质的交界面，呈弧形凹凸，凸向牙本质。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g15-q3" class="question" data-check="yes"><small class="tag">暑假资料 · 名词解释 · 第 3 题 · 名词解释</small>
+<h3>半月板</h3>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　混合性腺泡，浆液细胞呈新月状覆盖黏液性腺泡末端。</p>
+<p class="note">附件题名为“半月板”，所描述的结构是混合性腺泡的浆半月。复习以唾液腺章节术语为准。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g15-q4" class="question"><small class="tag">暑假资料 · 名词解释 · 第 4 题 · 名词解释</small>
+<h3>棘层增生</h3>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　棘层细胞数目增多，上皮增厚。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g15-q5" class="question" data-check="yes"><small class="tag">暑假资料 · 名词解释 · 第 5 题 · 名词解释</small>
+<h3>白斑</h3>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　不能擦去的白色斑块，不能诊断其他疾病；属于癌前病变。</p>
+<p class="note">附件沿用“癌前病变”的旧措辞，现也称口腔潜在恶性疾患；白斑的临床诊断与组织学异型程度要分开。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+</details>
+<details class="group" id="set-16">
+<summary>暑假资料 · 简答 <small>· 2 题</small>
+</summary>
+<article id="g16-q1" class="question"><small class="tag">暑假资料 · 简答 · 第 1 题 · 简答</small>
+<h3>龋病的定义是什么？从病理学的角度可以分为哪几类？</h3>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　是由细菌、食物、宿主、时间共同作用，导致牙体硬组织发生慢性、进行性破坏的疾病。
+可以分为牙釉质龋，牙本质龋，牙骨质龋。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+<article id="g16-q2" class="question"><small class="tag">暑假资料 · 简答 · 第 2 题 · 简答</small>
+<h3>牙胚包括哪几个部分？分别形成什么？</h3>
+<details class="solution">
+<summary>核对答案</summary>
+<p>附件参考答案　包括成釉器，牙乳头，牙囊。
+成釉器形成牙釉质，牙乳头形成牙本质和牙髓，牙囊形成牙周膜，牙槽骨，牙骨质。</p>
+</details>
+<button type="button" data-mark hidden>加入回练</button>
+</article>
+</details>
+</main></body></html>
