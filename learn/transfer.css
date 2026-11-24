@@ -1,0 +1,12 @@
+.study-desk-links:has(.transfer-toggle),.masthead:has(.transfer-toggle),.topline:has(.transfer-toggle){flex-wrap:wrap}
+.transfer-toggle,#study-transfer button{font:inherit;color:#60475a;background:#fbf7fa;border:1px solid #cdbbca;border-radius:100px;padding:5px 11px;cursor:pointer;min-height:34px}
+.transfer-toggle:hover,#study-transfer button:hover{background:#eee4eb}
+#study-transfer{box-sizing:border-box;width:min(calc(100% - 24px),820px);margin:10px auto;padding:15px;border:1px solid #dcd1da;border-radius:12px;background:#fffdfd;color:#2d272e;position:static;font:14px/1.5 system-ui,sans-serif}
+#study-transfer[hidden],#study-transfer [hidden]{display:none!important}
+#study-transfer h2{font:400 23px "STSong","华文宋体","Songti SC",SimSun,serif;margin:0 0 8px;padding:0;border:0}
+#study-transfer p{margin:7px 0;color:#625561}
+#study-transfer form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+#study-transfer label{display:grid;gap:4px}
+#study-transfer :is(input,select,textarea){box-sizing:border-box;width:100%;min-width:0;font:inherit;padding:7px;color:#2d272e;background:#f7f1f6;border:1px solid #cdbbca;border-radius:6px}
+#study-transfer textarea{min-height:115px;resize:vertical}
+.transfer-actions{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px}

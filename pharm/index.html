@@ -82,6 +82,8 @@ td.pg{color:var(--sub);white-space:nowrap;font-size:.72rem}
 .study-desk-nav a:hover{background:white;color:#332332}
 .study-desk-nav a:focus-visible{outline:2px solid #74546d;outline-offset:2px}
 </style>
+<link rel="stylesheet" href="../learn/transfer.css">
+<script defer src="../learn/transfer.js"></script>
 <style id="study-desk-theme">
 @font-face {
   font-family: "Desk Song";
@@ -577,6 +579,16 @@ function render() {
   updateScore();
 }
 
+const COURSE_CHECKS = new Map([
+  ['A第三章-第三章 药物剂型与处方-1', '第 54 页以设定释放速度界定控释，第 36 页的控释片强调恒速释放。选项 C 的「非恒速」与课件定义不符。'],
+  ['A第三章-第三章 药物剂型与处方-4', '第 55 页将减少用药总剂量列为优点，对照选项 E 的「不能减少」。'],
+  ['A第三章-第三章 药物剂型与处方-10', '第 79 页写明处方完成后在空白处画斜线。'],
+  ['A第三章-第三章 药物剂型与处方-13', '第 59 页的课程排序把吸入列在静脉注射与肌内注射之间。'],
+  ['A第三章-第三章 药物剂型与处方-15', '第 24 页列出的相应剂型是缓释颗粒。'],
+  ['A第六章-第六章抗微生物药-6', '第 11 页把抑制或杀灭病原菌的能力称为抗菌活性，抗菌谱描述的是范围。'],
+  ['A第六章-第六章抗微生物药-11', '第 14 页把青霉素列在针对细胞壁结构的一类，第 93 页复习了抑制细菌细胞壁合成。']
+]);
+
 function makeCard(c) {
   const el = document.createElement('div');
   el.className = 'card';
@@ -618,7 +630,9 @@ function makeCard(c) {
       return '<b>正确答案</b>' + esc(parts[0] || '') +
              (parts.length > 1 ? '<br><span style="color:#6b7280">同上可接受写法：' + esc(parts.slice(1).join('；')) + '</span>' : '');
     }
+    const lecture = COURSE_CHECKS.get(c.id);
     let s = '<b>⚠ ' + esc(c.note) + '</b>';
+    if (lecture) s += '<br><b>课件核对：</b>' + esc(lecture);
     if (c.mine) {
       if (c.kind === 'single') {
         const t = (c.opts.find((o) => o[0] === c.mine) || ['', ''])[1];
