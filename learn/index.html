@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="医学影像、诊断学、心电、口腔与英语的学习入口。">
+<title>帮学总入口 · 学习台</title>
+<style>
+@font-face{font-family:"Desk Song";src:local("STSong"),local("华文宋体");font-weight:400;font-display:swap}
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:depart .2s ease both}
+::view-transition-new(root){animation:arrive .36s cubic-bezier(.22,1,.36,1) both}
+@keyframes depart{to{opacity:0;transform:translateY(-4px)}}
+@keyframes arrive{from{opacity:0;transform:translateY(9px)}}
+:root{color-scheme:light;--ink:#2d272e;--muted:#665861;--accent:#60475a;--line:#dcd1da;--paper:#fffdfd;--song:"Desk Song","STSong","华文宋体","Songti SC",SimSun,serif}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:radial-gradient(ellipse at 85% 0,#eee5ed,transparent 52rem),#f4f1f2;color:var(--ink);font:15px/1.6 "Segoe UI Variable","Microsoft YaHei",sans-serif;min-height:100vh}
+.desk{width:min(100% - 42px,1180px);margin:auto;padding:20px 0 40px}
+.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.identity{font:400 20px var(--song)}
+a{color:var(--accent);text-decoration:none}
+a:focus-visible,input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.glass{border:1px solid var(--line);background:linear-gradient(145deg,#fffdfdf4,#eee5edb0);border-radius:100px;padding:6px 13px;box-shadow:inset 0 1px 0 white,0 2px 8px #4e334315;backdrop-filter:blur(18px);color:var(--accent);font:inherit}
+.glass:hover{background:#fff}
+.hero{position:relative;isolation:isolate;overflow:hidden;padding:27px 0 21px}
+.hero h1{margin:0;font:400 clamp(42px,6.4vw,78px)/1.07 var(--song);letter-spacing:-.045em}
+.hero p{margin:7px 0 0;color:var(--muted)}
+.fold{position:absolute;z-index:-1;pointer-events:none;right:0;top:0;width:clamp(120px,43%,470px);height:100%;background:linear-gradient(142deg,#decbd8 15%,#eee4ec 15% 40%,#dbcbd7 40% 52%,#f9f6f9 53%);clip-path:polygon(0 81%,32% 19%,48% 34%,58% 7%,82% 24%,100% 0,100% 71%,76% 55%,53% 100%,29% 83%);opacity:.65}
+.searchbar{display:flex;gap:8px;align-items:center;margin:0 0 19px}
+.searchbar label{flex:1}
+.searchbar input{width:100%;min-height:42px;border:1px solid var(--line);border-radius:9px;background:#fffdfdc9;padding:8px 12px;color:var(--ink);font:inherit}
+.searchbar button{cursor:pointer}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;align-items:start}
+.subject{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:15px 17px;box-shadow:0 4px 15px #432a3d08}
+.subject header{padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:4px}
+.subject h2{margin:0;font:400 28px/1.18 var(--song);color:var(--ink)}
+.subject header p{margin:2px 0 0;color:var(--muted);font-size:12px}
+.resources{list-style:none;padding:0;margin:0}
+.resources li + li{border-top:1px solid #e9e1e7}
+.resources a{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;min-height:44px;padding:6px 7px;border-radius:5px;transition:background .18s}
+.resources a:hover{background:#f2eaf0}
+.resources strong{display:block;color:var(--ink);font-size:14px;font-weight:630}
+.resources small{display:block;color:var(--muted);font-size:12px;line-height:1.4}
+.resources .arrow{font-size:15px;margin-inline-start:10px}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:20px;border-top:1px solid var(--line);padding-top:10px;color:var(--muted);font-size:13px}
+.foot a{text-decoration:underline;text-underline-offset:3px}
+#empty{padding:15px 0;color:var(--muted)}
+@media(max-width:650px){.desk{width:calc(100% - 26px)}.groups{grid-template-columns:1fr}.hero{padding-block:20px 16px}.subject{padding:13px}}
+@media(prefers-reduced-motion:reduce){*,::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important;transition:none!important}}
+</style>
+<main class="desk">
+  <div class="topline"><span class="identity">学习台</span><a class="glass" href="../index.html">阅片工作台 →</a></div>
+  <header class="hero">
+    <div class="fold" aria-hidden="true"></div>
+    <h1>帮学总入口</h1>
+    <p>从科目进入图谱、练习和复习资料。</p>
+  </header>
+  <div class="searchbar" id="searchbar" hidden>
+    <label><span class="visually-hidden">搜索学习资源</span><input type="search" id="search" placeholder="搜索科目、题型或主题"></label>
+    <button type="button" class="glass" id="clear" hidden>清除</button>
+  </div>
+  <div class="groups">
+    <section class="subject" data-keywords="影像 读片 放射">
+      <header><h2>医学影像学</h2><p>看片、核对答案，再做真题</p></header>
+      <ul class="resources">
+        <li><a href="../index.html"><span><strong>阅片工作台</strong><small>92 张课件片 · 20 张真题考过</small></span><span class="arrow" aria-hidden="true">→</span></a></li>
+        <li><a href="../真题卡片.html"><span><strong>平台真题卡片</strong><small>40 道题 · 带对应课件影像</small></span><span class="arrow" aria-hidden="true">→</span></a></li>
+        <li><a href="../quiz/index.html"><span><strong>阅片抽考</strong><small>胸片与头颅 CT 两道难题</small></span><span class="arrow" aria-hidden="true">→</span></a></li>
+        <li><a href="../阅片速记.html"><span><strong>阅片速记</strong><small>题干、答案和课件原文</small></span><span class="arrow" aria-hidden="true">→</span></a></li>
+        <li><a href="../阅片列表.html"><span><strong>全片列表</strong><small>按章节连续浏览</small></span><span class="arrow" aria-hidden="true">→</span></a></li>
+      </ul>
+    </section>
+    <section class="subject" data-keywords="诊断">
+      <header><h2>诊断学与心电</h2><p>从结构、通路和导联关系入手</p></header>
+      <ul class="resources">
+        <li><a href="https://sarkazcollegewisadel.github.io/diagnostics-atlas/"><span><strong>诊断学随身图谱</strong><small>脑神经与牵涉痛的课程入口</small></span><span class="arrow" aria-hidden="true">→</span></a></li>
+        <li><a href="https://sarkazcollegewisadel.github.io/diagnostics-atlas/cranial.html"><span><strong>脑神经分层图谱</strong><small>分层观察神经、支路与功能</small></span><span class="arrow" aria-hidden="true">→</span></a></li>
+        <li><a href="https://sarkazcollegewisadel.github.io/diagnostics-atlas/referred-pain.html"><span><strong>牵涉痛图谱</strong><small>体表分布、机制与自测</small></span><span class="arrow" aria-hidden="true">→</span></a></li>
+        <li data-keywords="ECG 心脏"><a href="https://sarkazcollegewisadel.github.io/xinxiang-ecg-learning/"><span><strong>心向 · 三维心电向量学习台</strong><small>十二导联、三维向量环与参数化病例</small></span><span class="arrow" aria-hidden="true">→</span></a></li>
+      </ul>
+    </section>
+    <section class="subject" data-keywords="口腔 临床 药理 药物">
+      <header><h2>口腔临床药物学</h2><p>先看学习指南，再按题型或章节练习</p></header>
+      <ul class="resources">
+        <li><a href="../pharm/guide/index.html"><span><strong>药物学学习指南</strong><small>课程重点、学时和出题范围</small></span><span class="arrow" aria-hidden="true">→</span></a></li>
+        <li><a href="../pharm/index.html"><span><strong>药物学抽查</strong><small>95 题 · 作业与课件题</small></span><span class="arrow" aria-hidden="true">→</span></a></li>
+        <li><a href="../pharm/mock/index.html"><span><strong>药物学模拟试卷</strong><small>单选、填空、配伍题、案例与论述</small></span><span class="arrow" aria-hidden="true">→</span></a></li>
+        <li><a href="../pharm/endodontic/index.html"><span><strong>牙体牙髓用药速通</strong><small>实验课前要点与 20 道练习</small></span><span class="arrow" aria-hidden="true">→</span></a></li>
+        <li><a href="../pharm/perio/index.html"><span><strong>牙周与黏膜用药补题</strong><small>开源题库 197 道 · 可按专题筛选</small></span><span class="arrow" aria-hidden="true">→</span></a></li>
+      </ul>
+    </section>
+    <section class="subject" data-keywords="组织 病理 口腔 切片 牙源 成釉 肿瘤">
+      <header><h2>口腔组织病理学</h2></header>
+      <ul class="resources">
+        <li><a href="../odontogenic/index.html"><span><strong>牙源性肿瘤切片抽查</strong><small>随机抽 10 题、全量浏览与错题复习</small></span><span class="arrow" aria-hidden="true">→</span></a></li>
+      </ul>
+    </section>
+    <section class="subject" data-keywords="预防 公卫 公共卫生 营养 食品 环境">
+      <header><h2>预防医学</h2></header>
+      <ul class="resources">
+        <li><a href="../premed/index.html"><span><strong>预防医学学习指南</strong><small>大纲范围、已有作业与复习顺序</small></span><span class="arrow" aria-hidden="true">→</span></a></li>
+        <li><a href="../premed/quiz.html"><span><strong>预防医学题目抽查</strong><small>77 道 · 第一章与第六章作业</small></span><span class="arrow" aria-hidden="true">→</span></a></li>
+      </ul>
+    </section>
+    <section class="subject" data-keywords="英语 English EforGla CET 四级 六级 vocabulary 语之恋">
+      <header><h2>英语</h2></header>
+      <ul class="resources">
+        <li><a href="https://sarkazcollegewisadel.github.io/EforGla/"><span><strong>EforGla · 语之恋</strong><small>词汇、卡片与复习 · AI 对话需配置服务</small></span><span class="arrow" aria-hidden="true">→</span></a></li>
+      </ul>
+    </section>
+    <section class="subject" data-keywords="本地 知识库 检索 Anki Study Desk">
+      <header><h2>本地学习工具</h2></header>
+      <ul class="resources">
+        <li><a href="https://github.com/SarkazCollegeWisadel/study-desk#快速开始"><span><strong>Study Desk · 学习台</strong><small>安装说明 · 需要本机服务和资料</small></span><span class="arrow" aria-hidden="true">→</span></a></li>
+      </ul>
+    </section>
+  </div>
+  <p id="empty" role="status" hidden>没有匹配的学习资源。</p>
+  <footer class="foot"><span>练习进度在各工具内查看。</span><a href="https://github.com/SarkazCollegeWisadel/med-imaging-exam/blob/main/design/帮学入口与审阅.md">学习内容审阅记录</a></footer>
+</main>
+<script>
+const field = document.getElementById('search');
+const clear = document.getElementById('clear');
+const subjects = [...document.querySelectorAll('.subject')];
+function filter() {
+  const terms = field.value.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
+  let total = 0;
+  for (const subject of subjects) {
+    const context = subject.querySelector('h2').textContent + ' ' + subject.dataset.keywords;
+    let count = 0;
+    for (const resource of subject.querySelectorAll('li')) {
+      const searchable = [context, resource.textContent, resource.dataset.keywords].join(' ').toLocaleLowerCase();
+      resource.hidden = !terms.every(term => searchable.includes(term));
+      if (!resource.hidden) count++;
+    }
+    subject.hidden = count === 0;
+    total += count;
+  }
+  clear.hidden = terms.length === 0;
+  document.getElementById('empty').hidden = total > 0;
+}
+field.addEventListener('input', filter);
+window.addEventListener('pageshow', filter);
+clear.addEventListener('click', () => {
+  field.value = '';
+  filter();
+  field.focus();
+});
+document.getElementById('searchbar').hidden = false;
+filter();
+</script>
+</html>
