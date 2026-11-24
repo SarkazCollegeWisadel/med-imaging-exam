@@ -68,8 +68,23 @@ details.honesty[open] summary::before{content:"▾ "}
 details.honesty .inner{padding:0 13px 13px;font-size:.84rem;line-height:1.75}
 details.honesty .inner p{margin:6px 0}
 </style>
+<style>
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:desk-page-out .2s ease both}
+::view-transition-new(root){animation:desk-page-in .36s cubic-bezier(.22,1,.36,1) both}
+@keyframes desk-page-out{to{opacity:0;transform:translateY(-4px)}}
+@keyframes desk-page-in{from{opacity:0;transform:translateY(9px)}}
+@media(prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+
+.study-desk-nav{display:block;box-sizing:border-box;position:relative;inset:auto;z-index:auto;max-width:none;background:#f2edf1;color:#463747;border:0;border-bottom:1px solid #8d718b38;padding:8px clamp(12px,4vw,48px);font:14px/1.5 system-ui,"Microsoft YaHei",sans-serif}
+.study-desk-nav .study-desk-links{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;max-width:1440px;margin:auto}
+.study-desk-nav a,.study-desk-nav a:visited{display:inline-flex;align-items:center;min-height:34px;box-sizing:border-box;margin:0;padding:3px 10px;border:1px solid #8d718b60;border-radius:100px;background:#ffffff87;color:#4c3c4a;text-decoration:none;font:inherit;white-space:nowrap}
+.study-desk-nav a:hover{background:white;color:#332332}
+.study-desk-nav a:focus-visible{outline:2px solid #74546d;outline-offset:2px}
+</style>
 </head>
 <body>
+<div class="study-desk-nav" role="navigation" aria-label="学习台导航"><div class="study-desk-links"><a href="../../index.html">← 返回学习台</a><a href="../index.html">口腔临床药物学</a><span>模拟试卷</span></div></div>
 <header><div class="wrap">
 <h1>口腔临床药物学 · 模拟试卷</h1>
 <div class="sub">本卷实际 35 单选 + 15 填空 + 9 道 B1 小题 + 3 案例 + 4 论述 = 66 题。少于大纲的 70~80，原因是可用真题不够（见下条），未凑数。</div>

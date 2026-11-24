@@ -39,8 +39,23 @@ a{color:#60a5fa}
 .go a:hover{background:#2563eb}
 @media(max-width:560px){main{padding:16px 13px 60px}h1{font-size:20px}h2{font-size:17px}table{font-size:13px}th,td{padding:7px 9px}}
 </style>
+<style>
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:desk-page-out .2s ease both}
+::view-transition-new(root){animation:desk-page-in .36s cubic-bezier(.22,1,.36,1) both}
+@keyframes desk-page-out{to{opacity:0;transform:translateY(-4px)}}
+@keyframes desk-page-in{from{opacity:0;transform:translateY(9px)}}
+@media(prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+
+.study-desk-nav{display:block;box-sizing:border-box;position:relative;inset:auto;z-index:auto;max-width:none;background:#f2edf1;color:#463747;border:0;border-bottom:1px solid #8d718b38;padding:8px clamp(12px,4vw,48px);font:14px/1.5 system-ui,"Microsoft YaHei",sans-serif}
+.study-desk-nav .study-desk-links{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;max-width:1440px;margin:auto}
+.study-desk-nav a,.study-desk-nav a:visited{display:inline-flex;align-items:center;min-height:34px;box-sizing:border-box;margin:0;padding:3px 10px;border:1px solid #8d718b60;border-radius:100px;background:#ffffff87;color:#4c3c4a;text-decoration:none;font:inherit;white-space:nowrap}
+.study-desk-nav a:hover{background:white;color:#332332}
+.study-desk-nav a:focus-visible{outline:2px solid #74546d;outline-offset:2px}
+</style>
 </head>
 <body>
+<div class="study-desk-nav" role="navigation" aria-label="学习台导航"><div class="study-desk-links"><a href="../index.html">← 返回学习台</a><span>预防医学 · 学习指南</span></div></div>
 <div class="top">
   <h1>预防医学 · 学习指南</h1>
   <p>长沙医学院 24B0703110 · 77 题作业考点分析 · 材料逐字取自 OCS 平台</p>
