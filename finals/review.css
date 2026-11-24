@@ -1,0 +1,15 @@
+*{box-sizing:border-box}
+:root{color-scheme:light;--ink:#292a35;--muted:#555c67;--accent:#56465e;--line:#d8cfd9;--paper:#fffefd;--wash:#f5f1f4;--serif:"Songti SC","STSong","华文宋体",SimSun,serif}
+body{margin:0;background:var(--wash);color:var(--ink);font:16px/1.75 "Segoe UI","Microsoft YaHei",sans-serif}
+main{max-width:62rem;margin:auto;padding:1rem clamp(.9rem,4vw,3rem) 4rem}a{color:var(--accent);text-underline-offset:.2em}
+.masthead,nav,.tools{display:flex;flex-wrap:wrap;align-items:center;gap:.65rem 1rem}.masthead{justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:.7rem}
+header{padding:1.6rem 0 .5rem}h1,h2,h3{font-family:var(--serif);line-height:1.35}h1{font-size:clamp(2rem,5vw,3.5rem);margin:0}h2{margin:2.4rem 0 .7rem;font-size:1.65rem}h3{margin:.45rem 0;font-size:1.18rem}
+header p{max-width:46em}p{margin:.55rem 0}section,details,article{scroll-margin-top:1rem}
+details.module,article.day,.panel,details.group{background:var(--paper);border:1px solid var(--line);border-radius:.6rem;padding:.8rem 1rem;margin:.6rem 0}
+summary{cursor:pointer;font-weight:600;padding:.15rem 0}summary small,.source,small{font-size:.88rem;color:var(--muted);font-weight:400}
+ul,ol{padding-left:1.5rem}li{margin:.18rem 0}.source{margin-top:.6rem}.question{border-top:1px solid var(--line);padding:1rem 0}.question h3{font-family:inherit;font-size:1rem}.question details{margin-top:.45rem}
+.note{border-left:3px solid #967346;background:#faf5ed;padding:.35rem .75rem}.tools{margin:.7rem 0}button,select{font:inherit;color:var(--ink);background:var(--paper);border:1px solid #aea5b1;border-radius:.35rem;padding:.35rem .65rem;cursor:pointer}
+button[aria-pressed=true]{background:#514457;color:white}input[type=checkbox]{width:1.1rem;height:1.1rem;vertical-align:middle}
+.columns{display:grid;grid-template-columns:1fr 1fr;gap:.65rem 1.4rem}.columns p{margin:.25rem 0}a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid #956129;outline-offset:2px}
+[hidden]{display:none!important}@media(max-width:600px){.columns{grid-template-columns:1fr}.module,.group,.day{overflow-wrap:anywhere}.masthead{gap:.3rem}}
+@media print{body{background:white}main{max-width:none}.tools,.masthead,nav,.transfer-toggle{display:none}.question,.day{break-inside:avoid}}
