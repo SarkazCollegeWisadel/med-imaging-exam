@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>牙体牙髓病用药 · 实验课前速通</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23b45309'/%3E%3Ctext x='16' y='23' font-size='18' text-anchor='middle' fill='%23fff' font-family='sans-serif'%3E牙%3C/text%3E%3C/svg%3E">
+<style>
+:root{--bg:#f5f6fa;--card:#fff;--ink:#1c2230;--sub:#6b7280;--line:#dfe3ea;
+--ok:#0f7a3d;--okbg:#e9f8ef;--bad:#b3261e;--badbg:#fdecea;--hl:#b45309;--hl2:#2563eb;
+--warn:#8a5a00;--warnbg:#fff6e0}
+@media (prefers-color-scheme: dark){:root{--bg:#14171e;--card:#1c2029;--ink:#e5e9f0;--sub:#98a2b3;--line:#2c3340;
+--ok:#4ade80;--okbg:#14301f;--bad:#f87171;--badbg:#301a18;--hl:#fbbf24;--hl2:#60a5fa;--warn:#fbbf24;--warnbg:#332a10}}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.72;font-size:16px;padding:0 0 60px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:780px;margin:0 auto;padding:0 12px}
+header{background:var(--card);border-bottom:1px solid var(--line);padding:13px 0 11px;position:sticky;top:0;z-index:30}
+header .wrap{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+header h1{font-size:1.05rem;line-height:1.35;flex:1 1 auto}
+header .sub{color:var(--sub);font-size:.72rem;flex:1 1 100%}
+.urgent{background:var(--badbg);color:var(--bad);border-radius:8px;padding:7px 10px;font-size:.82rem;margin:10px 0;font-weight:600}
+.hero{background:var(--card);border-radius:13px;padding:13px;margin:11px 0;box-shadow:0 1px 3px rgba(16,24,40,.07)}
+.hero h2{font-size:.96rem;margin-bottom:7px;color:var(--hl)}
+.hero p{font-size:.9rem;margin:5px 0}
+.hero b{color:var(--hl)}
+details.sec{background:var(--card);border-radius:13px;margin:10px 0;box-shadow:0 1px 3px rgba(16,24,40,.07);overflow:hidden}
+details.sec>summary{cursor:pointer;padding:12px 13px;font-weight:700;font-size:.95rem;list-style:none;
+display:flex;align-items:center;gap:9px}
+details.sec>summary::-webkit-details-marker{display:none}
+details.sec>summary .no{background:var(--hl);color:#fff;font-size:.7rem;padding:2px 7px;border-radius:6px;flex:0 0 auto}
+details.sec>summary .nm{flex:1}
+details.sec>summary::after{content:"▾";color:var(--sub);font-size:.8rem}
+details.sec:not([open])>summary::after{content:"▸"}
+.lead{padding:0 13px 9px;color:var(--sub);font-size:.85rem;line-height:1.65}
+.card{border-top:1px solid var(--line);padding:12px 13px}
+.ct{font-weight:600;font-size:.9rem;color:var(--hl2);margin-bottom:7px;line-height:1.5}
+.card .body{font-size:.9rem}
+.card .body table{width:100%;border-collapse:collapse;font-size:.82rem;margin:6px 0;display:block;overflow-x:auto}
+.card .body th,.card .body td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+.card .body th{background:#f0f2f7;font-weight:600;white-space:nowrap}
+@media (prefers-color-scheme: dark){.card .body th{background:#232936}}
+.card .body li{margin:3px 0}
+.numt{width:100%;border-collapse:collapse;font-size:.82rem}
+.numt td,.numt th{border:1px solid var(--line);padding:6px 8px;vertical-align:top}
+.numt th{background:#f0f2f7}
+.numt td.pg{color:var(--sub);white-space:nowrap;font-size:.74rem}
+@media (prefers-color-scheme: dark){.numt th{background:#232936}}
+.bar{position:sticky;top:56px;z-index:20;background:var(--bg);padding:6px 0;display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-size:.78rem}
+.bar .sc{font-weight:600;margin-right:auto}
+.bar .sc span{color:var(--sub);font-weight:400}
+.btn{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:5px 9px;font-size:.75rem;
+cursor:pointer;color:var(--ink);font-family:inherit}
+.btn:active{transform:scale(.96)}
+.q{background:var(--card);border-radius:12px;padding:12px;margin:9px 0;box-shadow:0 1px 3px rgba(16,24,40,.06)}
+.q .qh{display:flex;gap:6px;align-items:center;margin-bottom:7px;flex-wrap:wrap}
+.tag{font-size:.66rem;padding:2px 6px;border-radius:5px;background:#eef2fb;color:#26418f}
+.tag.b{background:#f3ecff;color:#5b21b6}
+.tag.f{background:#e8f5f2;color:#0f766e}
+.q .s{margin-left:auto;font-size:.66rem;color:var(--sub)}
+.q .st{font-size:.92rem;white-space:pre-wrap}
+.opts{margin-top:8px;display:flex;flex-direction:column;gap:6px}
+.opt{border:1.5px solid var(--line);border-radius:9px;padding:8px 10px;font-size:.87rem;background:var(--card);
+text-align:left;cursor:pointer;font-family:inherit;color:var(--ink);display:flex;gap:7px;line-height:1.5}
+.opt .lb{font-weight:700;color:var(--hl2);flex:0 0 auto}
+.opt.right{border-color:var(--ok);background:var(--okbg)}
+.opt.wrong{border-color:var(--bad);background:var(--badbg)}
+.opt.lock{pointer-events:none}
+.ans{margin-top:8px;border-left:3px solid var(--hl2);background:#f0f5ff;border-radius:0 8px 8px 0;padding:8px 10px;
+font-size:.85rem;display:none;white-space:pre-wrap}
+.ans.on{display:block}
+@media (prefers-color-scheme: dark){.ans{background:#1b2333}}
+.acts{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1>牙体牙髓病用药 · 实验课前速通</h1>
+  <div class="sub">周四 11-26 上午实验课 · 依据课件 101 页 + 平台作业 15 题 + 课件真题 5 题，逐条标页码</div>
+</div></header>
+
+<div class="wrap">
+<div class="urgent">⏰ 今天周二 11-24，周四上午实验课，还剩 2 天。先看下面「一小时怎么用」。</div>
+
+<div class="hero">
+<h2>一小时怎么用</h2>
+<p><b>前 25 分钟</b>：只读 00 + 07 两节。00 是全章骨架，07 是实验最可能上手的根管治疗药。</p>
+<p><b>接下来 15 分钟</b>：读 04 盖髓术 + 06 失活剂。这两个是「选错药会出事」的部分，作业反复考。</p>
+<p><b>最后 20 分钟</b>：做下面 20 道题（15 平台题 + 5 课件真题），错的回上面查页码。</p>
+<p style="color:#6b7280;font-size:.85rem;margin-top:8px">02 抗敏感、03 漂白、05 切断术如果没时间，先跳到「数字速记」那张表扫一遍——实验课问浓度时能报出来就够了。</p>
+</div>
+
+<details class="sec" id="s0" open>
+<summary><span class="no">00</span><span class="nm">先看骨架</span></summary>
+<p class="lead">这一章 PPT 第 9 页老师自己列的七类药，就是全章目录。实验课不会全考，但少了哪块都会觉得「没学过」。</p>
+<div class="card"><div class="ct">牙体牙髓病药物的种类（PPT p9 原文）</div>
+<div class="body"><ol style="margin-left:19px;line-height:1.9"><li>防龋药</li><li>抗牙本质敏感药</li><li>牙漂白药</li><li>盖髓术药</li><li>牙髓切断术药</li><li>牙髓失活剂</li><li>根管治疗药</li></ol><p style="margin-top:8px;color:#6b7280;font-size:.86em">PPT p91 课堂小结给的是每类的代表药——那才是要背的层。</p></div></div><div class="card"><div class="ct">用药特点（PPT p6）</div>
+<div class="body"><p>用药量少、以局部用药为主；注意毒副作用：<b>药物性根尖周炎</b>、<b>过敏反应</b>、根管冲洗液分解逸出根尖孔进入皮下疏松结缔组织致<b>皮下气肿</b>。</p><p style="margin-top:6px">全身用药的不足（同页）：作用部位的药效问题、口腔生态平衡问题、毒副作用、二重感染。</p></div></div>
+</details>
+<details class="sec" id="s1">
+<summary><span class="no">01</span><span class="nm">防龋药</span></summary>
+<p class="lead">三种氟化物，实验课多半会问「为什么用这个浓度」。记住：氟化钠 2% 涂擦、8% 氟化亚锡、1.23% APF。</p>
+<div class="card"><div class="ct">氟化钠的药理作用（PPT p17 三条）</div>
+<div class="body"><ol style="margin-left:19px;line-height:1.9"><li><b>降低釉质溶解度</b>——增强釉质抗酸能力（形成氟磷灰石）</li><li><b>促进釉质再矿化</b>——矿化液中加 1ppm 氟明显增加白垩状釉质再矿化的程度和速度</li><li><b>对口腔细菌的影响</b>——抑制糖酵解过程、终止产酸；抑制细菌摄入葡萄糖，影响胞内/胞外多糖合成</li></ol></div></div><div class="card"><div class="ct">氟化钠临床应用 + 关键数字（PPT p18）</div>
+<div class="body"><table><tr><th>途径</th><th>浓度/做法</th></tr><tr><td>局部涂擦</td><td><b>2%</b>；最佳时间＝牙萌出后 <b>2~3 年</b>；清洁→隔湿→吹干→<b>保持湿润 4min</b>；<b>30min</b> 内不漱口不进食；<b>每周 1 次、4 次一疗程</b>；3、7、10、13 岁各一疗程</td></tr><tr><td>局部含漱</td><td><b>0.2%</b> 每周 1 次 / <b>0.05%</b> 每日 1 次 / <b>0.02%</b> 每日 2 次</td></tr><tr><td>全身</td><td>自来水加氟、食物加氟、口服氟片</td></tr></table></div></div><div class="card"><div class="ct">氟化亚锡（PPT p23–25）</div>
+<div class="body"><p><b>8% 涂擦</b>（方法同氟化钠）、<b>0.1% 含漱每日 1 次</b>、凝胶用等量去离子水稀释刷牙。</p><p style="margin-top:6px">双重抗龋：氟离子 + 亚锡离子（<b>亚锡离子预防牙本质龋</b>，这是它区别于氟化钠的点）。</p><p style="margin-top:6px;color:#b3261e"><b>易错</b>：不稳定、易水解氧化，<b>须新鲜配置、1h 内用完</b>，否则变白色沉淀失效；接触牙龈会发白、牙齿着色（亚硫酸锡）。</p></div></div><div class="card"><div class="ct">酸性磷酸氟 APF（PPT p26–28）</div>
+<div class="body"><p>＝氟化钠 + 磷酸。<b>pH 3.2</b>（酸性有助于氟进入釉质深层）。</p><p style="margin-top:6px">专业凝胶 <b>1.23%</b>、个人使用 <b>0.5%</b>。</p><p style="margin-top:6px;background:#fff6e0;padding:6px 9px;border-radius:7px"><b>疗程（作业填空原题）</b>：第 <b>1 年每季度 1 次</b>，第 <b>2 年每半年 1 次</b>。</p></div></div><div class="card"><div class="ct">氟中毒（PPT p20–21）</div>
+<div class="body"><p>急性：化学性烧伤（形成氢氟酸）、抑制酶系统、与钙结合、<b>高钾血症致心脏中毒</b>。</p><p>成人急性中毒致死量 <b>2.5~10g</b>（平均 4~5g）；<b>儿童约 0.5g</b>。</p><p>慢性：饮水氟 <b>&gt;2~4ppm</b> → 氟牙症（白垩色/黄褐斑块、釉质缺损）、氟骨症。</p><p style="margin-top:6px"><b>注意</b>：置于<b>聚乙烯塑料</b>容器（会腐蚀玻璃）。</p></div></div><div class="card"><div class="ct">糖的致龋性排序（PPT p30）</div>
+<div class="body"><p>蔗糖 &gt; 葡萄糖 &gt; 麦芽糖 &gt; 乳糖 &gt; 果糖 &gt; 山梨糖 &gt; <b>木糖醇</b></p><p style="color:#6b7280;font-size:.9em;margin-top:6px">木糖醇排最后＝最不致龋，所以口香糖用它。</p></div></div>
+</details>
+<details class="sec" id="s2">
+<summary><span class="no">02</span><span class="nm">抗牙本质敏感药</span></summary>
+<p class="lead">两条机制，四个药。实验课最可能考「75% 氟化钠甘油怎么涂」——步骤有固定顺序。</p>
+<div class="card"><div class="ct">两条作用机制（PPT p33）</div>
+<div class="body"><ol style="margin-left:19px;line-height:1.9"><li><b>封闭牙本质小管</b>，减少或避免小管内液体流动</li><li><b>镇静牙髓神经</b>，降低牙髓神经敏感性</li></ol><p style="margin-top:8px;color:#6b7280;font-size:.9em">记法：一个是「堵管」，一个是「麻醉神经」。四个药分别占这两条。</p></div></div><div class="card"><div class="ct">应具备的四个条件（PPT p34）</div>
+<div class="body"><ol style="margin-left:19px;line-height:1.9"><li>对牙髓和口腔软组织<b>没有刺激性</b></li><li>起效迅速、疗效稳定持久</li><li><b>不引起牙齿变色</b></li><li>操作简单方便</li></ol></div></div><div class="card"><div class="ct">75% 氟化钠甘油 — 操作步骤（PPT p36，实验重点）</div>
+<div class="body"><p style="line-height:2"><b>隔湿 → 擦干牙面 → 75% 酒精棉球涂擦（脱水、脱脂）→ 吹干 → 涂擦牙面 2~3 分钟</b></p><p style="margin-top:6px">1 次/周，<b>4 次一疗程</b>。不使牙变色、对局部无刺激，<b>适用于牙颈部脱敏</b>。</p><p style="margin-top:8px;color:#8a5a00"><b>作业原题考过</b>：「75% 氟化钠甘油糊剂行脱敏治疗，涂药的时间为」→ <b>2~3 分钟</b>。</p></div></div><div class="card"><div class="ct">草酸钾（PPT p37）</div>
+<div class="body"><p>机制＝<b>草酸钙晶体阻塞小管</b>＋钾抑制牙髓神经去极化。</p><p style="margin-top:6px">操作：隔湿→擦干→75% 酒精棉球→吹干→<b>30% 草酸钾反复涂擦 2min</b>→再用 <b>3% 草酸氢钾涂擦 2min</b>。</p></div></div><div class="card"><div class="ct">复合脱敏剂（PPT p39，作业填空原题）</div>
+<div class="body"><p>成分＝脱敏剂 + 高分子化合物 <b>HEMA（2-羟乙基甲基丙烯酸甲酯）</b>。</p><p style="margin-top:6px"><b>HEMA 是主要药理作用</b>：与暴露的牙本质小管内蛋白质化学聚合、封闭小管。</p><p>另两个成分：苯扎氯胺（快速抗菌）、戊二醛（使小管蛋白质变性凝固堵塞）。</p><p style="margin-top:6px">临床多用于<b>牙龈退缩及牙周萎缩</b>所致敏感症；定制凝胶托盘 2~4 小时。</p></div></div>
+</details>
+<details class="sec" id="s3">
+<summary><span class="no">03</span><span class="nm">牙漂白药</span></summary>
+<p class="lead">过氧化氢 35% 诊室用、过氧化脲家用、过硼酸钠髓腔内用。三个药三个场景，别混。</p>
+<div class="card"><div class="ct">三个药的分工（PPT p43、45、49、51）</div>
+<div class="body"><table><tr><th>药</th><th>浓度/场景</th><th>要点</th></tr><tr><td>过氧化氢</td><td><b>35%</b> 诊室内漂白 / 凝胶也可髓腔内</td><td>强氧化剂；漂白由外→内，越深层越不明显</td></tr><tr><td>过氧化脲</td><td><b>10% 夜间 8~10h</b>；<b>15% 夜间 4~6h</b> 或<b>白天每 1.5~2h 换药</b></td><td>家庭漂白（夜间漂白），疗程 2~4 周</td></tr><tr><td>过硼酸钠</td><td><b>髓腔内漂白</b></td><td>弱氧化剂，作用时间长、氧化作用弱，相对安全</td></tr></table></div></div><div class="card"><div class="ct">35% 过氧化氢操作（PPT p46）</div>
+<div class="body"><ol style="margin-left:19px;line-height:1.9"><li>唇部和牙龈涂<b>凡士林</b>，放厚<b>橡皮障</b>隔离前牙</li><li>牙面放 35% 纱布或凝胶，<b>厚度 2~3mm</b></li><li><b>加热 2min/牙</b>（或漂白灯 <b>8~12min/牙弓</b>），强吸管吸除</li><li>治疗<b>重复 2 次</b>，移去橡皮障，检查有无牙齿敏感</li></ol></div></div><div class="card"><div class="ct">适应症与禁忌（PPT p45、p47）</div>
+<div class="body"><p><b>适应</b>：完整的氟斑牙、轻中度四环素牙、外染色牙、其他原因轻中度变色牙，<b>主要活髓牙</b>。</p><p style="margin-top:6px"><b>禁忌</b>：强光过敏、过氧化氢过敏、<b>16 岁以下儿童</b>、孕妇、哺乳期妇女<b>切勿漂白</b>。</p><p style="margin-top:6px">不良反应：暂时性牙本质敏感、牙釉质表面脱矿。</p></div></div><div class="card"><div class="ct">作业原题：家庭漂白怎么用（第 6 题）</div>
+<div class="body"><p>15% 过氧化脲 → <b>白天治疗，佩戴 1.5~2 小时更换凝胶</b>。</p><p style="margin-top:6px;color:#6b7280;font-size:.9em">干扰项都是把「白天/夜间」「1.5~2h / 3~4h / 7~8h」乱配。记住 15% 白天是 1.5~2h 一换。</p></div></div>
+</details>
+<details class="sec" id="s4">
+<summary><span class="no">04</span><span class="nm">盖髓术药</span></summary>
+<p class="lead">三个药：氢氧化钙、氧化锌丁香油（ZOE）、MTA。考试最爱问「哪个不能直接盖髓」——是 ZOE。</p>
+<div class="card"><div class="ct">理想盖髓剂七个条件（PPT p58）</div>
+<div class="body"><ol style="margin-left:19px;line-height:1.8"><li>促进牙髓组织修复再生</li><li>良好生物相容性，无毒无刺激</li><li>较强抑菌杀菌作用</li><li>有消炎作用</li><li>较强渗透性</li><li>药效稳定持久</li><li>有一定强度，使用方便</li></ol></div></div><div class="card"><div class="ct">氢氧化钙 — 赋形剂三类（PPT p59，作业原题）</div>
+<div class="body"><table><tr><th>类型</th><th>代表</th></tr><tr><td><b>水性</b></td><td><b>甲基纤维素</b> ← 作业正确答案 C</td></tr><tr><td><b>黏性</b></td><td>甘油</td></tr><tr><td><b>油性</b></td><td>樟脑对氯酚</td></tr></table><p style="margin-top:8px"><b>理想赋形剂 3 个特点</b>：缓慢释放钙离子和氢氧根；在组织缓慢扩散、组织液中溶解度低；对氢氧化钙药理作用无影响。</p></div></div><div class="card"><div class="ct">氢氧化钙 — 药理与临床（PPT p60）</div>
+<div class="body"><p>药理：<b>诱导矿化组织形成、保护牙髓</b>；抗菌作用。</p><p style="margin-top:6px">临床：直接盖髓术、间接盖髓术、活髓切断术。</p><p style="margin-top:6px;color:#8a5a00">作业考过抗菌活性表现 → <b>细菌蛋白质变性</b>（还有细胞膜损伤、DNA 损伤，见消毒章 p57）。</p></div></div><div class="card"><div class="ct">氧化锌丁香油 ZOE（PPT p61–62）</div>
+<div class="body"><p>氧化锌：弱防腐 + 缓和收敛，保护创面；丁香油：防腐 + 镇痛。</p><p>临床：<b>间接</b>盖髓术、窝洞暂封、临时冠粘冠。</p><p style="margin-top:6px;color:#b3261e"><b>最关键一条</b>：<b>禁用于直接盖髓术</b>——与牙髓直接接触可致牙髓慢性炎症，最终牙髓坏死而无修复性牙本质形成，盖髓失败。</p></div></div><div class="card"><div class="ct">MTA（PPT p63–64，作业原题）</div>
+<div class="body"><p>组成：<b>氧化钙 + 二氧化硅</b>。特点：良好封闭性/生物相容性/诱导性、抗菌性；<b>湿润环境下固化，约 4 小时</b>。</p><p style="margin-top:6px">临床：直接/间接盖髓、根管侧穿和髓室底穿修补、根尖屏障术。深龋意外露髓直接盖髓成功率 <b>80% 以上</b>。</p><p style="margin-top:6px;background:#fff6e0;padding:6px 9px;border-radius:7px">作业原题：MTA 与水调和后凝胶 <b>pH 12.5</b>。<br>课件真题：<b>不能</b>「待硬固后再放入穿髓处」——应<b>调和后直接覆盖于穿髓处</b>。</p></div></div>
+</details>
+<details class="sec" id="s5">
+<summary><span class="no">05</span><span class="nm">牙髓切断术药</span></summary>
+<p class="lead">两个药，对应两种切断术：氢氧化钙＝活髓切断（恒牙），甲醛甲酚/戊二醛＝半失活（只用于乳牙）。</p>
+<div class="card"><div class="ct">两种切断术的分野（PPT p66）</div>
+<div class="body"><table><tr><th>方式</th><th>用药</th><th>机制</th><th>适用</th></tr><tr><td>氢氧化钙牙髓切断术<br>（活髓切断术）</td><td>氢氧化钙</td><td>覆盖氢氧化钙使根髓断端愈合，<b>保存根髓活性</b></td><td>—</td></tr><tr><td>甲醛甲酚牙髓切断术<br>（半失活牙髓切断术）</td><td>酚醛类（FC）</td><td>处理创面使断端下牙髓组织<b>固定</b></td><td><b>只适用于乳牙</b></td></tr></table></div></div><div class="card"><div class="ct">甲醛甲酚 FC（PPT p67–68）</div>
+<div class="body"><p>药理：<b>凝固蛋白</b> → 断端牙髓凝固坏死 → 形成无菌性凝固屏障 → 保护屏障下根髓 → 根髓逐渐凝固退变吸收，维持乳牙到替换期。</p><p style="margin-top:6px">临床：<b>乳牙活髓切断术（首选）</b>。</p><p style="margin-top:6px;color:#b3261e"><b>禁用</b>：年轻恒牙活髓切断术。<b>勿接触</b>口腔软组织和颜面部皮肤。</p></div></div><div class="card"><div class="ct">戊二醛（PPT p69–70）</div>
+<div class="body"><p>特点：固定效果好、作用缓慢、刺激小；术后牙髓保持良好活性、无明显炎症；<b>扩散小、不易被根吸收</b>；毒性低、抗原性低。</p><p style="margin-top:6px">临床：乳牙活髓切断术。举例用 <b>20% 戊二醛</b>固定根髓断面，再用含戊二醛糊剂盖髓。</p><p style="margin-top:8px;color:#8a5a00"><b>作业原题</b>：「__与氢氧化钙配伍可作牙髓切断后覆盖剂」→ <b>2% 戊二醛</b>（消毒章 p44 同款）。</p></div></div>
+</details>
+<details class="sec" id="s6">
+<summary><span class="no">06</span><span class="nm">牙髓失活剂</span></summary>
+<p class="lead">金属砷 + 多聚甲醛。多聚甲醛封 2 周，这是必背数字。</p>
+<div class="card"><div class="ct">理想失活剂四个条件（PPT p72）</div>
+<div class="body"><ol style="margin-left:19px;line-height:1.9"><li>失活过程中<b>不引起疼痛</b></li><li>对牙髓、牙本质<b>无损害</b></li><li>失活效果好</li><li>对周围组织安全，封药无吸收或少吸收</li></ol></div></div><div class="card"><div class="ct">金属砷（PPT p73）</div>
+<div class="body"><p>药理：使牙髓<b>充血、栓塞</b>而失去活力。临床：适用于<b>乳牙</b>牙髓失活。</p><p style="margin-top:6px;color:#b3261e">不良反应：渗漏会导致<b>牙周组织坏死</b>，严重可致<b>牙槽骨坏死</b>。</p></div></div><div class="card"><div class="ct">多聚甲醛（PPT p74–75，作业原题）</div>
+<div class="body"><p>药理：<b>原生质毒性、神经毒性</b>；甲醛有<b>凝固蛋白</b>作用，牙髓为<b>干性坏死</b>，可保持无菌。浓度较高为 <b>35%~60%</b>。</p><p>临床：适用于<b>乳牙</b>失活；作用缓慢，<b>封药时间 2 周左右</b>。</p><p style="margin-top:6px"><b>不良反应</b>：渗漏致牙周组织坏死；甲醛通过根尖孔致根尖周炎症或组织坏死；用在乳牙列可能<b>损害继承恒牙胚</b>；可致过敏。</p><p style="margin-top:6px;background:#fff6e0;padding:6px 9px;border-radius:7px">作业原题：封药 2 周时间过长 → <b>可引起药物性根尖周炎</b>。</p></div></div>
+</details>
+<details class="sec" id="s7">
+<summary><span class="no">07</span><span class="nm">根管治疗药（实验最可能上手）</span></summary>
+<p class="lead">两块：冲洗剂（次氯酸钠、EDTA、过氧化氢）与消毒剂（氢氧化钙、碘仿）。冲洗有固定顺序和「不可加压」的铁律。</p>
+<div class="card"><div class="ct">根管冲洗剂四大作用（PPT p79）</div>
+<div class="body"><ol style="margin-left:19px;line-height:1.9"><li>消毒灭菌，增强机械预备的抗菌效果</li><li><b>溶解牙髓和坏死组织</b></li><li>润滑根管壁</li><li>软化牙本质</li></ol><p style="margin-top:8px;color:#8a5a00">作业原题：用次氯酸钠冲洗<b>主要</b>原因 → <b>能溶解坏死牙髓组织</b>（不是「对粪肠球菌有效」那些）。</p></div></div><div class="card"><div class="ct">次氯酸钠（PPT p81–82）</div>
+<div class="body"><p>遇水生成 <b>次氯酸</b>（强杀菌、强氧化漂白）＋ <b>氢氧化钠</b>（强溶解作用）。</p><p>特点：易侵入细菌细胞内；有机碎屑可降低次氯酸形成；酸性环境下杀菌力强；<b>升高温度可增强杀菌和溶解能力</b>。</p><p style="margin-top:6px">浓度：常用 <b>5.25%</b>，可稀释至 <b>2.5%、1.25%</b>；常与 <b>17% EDTA、3% 过氧化氢、2% 氯己定</b>交替用。</p><p style="margin-top:6px"><b>三条注意</b>：①冲洗液量<b>至少 1~2mL</b> ②充分冲洗<b>根尖 1/3</b> ③每次冲洗前用根管锉到根尖确认通畅。</p></div></div><div class="card"><div class="ct">EDTA（PPT p83–84，作业填空原题）</div>
+<div class="body"><p>浓度 <b>17%</b>。作用：抗菌 + <b>去除牙本质玷污层</b>；作为脱钙剂<b>螯合牙本质中的钙</b>并释放钠，导致管壁部分脱矿、软化牙本质壁。</p><p>临床：狭窄根管、根管钙化、根管内异物。<b>用法：先用 5.25% 次氯酸钠冲洗，后用 17% EDTA</b>。</p><p style="margin-top:6px"><b>注意</b>：螯合作用有自限性；与钙结合后活性丧失；防根管壁悬突、侧穿和根管偏移；<b>必须及时清除软化牙本质</b>。</p></div></div><div class="card"><div class="ct">过氧化氢冲洗（PPT p85）</div>
+<div class="body"><p>根管冲洗浓度多为 <b>3%</b>。作用：消毒、防腐、除臭，移出坏死组织和碎屑。</p><p style="margin-top:6px;color:#b3261e"><b>铁律</b>：冲洗狭窄根管时<b>不宜压力过大</b>，应保持气泡逸出通道，否则大量气泡进入根尖孔外组织会致<b>疼痛或化学性根尖周炎</b>。</p></div></div><div class="card"><div class="ct">理想根管消毒药 10 条（PPT p87）</div>
+<div class="body"><p style="color:#6b7280;font-size:.9em;margin-bottom:6px">课件最后一页思考题第 4 题就是这个，答案在正文。</p><ol style="margin-left:19px;line-height:1.75;font-size:.94em"><li>快速消除破坏根管内细菌，不易耐药，对多种细菌有效</li><li>中和或破坏根管内毒性物质</li><li>有助于降解残留有机残屑和生物膜</li><li>在血液、浆液、脓液等有机物中保持有效浓度，药效维持时间长</li><li>对根尖周组织无刺激和毒性，不危害宿主组织生理功能</li><li>有效渗透到根管、牙本质小管、侧支根管和根尖周组织</li><li>预防或减轻术后疼痛</li><li>诱导根尖周组织再生</li><li>具有 <b>X 线阻射</b>特点</li><li>性质稳定、便于贮存、不使牙着色</li></ol></div></div><div class="card"><div class="ct">氢氧化钙（根管消毒）+ 封药时间</div>
+<div class="body"><p>药理四条（PPT p88）：抗菌作用、<b>扩散作用</b>（氢氧根离子扩散进入牙本质和残余牙髓，抑制隐藏细菌）、生物活性、赋形剂的影响（作用取决于溶液中氢氧根离子的利用度）。</p><p style="margin-top:6px;background:#fff6e0;padding:6px 9px;border-radius:7px">课件真题：氢氧化钙糊剂根管消毒封药时间 → <b>7 天</b>。</p></div></div><div class="card"><div class="ct">碘仿（PPT p89）</div>
+<div class="body"><p>特点：防腐、防臭、止痛、减少渗出物；常与<b>氧化锌</b>混合，以<b>丁香酚或樟脑酚</b>调和，适用于<b>渗出液较多</b>的感染根管。</p><p style="margin-top:6px">临床：根尖区渗出多、叩痛不消者，封入根管 <b>10~14 天</b>；也可作<b>乳牙根管充填</b>材料。</p><p style="margin-top:6px;color:#b3261e">总量 <b>≤2g</b>（大面积长期用可中毒）。</p></div></div><div class="card"><div class="ct">诊间急症（PPT p90）</div>
+<div class="body"><p>根管治疗后少数患者出现局部肿胀、咬合痛、自发痛＝<b>诊间急症</b>。</p><p>易发：根尖周炎的<b>糖尿病</b>患者、牙髓坏死、急性化脓性根尖周炎、<b>根管再治疗</b>。</p><p style="margin-top:6px">处理：<b>硝基咪唑类 + 阿莫西林</b>联合控制感染。</p></div></div>
+</details>
+
+<details class="sec" id="num">
+<summary><span class="no">📌</span><span class="nm">数字速记（考前 10 分钟）</span></summary>
+<p class="lead">每条都能回课件对应页核对。实验课上被问到浓度、时间，就是这张表。</p>
+<div class="card"><table class="numt">
+<tr><th>考点</th><th>数字 / 内容</th><th>页</th></tr>
+<tr><td>氟化钠局部涂擦</td><td>2%；保持湿润 4min；30min 内不漱口不进食；每周 1 次、4 次一疗程</td><td class="pg">p18</td></tr><tr><td>氟化钠含漱</td><td>0.2% 每周 1 次 / 0.05% 每日 1 次 / 0.02% 每日 2 次</td><td class="pg">p18</td></tr><tr><td>氟化钠一次最大用量</td><td>1~2mL（课件真题）</td><td class="pg">p96</td></tr><tr><td>氟化亚锡</td><td>涂擦 8%；含漱 0.1% 每日 1 次；须 1h 内用完</td><td class="pg">p24–25</td></tr><tr><td>酸性磷酸氟</td><td>专业 1.23%、个人 0.5%；第 1 年每季度 1 次、第 2 年每半年 1 次；pH 3.2</td><td class="pg">p28</td></tr><tr><td>氟急性中毒致死量</td><td>成人 2.5~10g（平均 4~5g）；儿童约 0.5g</td><td class="pg">p20</td></tr><tr><td>75% 氟化钠甘油涂擦</td><td>2~3 分钟；1 次/周、4 次一疗程</td><td class="pg">p36</td></tr><tr><td>草酸钾</td><td>30% 涂 2min，再用 3% 草酸氢钾 2min</td><td class="pg">p37</td></tr><tr><td>过氧化氢漂白</td><td>35%；厚 2~3mm；加热 2min/牙 或漂白灯 8~12min/牙弓；重复 2 次</td><td class="pg">p45–46</td></tr><tr><td>过氧化脲家庭漂白</td><td>10% 夜间 8~10h；15% 夜间 4~6h 或白天每 1.5~2h 换药</td><td class="pg">p49</td></tr><tr><td>MTA</td><td>pH 12.5；固化约 4h；氧化钙 + 二氧化硅</td><td class="pg">p63、p94</td></tr><tr><td>多聚甲醛失活</td><td>封药 2 周；浓度 35%~60%</td><td class="pg">p74</td></tr><tr><td>氢氧化钙根管消毒封药</td><td>7 天</td><td class="pg">p92</td></tr><tr><td>次氯酸钠冲洗</td><td>常用 5.25%（可稀释 2.5%、1.25%）；量 ≥1~2mL；交替 17% EDTA</td><td class="pg">p82</td></tr><tr><td>EDTA</td><td>17%</td><td class="pg">p83</td></tr><tr><td>过氧化氢根管冲洗</td><td>3%</td><td class="pg">p85</td></tr><tr><td>碘仿糊剂封药</td><td>10~14 天；总量 ≤2g</td><td class="pg">p89</td></tr>
+</table></div>
+</details>
+
+<details class="sec" id="quiz" open>
+<summary><span class="no">✍️</span><span class="nm">自测 20 题（点选项即判）</span></summary>
+<p class="lead">15 道平台作业原题（有标准答案，可判分）+ 5 道课件内嵌真题。题干选项逐字原文，未改写。</p>
+<div class="bar"><div class="sc" id="sc">已答 0 / 20<span> · 可判分题</span></div>
+<button class="btn" id="rs">重来</button></div>
+<div id="qlist"></div>
+</details>
+
+<div class="hero" style="margin-top:14px">
+<h2>这份材料哪里不能全信</h2>
+<p>1. 题干与选项<b>逐字取自平台作业与课件原文</b>，没改写、没编题。</p>
+<p>2. 5 道课件真题的答案字母取自课件当页（选项后单独一行），未经二次推断。</p>
+<p>3. <b>教材 PDF 没用</b>——那份 PDF 的 OCR 把「氟」认成「氯」103 次、「氝」19 次，错得太离谱，不能当依据。一切以课件为准。</p>
+<p>4. 实验课的具体分组与操作清单我拿不到，只能按课件「根管治疗药」「盖髓术药」这些高概率上手点来排。你上完课把老师说的操作顺序告诉我，我补进去。</p>
+</div>
+
+<div style="margin-top:16px;color:var(--sub);font-size:.74rem;line-height:1.8">
+数据抓取 2026-11-24 · 来源：OCS「口腔临床药物学(3)」十七章课件（101 页）+ 平台作业「第二十章牙体牙髓病用药」15 题<br>
+作业只读：未代答、未代交。
+</div>
+</div>
+
+<script>
+const D = {"qs":[{"kind":"single","stem":"关于酸性磷酸氟用法，下列说法正确是","opts":[["A","第一年每月使用1次，第二年每季度使用1次"],["B","第一年每月使用1次，第二年每半年使用1次"],["C","第一年每季度使用1次，第二年每季度使用1次"],["D","第一年每季度使用1次，第二年每半年使用1次"],["E","第一年每半年使用1次，第二年每年使用1次"]],"ans":"D","mine":"D","graded":true,"src":"作业「第二十章牙体牙髓病用药」第 1 题","note":""},{"kind":"single","stem":"以下属于氢氧化钙水性赋形剂的是","opts":[["A","丙二醇"],["B","聚乙二醇"],["C","甲基纤维"],["D","樟脑对氯酚"],["E","醋酸间甲酚酯"]],"ans":"C","mine":"C","graded":true,"src":"作业「第二十章牙体牙髓病用药」第 2 题","note":""},{"kind":"single","stem":"以下关于戊二醛的说法错误的是","opts":[["A","性质不稳定，使用前需新鲜配制"],["B","可对牙髓组织产生快速固定作用"],["C","可以产生抗原性，抗原性较甲醛甲酚强"],["D","固定效果好，作用缓慢，刺激性小，毒性低"],["E","在牙髓组织内扩散局限，对恒牙胚无明显影响"]],"ans":"C","mine":"C","graded":true,"src":"作业「第二十章牙体牙髓病用药」第 3 题","note":""},{"kind":"single","stem":"患者，男，44岁，因右上前牙肿痛而就诊，检查：11近中邻面洞，达牙本质深层，冷诊(-)，探诊(-)，叩痛(+)，唇侧近根尖部牙龈轻度红肿，牙齿无松动。X线片示11根尖周略密度减低区。11拟行根管治疗术，选用氢氧化钙进行根管消毒，其抗菌活性表现为","opts":[["A","RNA损伤"],["B","DNA重组"],["C","DNA变性"],["D","灭活脂磷壁酸"],["E","细菌蛋白质变性"]],"ans":"E","mine":"E","graded":true,"src":"作业「第二十章牙体牙髓病用药」第 4 题","note":""},{"kind":"single","stem":"患者，女，66岁，因左下后牙咬合痛而就诊。检查：36牙合面洞，达髓腔，冷诊(-)，探诊(+)，叩诊不适，牙龈无红肿。X线片示36底穿，穿孔较小。36拟行髓室底穿处修补术，修补材料选用矿物三氧化物聚合物，该聚合物与水调和后形成凝胶的pH值为","opts":[["A","2.5"],["B","5.5"],["C","7.5"],["D","10.5"],["E","12.5"]],"ans":"E","mine":"E","graded":true,"src":"作业「第二十章牙体牙髓病用药」第 5 题","note":""},{"kind":"single","stem":"患者，女，27岁，自幼生活在高氟地区，牙齿发黄，影响美观而就诊。检查：全口牙齿不同程度白垩色到褐色斑块，上前牙明显，个别牙有牙釉质缺损，牙髓活力检测正常，叩诊(-)。因患者不便多次到医院就诊，拟用过氧化脲行家庭漂白术改善牙齿颜色，以下正确的使用方法为","opts":[["A","夜间治疗，15%过氧化脲佩戴1.5小时~2小时更换凝胶"],["B","夜间治疗，15%过氧化脲佩戴3小时~4小时更换凝胶"],["C","夜间治疗，15%过氧化脲佩戴7小时~8小时更换凝胶"],["D","白天治疗，15%过氧化脲佩戴1.5小时~2小时更换凝胶"],["E","白天治疗，15%过氧化脲佩戴4小时~6小时更换凝胶"]],"ans":"D","mine":"D","graded":true,"src":"作业「第二十章牙体牙髓病用药」第 6 题","note":""},{"kind":"single","stem":"患者，女，56岁，因右上后牙冷热酸甜一过性疼痛就诊。检查：14、15颈部楔缺，达牙本质浅层，探诊(+)，冷诊(+)，叩痛(-)，无松动。拟用75%氟化钠甘油糊剂行脱敏治疗，治疗过程中涂药的时间为","opts":[["A","2~3分钟"],["B","4~5分钟"],["C","6~7分钟"],["D","8~9分钟"],["E","10~11分钟"]],"ans":"A","mine":"A","graded":true,"src":"作业「第二十章牙体牙髓病用药」第 7 题","note":""},{"kind":"single","stem":"患者，男，45岁，因上前牙冷热酸甜一过性疼痛就诊，有胃溃疡史，酗酒。检查：11、21腭面不同程度牙釉质丧失，牙表面凹陷，切端沟槽样病损，冷热敏感，叩(-)，无松动，牙龈未见明显异常。治疗过程中可选用的药物是","opts":[["A","碘仿糊剂"],["B","复合脱敏剂"],["C","戊二醛糊剂"],["D","氢氧化钙糊剂"],["E","氧化锌丁香油糊剂"]],"ans":"B","mine":"B","graded":true,"src":"作业「第二十章牙体牙髓病用药」第 8 题","note":""},{"kind":"single","stem":"患者，男，36岁。因左上后牙自发性疼痛3日就诊。来诊时患者自带一杯凉水。检查：26远中邻面龋坏,近髓,冷诊(-),热诊(++),探诊(-),叩诊不适,牙齿无松动。拟行根管治疗术，选用次氯酸钠冲洗液，其主要原因是","opts":[["A","对粪肠球菌有效"],["B","能彻底去除玷污层"],["C","能溶解坏死牙髓组织"],["D","能溶解根管内生物膜"],["E","在碱性环境中杀菌力较强"]],"ans":"C","mine":"C","graded":true,"src":"作业「第二十章牙体牙髓病用药」第 9 题","note":""},{"kind":"single","stem":"患者，女，30岁，右上后牙因深龋复合树脂充填治疗1周后出现自发痛，冷热刺激加重。检查：17远中邻牙合面树脂充填物，冷诊(+)，热诊(+)，叩诊不适，不松动度。17拟行根管治疗术，当日开髓因根髓探痛明显封多聚甲醛失活剂，封药时间为2周。其主要原因为","opts":[["A","甲醛有凝固蛋白的作用"],["B","多聚甲醛具有神经毒性"],["C","可导致平滑肌扩张、出血"],["D","引起毛细血管内皮细胞的损害"],["E","封药时间过长可引起药物性根尖周炎"]],"ans":"E","mine":"E","graded":true,"src":"作业「第二十章牙体牙髓病用药」第 10 题","note":""},{"kind":"fill","stem":"氟化钠用于防龋时局部涂擦的浓度为              %。","opts":[],"ans":"2","mine":"2","graded":true,"src":"作业「第二十章牙体牙髓病用药」第 11 题","note":""},{"kind":"fill","stem":"复合脱敏剂的主要药理作用是通过                     与暴露的牙本质小管内的蛋白质发生化学聚合，封闭小管。","opts":[],"ans":"HEMA;高分子化合物2-羟乙基甲基丙烯酸甲酯","mine":"HEMA","graded":true,"src":"作业「第二十章牙体牙髓病用药」第 12 题","note":""},{"kind":"fill","stem":"乙二胺四乙酸溶液的浓度通常为             %，此浓度既能有效去除玷污层，又不会过度腐蚀根管壁。","opts":[],"ans":"17","mine":"17","graded":true,"src":"作业「第二十章牙体牙髓病用药」第 13 题","note":""},{"kind":"fill","stem":"氟化物涂布治疗后，患者需在           分钟内避免进食、饮水和漱口，确保氟化物充分渗透牙釉质。","opts":[],"ans":"30","mine":"30","graded":true,"src":"作业「第二十章牙体牙髓病用药」第 14 题","note":""},{"kind":"fill","stem":"3.        %氟化钠甘油糊剂常用于牙本质敏感症的治疗，通过封闭牙本质小管发挥脱敏效果。","opts":[],"ans":"75","mine":"75","graded":true,"src":"作业「第二十章牙体牙髓病用药」第 15 题","note":""},{"kind":"single","stem":"氢氧化钙糊剂根管消毒封药的时间是（）","opts":[["A","1天"],["B","2天"],["C","3天"],["D","4天"],["E","7天"]],"ans":"E","mine":"","graded":true,"src":"课件 第十七章 牙体牙髓病用药 第 92 页","note":"答案字母取自课件当页原文"},{"kind":"single","stem":"能预防牙本质龋的药物是（）","opts":[["A","硝酸钾"],["B","草酸钾"],["C","氟化钠"],["D","氟化亚锡"],["E","酸性磷酸氟"]],"ans":"D","mine":"","graded":true,"src":"课件 第十七章 牙体牙髓病用药 第 93 页","note":"答案字母取自课件当页原文"},{"kind":"single","stem":"关于MTA,以下说法不正确的是()","opts":[["A","MTA由粉剂和纯化水组成，粉剂主要由氧化钙，二氧化硅等组成"],["B","MTA粉剂与纯化水按比例混合均匀调拌后，待硬固后再放入穿髓处"],["C","MTA粉剂与纯化水按比例混合均匀调拌后，直接将其覆盖于穿髓处"],["D","MTA具有良好的生物相容性，生物活性和抗菌性，能够促进软硬组织的"],["E","MTA粉剂与水调和后形成pH为12.5的凝胶状胶体，并可维持高pH达24小时以上"]],"ans":"B","mine":"","graded":true,"src":"课件 第十七章 牙体牙髓病用药 第 94 页","note":"答案字母取自课件当页原文"},{"kind":"single","stem":"根管再感染时根管内常见的优势菌为()","opts":[["A","真杆菌"],["B","粪肠球菌"],["C","消化链球菌"],["D","牙龈卟啉单胞菌"],["E","牙髓卟啉单胞菌"]],"ans":"B","mine":"","graded":true,"src":"课件 第十七章 牙体牙髓病用药 第 95 页","note":"答案字母取自课件当页原文"},{"kind":"single","stem":"患儿，女，4岁，家长陪同就诊要求为患儿进行牙面涂氟防龋。检查：乳牙已全部萌出，未见龋坏。 (1).拟选用2%的氟化钠溶液局部涂擦牙面，其疗程为()","opts":[["A","每3天1次,2次为一疗程"],["B","每3天1次,4次为一疗程"],["C","每3天1次,6次为一疗程"],["D","每7天1次,2次为一疗程"],["E","每7天1次,4次为一疗程"]],"ans":"E","mine":"","graded":true,"src":"课件 第十七章 牙体牙髓病用药 第 96 页","note":"答案字母取自课件当页原文"}],"instructor":""};
+const KEY='kly_end_spot_v1';
+let st={}; try{st=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){st={}}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const box=document.getElementById('qlist');
+
+D.qs.forEach((q,i)=>{
+  const id='q'+i;
+  const s=st[id]||{};
+  const el=document.createElement('div'); el.className='q';
+  const kindTag = q.kind==='single'?'<span class="tag">单选</span>':'<span class="tag f">填空</span>';
+  const bTag = q.src.includes('课件')?'<span class="tag b">课件真题</span>':'';
+  let h='<div class="qh">'+kindTag+bTag+'<span class="s">'+esc(q.src)+'</span></div><div class="st">'+esc(q.stem)+'</div>';
+  if(q.kind==='single'&&q.opts.length){
+    h+='<div class="opts">';
+    q.opts.forEach(([lb,tx])=>{h+='<button class="opt" data-lb="'+lb+'"><span class="lb">'+lb+'</span><span>'+esc(tx)+'</span></button>';});
+    h+='</div>';
+  }
+  h+='<div class="ans"></div><div class="acts"><button class="btn show">'+(q.graded?'显示答案':'显示答案 / 我的作答')+'</button></div>';
+  el.innerHTML=h;
+  const ab=el.querySelector('.ans'), btn=el.querySelector('.show');
+  function ansHTML(){
+    if(q.graded){
+      if(q.kind==='single'){
+        const t=(q.opts.find(o=>o[0]===q.ans)||['',''])[1];
+        return '<b>正确答案 '+q.ans+'</b>'+(t?' · '+esc(t):'');
+      }
+      const p=q.ans.split(/[;；]/).map(x=>x.trim()).filter(Boolean);
+      return '<b>正确答案</b>'+esc(p[0]||'')+(p.length>1?'<br><span style="color:#6b7280">也可写：'+esc(p.slice(1).join('；'))+'</span>':'');
+    }
+    let x='<b>⚠ '+(q.note||'平台未存标准答案')+'</b>';
+    if(q.mine) x+='<br>你当时的作答：<b>'+esc(q.mine)+'</b>'+(q.kind==='single'?((o=>o?(' · '+esc(o[1])):'')(q.opts.find(o=>o[0]===q.mine))):'');
+    return x;
+  }
+  function reveal(on){ab.innerHTML=ansHTML();ab.classList.toggle('on',on);btn.textContent=on?'遮住答案':(q.graded?'显示答案':'显示答案 / 我的作答');s.shown=on;st[id]=s;save();}
+  btn.onclick=()=>reveal(!ab.classList.contains('on'));
+  if(q.kind==='single'&&q.opts.length&&q.graded){
+    const os=[...el.querySelectorAll('.opt')];
+    const draw=()=>{os.forEach(o=>{o.classList.remove('right','wrong','lock');if(!s.pick)return;
+      if(o.dataset.lb===q.ans)o.classList.add('right');
+      if(o.dataset.lb===s.pick&&s.pick!==q.ans)o.classList.add('wrong');});
+      if(s.pick){os.forEach(o=>o.classList.add('lock'));reveal(true);}};
+    os.forEach(o=>o.onclick=()=>{if(s.pick)return;s.pick=o.dataset.lb;st[id]=s;save();draw();score();});
+    draw();
+  }
+  if(s.shown)reveal(true);
+  box.appendChild(el);
+});
+function score(){
+  let g=0,d=0,r=0;
+  D.qs.forEach((q,i)=>{if(!q.graded)return;g++;const s=st['q'+i]||{};if(s.pick){d++;if(s.pick===q.ans)r++;}});
+  document.getElementById('sc').innerHTML='已答 '+d+' / '+g+' · 正确 <b style="color:#0f7a3d">'+r+'</b>'+(d?'（'+Math.round(r*100/d)+'%）':'')+'<span> · 可判分题</span>';
+}
+document.getElementById('rs').onclick=()=>{if(!confirm('清空作答记录？'))return;st={};save();location.reload();};
+score();
+</script>
+</body>
+</html>

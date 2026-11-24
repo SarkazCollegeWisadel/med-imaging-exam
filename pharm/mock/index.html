@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>口腔临床药物学 · 模拟试卷</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f7a3d'/%3E%3Ctext x='16' y='23' font-size='17' text-anchor='middle' fill='%23fff' font-family='sans-serif'%3E卷%3C/text%3E%3C/svg%3E">
+<style>
+:root{--bg:#f5f6fa;--card:#fff;--ink:#1c2230;--sub:#6b7280;--line:#dfe3ea;
+--ok:#0f7a3d;--okbg:#e9f8ef;--bad:#b3261e;--badbg:#fdecea;--hl:#2563eb;--warn:#8a5a00;--warnbg:#fff6e0}
+@media (prefers-color-scheme: dark){:root{--bg:#14171e;--card:#1c2029;--ink:#e5e9f0;--sub:#98a2b3;--line:#2c3340;
+--ok:#4ade80;--okbg:#14301f;--bad:#f87171;--badbg:#301a18;--hl:#60a5fa;--warn:#fbbf24;--warnbg:#332a10}}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.72;font-size:16px;padding:0 0 60px}
+.wrap{max-width:800px;margin:0 auto;padding:0 12px}
+header{background:var(--card);border-bottom:1px solid var(--line);padding:13px 0 11px;position:sticky;top:0;z-index:30}
+header .wrap{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+header h1{font-size:1.05rem;flex:1 1 auto;line-height:1.35}
+header .sub{color:var(--sub);font-size:.72rem;flex:1 1 100%}
+.bar{position:sticky;top:58px;z-index:20;background:var(--bg);padding:6px 0;display:flex;gap:6px;
+align-items:center;flex-wrap:wrap;font-size:.78rem;border-bottom:1px solid var(--line)}
+.bar .sc{font-weight:600;margin-right:auto}
+.bar .sc span{color:var(--sub);font-weight:400}
+.btn{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:5px 9px;font-size:.75rem;
+cursor:pointer;color:var(--ink);font-family:inherit}
+.btn:active{transform:scale(.96)}
+.btn.on{background:var(--hl);border-color:var(--hl);color:#fff}
+h2.part{font-size:1rem;margin:20px 0 8px;padding:8px 0 8px 10px;border-left:4px solid var(--hl);
+background:linear-gradient(90deg,#eef2fb,transparent);border-radius:0 8px 8px 0}
+@media (prefers-color-scheme: dark){h2.part{background:linear-gradient(90deg,#232936,transparent)}}
+h2.part small{font-weight:400;color:var(--sub);font-size:.78rem;margin-left:6px}
+.note{background:var(--warnbg);border-radius:9px;padding:9px 11px;font-size:.83rem;margin:9px 0;color:var(--ink)}
+.q{background:var(--card);border-radius:12px;padding:12px;margin:9px 0;box-shadow:0 1px 3px rgba(16,24,40,.06)}
+.qh{display:flex;gap:6px;align-items:center;margin-bottom:7px;flex-wrap:wrap}
+.no{font-weight:700;color:var(--hl);flex:0 0 auto}
+.tag{font-size:.66rem;padding:2px 6px;border-radius:5px;background:#eef2fb;color:#26418f}
+.tag.g{background:var(--okbg);color:var(--ok)}
+.src{margin-left:auto;font-size:.66rem;color:var(--sub)}
+.st{font-size:.92rem;white-space:pre-wrap}
+.opts{margin-top:8px;display:flex;flex-direction:column;gap:6px}
+.opt{border:1.5px solid var(--line);border-radius:9px;padding:8px 10px;font-size:.87rem;background:var(--card);
+text-align:left;cursor:pointer;font-family:inherit;color:var(--ink);display:flex;gap:7px;line-height:1.5}
+.opt .lb{font-weight:700;color:var(--hl);flex:0 0 auto}
+.opt.right{border-color:var(--ok);background:var(--okbg)}
+.opt.wrong{border-color:var(--bad);background:var(--badbg)}
+.opt.lock{pointer-events:none}
+.ans{margin-top:8px;border-left:3px solid var(--hl);background:#f0f5ff;border-radius:0 8px 8px 0;
+padding:8px 10px;font-size:.86rem;display:none;white-space:pre-wrap;line-height:1.65}
+@media (prefers-color-scheme: dark){.ans{background:#1b2333}}
+.ans.on{display:block}
+.acts{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+.b1box{background:var(--card);border-radius:12px;padding:12px;margin:10px 0;box-shadow:0 1px 3px rgba(16,24,40,.06)}
+.b1lead{background:#eef2fb;border-radius:8px;padding:8px 10px;font-size:.85rem;margin-bottom:9px;line-height:1.8}
+@media (prefers-color-scheme: dark){.b1lead{background:#232936}}
+.b1q{border-top:1px dashed var(--line);padding-top:9px;margin-top:9px}
+.b1q:first-of-type{border-top:none;padding-top:0;margin-top:0}
+textarea{width:100%;min-height:88px;border:1.5px solid var(--line);border-radius:9px;padding:9px;
+font-family:inherit;font-size:.87rem;background:var(--card);color:var(--ink);line-height:1.6;resize:vertical}
+.essay{background:var(--card);border-radius:12px;padding:12px;margin:9px 0;box-shadow:0 1px 3px rgba(16,24,40,.06)}
+details.honesty{background:var(--card);border-radius:12px;margin:16px 0;box-shadow:0 1px 3px rgba(16,24,40,.06)}
+details.honesty summary{cursor:pointer;padding:12px 13px;font-weight:600;font-size:.9rem;list-style:none}
+details.honesty summary::-webkit-details-marker{display:none}
+details.honesty summary::before{content:"▸ ";color:var(--hl)}
+details.honesty[open] summary::before{content:"▾ "}
+details.honesty .inner{padding:0 13px 13px;font-size:.84rem;line-height:1.75}
+details.honesty .inner p{margin:6px 0}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<h1>口腔临床药物学 · 模拟试卷</h1>
+<div class="sub">本卷实际 35 单选 + 15 填空 + 9 道 B1 小题 + 3 案例 + 4 论述 = 66 题。少于大纲的 70~80，原因是可用真题不够（见下条），未凑数。</div>
+</div></header>
+
+<div class="wrap">
+<div class="bar">
+<div class="sc" id="sc">单选 0 / 35 · 填空 0 / 15</div>
+<button class="btn" id="showAll">显示全部答案</button>
+<button class="btn" id="reset">重来</button>
+</div>
+
+<h2 class="part">一、单选题 <small>35 题 · 每题 1 分 · 点选项即判</small></h2>
+<div class="note">这 35 题是「有标准答案 + 同一考点只留一题」后的实际上限，不是凑出来的 50 题。每题右上角标了答案来源。</div>
+<div id="single"></div>
+
+<h2 class="part">二、填空题 <small>15 题 · 每题 2 分</small></h2>
+<div class="note">平台存了标准答案的 15 道。另 10 道填空属抗微生物、剂型处方两套，平台没存答案，不纳入。</div>
+<div id="fill"></div>
+
+<h2 class="part">三、B1 型题 <small>3 组 · 共 9 小题 · 大纲要考但作业零样题</small></h2>
+<div class="note">大纲原文：「先给出 ABCDE 五个选项，然后根据这些选项会出一系列题，几道题的答案要从这五个选项中选择」。平台作业一道都没有，所以这 3 组是我按该格式组织的——题干和答案都取自课件原文数字，每题下方标了页码，可逐条回查。</div>
+<div id="b1"></div>
+
+<h2 class="part">四、案例分析题 <small>3 题 · 题干逐字照抄课件原案例</small></h2>
+<div class="note">问法照大纲描述（下诊断→分析思路→还需什么检查）。答案锚点取课件原文与作业标准答案，不自行推断。</div>
+<div id="cases"></div>
+
+<h2 class="part">五、论述题 <small>4 题 · 全是老师课件末尾原题</small></h2>
+<div class="note">这些是老师自己在课件最后留的思考题，课件没给标准答案。我只给「答题锚点」指向课件哪几页，不代写答案。</div>
+<div id="essays"></div>
+
+<details class="honesty"><summary>⚠️ 这份卷子的全部边界（建议读一遍）</summary>
+<div class="inner">
+<p>单选题与填空题全部来自平台作业（有平台标准答案）与课件内嵌真题（答案取自课件原文），未编造。</p><p>为什么单选只有 35 题：全库 95 题里，有标准答案的单选只有 51 道（抗微生物、剂型处方两套平台未存答案），再按 bge-m3 向量聚类、同一考点（cos≥0.70）只留一题，剩 35 个独立考点。要凑到 50 题就得把同一考点反复问，那对复习没意义，所以不凑。</p><p>章分布不平均是题源决定的，不是按学时权重分配：局麻 12、牙体牙髓 11、消毒防腐 8、抗微生物 4。牙体牙髓学时最高（6 学时）但可用试题只有 11 个独立考点；牙周病、黏膜病两章平台无作业，本卷零题。</p><p>B1 型题：平台作业中一道都没有（大纲却写了要考），本卷按大纲描述的格式自行组织，题干与答案均取自课件原文数字，basis 字段标了页码，可逐条回查。</p><p>案例分析题：题干是课件原案例逐字照抄，问法照大纲描述；答案锚点取课件原文与作业标准答案，未自行推断。</p><p>论述题：全部是老师课件末尾的原题；标注「课件未给答案」的题只给答题锚点，不给标准答案。</p>
+<p style="margin-top:10px;color:var(--sub)">总题数 66。大纲写的是 70~80 题、90 分钟、百分制——本卷不足，因为可用真题就这么些；不足部分用 B1、案例、论述三种「大纲要考但作业没练过」的题型补上练法。</p>
+</div></details>
+
+<div style="margin-top:16px;color:var(--sub);font-size:.74rem;line-height:1.8">
+生成 2026-11-24 · 随机种子 20261126（同一份试卷可复现）· 题源：平台作业（有标答）+ 课件内嵌真题 + 课件原文<br>
+作业只读，未代答未代交。
+</div>
+</div>
+
+<script>
+const D = {"single":[{"no":1,"ch":"十七·牙体牙髓","stem":"患者，女，30岁，右上后牙因深龋复合树脂充填治疗1周后出现自发痛，冷热刺激加重。检查：17远中邻牙合面树脂充填物，冷诊(+)，热诊(+)，叩诊不适，不松动度。17拟行根管治疗术，当日开髓因根髓探痛明显封多聚甲醛失活剂，封药时间为2周。其主要原因为","opts":[["A","甲醛有凝固蛋白的作用"],["B","多聚甲醛具有神经毒性"],["C","可导致平滑肌扩张、出血"],["D","引起毛细血管内皮细胞的损害"],["E","封药时间过长可引起药物性根尖周炎"]],"ans":"E","src":"作业「第二十章牙体牙髓病用药」第 10 题","st":"平台标答"},{"no":2,"ch":"十七·牙体牙髓","stem":"关于酸性磷酸氟用法，下列说法正确是","opts":[["A","第一年每月使用1次，第二年每季度使用1次"],["B","第一年每月使用1次，第二年每半年使用1次"],["C","第一年每季度使用1次，第二年每季度使用1次"],["D","第一年每季度使用1次，第二年每半年使用1次"],["E","第一年每半年使用1次，第二年每年使用1次"]],"ans":"D","src":"作业「第二十章牙体牙髓病用药」第 1 题","st":"平台标答"},{"no":3,"ch":"八·局麻","stem":"患儿，男，10岁，40kg，牙髓治疗时拟用0.5%利多卡因行浸润麻醉，其一次给药总量不得超过","opts":[["A","40mg"],["B","80mg"],["C","120mg"],["D","180mg"],["E","500mg"]],"ans":"D","src":"作业「第九章局部麻醉药」第 4 题","st":"平台标答"},{"no":4,"ch":"八·局麻","stem":"患者，女，46岁，使用局部麻醉药后，出现高铁血红蛋白血症，其浓度达一定量时应按急诊处理，否则可危及生命。该浓度","opts":[["A","0.05"],["B","0.1"],["C","0.2"],["D","0.25"],["E","30%以上"]],"ans":"E","src":"作业「第九章局部麻醉药」第 9 题","st":"平台标答"},{"no":5,"ch":"十六·消毒防腐","stem":"患者，女，38岁，为中度四环素牙，因牙齿颜色灰黄对美观影响较大，患者要求美白牙齿。漂白牙齿可使用的药物是","opts":[["A","2%戊二醛"],["B","2%高锰酸钾"],["C","3%过氧化氢"],["D","30%过氧化氢"],["E","5.25%次氯酸钠"]],"ans":"D","src":"作业「第十六章消毒防腐药」第 5 题","st":"平台标答"},{"no":6,"ch":"十七·牙体牙髓","stem":"氢氧化钙糊剂根管消毒封药的时间是（）","opts":[["A","1天"],["B","2天"],["C","3天"],["D","4天"],["E","7天"]],"ans":"E","src":"课件 第十七章 牙体牙髓病用药 第 92 页","st":"课件原文"},{"no":7,"ch":"十七·牙体牙髓","stem":"患者，女，27岁，自幼生活在高氟地区，牙齿发黄，影响美观而就诊。检查：全口牙齿不同程度白垩色到褐色斑块，上前牙明显，个别牙有牙釉质缺损，牙髓活力检测正常，叩诊(-)。因患者不便多次到医院就诊，拟用过氧化脲行家庭漂白术改善牙齿颜色，以下正确的使用方法为","opts":[["A","夜间治疗，15%过氧化脲佩戴1.5小时~2小时更换凝胶"],["B","夜间治疗，15%过氧化脲佩戴3小时~4小时更换凝胶"],["C","夜间治疗，15%过氧化脲佩戴7小时~8小时更换凝胶"],["D","白天治疗，15%过氧化脲佩戴1.5小时~2小时更换凝胶"],["E","白天治疗，15%过氧化脲佩戴4小时~6小时更换凝胶"]],"ans":"D","src":"作业「第二十章牙体牙髓病用药」第 6 题","st":"平台标答"},{"no":8,"ch":"十七·牙体牙髓","stem":"以下关于戊二醛的说法错误的是","opts":[["A","性质不稳定，使用前需新鲜配制"],["B","可对牙髓组织产生快速固定作用"],["C","可以产生抗原性，抗原性较甲醛甲酚强"],["D","固定效果好，作用缓慢，刺激性小，毒性低"],["E","在牙髓组织内扩散局限，对恒牙胚无明显影响"]],"ans":"C","src":"作业「第二十章牙体牙髓病用药」第 3 题","st":"平台标答"},{"no":9,"ch":"八·局麻","stem":"患者，女，59岁，60kg，拔牙时拟用4%阿替卡因进行局部浸润麻醉，在行浸润麻醉进行相关检查时，以下情形应谨慎使用的是","opts":[["A","糖尿病"],["B","高血压"],["C","心律失常"],["D","窄角青光眼"],["E","甲状腺功能亢进"]],"ans":"A","src":"作业「第九章局部麻醉药」第 1 题","st":"平台标答"},{"no":10,"ch":"十七·牙体牙髓","stem":"根管再感染时根管内常见的优势菌为()","opts":[["A","真杆菌"],["B","粪肠球菌"],["C","消化链球菌"],["D","牙龈卟啉单胞菌"],["E","牙髓卟啉单胞菌"]],"ans":"B","src":"课件 第十七章 牙体牙髓病用药 第 95 页","st":"课件原文"},{"no":11,"ch":"十六·消毒防腐","stem":"_________与氢氧化钙配伍可作为牙髓切断后的覆盖剂。","opts":[["A","1%戊二醛"],["B","2%戊二醛"],["C","3%戊二醛"],["D","10%戊二醛"],["E","20%戊二醛"]],"ans":"B","src":"作业「第十六章消毒防腐药」第 7 题","st":"平台标答"},{"no":12,"ch":"十七·牙体牙髓","stem":"能预防牙本质龋的药物是（）","opts":[["A","硝酸钾"],["B","草酸钾"],["C","氟化钠"],["D","氟化亚锡"],["E","酸性磷酸氟"]],"ans":"D","src":"课件 第十七章 牙体牙髓病用药 第 93 页","st":"课件原文"},{"no":13,"ch":"十七·牙体牙髓","stem":"患者，女，56岁，因右上后牙冷热酸甜一过性疼痛就诊。检查：14、15颈部楔缺，达牙本质浅层，探诊(+)，冷诊(+)，叩痛(-)，无松动。拟用75%氟化钠甘油糊剂行脱敏治疗，治疗过程中涂药的时间为","opts":[["A","2~3分钟"],["B","4~5分钟"],["C","6~7分钟"],["D","8~9分钟"],["E","10~11分钟"]],"ans":"A","src":"作业「第二十章牙体牙髓病用药」第 7 题","st":"平台标答"},{"no":14,"ch":"六·抗微生物","stem":"【练习题】 患者，女，17岁，十二指肠溃疡，幽门螺杆菌（+），宜选用与抑酸剂联合治疗的药物是（）","opts":[["A","双氯西林"],["B","苄星青霉素"],["C","万古霉素"],["D","阿莫西林"],["E","羧苄西林"]],"ans":"D","src":"课件 第六章 抗微生物药 第 33 页","st":"课件原文"},{"no":15,"ch":"六·抗微生物","stem":"【练习题】 抗铜绿假单胞菌作用最强的头孢菌素是（）。","opts":[["A","头孢拉定"],["B","头孢他定"],["C","头孢呋辛"],["D","头孢克洛"],["E","头孢氨苄"]],"ans":"B","src":"课件 第六章 抗微生物药 第 38 页","st":"课件原文"},{"no":16,"ch":"十六·消毒防腐","stem":"患者女，46岁，3天前拔除48，现右下颌拔牙窝出现剧烈疼痛，疼痛向耳颞部、下颌下区或头顶部放射。检查：48牙槽窝内空虚，有腐臭味。临床处理过程中需用的药物是","opts":[["A","碘仿纱条"],["B","氯胺-T溶液"],["C","高锰酸钾溶液"],["D","次氯酸钠溶液"],["E","麝香草酚乙醇溶液"]],"ans":"A","src":"作业「第十六章消毒防腐药」第 8 题","st":"平台标答"},{"no":17,"ch":"十七·牙体牙髓","stem":"以下属于氢氧化钙水性赋形剂的是","opts":[["A","丙二醇"],["B","聚乙二醇"],["C","甲基纤维"],["D","樟脑对氯酚"],["E","醋酸间甲酚酯"]],"ans":"C","src":"作业「第二十章牙体牙髓病用药」第 2 题","st":"平台标答"},{"no":18,"ch":"六·抗微生物","stem":"氨基糖苷类抗生素的主要不良反应是","opts":[["A","抑制骨髓"],["B","耳毒性"],["C","肝毒性"],["D","心脏毒性"],["E","消化道反应"]],"ans":"B","src":"作业「第六章抗微生物药」第 5 题","st":"课件印证"},{"no":19,"ch":"八·局麻","stem":"上3腭侧有下列神经吻合","opts":[["A","上牙槽前神经与上牙槽中神经"],["B","鼻腭神经与腭中神经"],["C","腭前神经与腭中神经"],["D","腭中神经与腭后神经"],["E","腭前神经与鼻腭神经"]],"ans":"E","src":"课件 第九章 局部麻醉药 第 100 页","st":"课件原文"},{"no":20,"ch":"十六·消毒防腐","stem":"下述属于聚维酮碘临床应用的是","opts":[["A","牙周袋内冲洗"],["B","环境消毒"],["C","根管冲洗"],["D","根管消毒"],["E","窝洞消毒"]],"ans":"A","src":"作业「第十六章消毒防腐药」第 9 题","st":"平台标答"},{"no":21,"ch":"八·局麻","stem":"患者，男性，28岁，过敏体质，血压120/80mmHg。拟行扁桃体摘除术。在使用普鲁卡因前行皮试，下列结果可判断为可疑阳性的是","opts":[["A","局部无红斑"],["B","局部无硬结"],["C","有红斑或硬结,<5mm"],["D","有红斑或硬结,5~9mm"],["E","有红斑或硬结,≥10mm"]],"ans":"C","src":"作业「第九章局部麻醉药」第 3 题","st":"平台标答"},{"no":22,"ch":"十六·消毒防腐","stem":"甲酚皂溶液用于器械、环境消毒的浓度为","opts":[["A","1%~2%"],["B","3%~4%"],["C","5%~10%"],["D","11%~15%"],["E","16%~20%"]],"ans":"C","src":"作业「第十六章消毒防腐药」第 1 题","st":"平台标答"},{"no":23,"ch":"八·局麻","stem":"上颌切牙拔除时不能选择的麻醉方法是","opts":[["A","唇侧浸润麻醉"],["B","腭侧浸润麻醉"],["C","眶下孔阻滞麻醉"],["D","切牙孔阻滞麻醉"],["E","腭大孔阻滞麻醉"]],"ans":"E","src":"课件 第九章 局部麻醉药 第 101 页","st":"课件原文"},{"no":24,"ch":"八·局麻","stem":"患者女性30岁，于拔除过程中因疼痛紧张,而出现胸闷、心慌、面色苍白、四肢湿冷、脉快而弱，此情况属于","opts":[["A","肾上腺素反应"],["B","麻药中毒"],["C","癔病"],["D","麻药过敏"],["E","晕厥"]],"ans":"E","src":"课件 第九章 局部麻醉药 第 102 页","st":"课件原文"},{"no":25,"ch":"十六·消毒防腐","stem":"患儿，女，1岁，因胃口不佳、啼哭、哺乳困难来院就诊。口腔检查见：颊、舌、软腭黏膜出现乳白色、微高起的斑膜，周围无炎症反应，似奶块，无痛，擦去斑膜后，可见下方不出血的红色创面。该患儿治疗过程中可用到的药物是","opts":[["A","0.05%甲紫水溶液"],["B","1.5%过氧化氯溶液"],["C","2%四环素溶液"],["D","2%碳酸氢钠溶液"],["E","3%硼酸溶液"]],"ans":"D","src":"作业「第十六章消毒防腐药」第 4 题","st":"平台标答"},{"no":26,"ch":"八·局麻","stem":"患者，女，已婚，25岁，怀孕6个月，拔除智齿进行局部麻醉，无过敏史，为保证孕妇及胎儿的安全，临床常选用","opts":[["A","利多卡因"],["B","丙胺卡因"],["C","布比卡因"],["D","氯普鲁卡因"],["E","左布比卡因"]],"ans":"A","src":"作业「第九章局部麻醉药」第 6 题","st":"平台标答"},{"no":27,"ch":"八·局麻","stem":"患者，男，65岁，70kg。拟用0.25%普鲁卡因行浸润麻醉。下述情况可引起中毒反应的是","opts":[["A","过敏体质患者"],["B","注射剂量过大，血药浓度达4ug/ml以上"],["C","注射剂量过大，血药浓度达6ug/ml以上"],["D","短时间内经静脉注入，血药浓度低于6ug/ml视觉异常"],["E","短时间内经静脉注入，血药浓度达4ug/mll以上呼吸系统抑制"]],"ans":"C","src":"作业「第九章局部麻醉药」第 10 题","st":"平台标答"},{"no":28,"ch":"八·局麻","stem":"患者，女，36岁，因深部真菌感染使用两性霉素B进行治疗，此次入院需行口腔局部麻醉手术，以下局麻药不宜使用","opts":[["A","普鲁卡因"],["B","利多卡因"],["C","甲哌卡因"],["D","丙胺卡"],["E","左布比卡因"]],"ans":"B","src":"作业「第九章局部麻醉药」第 8 题","st":"平台标答"},{"no":29,"ch":"十七·牙体牙髓","stem":"患儿，女，4岁，家长陪同就诊要求为患儿进行牙面涂氟防龋。检查：乳牙已全部萌出，未见龋坏。 (1).拟选用2%的氟化钠溶液局部涂擦牙面，其疗程为()","opts":[["A","每3天1次,2次为一疗程"],["B","每3天1次,4次为一疗程"],["C","每3天1次,6次为一疗程"],["D","每7天1次,2次为一疗程"],["E","每7天1次,4次为一疗程"]],"ans":"E","src":"课件 第十七章 牙体牙髓病用药 第 96 页","st":"课件原文"},{"no":30,"ch":"八·局麻","stem":"下列为短效局麻药的是","opts":[["A","利多卡因"],["B","普鲁卡因"],["C","布比卡因"],["D","丙胺卡因"],["E","阿替卡因"]],"ans":"B","src":"作业「第九章局部麻醉药」第 2 题","st":"平台标答"},{"no":31,"ch":"八·局麻","stem":"患者，男，60岁，65kg，此次拟选用利多卡因行局部麻醉，因其扩散性强，不宜用作","opts":[["A","表面麻醉"],["B","浸润麻醉"],["C","阻滞麻醉"],["D","硬膜外麻醉"],["E","蛛网膜下腔麻醉"]],"ans":"E","src":"课件 第九章 局部麻醉药 第 105 页","st":"课件原文"},{"no":32,"ch":"十六·消毒防腐","stem":"苯酚对下述病原微生物引起的感染无效的是","opts":[["A","双球菌"],["B","球菌"],["C","杆菌"],["D","真菌"],["E","芽孢"]],"ans":"E","src":"作业「第十六章消毒防腐药」第 2 题","st":"平台标答"},{"no":33,"ch":"六·抗微生物","stem":"【练习题】 第三代头孢菌素的特点，叙述错误的是（）。","opts":[["A","基本无肾毒性"],["B","对G-作用强于第一、第二代"],["C","对G+作用强于第一、第二代"],["D","对各种β-内酰胺酶较高稳定"],["E","体内分布较广，一般从肾脏排泄"]],"ans":"C","src":"课件 第六章 抗微生物药 第 37 页","st":"课件原文"},{"no":34,"ch":"十七·牙体牙髓","stem":"关于MTA,以下说法不正确的是()","opts":[["A","MTA由粉剂和纯化水组成，粉剂主要由氧化钙，二氧化硅等组成"],["B","MTA粉剂与纯化水按比例混合均匀调拌后，待硬固后再放入穿髓处"],["C","MTA粉剂与纯化水按比例混合均匀调拌后，直接将其覆盖于穿髓处"],["D","MTA具有良好的生物相容性，生物活性和抗菌性，能够促进软硬组织的"],["E","MTA粉剂与水调和后形成pH为12.5的凝胶状胶体，并可维持高pH达24小时以上"]],"ans":"B","src":"课件 第十七章 牙体牙髓病用药 第 94 页","st":"课件原文"},{"no":35,"ch":"十六·消毒防腐","stem":"下述属于低效消毒防腐药的是","opts":[["A","苯酚"],["B","甲醛"],["C","氯己定"],["D","次氯酸钠"],["E","依沙吖啶"]],"ans":"E","src":"作业「第十六章消毒防腐药」第 3 题","st":"平台标答"}],"fill":[{"no":1,"ch":"十七·牙体牙髓","stem":"氟化钠用于防龋时局部涂擦的浓度为              %。","ans":"2","src":"作业「第二十章牙体牙髓病用药」第 11 题"},{"no":2,"ch":"十七·牙体牙髓","stem":"复合脱敏剂的主要药理作用是通过                     与暴露的牙本质小管内的蛋白质发生化学聚合，封闭小管。","ans":"HEMA;高分子化合物2-羟乙基甲基丙烯酸甲酯","src":"作业「第二十章牙体牙髓病用药」第 12 题"},{"no":3,"ch":"十七·牙体牙髓","stem":"乙二胺四乙酸溶液的浓度通常为             %，此浓度既能有效去除玷污层，又不会过度腐蚀根管壁。","ans":"17","src":"作业「第二十章牙体牙髓病用药」第 13 题"},{"no":4,"ch":"十七·牙体牙髓","stem":"氟化物涂布治疗后，患者需在           分钟内避免进食、饮水和漱口，确保氟化物充分渗透牙釉质。","ans":"30","src":"作业「第二十章牙体牙髓病用药」第 14 题"},{"no":5,"ch":"十七·牙体牙髓","stem":"3.        %氟化钠甘油糊剂常用于牙本质敏感症的治疗，通过封闭牙本质小管发挥脱敏效果。","ans":"75","src":"作业「第二十章牙体牙髓病用药」第 15 题"},{"no":6,"ch":"十六·消毒防腐","stem":"84消毒液的主要有效成分是             ，使用时需注意避免与酸性物质混合。","ans":"次氯酸钠","src":"作业「第十六章消毒防腐药」第 11 题"},{"no":7,"ch":"十六·消毒防腐","stem":"醇类消毒防腐药中，               %浓度的乙醇消毒效果最佳，过高浓度会影响杀菌能力。","ans":"70-75","src":"作业「第十六章消毒防腐药」第 12 题"},{"no":8,"ch":"十六·消毒防腐","stem":"碘酊的主要有效成分是            ，消毒后需用乙醇脱碘，以防皮肤刺激。","ans":"碘","src":"作业「第十六章消毒防腐药」第 13 题"},{"no":9,"ch":"十六·消毒防腐","stem":"过氧化氢溶液遇有机物时释放              ，产生泡沫，可用于伤口清创消毒。","ans":"氧气","src":"作业「第十六章消毒防腐药」第 14 题"},{"no":10,"ch":"十六·消毒防腐","stem":"聚维酮碘是碘与聚维酮的复合物，刺激性较碘酊           ，可用于黏膜消毒。","ans":"小","src":"作业「第十六章消毒防腐药」第 15 题"},{"no":11,"ch":"八·局麻","stem":"利多卡因又称","ans":"赛罗卡因","src":"作业「第九章局部麻醉药」第 11 题"},{"no":12,"ch":"八·局麻","stem":"局部麻醉药的分类为酯类、酰胺类、氨基醚类、           、氨基甲酸酯类和脒类。","ans":"氨基酮类","src":"作业「第九章局部麻醉药」第 12 题"},{"no":13,"ch":"八·局麻","stem":"按局部麻醉药的应用方式不同，局部麻醉药的临床应用类型为表面麻醉 、浸润麻醉、传导麻醉、                      和蛛网膜下腔麻醉。","ans":"硬膜外麻醉","src":"作业「第九章局部麻醉药」第 13 题"},{"no":14,"ch":"八·局麻","stem":"4%的阿替卡因溶液注射速度不得超过每分钟        mL。","ans":"1","src":"作业「第九章局部麻醉药」第 14 题"},{"no":15,"ch":"八·局麻","stem":"普鲁卡因是一种酯类局部麻醉药，其代谢产物对______过敏者可能引发过敏反应。因此，在使用前需进行皮肤试验以评估患者是否对该药过敏。","ans":"对氨基苯甲酸","src":"作业「第九章局部麻醉药」第 15 题"}],"b1":[{"lead":"（共用备选答案）A. 3 日常用量  B. 7 日常用量  C. 15 日常用量  D. 1 年  E. 3 年","qs":[{"stem":"门诊癌症疼痛患者开具的麻醉药品、第一类精神药品注射剂，每张处方不得超过","ans":"A","basis":"剂型处方课件 p24（平台作业 第三章 第11题同源）"},{"stem":"哌甲酯治疗儿童多动症时，每张处方不得超过","ans":"C","basis":"剂型处方课件 p25（平台作业 第三章 第12题同源）"},{"stem":"麻醉药品和第一类精神药品处方保存年限为","ans":"E","basis":"剂型处方课件 p27"}]},{"lead":"（共用备选答案）A. 2%  B. 8%  C. 17%  D. 30%  E. 75%","qs":[{"stem":"氟化钠用于防龋时局部涂擦的浓度为","ans":"A","basis":"牙体牙髓课件 p18"},{"stem":"乙二胺四乙酸钠（EDTA）溶液用于去除玷污层的浓度为","ans":"C","basis":"牙体牙髓课件 p83"},{"stem":"氟化钠甘油糊剂用于牙本质敏感症脱敏的浓度为","ans":"E","basis":"牙体牙髓课件 p36"}]},{"lead":"（共用备选答案）A. 普鲁卡因  B. 丁卡因  C. 利多卡因  D. 布比卡因  E. 阿替卡因","qs":[{"stem":"属于短效局麻药、且通透性和弥散性差不能作表面麻醉的是","ans":"A","basis":"局麻课件 p80–81"},{"stem":"禁用于浸润麻醉的酯类长效局麻药是","ans":"B","basis":"局麻课件 p51、p53"},{"stem":"抗室性心律失常作用强、心律失常患者首选的是","ans":"C","basis":"局麻课件 p55"}]}],"cases":[{"stem":"患者，女，35 岁，因牙痛来口腔科诊治。医生用注射用水冲洗经 2% 戊二醛浸泡的口镜及牙探针进行口腔检查后，诊断为右下第 7、第 8 牙间隙食物嵌塞，去除食物残渣后疼痛消失，自感口麻；用冷开水漱口后约 20min 出现双手麻木不适、心慌、胸闷、大汗，昏倒在地。查体：面色苍白，脉搏细弱扪不清，呼吸急促，血压 82.5/45mmHg，意识模糊。","question":"请写出：①最可能的不良反应诊断 ②致病药物 ③急救处理要点（课件原文给了哪些措施）","ref":"课件原文记录的处理：立即氧气吸入，静脉注射地塞米松 20mg，肌肉注射异丙嗪 25mg，静脉补液；约 10min 后症状缓解。课件同时列出戊二醛注意事项：金属器械消毒须先加碱性药物再加亚硝酸钠；碱性溶液对光学仪器无损害、对铝制品有腐蚀；空气中最高限量 0.05ppm，避光密闭，储存温度不超过 40℃。","source":"消毒防腐药课件 p102（老师原案例）"},{"stem":"患儿，女，4 岁，家长陪同就诊要求为患儿进行牙面涂氟防龋。检查：乳牙已全部萌出，未见龋坏。","question":"拟用 2% 氟化钠溶液局部涂擦牙面。请写出：①疗程安排 ②一次最大用量 ③涂擦后医嘱（多长时间内不进食不漱口）","ref":"课件答案：疗程为每 7 天 1 次、4 次为一疗程；2% 氟化钠一次最大用量 1~2mL；涂擦后 30min 内不漱口不进食（同页另有：儿童急性氟中毒致死量 0.5g）。","source":"牙体牙髓课件 p96–97（课件内嵌真题的材料）"},{"stem":"患者，男，44 岁，右上前牙肿痛就诊。检查：11 近中邻面洞，达牙本质深层，冷诊(-)，探诊(-)，叩痛(+)，唇侧近根尖部牙龈轻度红肿，牙齿无松动。X 线片示 11 根尖周略密度减低区。11 拟行根管治疗术，选用氢氧化钙进行根管消毒。","question":"请写出：①该抗菌活性表现是什么机制 ②氢氧化钙根管消毒的封药时间 ③氢氧化钙作盖髓剂时的赋形剂分哪三类","ref":"作业标准答案：抗菌活性表现为「细菌蛋白质变性」（选项 E）。封药时间 7 天（课件 p92 真题）。赋形剂三类：水性（甲基纤维素）、黏性（甘油）、油性（樟脑对氯酚）（课件 p59）。","source":"牙体牙髓课件 + 平台作业 第二十章 第4题"}],"essays":[{"q":"简述氟化物的防龋机制","src":"牙体牙髓课件 p100 思考题 2","anchor":"课件 p17 给了三条：①降低釉质溶解度（形成氟磷灰石，增强抗酸能力）②促进釉质再矿化（矿化液加 1ppm 氟明显增加再矿化程度和速度）③对口腔细菌的影响（抑制糖酵解、终止产酸；抑制葡萄糖摄入，影响胞内外多糖合成）"},{"q":"理想的根管消毒剂应具备的条件是什么","src":"牙体牙髓课件 p100 思考题 4","anchor":"课件 p87 列了 10 条，按「杀菌谱广不易耐药 / 中和毒性物质 / 降解残屑生物膜 / 有机环境中保持浓度 / 对根尖周无刺激 / 渗透性 / 减轻术后痛 / 诱导根尖周再生 / X 线阻射 / 稳定不着色」背"},{"q":"消毒药和防腐药的定义是什么？二者有何区别","src":"消毒防腐药课件 p94 思考题 1","anchor":"课件未直接给定义段，但 p96 的效价分级（高效/中效/低效）与 p91 的影响因素可作答题骨架；此题为老师留的开放题，本卷不给标准答案，避免编造"},{"q":"各类消毒防腐药代表药杀菌或抑菌的主要特点是什么","src":"消毒防腐药课件 p94 思考题 3","anchor":"课件 p93 小结给了八类：酚类、醛类、酸类、碱类、卤素类、氧化剂、表面活性剂、染料类；各类代表药与特点见老师发的《口腔消毒防腐药知识点总结.xlsx》19 行表"}]};
+const KEY = 'kly_mock_v1';
+let st = {}; try { st = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { st = {}; }
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} };
+const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (m) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
+// ---------- 单选 ----------
+const sbox = document.getElementById('single');
+D.single.forEach((q, i) => {
+  const id = 's' + i, s = st[id] || {};
+  const el = document.createElement('div'); el.className = 'q';
+  let h = '<div class="qh"><span class="no">' + q.no + '.</span><span class="tag">' + esc(q.ch) + '</span>'
+        + '<span class="tag g">' + esc(q.st) + '</span><span class="src">' + esc(q.src) + '</span></div>'
+        + '<div class="st">' + esc(q.stem) + '</div><div class="opts">';
+  q.opts.forEach(([lb, tx]) => { h += '<button class="opt" data-lb="' + lb + '"><span class="lb">' + lb + '</span><span>' + esc(tx) + '</span></button>'; });
+  h += '</div><div class="ans"></div><div class="acts"><button class="btn show">显示答案</button></div>';
+  el.innerHTML = h;
+  const ab = el.querySelector('.ans'), btn = el.querySelector('.show');
+  const ansText = () => {
+    const t = (q.opts.find((o) => o[0] === q.ans) || ['', ''])[1];
+    return '<b>正确答案 ' + q.ans + '</b>' + (t ? ' · ' + esc(t) : '');
+  };
+  const reveal = (on) => { ab.innerHTML = ansText(); ab.classList.toggle('on', on); btn.textContent = on ? '遮住答案' : '显示答案'; s.shown = on; st[id] = s; save(); };
+  btn.onclick = () => reveal(!ab.classList.contains('on'));
+  const os = [...el.querySelectorAll('.opt')];
+  const draw = () => {
+    os.forEach((o) => { o.classList.remove('right','wrong','lock');
+      if (!s.pick) return;
+      if (o.dataset.lb === q.ans) o.classList.add('right');
+      if (o.dataset.lb === s.pick && s.pick !== q.ans) o.classList.add('wrong'); });
+    if (s.pick) { os.forEach((o) => o.classList.add('lock')); reveal(true); }
+  };
+  os.forEach((o) => { o.onclick = () => { if (s.pick) return; s.pick = o.dataset.lb; st[id] = s; save(); draw(); score(); }; });
+  draw();
+  if (s.shown) reveal(true);
+  sbox.appendChild(el);
+});
+
+// ---------- 填空 ----------
+const fbox = document.getElementById('fill');
+D.fill.forEach((q, i) => {
+  const id = 'f' + i, s = st[id] || {};
+  const el = document.createElement('div'); el.className = 'q';
+  el.innerHTML = '<div class="qh"><span class="no">' + q.no + '.</span><span class="tag">' + esc(q.ch) + '</span>'
+    + '<span class="src">' + esc(q.src) + '</span></div><div class="st">' + esc(q.stem) + '</div>'
+    + '<div class="ans"></div><div class="acts"><button class="btn y">我写完了，看答案</button></div>';
+  const ab = el.querySelector('.ans'), btn = el.querySelector('.y');
+  const parts = String(q.ans || '').split(/[;；]/).map((x) => x.trim()).filter(Boolean);
+  const txt = '<b>正确答案</b>' + esc(parts[0] || '') + (parts.length > 1 ? '<br><span style="color:#6b7280">也可写：' + esc(parts.slice(1).join('；')) + '</span>' : '');
+  const reveal = (on) => { ab.innerHTML = txt; ab.classList.toggle('on', on); btn.textContent = on ? '遮住答案' : '我写完了，看答案'; s.shown = on; st[id] = s; save(); };
+  btn.onclick = () => { reveal(!ab.classList.contains('on')); if (ab.classList.contains('on')) { s.done = true; st[id] = s; save(); score(); } };
+  if (s.shown) reveal(true);
+  fbox.appendChild(el);
+});
+
+// ---------- B1 ----------
+const bbox = document.getElementById('b1');
+D.b1.forEach((grp, gi) => {
+  const el = document.createElement('div'); el.className = 'b1box';
+  let h = '<div class="b1lead">' + esc(grp.lead) + '</div>';
+  grp.qs.forEach((q, qi) => {
+    const id = 'b' + gi + '_' + qi, s = st[id] || {};
+    h += '<div class="b1q" data-id="' + id + '"><div class="st">' + esc(q.stem) + '（）</div>'
+       + '<div class="acts"><button class="btn bs">显示答案</button></div>'
+       + '<div class="ans"><b>答案 ' + esc(q.ans) + '</b><br><span style="color:#6b7280;font-size:.94em">依据：' + esc(q.basis) + '</span></div></div>';
+  });
+  el.innerHTML = h;
+  el.querySelectorAll('.b1q').forEach((n) => {
+    const id = n.dataset.id, s = st[id] || {};
+    const ab = n.querySelector('.ans'), btn = n.querySelector('.bs');
+    const reveal = (on) => { ab.classList.toggle('on', on); btn.textContent = on ? '遮住答案' : '显示答案'; s.shown = on; st[id] = s; save(); };
+    btn.onclick = () => reveal(!ab.classList.contains('on'));
+    if (s.shown) reveal(true);
+  });
+  bbox.appendChild(el);
+});
+
+// ---------- 案例 ----------
+const cbox = document.getElementById('cases');
+D.cases.forEach((c, i) => {
+  const id = 'c' + i, s = st[id] || {};
+  const el = document.createElement('div'); el.className = 'q';
+  el.innerHTML = '<div class="qh"><span class="no">案例 ' + (i + 1) + '</span><span class="src">' + esc(c.source) + '</span></div>'
+    + '<div class="st">' + esc(c.stem) + '</div>'
+    + '<div style="margin-top:9px;font-weight:600;font-size:.9rem">' + esc(c.question) + '</div>'
+    + '<textarea placeholder="先自己写，写完再点下面看课件原文怎么说"></textarea>'
+    + '<div class="ans"></div><div class="acts"><button class="btn cs">对照课件原文</button></div>';
+  const ab = el.querySelector('.ans'), btn = el.querySelector('.cs'), ta = el.querySelector('textarea');
+  ab.innerHTML = '<b>课件原文 / 作业标准答案</b><br>' + esc(c.ref);
+  if (s.draft) ta.value = s.draft;
+  ta.oninput = () => { s.draft = ta.value; st[id] = s; save(); };
+  const reveal = (on) => { ab.classList.toggle('on', on); btn.textContent = on ? '遮住' : '对照课件原文'; s.shown = on; st[id] = s; save(); };
+  btn.onclick = () => reveal(!ab.classList.contains('on'));
+  if (s.shown) reveal(true);
+  cbox.appendChild(el);
+});
+
+// ---------- 论述 ----------
+const ebox = document.getElementById('essays');
+D.essays.forEach((e, i) => {
+  const id = 'e' + i, s = st[id] || {};
+  const el = document.createElement('div'); el.className = 'essay';
+  el.innerHTML = '<div class="qh"><span class="no">' + (i + 1) + '.</span><span class="src">' + esc(e.src) + '</span></div>'
+    + '<div class="st" style="font-weight:600">' + esc(e.q) + '</div>'
+    + '<textarea placeholder="自己写一遍再看锚点" style="margin-top:8px"></textarea>'
+    + '<div class="ans"></div><div class="acts"><button class="btn es">看答题锚点</button></div>';
+  const ab = el.querySelector('.ans'), btn = el.querySelector('.es'), ta = el.querySelector('textarea');
+  ab.innerHTML = '<b>答题锚点</b>（不是标准答案，是告诉你翻课件的哪几页）<br>' + esc(e.anchor);
+  if (s.draft) ta.value = s.draft;
+  ta.oninput = () => { s.draft = ta.value; st[id] = s; save(); };
+  const reveal = (on) => { ab.classList.toggle('on', on); btn.textContent = on ? '遮住' : '看答题锚点'; s.shown = on; st[id] = s; save(); };
+  btn.onclick = () => reveal(!ab.classList.contains('on'));
+  if (s.shown) reveal(true);
+  ebox.appendChild(el);
+});
+
+// ---------- 计分与批量 ----------
+function score() {
+  let sd = 0, sr = 0, fd = 0;
+  D.single.forEach((q, i) => { const s = st['s' + i] || {}; if (s.pick) { sd++; if (s.pick === q.ans) sr++; } });
+  D.fill.forEach((q, i) => { const s = st['f' + i] || {}; if (s.done) fd++; });
+  document.getElementById('sc').textContent =
+    '单选 ' + sd + ' / ' + D.single.length + '（对 ' + sr + '）· 填空看过 ' + fd + ' / ' + D.fill.length;
+}
+let allOn = false;
+document.getElementById('showAll').onclick = (ev) => {
+  allOn = !allOn;
+  ev.target.classList.toggle('on', allOn);
+  ev.target.textContent = allOn ? '遮住全部答案' : '显示全部答案';
+  document.querySelectorAll('.ans').forEach((a) => a.classList.toggle('on', allOn));
+  document.querySelectorAll('.show,.y,.bs,.cs,.es').forEach((b) => {
+    b.textContent = allOn ? '遮住答案' : (b.classList.contains('y') ? '我写完了，看答案' : b.classList.contains('cs') ? '对照课件原文' : b.classList.contains('es') ? '看答题锚点' : '显示答案');
+  });
+};
+document.getElementById('reset').onclick = () => { if (!confirm('清空作答与草稿？')) return; st = {}; save(); location.reload(); };
+score();
+</script>
+</body>
+</html>
