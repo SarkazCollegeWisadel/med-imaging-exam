@@ -44,12 +44,6 @@
   .jump { position:fixed; right:12px; bottom:16px; display:flex; flex-direction:column; gap:8px; }
   .jump a { text-decoration:none; font-size:13px; background:#fff; border:1px solid var(--line); color:var(--ink); padding:8px 12px; border-radius:999px; box-shadow:0 2px 8px rgba(0,0,0,.08); }
 </style><style>
-@view-transition{navigation:auto}
-::view-transition-old(root){animation:desk-page-out .2s ease both}
-::view-transition-new(root){animation:desk-page-in .36s cubic-bezier(.22,1,.36,1) both}
-@keyframes desk-page-out{to{opacity:0;transform:translateY(-4px)}}
-@keyframes desk-page-in{from{opacity:0;transform:translateY(9px)}}
-@media(prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
 
 .study-desk-nav{display:block;box-sizing:border-box;position:relative;inset:auto;z-index:auto;max-width:none;background:#f2edf1;color:#463747;border:0;border-bottom:1px solid #8d718b38;padding:8px clamp(12px,4vw,48px);font:14px/1.5 system-ui,"Microsoft YaHei",sans-serif}
 .study-desk-nav .study-desk-links{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;max-width:1440px;margin:auto}
@@ -83,6 +77,8 @@
   --desk-shadow: 0 2px 4px #392f3609, 0 8px 24px #392f3608;
   --desk-song: "Desk Song", "STSong", "华文宋体", "Songti SC", SimSun, serif;
   --desk-width: 820px;
+  --desk-spring: cubic-bezier(.18, 1.24, .32, 1);
+  --desk-spring-press: cubic-bezier(.2, 1.45, .47, 1);
 
   /* Existing pages use several names for the same roles. */
   --bg: var(--desk-bg);
@@ -105,6 +101,21 @@
   --warn: #744c1b;
   --warnbg: #f7f0e3;
 }
+
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:desk-page-out .2s ease both}
+::view-transition-new(root){animation:desk-page-in .36s cubic-bezier(.22,1,.36,1) both}
+@keyframes desk-page-out{to{opacity:0;transform:translateY(-4px)}}
+@keyframes desk-page-in{from{opacity:0;transform:translateY(9px)}}
+@media(prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+
+.pleats{position:absolute;z-index:-1;overflow:hidden;right:-1px;bottom:23px;width:clamp(160px,27vw,370px);height:100px;pointer-events:none;opacity:.86}
+.pleats i{position:absolute;inset:0}
+.pleats i:nth-child(1){clip-path:polygon(0 88%,42% 13%,33% 100%);background:linear-gradient(130deg,#c5b5c496,#efeaed)}
+.pleats i:nth-child(2){clip-path:polygon(33% 100%,42% 13%,62% 29%);background:linear-gradient(130deg,#c0abba,#e9e0e7)}
+.pleats i:nth-child(3){clip-path:polygon(33% 100%,62% 29%,62% 75%);background:linear-gradient(140deg,#eee5ec,#d4c4d0)}
+.pleats i:nth-child(4){clip-path:polygon(62% 29%,83% 0,62% 75%);background:linear-gradient(125deg,#c7b2c2,#eee5ec)}
+.pleats i:nth-child(5){clip-path:polygon(62% 75%,83% 0,100% 56%);background:linear-gradient(120deg,#d5c4d0,#f4eff4)}
 
 body.study-page {
   background: radial-gradient(ellipse at 85% 0, #eee6ed, transparent 550px), var(--desk-bg);
@@ -158,7 +169,7 @@ body.study-page {
   background: var(--desk-glass);
   color: var(--desk-accent);
   box-shadow: inset 0 1px 0 #fff, 0 2px 5px #5034480d;
-  transition: transform .26s cubic-bezier(.2, 1.25, .4, 1), background-color .18s, border-color .18s;
+  transition: transform .26s var(--desk-spring-press), background-color .18s, border-color .18s;
 }
 
 .study-page :is(.study-desk-nav a, .btn, .bar button, .tools button, .chip, .acts button, .copy, .jump a, :where(#toTop)):hover {
@@ -455,6 +466,10 @@ body.study-page {
   .study-page[data-desk-page="odontogenic"] #score { margin-inline: 14px; }
 }
 
+@media (max-width: 540px) {
+  .pleats { height: 65px; width: 155px; opacity: .65; bottom: 27px; }
+}
+
 @media (max-width: 520px) {
   .study-page .study-desk-links { gap: 5px 9px; }
   .study-page .study-desk-links > span { margin-inline-start: 0; }
@@ -465,6 +480,39 @@ body.study-page {
 
 @media (prefers-reduced-motion: reduce) {
   .study-page :is(a, button) { transition: none !important; }
+}
+
+/* Standalone study pages that use the shared navigation without a local shell. */
+.study-page:is([data-desk-page="patho"], [data-desk-page="premed-environment"]) .study-desk-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+.study-page:is([data-desk-page="patho"], [data-desk-page="premed-environment"]) .study-desk-links a {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 12px;
+  text-decoration: none;
+}
+.study-page[data-desk-page="premed-environment"] { margin: 0; line-height: 1.65; }
+.study-page[data-desk-page="premed-environment"] main {
+  box-sizing: border-box;
+  max-width: var(--desk-width);
+  margin: auto;
+  padding: 12px 16px 28px;
+}
+.study-page[data-desk-page="premed-environment"] .card { padding: 12px 15px; margin-block: 10px; }
+.study-page[data-desk-page="premed-environment"] .card h3 { margin: 0; font-size: 18px; }
+.study-page[data-desk-page="premed-environment"] summary { cursor: pointer; padding: 4px 0; color: var(--desk-accent); }
+.study-page[data-desk-page="patho"] .card.key { border-inline-start: 3px solid var(--desk-accent); }
+.study-page[data-desk-page="patho"] .card > .q { font-family: var(--desk-song); }
+.study-page[data-desk-page="patho"] .bar button.primary { color: var(--desk-paper); }
+.study-page:is([data-desk-page="pharm-endodontic"], [data-desk-page="pharm-perio"]) :is(.card .body th, .numt th) {
+  background: var(--desk-fold);
+  color: var(--desk-ink);
 }
 </style>
 </head>
