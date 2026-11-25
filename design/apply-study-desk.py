@@ -21,6 +21,7 @@ PAGES = {
     "阅片列表.html": "imaging-list",
     "阅片速记.html": "imaging-notes",
     "quiz/index.html": "imaging-quiz",
+    "patho/index.html": "patho",
     "odontogenic/index.html": "odontogenic",
     "premed/index.html": "premed-guide",
     "premed/quiz.html": "premed-quiz",
