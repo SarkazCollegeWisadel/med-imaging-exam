@@ -9,6 +9,9 @@ from pathlib import Path
 DESIGN = Path(__file__).resolve().parent
 ROOT = DESIGN.parent
 PAGES = {
+    "premed/environment.html": "premed-environment",
+    "index.html": "imaging-desk",
+    "learn/index.html": "learn",
     "oral-finals/index.html": "oral-index",
     "oral-finals/plan.html": "oral-plan",
     "oral-finals/practice.html": "oral-practice",
