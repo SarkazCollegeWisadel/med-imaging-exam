@@ -360,18 +360,25 @@ body.study-page {
 }
 .study-page :is(.opt.sel, button.opt:hover):not(.right, .wrong, .wrongpick) { background: var(--desk-fold); }
 .study-page .opt :is(.lb, .k) { color: var(--desk-accent); }
-.study-page:not([data-desk-page="premed-quiz"]) .opt.right,
+/* Masked pages answer nothing until the card is opened: data-desk-mask="on". */
+.study-page:not([data-desk-mask="on"]) .opt.right,
 .study-page .card.ans-on .opt.right {
   background: var(--okbg);
   border-color: var(--ok);
 }
-.study-page:not([data-desk-page="premed-quiz"]) .opt.right :is(.k, .lb),
+.study-page:not([data-desk-mask="on"]) .opt.right :is(.k, .lb),
 .study-page .card.ans-on .opt.right :is(.k, .lb) { color: var(--ok); }
 .study-page :is(.opt.wrong, .card.ans-on .opt.wrongpick) {
   background: var(--badbg);
   border-color: var(--bad);
 }
 .study-page :is(.opt.wrong, .card.ans-on .opt.wrongpick) :is(.k, .lb) { color: var(--bad); }
+/* Missed a correct option on a wrong answer: amber, distinct from the answer green. */
+.study-page .card.ans-on .opt.missed {
+  background: var(--warnbg);
+  border-color: var(--warn);
+}
+.study-page .card.ans-on .opt.missed :is(.k, .lb) { color: var(--warn); }
 .study-page .opt.mine:not(.right, .wrong, .wrongpick) { background: var(--warnbg); border-color: var(--warn); }
 .study-page .card.ok { border-left: 3px solid var(--ok); }
 .study-page .card.wrong { border-left: 3px solid var(--bad); }
@@ -516,7 +523,7 @@ body.study-page {
 }
 </style>
 </head>
-<body class="study-page" data-desk-page="premed-quiz">
+<body class="study-page" data-desk-page="premed-quiz" data-desk-mask="on">
 <div class="study-desk-nav" role="navigation" aria-label="学习台导航"><div class="study-desk-links"><a href="../index.html">← 返回学习台</a><a href="../learn/index.html">帮学总入口</a><a href="./index.html">预防医学</a><span>77 题抽查</span></div></div>
 <div class="bar">
   <h1>预防医学 · 抽查版<span>77题 · 平台原文</span><span class="score" id="sc"></span></h1>

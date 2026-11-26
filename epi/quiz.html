@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>临床流行病学 · 抽查版（236题）</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:#0f1115;color:#e8eaed;font:16px/1.7 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;padding:0 0 90px}
+.bar{position:sticky;top:0;z-index:20;background:rgba(15,17,21,.97);backdrop-filter:blur(8px);border-bottom:1px solid #252932;padding:10px 14px}
+.bar h1{margin:0 0 8px;font-size:16px;font-weight:600;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.bar h1 span{font-size:12px;font-weight:400;color:#8a93a3}
+.score{margin-left:auto;font-size:13px;color:#6ee7a8;font-variant-numeric:tabular-nums}
+.acts{display:flex;gap:8px;flex-wrap:wrap}
+button{cursor:pointer;border:1px solid #2f3542;background:#1a1e26;color:#cfd6e0;border-radius:8px;padding:7px 12px;font-size:13px;font-family:inherit;transition:.15s}
+button:hover{background:#232936;border-color:#3d4553}
+button.on{background:#60475a;border-color:#60475a;color:#fff}
+.wrap{max-width:820px;margin:0 auto;padding:14px}
+.card{background:#161a21;border:1px solid #252932;border-radius:12px;padding:16px;margin-bottom:14px}
+.card.wrong{border-left:3px solid #f87171}
+.hd{display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:12px;color:#8a93a3;flex-wrap:wrap}
+.tag{background:#232936;border-radius:5px;padding:2px 8px;font-size:11px}
+.tag.s{color:#93c5fd}.tag.m{color:#fbbf24}
+.tag.bad{background:#7f1d1d;color:#fca5a5}
+.tag.tp{background:#1e293b;color:#94a3b8}
+.q{font-size:16px;font-weight:500;margin:0 0 12px;line-height:1.65;font-family:"Desk Song","STSong","华文宋体",serif;font-weight:400}
+.opt{border:1px solid #252932;border-radius:8px;padding:9px 12px;margin-bottom:7px;font-size:15px;display:flex;gap:10px;transition:.12s}
+.opt .k{color:#8a93a3;font-weight:600;min-width:18px;flex-shrink:0}
+.card.ans-on .opt.right{border-color:#34d399;background:rgba(52,211,153,.1)}
+.card.ans-on .opt.right .k{color:#34d399}
+.card.ans-on .opt.wrongpick{border-color:#f87171;background:rgba(248,113,113,.09)}
+.card.ans-on .opt.wrongpick .k{color:#f87171}
+.card.ans-on .opt.missed{border-color:#fbbf24;background:rgba(251,191,36,.08)}
+.card.ans-on .opt.missed .k{color:#fbbf24}
+.ans{display:none;margin-top:12px;padding-top:12px;border-top:1px dashed #2f3542}
+.card.ans-on .ans{display:block}
+.ansline{font-size:15px;margin-bottom:5px}
+.ansline b{color:#6ee7a8}
+.mine{font-size:14px;color:#f87171}
+.mine.ok{color:#6ee7a8}
+.show{width:100%;margin-top:12px;background:#1e293b;border-color:#334155;color:#cbd5e1;padding:9px}
+.show:hover{background:#263449}
+.foot{text-align:center;color:#5b6472;font-size:12px;padding:20px 14px;line-height:1.8}
+.empty{text-align:center;color:#5b6472;padding:40px}
+@media(max-width:520px){.wrap{padding:10px}.card{padding:13px}.q{font-size:15px}.opt{font-size:14px;padding:8px 10px}}
+</style>
+<style>
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:eq-out .2s ease both}
+::view-transition-new(root){animation:eq-in .36s cubic-bezier(.22,1,.36,1) both}
+@keyframes eq-out{to{opacity:0;transform:translateY(-4px)}}
+@keyframes eq-in{from{opacity:0;transform:translateY(9px)}}
+@media(prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*),*{animation:none!important;transition:none!important}}
+.study-desk-nav{display:block;box-sizing:border-box;position:relative;inset:auto;z-index:auto;max-width:none;background:#f2edf1;color:#463747;border:0;border-bottom:1px solid #8d718b38;padding:8px clamp(12px,4vw,48px);font:14px/1.5 system-ui,"Microsoft YaHei",sans-serif}
+.study-desk-nav .study-desk-links{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;max-width:1440px;margin:auto}
+.study-desk-nav a,.study-desk-nav a:visited{display:inline-flex;align-items:center;min-height:34px;box-sizing:border-box;margin:0;padding:3px 10px;border:1px solid #8d718b60;border-radius:100px;background:#ffffff87;color:#4c3c4a;text-decoration:none;font:inherit;white-space:nowrap}
+.study-desk-nav a:hover{background:white;color:#332332}
+.study-desk-nav a:focus-visible{outline:2px solid #74546d;outline-offset:2px}
+</style>
+<style id="study-desk-theme">
+@font-face {
+  font-family: "Desk Song";
+  src: local("STSong"), local("华文宋体");
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --desk-bg: #f3f0f1;
+  --desk-paper: #fffdfd;
+  --desk-ink: #2d272e;
+  --desk-muted: #625561;
+  --desk-line: #dcd1da;
+  --desk-fold: #ede4eb;
+  --desk-accent: #60475a;
+  --desk-hover: #75576e;
+  --desk-glass: linear-gradient(151deg, #fffdfdf2, #eee6eddb);
+  --desk-shadow: 0 2px 4px #392f3609, 0 8px 24px #392f3608;
+  --desk-song: "Desk Song", "STSong", "华文宋体", "Songti SC", SimSun, serif;
+  --desk-width: 820px;
+  --desk-spring: cubic-bezier(.18, 1.24, .32, 1);
+  --desk-spring-press: cubic-bezier(.2, 1.45, .47, 1);
+
+  /* Existing pages use several names for the same roles. */
+  --bg: var(--desk-bg);
+  --card: var(--desk-paper);
+  --card2: var(--desk-fold);
+  --ink: var(--desk-ink);
+  --tx: var(--desk-ink);
+  --sub: var(--desk-muted);
+  --dim: var(--desk-muted);
+  --line: var(--desk-line);
+  --hl: var(--desk-accent);
+  --hl2: var(--desk-accent);
+  --acc: var(--desk-accent);
+  --accent: var(--desk-accent);
+  --code: var(--desk-fold);
+  --ok: #226040;
+  --okbg: #e8f4eb;
+  --bad: #922f34;
+  --badbg: #faebec;
+  --warn: #744c1b;
+  --warnbg: #f7f0e3;
+}
+
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:desk-page-out .2s ease both}
+::view-transition-new(root){animation:desk-page-in .36s cubic-bezier(.22,1,.36,1) both}
+@keyframes desk-page-out{to{opacity:0;transform:translateY(-4px)}}
+@keyframes desk-page-in{from{opacity:0;transform:translateY(9px)}}
+@media(prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+
+.pleats{position:absolute;z-index:-1;overflow:hidden;right:-1px;bottom:23px;width:clamp(160px,27vw,370px);height:100px;pointer-events:none;opacity:.86}
+.pleats i{position:absolute;inset:0}
+.pleats i:nth-child(1){clip-path:polygon(0 88%,42% 13%,33% 100%);background:linear-gradient(130deg,#c5b5c496,#efeaed)}
+.pleats i:nth-child(2){clip-path:polygon(33% 100%,42% 13%,62% 29%);background:linear-gradient(130deg,#c0abba,#e9e0e7)}
+.pleats i:nth-child(3){clip-path:polygon(33% 100%,62% 29%,62% 75%);background:linear-gradient(140deg,#eee5ec,#d4c4d0)}
+.pleats i:nth-child(4){clip-path:polygon(62% 29%,83% 0,62% 75%);background:linear-gradient(125deg,#c7b2c2,#eee5ec)}
+.pleats i:nth-child(5){clip-path:polygon(62% 75%,83% 0,100% 56%);background:linear-gradient(120deg,#d5c4d0,#f4eff4)}
+
+body.study-page {
+  background: radial-gradient(ellipse at 85% 0, #eee6ed, transparent 550px), var(--desk-bg);
+  color: var(--desk-ink);
+  font-family: "Segoe UI Variable", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.study-page :is(h1, h2, .stem, .st, .ask, .card header h3, .ans .dx),
+.study-page[data-desk-page="premed-quiz"] .q,
+.study-page[data-desk-page="odontogenic"] .card > .q {
+  font-family: var(--desk-song);
+  font-weight: 400;
+  text-wrap: pretty;
+}
+
+.study-page :is(h1, h2, h3, h4) { color: var(--desk-ink); }
+.study-page a { color: var(--desk-accent); }
+.study-page :is(.sub, .foot, .src, .hint, .cap, figcaption, .who) { color: var(--desk-muted); }
+.study-page :is(a, button, summary, input, textarea):focus-visible {
+  outline: 2px solid var(--desk-accent);
+  outline-offset: 3px;
+}
+
+.study-page .study-desk-nav {
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+  padding-inline: clamp(10px, 3vw, 22px);
+  border-bottom: 0;
+}
+
+.study-page .study-desk-nav::after {
+  content: "";
+  position: absolute;
+  inset: auto max(12px, calc((100% - var(--desk-width)) / 2)) 0;
+  border-bottom: 1px solid var(--desk-line);
+  pointer-events: none;
+}
+
+.study-page .study-desk-links { max-width: var(--desk-width); }
+.study-page .study-desk-links > span {
+  margin-inline-start: auto;
+  color: var(--desk-muted);
+  font-size: .83em;
+}
+
+.study-page :is(.study-desk-nav a, .btn, .bar button, .tools button, .chip, .acts button, .copy, .jump a, :where(#toTop)) {
+  min-height: 34px;
+  border: 1px solid var(--desk-line);
+  border-radius: 100px;
+  background: var(--desk-glass);
+  color: var(--desk-accent);
+  box-shadow: inset 0 1px 0 #fff, 0 2px 5px #5034480d;
+  transition: transform .26s var(--desk-spring-press), background-color .18s, border-color .18s;
+}
+
+.study-page :is(.study-desk-nav a, .btn, .bar button, .tools button, .chip, .acts button, .copy, .jump a, :where(#toTop)):hover {
+  background: #fff;
+  border-color: #af96aa;
+}
+
+.study-page :is(.btn, .bar button, .tools button, .chip, .acts button, .copy, :where(#toTop)):active {
+  transform: scale(.965);
+}
+
+.study-page :is(.btn.on, .bar button.on, .bar button.primary, .tools button.on, .chip.on, .acts button.on) {
+  background: var(--desk-accent);
+  border-color: var(--desk-accent);
+  color: #fff;
+  box-shadow: none;
+}
+
+.study-page :is(.btn.on, .bar button.on, .bar button.primary, .tools button.on, .chip.on, .acts button.on):hover {
+  background: var(--desk-hover);
+  color: #fff;
+}
+
+.study-page :is(.copy.done, .acts button.ok) {
+  background: var(--okbg);
+  border-color: var(--ok);
+  color: var(--ok);
+}
+
+.study-page :is(.acts button.bad, .acts button.wrong) {
+  background: var(--badbg);
+  border-color: var(--bad);
+  color: var(--bad);
+}
+
+.study-page button:disabled { opacity: .55; }
+
+.study-page > :is(header, .top),
+.study-page .study-hero,
+.study-page[data-desk-page="premed-quiz"] > .bar {
+  position: relative;
+  isolation: isolate;
+  z-index: auto;
+  max-width: var(--desk-width);
+  margin: 10px auto 14px;
+  padding: clamp(16px, 3vw, 27px);
+  border: 1px solid var(--desk-line);
+  border-radius: 13px;
+  background: linear-gradient(135deg, #fffdfd 46%, #f0e8ef);
+  box-shadow: var(--desk-shadow);
+}
+
+/* A fold on the heading surface leaves the exercise and source areas quiet. */
+.study-page > :is(header, .top)::after,
+.study-page .study-hero::after,
+.study-page[data-desk-page="premed-quiz"] > .bar::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  width: min(33%, 185px);
+  height: 100%;
+  background: linear-gradient(142deg, #d5c3d1 13%, #eee5ed 13% 38%, #d9c8d5 38% 51%, #f1eaf0 51%);
+  clip-path: polygon(66% 0, 100% 0, 100% 82%, 59% 100%, 0 100%, 42% 61%);
+  border-radius: 0 13px 13px 0;
+  opacity: .53;
+  pointer-events: none;
+}
+
+.study-page > :is(header, .top) h1,
+.study-page .study-hero h1,
+.study-page[data-desk-page="premed-quiz"] .bar h1 {
+  margin: 0 0 6px;
+  padding: 0;
+  border: 0;
+  color: var(--desk-ink);
+  font: 400 clamp(26px, 4.8vw, 43px)/1.2 var(--desk-song);
+  letter-spacing: -.025em;
+  overflow-wrap: anywhere;
+}
+
+.study-page > header .wrap { padding-inline: 0; }
+.study-page > :is(header, .top, .study-hero) :is(.sub, p) { color: var(--desk-muted); }
+.study-page .study-hero .sub { margin-bottom: 0; }
+.study-page .wrap { max-width: var(--desk-width); }
+.study-page .study-course-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 12px;
+}
+.study-page .study-course-links a {
+  padding: 7px 10px;
+  background: #fffdfd99;
+  border: 1px solid var(--desk-line);
+  border-radius: 7px;
+  color: var(--desk-accent);
+  font-size: .82em;
+  text-decoration: none;
+}
+.study-page .study-course-links a:hover { background: var(--desk-fold); }
+
+.study-page .bar,
+.study-page .tools,
+.study-page .filters,
+.study-page > nav:not(.study-desk-nav),
+.study-page .jump,
+.study-page #score.score {
+  position: static;
+  inset: auto;
+  z-index: auto;
+}
+
+.study-page :is(.bar, .tools, .filters, .jump) { color: var(--desk-muted); }
+.study-page :is(.tools, .filters, .jump) { align-items: center; }
+.study-page .tools { margin-top: 12px; }
+.study-page .filters { padding-block: 9px; }
+.study-page .bar {
+  background: var(--desk-glass);
+  backdrop-filter: blur(18px) saturate(135%);
+  border: 1px solid var(--desk-line);
+  border-radius: 10px;
+  padding: 7px 9px;
+}
+.study-page .bar .score { color: var(--ok); font-family: system-ui, sans-serif; letter-spacing: 0; }
+.study-page .bar .sc { color: var(--desk-ink); }
+.study-page header .bar { margin-top: 12px; }
+.study-page > nav:not(.study-desk-nav) {
+  max-width: var(--desk-width);
+  margin: 0 auto;
+  background: transparent;
+  border-color: var(--desk-line);
+}
+.study-page > nav:not(.study-desk-nav) a {
+  background: var(--desk-fold);
+  color: var(--desk-accent);
+  border: 1px solid var(--desk-line);
+}
+.study-page > nav:not(.study-desk-nav) a:hover,
+.study-page > nav:not(.study-desk-nav) a.hl {
+  background: var(--desk-accent);
+  color: #fff;
+}
+.study-page .jump {
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: var(--desk-width);
+  margin: 8px auto 0;
+  padding-inline: 14px;
+}
+.study-page .study-section-jump { margin-top: 12px; padding: 0; }
+.study-page .jump a { display: inline-flex; align-items: center; }
+.study-page #toTop {
+  position: static;
+  justify-content: center;
+  margin: 12px auto;
+}
+
+.study-page :is(.qi, .card, .b1box, .essay, .hero, .q:has(> .qh), details.sec, details.honesty, #toc) {
+  background: var(--desk-paper);
+  border: 1px solid var(--desk-line);
+  border-radius: 13px;
+  box-shadow: var(--desk-shadow);
+}
+.study-page .sec .card { border-width: 1px 0 0; border-radius: 0; box-shadow: none; }
+.study-page :is(.qi img, .imgs img, .card > img) { border-color: var(--desk-line); }
+.study-page :is(.stem, .st, .ask, .card header h3) {
+  font-size: clamp(17px, 2.35vw, 20px);
+  line-height: 1.48;
+}
+.study-page :is(.tag:not(.warn, .ok, .n, .g, .bad), .b.sub) {
+  background: var(--desk-fold);
+  color: var(--desk-accent);
+  border-color: #d8c9d6;
+}
+.study-page :is(.tag.warn, .noimg, .b.warn) {
+  background: var(--warnbg);
+  color: var(--warn);
+  border-color: #d7bd91;
+}
+.study-page :is(.tag.g, .tag.ok, .b.exam) { background: var(--okbg); color: var(--ok); }
+.study-page :is(.tag.bad, .tag.n) { background: var(--badbg); color: var(--bad); }
+.study-page .opt {
+  background: #fdfafb;
+  border-color: var(--desk-line);
+  color: var(--desk-ink);
+}
+.study-page :is(.opt.sel, button.opt:hover):not(.right, .wrong, .wrongpick) { background: var(--desk-fold); }
+.study-page .opt :is(.lb, .k) { color: var(--desk-accent); }
+/* Masked pages answer nothing until the card is opened: data-desk-mask="on". */
+.study-page:not([data-desk-mask="on"]) .opt.right,
+.study-page .card.ans-on .opt.right {
+  background: var(--okbg);
+  border-color: var(--ok);
+}
+.study-page:not([data-desk-mask="on"]) .opt.right :is(.k, .lb),
+.study-page .card.ans-on .opt.right :is(.k, .lb) { color: var(--ok); }
+.study-page :is(.opt.wrong, .card.ans-on .opt.wrongpick) {
+  background: var(--badbg);
+  border-color: var(--bad);
+}
+.study-page :is(.opt.wrong, .card.ans-on .opt.wrongpick) :is(.k, .lb) { color: var(--bad); }
+/* Missed a correct option on a wrong answer: amber, distinct from the answer green. */
+.study-page .card.ans-on .opt.missed {
+  background: var(--warnbg);
+  border-color: var(--warn);
+}
+.study-page .card.ans-on .opt.missed :is(.k, .lb) { color: var(--warn); }
+.study-page .opt.mine:not(.right, .wrong, .wrongpick) { background: var(--warnbg); border-color: var(--warn); }
+.study-page .card.ok { border-left: 3px solid var(--ok); }
+.study-page .card.wrong { border-left: 3px solid var(--bad); }
+.study-page .ans {
+  background: linear-gradient(148deg, #fbf5f9, var(--desk-fold));
+  border-color: #bca3b6;
+  color: var(--desk-ink);
+  transform-origin: top center;
+}
+.study-page .ans.warn { background: var(--warnbg); border-color: var(--warn); }
+.study-page .ansline b { color: var(--ok); }
+.study-page .mine { color: var(--desk-muted); }
+.study-page :is(.note.srcbox, .note.mid, .note.none, .ans .src, .src.no, .card .src:not(span), .prompt, .b1lead) {
+  background: #f4eef3;
+  color: var(--desk-muted);
+  border-color: #cdbac9;
+}
+.study-page .note.srcbox code {
+  background: #e8dce6;
+  color: #493646;
+  overflow-wrap: anywhere;
+}
+.study-page .src::before,
+.study-page .src.no::before { color: var(--desk-muted); }
+.study-page :is(details pre, code, th) { background: #f2ebf0; }
+.study-page :is(th, td) { border-color: var(--desk-line); }
+.study-page :is(h2.part, article h2) {
+  background: linear-gradient(113deg, var(--desk-fold) 64%, transparent 64%);
+  border-color: #aa8fa3;
+}
+
+.study-page[data-desk-page="premed-guide"] :is(main p, main li, td, strong) { color: var(--desk-ink); }
+.study-page[data-desk-page="premed-guide"] :is(blockquote, blockquote p, th) { color: var(--desk-muted); }
+.study-page[data-desk-page="premed-guide"] :is(blockquote, tr:nth-child(even) td) { background: #f4edf2; border-color: var(--desk-line); }
+.study-page[data-desk-page="premed-guide"] :is(code, hr, .foot) { border-color: var(--desk-line); }
+.study-page[data-desk-page="premed-guide"] code { color: var(--desk-accent); }
+.study-page[data-desk-page="premed-guide"] .go a { background: var(--desk-accent); color: #fff; }
+.study-page[data-desk-page="premed-guide"] .go a:hover { background: var(--desk-hover); }
+
+.study-page[data-desk-page="premed-quiz"] .q {
+  font-size: clamp(17px, 2.35vw, 20px);
+  line-height: 1.48;
+}
+.study-page[data-desk-page="premed-quiz"] .bar h1 {
+  display: flex;
+  flex-wrap: wrap;
+}
+.study-page[data-desk-page="premed-quiz"] .bar h1 span {
+  color: var(--desk-muted);
+  font-family: system-ui, sans-serif;
+}
+.study-page[data-desk-page="premed-quiz"] .bar h1 .score { color: var(--ok); }
+.study-page[data-desk-page="premed-quiz"] .hd { color: var(--desk-muted); }
+.study-page[data-desk-page="premed-quiz"] button.show {
+  background: var(--desk-accent);
+  border-color: var(--desk-accent);
+  color: #fff;
+}
+.study-page[data-desk-page="premed-quiz"] button.show:hover { background: var(--desk-hover); }
+.study-page[data-desk-page="odontogenic"] #score {
+  max-width: var(--desk-width);
+  margin: 0 auto 12px;
+  background: var(--desk-glass);
+  border: 1px solid var(--desk-line);
+  border-radius: 11px;
+}
+.study-page[data-desk-page="odontogenic"] .card > .q { font-size: 20px; }
+.study-page.hide-ans[data-desk-page="imaging-list"] .ans b { background: #d9ccd6; color: transparent; }
+.study-page[data-desk-page="imaging-quiz"] :is(.prompt b, summary) { color: var(--desk-accent); }
+.study-page[data-desk-page="imaging-quiz"] details { background: #f5eef4; border-color: var(--desk-line); }
+.study-page[data-desk-page="imaging-quiz"] details .ans { background: transparent; color: var(--desk-accent); font-family: var(--desk-song); font-size: 18px; }
+.study-page[data-desk-page="pharm"] details { border: 1px solid var(--desk-line); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .study-page .ans.on,
+  .study-page:not(:has(#revealAll.on)) .ans.show,
+  .study-page:not(.showAll) .card.shown .ans,
+  .study-page[data-desk-page="imaging-quiz"] details[open] > p:first-of-type {
+    animation: desk-unfold .34s cubic-bezier(.19, 1, .36, 1) both;
+  }
+  .study-page:has(#showAll.on) .ans.on { animation: none; }
+}
+
+@keyframes desk-unfold {
+  from { opacity: .28; transform: perspective(460px) rotateX(-30deg); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 860px) {
+  .study-page > :is(header, .top),
+  .study-page[data-desk-page="premed-quiz"] > .bar { margin-inline: 12px; }
+  .study-page[data-desk-page="odontogenic"] #score { margin-inline: 14px; }
+}
+
+@media (max-width: 540px) {
+  .pleats { height: 65px; width: 155px; opacity: .65; bottom: 27px; }
+}
+
+@media (max-width: 520px) {
+  .study-page .study-desk-links { gap: 5px 9px; }
+  .study-page .study-desk-links > span { margin-inline-start: 0; }
+  .study-page > :is(header, .top),
+  .study-page .study-hero,
+  .study-page[data-desk-page="premed-quiz"] > .bar { padding: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .study-page :is(a, button) { transition: none !important; }
+}
+
+/* Standalone study pages that use the shared navigation without a local shell. */
+.study-page:is([data-desk-page="patho"], [data-desk-page="premed-environment"]) .study-desk-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+.study-page:is([data-desk-page="patho"], [data-desk-page="premed-environment"]) .study-desk-links a {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 12px;
+  text-decoration: none;
+}
+.study-page[data-desk-page="premed-environment"] { margin: 0; line-height: 1.65; }
+.study-page[data-desk-page="premed-environment"] main {
+  box-sizing: border-box;
+  max-width: var(--desk-width);
+  margin: auto;
+  padding: 12px 16px 28px;
+}
+.study-page[data-desk-page="premed-environment"] .card { padding: 12px 15px; margin-block: 10px; }
+.study-page[data-desk-page="premed-environment"] .card h3 { margin: 0; font-size: 18px; }
+.study-page[data-desk-page="premed-environment"] summary { cursor: pointer; padding: 4px 0; color: var(--desk-accent); }
+.study-page[data-desk-page="patho"] .card.key { border-inline-start: 3px solid var(--desk-accent); }
+.study-page[data-desk-page="patho"] .card > .q { font-family: var(--desk-song); }
+.study-page[data-desk-page="patho"] .bar button.primary { color: var(--desk-paper); }
+.study-page:is([data-desk-page="pharm-endodontic"], [data-desk-page="pharm-perio"]) :is(.card .body th, .numt th) {
+  background: var(--desk-fold);
+  color: var(--desk-ink);
+}
+</style>
+</head>
+<body class="study-page" data-desk-page="epi-quiz" data-desk-mask="on">
+<div class="study-desk-nav" role="navigation" aria-label="学习台导航"><div class="study-desk-links"><a href="../index.html">← 返回学习台</a><a href="../learn/index.html">帮学总入口</a><a href="./index.html">临床流行病学</a><span>236 题抽查</span></div></div>
+<div class="bar">
+  <h1>临床流行病学 · 抽查版<span>236题 · 平台真题</span><span class="score" id="sc"></span></h1>
+  <div class="acts">
+    <button id="fAll" class="on">全部 236</button>
+    <button id="fWrong">只看我做错的 15</button>
+    <button id="fSingle">单选 192</button>
+    <button id="fMulti">多选 44</button>
+    <button id="shuffle">打乱顺序</button>
+    <button id="revealAll">全部显示答案</button>
+  </div>
+</div>
+<div class="wrap" id="list"></div>
+<div class="foot">
+  题干、选项、我的作答与标准答案逐字取自 OCS《临床流行病学》8 场阶段测试（2026-11-27 抓取）<br>
+  不判分、不代答，只做遮答自测 · 断网可用
+</div>
+<script>
+const DATA=[{"no":1,"exam":"阶段测试P-1","type":"单选题","points":3.0,"stem":"流行病学研究对象的三个层次是指","options":["A|病人、非病人、一般人群","B|传染病、慢性病、慢性非传染性疾病","C|疾病、健康、突发事件","D|疾病、伤害、健康","E|死亡、患病、健康"],"answer":"D","mine":"D","wrong":false,"topics":["暴发与流行调查"]},{"no":2,"exam":"阶段测试P-1","type":"单选题","points":3.0,"stem":"病死率的定义是","options":["A|某人群中死于某病的患者频率","B|每10万人口中因某病死亡的频率","C|患某病的住院病人中因该病而死亡的频率","D|一定时期内，患某病的病人中因该病而死亡的比值","E|特殊原因引起的某病死亡"],"answer":"D","mine":"D","wrong":false,"topics":["疾病频率指标"]},{"no":3,"exam":"阶段测试P-1","type":"单选题","points":3.0,"stem":"某单位会餐的100人中，有30人因食用某一被弧菌污染的食物，于餐后3天内发生腹泻腹痛。请问30%是","options":["A|发病率","B|死亡率","C|患病率","D|罹患率","E|感染率"],"answer":"D","mine":"D","wrong":false,"topics":[]},{"no":4,"exam":"阶段测试P-1","type":"单选题","points":3.0,"stem":"在吸烟与某病关系的研究中，吸烟组的死亡率是5%，不吸烟组的死亡率是2%。 吸烟的归因危险度是","options":["A|2.5","B|3%","C|0.4","D|30%","E|无法计算"],"answer":"B","mine":"D","wrong":true,"topics":["队列研究","疾病频率指标"]},{"no":5,"exam":"阶段测试P-1","type":"单选题","points":3.0,"stem":"病例对照研究与队列研究相比，其优点是","options":["A|更容易避免系统误差","B|更容易确定暴露与疾病的先后顺序","C|适用于罕见病的研究","D|更容易验证病因假设","E|设立了比较组"],"answer":"C","mine":"C","wrong":false,"topics":["病例对照研究","队列研究"]},{"no":6,"exam":"阶段测试P-1","type":"单选题","points":3.0,"stem":"病例对照研究与队列研究的共同点是","options":["A|是前瞻性的","B|从因到果","C|设立比较组","D|均适用于罕见病调查","E|检验病因假设的强度相近"],"answer":"C","mine":"C","wrong":false,"topics":["病例对照研究","队列研究"]},{"no":7,"exam":"阶段测试P-1","type":"单选题","points":3.0,"stem":"霍乱流行区的一次调查中，查得93例霍乱病人有如下的疫水接触史:游泳52人，割湖草30人，插秧6人，放牧3人，洗衣2人，由此得出游泳是最危险的接触方式，是否正确","options":["A|是","B|不是，应了解他们的既往史","C|不是，因没设对照","D|不是，因未作统计学显著性检验","E|不是，因所做比较不是以率为基础的"],"answer":"E","mine":"E","wrong":false,"topics":["暴发与流行调查"]},{"no":8,"exam":"阶段测试P-1","type":"单选题","points":3.0,"stem":"就病例对照研究而言，下述哪项是错误的","options":["A|属于描述性研究","B|设立比较组","C|研究方向由果及因","D|特别适合对罕见病的研究","E|省时省力"],"answer":"A","mine":"A","wrong":false,"topics":["病例对照研究"]},{"no":9,"exam":"阶段测试P-1","type":"单选题","points":3.0,"stem":"关于相对危险度，下列叙述哪项不正确","options":["A|相对危险度的取值范围在0—∞之间","B|相对危险度等于1，说明暴露与疾病无联系","C|相对危险度小于1，说明其间存在负联系","D|相对危险度为0.001时，比相对危险度为1.1时的联系强度更弱","E|相对危险度大于1，说明其间存在正联系"],"answer":"D","mine":"D","wrong":false,"topics":["队列研究"]},{"no":10,"exam":"阶段测试P-1","type":"单选题","points":3.0,"stem":"下列关于流行病学的定义，最准确的是","options":["A|研究传染病在人群中的分布和影响因素的学科","B|研究慢性病在人群中的分布和影响因素的学科","C|研究非传染病在人群中的分布和影响因素以及防治对策的学科","D|研究疾病和健康状况在人群中的分布和影响因素以及防治对策的学科","E|研究传染病在人群中的分布和影响因素以及防治对策的学科"],"answer":"D","mine":"D","wrong":false,"topics":["暴发与流行调查"]},{"no":11,"exam":"阶段测试P-1","type":"单选题","points":3.0,"stem":"下列哪项不是因果关联的推断标准","options":["A|关联的时间顺序","B|关联的合理性","C|关联的可重复性与特异性","D|样本量大小","E|关联强度"],"answer":"D","mine":"D","wrong":false,"topics":["因果推断"]},{"no":12,"exam":"阶段测试P-1","type":"单选题","points":3.0,"stem":"流行病学任务的三个阶段为","options":["A|发现病人、找出原因、治疗病人","B|揭示现象、找出原因、提供措施","C|揭示现象、描述分布、提供措施","D|揭示现象、描述分布、找出原因","E|揭示现象、找出原因、治疗疾病"],"answer":"B","mine":"B","wrong":false,"topics":["暴发与流行调查"]},{"no":13,"exam":"阶段测试P-1","type":"单选题","points":3.0,"stem":"调查某地某人群乙肝感染状况，常用以下哪种方法","options":["A|队列研究","B|病例对照研究","C|抽样调查","D|实验性研究","E|生态学研究"],"answer":"C","mine":"C","wrong":false,"topics":[]},{"no":14,"exam":"阶段测试P-1","type":"单选题","points":3.0,"stem":"评价筛检收益的主要指标是","options":["A|特异度","B|灵敏度","C|正确指数","D|似然比","E|预测值"],"answer":"E","mine":"E","wrong":false,"topics":["筛检与诊断试验"]},{"no":15,"exam":"阶段测试P-1","type":"单选题","points":3.0,"stem":"临床试验的阳性对照又称为：","options":["A|安慰剂对照","B|交叉对照","C|外部对照","D|标准对照","E|自身对照"],"answer":"D","mine":"D","wrong":false,"topics":["临床试验与实验流行病学"]},{"no":16,"exam":"阶段测试P-1","type":"单选题","points":3.0,"stem":"病例对照研究中，调查对象应当是？","options":["A|病例组选择怀疑患某种疾病的人，对照组选择未患某种疾病的人","B|病例组为确定患某种疾病的人，对照组为怀疑患某种疾病的人","C|病例组应是确定患某种疾病的人，对照组是不患某种疾病的人","D|病例组和对照组均是患某种疾病的人"],"answer":"C","mine":"C","wrong":false,"topics":["病例对照研究"]},{"no":17,"exam":"阶段测试P-1","type":"单选题","points":3.0,"stem":"在病例对照研究中，对照组选择下列哪种人群最佳？","options":["A|医院内的其他患者人群","B|与病例来自同一源人群","C|病例的亲属人群","D|病例的邻居或同事人群"],"answer":"B","mine":"B","wrong":false,"topics":["病例对照研究"]},{"no":18,"exam":"阶段测试P-1","type":"单选题","points":3.0,"stem":"若病例对照研究资料分析时，由四格表资料算的χ2=3.97，P＜0.05，说明？","options":["A|因素与疾病无关联","B|因素与疾病有关联，因素为危险因素","C|因素与疾病有关联，须进一步分析联系强度","D|因素与疾病有关联，须计算95%可信区间"],"answer":"C","mine":"C","wrong":false,"topics":["病例对照研究"]},{"no":19,"exam":"阶段测试P-1","type":"单选题","points":3.0,"stem":"病例对照研究主要用于探索或验证疾病的病因假设，它的研究对象为?","options":["A|暴露组与非暴露组","B|试验组与非试验组","C|患病组与非患病组","D|干预组与对照组"],"answer":"C","mine":"C","wrong":false,"topics":["病例对照研究","因果推断"]},{"no":20,"exam":"阶段测试P-1","type":"单选题","points":3.0,"stem":"某种新疗法可延长寿命，但不能治愈疾病，可能会出现:(    )","options":["A|该病发病率将增加","B|该病发病率将减少","C|该病患病率将增加","D|该病患病率将减少","E|该病发病率和患病率都减少"],"answer":"C","mine":"C","wrong":false,"topics":[]},{"no":21,"exam":"阶段测试P-1","type":"多选题","points":4.0,"stem":"下列哪些是实验流行病学的范畴","options":["A|动物实验","B|现况调查","C|社区试验","D|现场试验","E|临床试验"],"answer":"CDE","mine":"CDE","wrong":false,"topics":["临床试验与实验流行病学","暴发与流行调查"]},{"no":22,"exam":"阶段测试P-1","type":"多选题","points":4.0,"stem":"在队列研究中，对照选择的种类有：","options":["A|内对照","B|外对照","C|总人群对照","D|可疑病例对照","E|多重对照"],"answer":"ABCE","mine":"ABCE","wrong":false,"topics":["队列研究"]},{"no":23,"exam":"阶段测试P-1","type":"多选题","points":4.0,"stem":"几个诊断试验联合使用时，下列叙述哪些正确？","options":["A|串联可提高特异度","B|并联可提高灵敏度","C|串联时每一试验均为阳性时才诊断为阳性","D|并联时任何一个试验阳性时即诊断为阳性","E|串联可提高灵敏度"],"answer":"ABCD","mine":"ABCD","wrong":false,"topics":[]},{"no":24,"exam":"阶段测试P-1","type":"多选题","points":4.0,"stem":"以下哪些是实验性研究的特征？","options":["A|前瞻","B|干预","C|随机","D|对照","E|回顾"],"answer":"ABCD","mine":"ABCD","wrong":false,"topics":[]},{"no":25,"exam":"阶段测试P-1","type":"多选题","points":4.0,"stem":"常用的随机抽样方法包括","options":["A|单纯随机抽样","B|分层抽样","C|系统抽样","D|随意抽样","E|整群抽样"],"answer":"ABCE","mine":"ABCE","wrong":false,"topics":["抽样方法与样本量"]},{"no":26,"exam":"阶段测试P-1","type":"多选题","points":4.0,"stem":"现况调查的目的和用途有","options":["A|描述疾病的分布特点","B|早期发现患者","C|直接验证病因假设","D|评价疾病的防治效果","E|治疗患者"],"answer":"ABD","mine":"AB","wrong":true,"topics":["现况调查与普查"]},{"no":27,"exam":"阶段测试P-1","type":"多选题","points":4.0,"stem":"临床试验的对照类型有","options":["A|安慰剂对照","B|交叉对照","C|外部对照","D|标准对照","E|自身对照"],"answer":"ABDE","mine":"BCDE","wrong":true,"topics":["临床试验与实验流行病学"]},{"no":28,"exam":"阶段测试P-1","type":"多选题","points":4.0,"stem":"疾病呈地方性的形式有","options":["A|自然疫源性","B|统计地方性","C|区域性","D|自然地方性","E|自然统计性"],"answer":"ABD","mine":"ABD","wrong":false,"topics":["暴发与流行调查"]},{"no":29,"exam":"阶段测试P-1","type":"多选题","points":4.0,"stem":"队列研究的随访方式有","options":["A|信访","B|访问调查","C|定期检查","D|利用医院的常规登记资料","E|利用人事、劳保、保险等档案资料"],"answer":"ABCDE","mine":"ABCDE","wrong":false,"topics":["队列研究"]},{"no":30,"exam":"阶段测试P-1","type":"多选题","points":4.0,"stem":"病例对照研究的优点是：","options":["A|病例对照研究费用少、出结果快","B|不需随访","C|需要长期随访","D|可用于少见病的研究","E|可研究一种暴露与多种疾病之间的关系"],"answer":"ABD","mine":"ABDE","wrong":true,"topics":["病例对照研究"]},{"no":1,"exam":"阶段测试D-1","type":"单选题","points":3.0,"stem":"流行病学研究对象的三个层次是指","options":["A|病人、非病人、一般人群","B|传染病、慢性病、慢性非传染性疾病","C|疾病、健康、突发事件","D|疾病、伤害、健康","E|死亡、患病、健康"],"answer":"D","mine":"D","wrong":false,"topics":["暴发与流行调查"]},{"no":2,"exam":"阶段测试D-1","type":"单选题","points":3.0,"stem":"疾病的流行是","options":["A|罹患率大于10％","B|发病率以十万分率计算","C|某病的发病率虽低，但在该地区人群中却长年不断","D|某病的发病数明显超过往年同期发病数","E|某病的发病呈季节性升高"],"answer":"D","mine":"D","wrong":false,"topics":["暴发与流行调查"]},{"no":3,"exam":"阶段测试D-1","type":"单选题","points":3.0,"stem":"疾病暴发调查中常用的测量指标是","options":["A|患病率","B|发病率","C|死亡率","D|病死率","E|罹患率"],"answer":"E","mine":"E","wrong":false,"topics":["暴发与流行调查"]},{"no":4,"exam":"阶段测试D-1","type":"单选题","points":3.0,"stem":"抽样单位为群体，再从群体中随机抽样的方法称为","options":["A|单纯随机抽样","B|系统抽样","C|分层抽样","D|整群抽样","E|多级抽样"],"answer":"E","mine":"D","wrong":true,"topics":["抽样方法与样本量"]},{"no":5,"exam":"阶段测试D-1","type":"单选题","points":3.0,"stem":"在队列研究中，结局的确切概念是指","options":["A|统计检验结果","B|暴露属性的分组结果","C|观察中出现了预期结果的事件","D|观察期限的终止时间","E|研究队列中存在的混杂结果"],"answer":"C","mine":"C","wrong":false,"topics":["队列研究"]},{"no":6,"exam":"阶段测试D-1","type":"单选题","points":3.0,"stem":"在分析流行病学研究中，下列哪项是暴露的最确切含义","options":["A|暴露是指一个发病因素","B|暴露是指多个危险因素","C|暴露是指研究对象具有某种疑为与患病与否可能有关的特征或曾受到某种疑为与患病与否可能有关的因子的影响","D|暴露是指接触了危险因素","E|暴露是指感染了病原体"],"answer":"C","mine":"C","wrong":false,"topics":["暴发与流行调查"]},{"no":7,"exam":"阶段测试D-1","type":"单选题","points":3.0,"stem":"病例对照研究中，比值比的含义是","options":["A|病例组的发病率与对照组的发病率之比","B|病例组的发病率与对照组的发病率之差","C|病例组的暴露比值与对照组的暴露比值之差","D|对照组的暴露比值除以病例组的暴露比值","E|病例组的暴露比值与对照组的暴露比值之比"],"answer":"E","mine":"C","wrong":true,"topics":["病例对照研究"]},{"no":8,"exam":"阶段测试D-1","type":"单选题","points":3.0,"stem":"就病例对照研究而言，下述哪项是错误的","options":["A|属于描述性研究","B|设立比较组","C|研究方向由果及因","D|特别适合对罕见病的研究","E|省时省力"],"answer":"A","mine":"A","wrong":false,"topics":["病例对照研究"]},{"no":9,"exam":"阶段测试D-1","type":"单选题","points":3.0,"stem":"关于匹配的目的，下列叙述错误的是","options":["A|平衡混杂因素对病例组和对照组的影响","B|平衡配比因素对病例组和对照组的影响","C|控制混杂因素对研究结果的影响","D|提高研究效率","E|消除已知混杂因素对研究结果的影响"],"answer":"E","mine":"E","wrong":false,"topics":["病例对照研究"]},{"no":10,"exam":"阶段测试D-1","type":"单选题","points":3.0,"stem":"流行病学研究的对象是:(      )","options":["A|疾病","B|病人","C|健康人","D|人群","E|亚临床型病人"],"answer":"D","mine":"D","wrong":false,"topics":["暴发与流行调查"]},{"no":11,"exam":"阶段测试D-1","type":"单选题","points":3.0,"stem":"队列研究属于哪一种流行病学研究方法:","options":["A|描述性流行病学","B|分析性流行病学","C|实验性流行病学","D|理论性流行病学","E|以上均不对"],"answer":"B","mine":"B","wrong":false,"topics":["队列研究","暴发与流行调查"]},{"no":12,"exam":"阶段测试D-1","type":"单选题","points":3.0,"stem":"罹患率的计算公式是","options":["A|(观察期间病例数/同期平均人口数)x100%","B|(一年内新发病例数/同年暴露人口数)x100%","C|(观察期间新病例数/同期平均人口数)x100%","D|(观察期间新病例数/同期暴露人口数)x100%","E|(观察期间新旧病例数/同期平均人口数)x100%"],"answer":"D","mine":"D","wrong":false,"topics":["疾病频率指标"]},{"no":13,"exam":"阶段测试D-1","type":"单选题","points":3.0,"stem":"某地进行首次糖尿病普查，可得出","options":["A|糖尿病罹患率","B|糖尿病发病率","C|糖尿病患病率","D|糖尿病死亡率","E|糖尿病续发率"],"answer":"C","mine":"C","wrong":false,"topics":["现况调查与普查"]},{"no":14,"exam":"阶段测试D-1","type":"单选题","points":3.0,"stem":"普查是指","options":["A|对某人群的系统追踪观察","B|对某人群中的部分人进行调查","C|对某人群中的每个人进行调查","D|以发现隐性感染为目的的调查","E|对某人群的大部分人进行筛查"],"answer":"C","mine":"C","wrong":false,"topics":["现况调查与普查"]},{"no":15,"exam":"阶段测试D-1","type":"单选题","points":3.0,"stem":"为制定某地区人群原发性高血压的社区综合防制方案，拟对该地区某时点人群原发性高血压的患病情况进行调查。这类研究是","options":["A|流行病学实验","B|队列研究","C|横断面研究","D|病例对照研究","E|以上都不是"],"answer":"C","mine":"C","wrong":false,"topics":[]},{"no":16,"exam":"阶段测试D-1","type":"单选题","points":3.0,"stem":"某高校在某年秋季发生甲肝暴发，描述这次暴发严重性的常用最佳指标是","options":["A|死亡率","B|患病率","C|发病率","D|罹患率","E|生存率"],"answer":"D","mine":"D","wrong":false,"topics":["暴发与流行调查"]},{"no":17,"exam":"阶段测试D-1","type":"单选题","points":3.0,"stem":"流行病学的描述性研究不包括","options":["A|队列研究","B|普查","C|病例报告","D|个例调查","E|现况调查"],"answer":"A","mine":"A","wrong":false,"topics":["暴发与流行调查","描述性研究与个案"]},{"no":18,"exam":"阶段测试D-1","type":"单选题","points":3.0,"stem":"按照一定的顺序，固定的每隔一定数量抽查一个观察单元进入样本的抽样方法称为","options":["A|单纯随机抽样","B|分层抽样","C|整群抽样","D|系统抽样","E|多阶段抽样"],"answer":"D","mine":"D","wrong":false,"topics":["抽样方法与样本量"]},{"no":19,"exam":"阶段测试D-1","type":"单选题","points":3.0,"stem":"现况研究主要分析指标是","options":["A|某病的病死率","B|某病的患病率","C|某病的发病率","D|某病的生存率","E|某病的死亡率"],"answer":"B","mine":"B","wrong":false,"topics":["现况调查与普查"]},{"no":20,"exam":"阶段测试D-1","type":"单选题","points":3.0,"stem":"患病率与发病率、病程三者的正确关系是","options":["A|发病率＝患病率×病程","B|患病率=发病率×病程","C|发病率＝患病率+病程","D|发病率=患病率-病程","E|病程=发病率-患病率"],"answer":"B","mine":"B","wrong":false,"topics":["疾病频率指标"]},{"no":21,"exam":"阶段测试D-1","type":"单选题","points":3.0,"stem":"下列情况哪项不属于疾病地区分布","options":["A|中国食管癌高发于河南林县","B|甲亢女性多于男性","C|城市肺癌发病率高于农村","D|森林脑炎属于自然疫源性疾病","E|血吸虫病分布于长江中下游"],"answer":"B","mine":"B","wrong":false,"topics":[]},{"no":22,"exam":"阶段测试D-1","type":"单选题","points":3.0,"stem":"某地进行首次糖尿病普查，根据调查结果可分析","options":["A|糖尿病发病率","B|糖尿病患病率","C|糖尿病罹患率","D|糖尿病死亡率","E|糖尿病病死率"],"answer":"B","mine":"B","wrong":false,"topics":["现况调查与普查"]},{"no":23,"exam":"阶段测试D-1","type":"单选题","points":3.0,"stem":"疾病的时间分布不包括","options":["A|周期性","B|长期变异","C|短期波动","D|城乡分布","E|季节性"],"answer":"D","mine":"D","wrong":false,"topics":[]},{"no":24,"exam":"阶段测试D-1","type":"单选题","points":3.0,"stem":"某病在某地区显著超过该病历年散发发病率水平时，称为","options":["A|散发","B|暴发","C|流行","D|大流行","E|长期趋势"],"answer":"C","mine":"C","wrong":false,"topics":["疾病频率指标"]},{"no":25,"exam":"阶段测试D-1","type":"单选题","points":3.0,"stem":"病例对照研究与队列研究的共同点是","options":["A|是前瞻性的","B|从因到果","C|设立比较组","D|均适用于罕见病调查","E|检验病因假设的强度相近"],"answer":"C","mine":"C","wrong":false,"topics":["病例对照研究","队列研究"]},{"no":26,"exam":"阶段测试D-1","type":"多选题","points":5.0,"stem":"关于病例对照研究中的匹配，下列叙述哪些正确？","options":["A|是控制混杂因素作用的唯一方法","B|已知的混杂因子必须匹配","C|可采用未知的混杂因子","D|可采用极为怀疑的混杂因子","E|所有的研究因素作匹配"],"answer":"BD","mine":"BD","wrong":false,"topics":["病例对照研究"]},{"no":27,"exam":"阶段测试D-1","type":"多选题","points":5.0,"stem":"病例对照研究的优点是：","options":["A|病例对照研究费用少、出结果快","B|不需随访","C|需要长期随访","D|可用于罕见病的研究","E|可研究一种暴露与多种疾病之间的关系"],"answer":"ABD","mine":"ABD","wrong":false,"topics":["病例对照研究"]},{"no":28,"exam":"阶段测试D-1","type":"多选题","points":5.0,"stem":"病例对照研究中常见的偏倚有：","options":["A|奈曼偏倚","B|回忆偏倚","C|入院率偏倚","D|失访偏倚","E|混杂偏倚"],"answer":"ABCE","mine":"ABCE","wrong":false,"topics":["病例对照研究","偏倚及其控制"]},{"no":29,"exam":"阶段测试D-1","type":"多选题","points":5.0,"stem":"在队列研究中，评价某种暴露与某种疾病的联系的指标包括","options":["A|相对危险度（RR）","B|比值比（OR）","C|归因危险度（AR）","D|归因危险度百分比（AR%）","E|保护率（PR）"],"answer":"ACD","mine":"ACD","wrong":false,"topics":["队列研究"]},{"no":30,"exam":"阶段测试D-1","type":"多选题","points":5.0,"stem":"在队列研究中，对照选择的种类有：","options":["A|内对照","B|外对照","C|总人群对照","D|可疑病例对照","E|多重对照"],"answer":"ABCE","mine":"ABCE","wrong":false,"topics":["队列研究"]},{"no":1,"exam":"阶段测试X-1","type":"单选题","points":3.3,"stem":"以下关于流行病学的说法中，哪种说法是正确的","options":["A|流行病学从基因水平认识疾病","B|流行病学从细胞水平认识疾病","C|流行病学从群体水平认识疾病","D|流行病学从个体水平认识疾病","E|流行病学从分子水平认识疾病"],"answer":"C","mine":"C","wrong":false,"topics":["暴发与流行调查"]},{"no":2,"exam":"阶段测试X-1","type":"单选题","points":3.3,"stem":"流行病学主要的研究方法不包括","options":["A|临床试验","B|现场试验","C|分析性研究","D|基础动物实验","E|观察性研究方法"],"answer":"D","mine":"D","wrong":false,"topics":["暴发与流行调查"]},{"no":3,"exam":"阶段测试X-1","type":"单选题","points":3.3,"stem":"流行病学的实际应用范围不包括","options":["A|可用于评价药物的疗效及安全性","B|探讨疾病的病因及影响因素","C|描述疾病的自然史","D|疾病的三级预防","E|研究疾病的病理特征"],"answer":"E","mine":"E","wrong":false,"topics":["暴发与流行调查"]},{"no":4,"exam":"阶段测试X-1","type":"单选题","points":3.3,"stem":"流行病学研究的内容的三个层次包括","options":["A|传染病、寄生虫病、地方病","B|疾病、伤害及健康状态","C|传染病、非传染病、健康","D|传染病、非传染病、伤害","E|传染病、伤害、健康"],"answer":"B","mine":"B","wrong":false,"topics":["暴发与流行调查"]},{"no":5,"exam":"阶段测试X-1","type":"单选题","points":3.3,"stem":"疾病的“三间”分布是指","options":["A|人群分布，城乡分布，年龄分布","B|时间分布，性别分布，年龄分布","C|时间分布，人群分布，地区分布","D|地区分布，人群分布，年龄分布","E|城乡分布，性别分布，职业分布"],"answer":"C","mine":"C","wrong":false,"topics":[]},{"no":6,"exam":"阶段测试X-1","type":"单选题","points":3.3,"stem":"下列哪一组指标都是表示疾病流行强度","options":["A|散发、流行和大流行","B|周期性、季节性和长期变异","C|发病率、死亡率和患病率的大小","D|传染性、易感性和免疫性的大小","E|短期波动、季节性、周期性"],"answer":"A","mine":"A","wrong":false,"topics":["暴发与流行调查"]},{"no":7,"exam":"阶段测试X-1","type":"单选题","points":3.3,"stem":"关于患病率的叙述，下列哪项是正确的？","options":["A|患病率的分子是既往病例","B|患病率的分子是现患病例","C|患病率的分子是新病例","D|患病率的分母是暴露人口","E|患病率是由实验性研究得出的指标"],"answer":"B","mine":"B","wrong":false,"topics":["疾病频率指标"]},{"no":8,"exam":"阶段测试X-1","type":"单选题","points":3.3,"stem":"患病率与发病率、病程三者的正确关系是","options":["A|发病率＝患病率×病程","B|患病率=发病率×病程","C|发病率＝患病率+病程","D|发病率=患病率－病程","E|病程=发病率-患病率"],"answer":"B","mine":"B","wrong":false,"topics":["疾病频率指标"]},{"no":9,"exam":"阶段测试X-1","type":"单选题","points":3.3,"stem":"死亡率是指","options":["A|某人群在一定期间内的总死亡人数与该人群同期患病人口数之比","B|某人群在一定期间内的总死亡人数与该人群同期暴露人口数之比","C|某人群在一定期间内的总死亡人数与该人群同期平均人口数之比","D|某人群在一定期间内的总死亡人数与该人群同期发病人口数之比","E|某人群在一定期间内的总死亡人数与该人群同期期末人口数之比"],"answer":"C","mine":"C","wrong":false,"topics":["疾病频率指标"]},{"no":10,"exam":"阶段测试X-1","type":"单选题","points":3.3,"stem":"下列选项中描述人群分布的是","options":["A|在高收入国家，居民主要死于心血管、慢性阻塞性疾病等慢性病","B|全球范围内，传染病发病率和死亡率持续下降，而慢性病发病率和死亡率上升","C|慢性非传染性疾病死亡率在性别上存在差异","D|美国、日本等发达国家自20世纪70年代初脑卒中发病率呈下降的趋势","E|在低收入国家，人们主要死于传染病"],"answer":"C","mine":"C","wrong":false,"topics":[]},{"no":11,"exam":"阶段测试X-1","type":"单选题","points":3.3,"stem":"当样本量相同时，各种随机抽样方法抽样误差大小的正确排序是","options":["A|整群抽样＞单纯随机抽样＞系统抽样＞分层抽样","B|整群抽样＞单纯随机抽样＞分层抽样＞系统抽样","C|分层抽样＞系统抽样＞单纯随机抽样＞整群抽样","D|系统抽样＞单纯随机抽样＞整群抽样＞分层抽样","E|分层抽样＞系统抽样＞整群抽样＞单纯随机抽样"],"answer":"A","mine":"A","wrong":false,"topics":["抽样方法与样本量"]},{"no":12,"exam":"阶段测试X-1","type":"单选题","points":3.3,"stem":"关于普查的叙述，下列哪项是错误的","options":["A|是对某人群的全部人员所做的调查","B|可以早期发现病人","C|可帮助群众普及卫生知识","D|特别适合于调查罕见疾病","E|可描述疾病的分布特点"],"answer":"D","mine":"D","wrong":false,"topics":["现况调查与普查"]},{"no":13,"exam":"阶段测试X-1","type":"单选题","points":3.3,"stem":"关于描述性研究的叙述，下列哪项是正确的","options":["A|设立对照组","B|属于观察性研究","C|抽样调查通常要求进行随机分组","D|可直接验证病因假设","E|属于实验性研究"],"answer":"B","mine":"B","wrong":false,"topics":["描述性研究与个案"]},{"no":14,"exam":"阶段测试X-1","type":"单选题","points":3.3,"stem":"随机抽样方法中，抽样误差最小的是","options":["A|单纯随机抽样","B|系统抽样","C|分层抽样","D|整群抽样","E|随意抽样"],"answer":"C","mine":"C","wrong":false,"topics":["抽样方法与样本量"]},{"no":15,"exam":"阶段测试X-1","type":"单选题","points":3.3,"stem":"调查某地某人群乙肝感染状况，常用以下哪种方法","options":["A|队列研究","B|病例对照研究","C|抽样调查","D|实验性研究","E|生态学研究"],"answer":"C","mine":"C","wrong":false,"topics":[]},{"no":16,"exam":"阶段测试X-1","type":"单选题","points":3.3,"stem":"现况研究主要分析指标是","options":["A|某病的病死率","B|某病的患病率","C|某病的发病率","D|某病的生存率","E|某病的死亡率"],"answer":"B","mine":"B","wrong":false,"topics":["现况调查与普查"]},{"no":17,"exam":"阶段测试X-1","type":"单选题","points":3.3,"stem":"队列研究暴露人群的选择不包括","options":["A|一般人群","B|特殊暴露人群","C|职业人群","D|患有欲研究疾病的人群","E|有组织的团体"],"answer":"D","mine":"D","wrong":false,"topics":["队列研究"]},{"no":18,"exam":"阶段测试X-1","type":"单选题","points":3.3,"stem":"队列研究的基本原理是","options":["A|描述疾病分布特征，寻找病因线索","B|探讨病例组与对照组之间某些因素暴露的差别，检验病因假说","C|探讨干预措施在干预组与非干预组的效果及差别，评价干预效果","D|观察并比较暴露组与非暴露组的发病情况及其差别，检验病因假说","E|描述疾病组与对照组的分布特征，进行临床比较"],"answer":"D","mine":"D","wrong":false,"topics":["队列研究"]},{"no":19,"exam":"阶段测试X-1","type":"单选题","points":3.3,"stem":"暴露组的发病率（或死亡率）与非暴露组发病率（或死亡率）之比，此指标是","options":["A|相对危险度(RR)","B|优势比(OR)","C|发病密度","D|归因危险度百分比（AR%）","E|归因危险度（AR）"],"answer":"A","mine":"A","wrong":false,"topics":["疾病频率指标"]},{"no":20,"exam":"阶段测试X-1","type":"单选题","points":3.3,"stem":"前瞻性队列研究与历史性队列研究的主要区别在于","options":["A|前者为随访研究，后者为横断面研究","B|前者需要随访，后者不用随访","C|前者为由因及果的研究，后者为由果及因的研究","D|前者设立对照组，后者不设对照组","E|前者可信度低，后者可信度高"],"answer":"B","mine":"B","wrong":false,"topics":["队列研究"]},{"no":21,"exam":"阶段测试X-1","type":"单选题","points":3.4,"stem":"前瞻性队列研究中，在一个较长的随访期内，总会有对象迁移、外出、死于非终点疾病或拒绝继续参加观察而退出队列。 其所造成的偏倚属于","options":["A|入院率偏倚","B|回忆偏倚","C|混杂偏倚","D|失访偏倚","E|现患-新发病例偏倚"],"answer":"D","mine":"D","wrong":false,"topics":["队列研究","偏倚及其控制"]},{"no":22,"exam":"阶段测试X-1","type":"单选题","points":3.4,"stem":"下述哪项不是队列研究的特点？","options":["A|可直接计算发病率","B|多用于罕见疾病的研究","C|属于观察性研究","D|设立对照组","E|因素可分为几个等级，以便计算剂量—反应关系"],"answer":"B","mine":"B","wrong":false,"topics":["队列研究"]},{"no":23,"exam":"阶段测试X-1","type":"单选题","points":3.4,"stem":"在队列研究中，累积发病率是指：","options":["A|某固定人群在一定时期内某病现患病例数与时期开始时总人数之比","B|某动态人群在一定时期内某病现患病例数与时期开始时总人数之比","C|某动态人群在一定时期内某病新发病例数与时期开始时总人数之比","D|某固定人群在一定时期内某病新发病例数与时期开始时总人数之比","E|某动态人群在一定时期内某病新发病例数与同期暴露人数之比"],"answer":"D","mine":"D","wrong":false,"topics":["队列研究","疾病频率指标"]},{"no":24,"exam":"阶段测试X-1","type":"单选题","points":3.4,"stem":"以下哪种研究方法主要应用比值比（OR）进行关联强度分析","options":["A|描述性研究","B|病例对照研究","C|现况调查","D|队列研究","E|实验性研究"],"answer":"B","mine":"B","wrong":false,"topics":["病例对照研究","因果推断"]},{"no":25,"exam":"阶段测试X-1","type":"单选题","points":3.4,"stem":"病例对照研究的统计学分析主要检验","options":["A|病例和对照的年龄、性别分布","B|归因危险度百分比","C|相对危险度","D|病例组与对照组的暴露率差异","E|归因危险度"],"answer":"D","mine":"D","wrong":false,"topics":["病例对照研究"]},{"no":26,"exam":"阶段测试X-1","type":"单选题","points":3.4,"stem":"病例对照研究中最具有代表性的病例来自","options":["A|学校团体","B|医疗机构","C|社区","D|化验确定报告","E|诊断仪器的报告"],"answer":"C","mine":"C","wrong":false,"topics":["病例对照研究"]},{"no":27,"exam":"阶段测试X-1","type":"单选题","points":3.4,"stem":"病例对照研究资料进行分层分析的目的是","options":["A|提高统计效率","B|提高资料的利用率","C|控制混杂偏倚","D|控制选择偏倚","E|控制信息偏倚"],"answer":"C","mine":"C","wrong":false,"topics":["病例对照研究","抽样方法与样本量"]},{"no":28,"exam":"阶段测试X-1","type":"单选题","points":3.4,"stem":"下列哪项不是病例对照研究的缺点","options":["A|不适用于研究一种因素与多种疾病的关系","B|选择合适的病例与对照困难","C|不能判定某因素与疾病的可能因果关系","D|很难避免某些偏倚的发生","E|不适用于罕见病"],"answer":"E","mine":"E","wrong":false,"topics":["病例对照研究"]},{"no":29,"exam":"阶段测试X-1","type":"单选题","points":3.4,"stem":"在病例对照研究中，匹配是指","options":["A|病例组的样本数等于对照组的样本数","B|要求病例和对照在某些特征上保持一致","C|在安排病例和对照组时，使两者的研究因素相一致的方法","D|在安排病例和对照组时，使两者的所有特征或变量相一致的方法","E|病例组的研究因素的数量与对照组完全一致"],"answer":"B","mine":"B","wrong":false,"topics":["病例对照研究"]},{"no":30,"exam":"阶段测试X-1","type":"单选题","points":3.4,"stem":"病例对照研究中，由于研究对象对暴露史记忆不准确和不完整，由此所致的偏倚为","options":["A|回忆偏倚","B|入院率偏倚","C|现患病例-新发病例偏倚","D|调查偏倚","E|检出征候偏倚"],"answer":"A","mine":"A","wrong":false,"topics":["病例对照研究","偏倚及其控制"]},{"no":1,"exam":"阶段测试 Z-1","type":"单选题","points":3.0,"stem":"疾病暴发调查中常用的测量指标是","options":["A|患病率","B|发病率","C|死亡率","D|病死率","E|罹患率"],"answer":"E","mine":"E","wrong":false,"topics":["暴发与流行调查"]},{"no":2,"exam":"阶段测试 Z-1","type":"单选题","points":3.0,"stem":"在常用的几种随机抽样方法中，最便于组织且节省经费的是","options":["A|单纯随机抽样","B|分层抽样","C|机械抽样","D|整群抽样","E|多级抽样"],"answer":"D","mine":"D","wrong":false,"topics":["抽样方法与样本量"]},{"no":3,"exam":"阶段测试 Z-1","type":"单选题","points":3.0,"stem":"下列哪项指标可用于比较传染病的传染力强度，评价传染病防疫措施的效果","options":["A|死亡率","B|病死率","C|患病率","D|续发率","E|引入率"],"answer":"D","mine":"D","wrong":false,"topics":["暴发与流行调查"]},{"no":4,"exam":"阶段测试 Z-1","type":"单选题","points":3.0,"stem":"特异危险度是","options":["A|暴露组的发病率或死亡率与未暴露组的率之比","B|暴露组的发病率或死亡率与未暴露组的率之差","C|病例组有某因素的比例与对照组有该因素的比例之比","D|病例组有某因素的比例与对照组有该因素的比例之差","E|以上都不是"],"answer":"B","mine":"B","wrong":false,"topics":[]},{"no":5,"exam":"阶段测试 Z-1","type":"单选题","points":3.0,"stem":"随机抽样方法中，抽样误差最小的是","options":["A|单纯随机抽样","B|系统抽样","C|分层抽样","D|整群抽样","E|随意抽样"],"answer":"C","mine":"C","wrong":false,"topics":["抽样方法与样本量"]},{"no":6,"exam":"阶段测试 Z-1","type":"单选题","points":3.0,"stem":"在病例对照研究中，选择对照的最佳条件是","options":["A|对照与病例必须来自同一人群","B|未患所研究疾病的健康人","C|对照可随研究人员随意选择","D|产生病例人群中的非病者，其他非研究因素特征与病例组相同","E|产生病例人群中的非病者，其他非研究因素特征与病例组有可比性"],"answer":"E","mine":"E","wrong":false,"topics":["病例对照研究"]},{"no":7,"exam":"阶段测试 Z-1","type":"单选题","points":3.0,"stem":"区分历史性队列研究与前瞻性队列研究的依据是","options":["A|依据追踪观察的时间","B|依据所获结果检验水平","C|依据暴露程度","D|依据研究对象进入队列时间","E|依据论证强度"],"answer":"D","mine":"D","wrong":false,"topics":["队列研究"]},{"no":8,"exam":"阶段测试 Z-1","type":"单选题","points":3.0,"stem":"在一所医院的300名吸烟男医师中，有100人自动戒烟，200人继续吸烟，研究者进行了20年的随访观察，以确定两组肺癌的发生与死亡情况，这种研究属于","options":["A|实验研究","B|病例对照研究","C|描述性研究","D|队列研究","E|理论性研究"],"answer":"D","mine":"D","wrong":false,"topics":["队列研究"]},{"no":9,"exam":"阶段测试 Z-1","type":"单选题","points":3.0,"stem":"病例对照研究与队列研究的共同点是","options":["A|是前瞻性的","B|从因到果","C|设立比较组","D|均适用于罕见病调查","E|检验病因假设的强度相近"],"answer":"C","mine":"C","wrong":false,"topics":["病例对照研究","队列研究"]},{"no":10,"exam":"阶段测试 Z-1","type":"单选题","points":3.0,"stem":"关于描述性研究说法不正确的是","options":["A|主要是观察而不加干预","B|获得病因线索，提出假设","C|研究开始一般不会设立对照","D|通过三间分布描述疾病或健康的分布","E|揭示暴露与疾病之间的因果联系"],"answer":"E","mine":"E","wrong":false,"topics":["描述性研究与个案"]},{"no":11,"exam":"阶段测试 Z-1","type":"单选题","points":3.0,"stem":"以下哪一个不是流行病学的特征","options":["A|群体特征","B|对比的特征","C|概率论的特征","D|预防为主的特征","E|以治疗疾病为主的特征"],"answer":"E","mine":"E","wrong":false,"topics":["暴发与流行调查"]},{"no":12,"exam":"阶段测试 Z-1","type":"单选题","points":3.0,"stem":"前瞻性队列研究的研究对象是","options":["A|患某病的人群","B|健康人群","C|具有暴露因素的人群","D|患某病且具有暴露因素的人群","E|未患某病而有暴露因素的人群"],"answer":"E","mine":"E","wrong":false,"topics":["队列研究"]},{"no":13,"exam":"阶段测试 Z-1","type":"单选题","points":3.0,"stem":"拟调查特定时间某地区人群糖尿病的患病情况，可以采用的流行病学研究方法是","options":["A|病例对照研究","B|随机对照研究","C|队列研究","D|现况研究","E|个案调查"],"answer":"D","mine":"D","wrong":false,"topics":["暴发与流行调查"]},{"no":14,"exam":"阶段测试 Z-1","type":"单选题","points":3.0,"stem":"为研究人群高血压患病率及其分布特点，在W市采用分层随机抽样方法抽取5个社区，对15岁以上的居民进行体检并填写健康调查问卷。该种研究属于","options":["A|分析性研究","B|现况研究","C|社区试验","D|生态学研究","E|队列研究"],"answer":"B","mine":"B","wrong":false,"topics":["疾病频率指标","抽样方法与样本量"]},{"no":15,"exam":"阶段测试 Z-1","type":"单选题","points":3.0,"stem":"某地区有10万人，1960年总死亡人数为1000人，已发现的结核病患者有300名，其中男性200名，女性100名。1960年死于结核病者60人，其中男性50名。 该地区结核病的病死率为","options":["A|20%","B|6%","C|2%","D|男女相等","E|所给资料无法计算"],"answer":"A","mine":"A","wrong":false,"topics":["疾病频率指标"]},{"no":16,"exam":"阶段测试 Z-1","type":"单选题","points":3.0,"stem":"某地区有10万人，1960年总死亡人数为1000人，已发现的结核病患者有300名，其中男性200名，女性100名。1960年死于结核病者60人，其中男性50名。 该地区男性结核病的死亡率为","options":["A|20%","B|25%","C|30%","D|50%","E|所给资料无法计算"],"answer":"E","mine":"E","wrong":false,"topics":["疾病频率指标"]},{"no":17,"exam":"阶段测试 Z-1","type":"单选题","points":3.0,"stem":"某地区有10万人，1960年总死亡人数为1000人，已发现的结核病患者有300名，其中男性200名，女性100名。1960年死于结核病者60人，其中男性50名。 该地区的粗死亡率为","options":["A|300/10万","B|60‰","C|10‰","D|100‰","E|10/10万"],"answer":"C","mine":"C","wrong":false,"topics":["疾病频率指标"]},{"no":18,"exam":"阶段测试 Z-1","type":"单选题","points":3.0,"stem":"在吸烟与某病关系的研究中，吸烟组的死亡率是5%，不吸烟组的死亡率是2%。 吸烟的相对危险度是","options":["A|0.4","B|3%","C|30%","D|2.5","E|无法计算"],"answer":"D","mine":"D","wrong":false,"topics":["队列研究","疾病频率指标"]},{"no":19,"exam":"阶段测试 Z-1","type":"单选题","points":3.0,"stem":"下列哪项不是描述疾病流行强度的术语","options":["A|暴发","B|流行","C|季节性","D|散发","E|大流行"],"answer":"C","mine":"C","wrong":false,"topics":["暴发与流行调查"]},{"no":20,"exam":"阶段测试 Z-1","type":"单选题","points":3.0,"stem":"下列哪项因素可使患病率的升高？","options":["A|发病率升高","B|病程缩短","C|治愈率提高","D|病死率升高","E|病例数减少"],"answer":"A","mine":"A","wrong":false,"topics":["疾病频率指标"]},{"no":21,"exam":"阶段测试 Z-1","type":"多选题","points":4.0,"stem":"分析性流行病学的方法包括","options":["A|生态学研究","B|病例分析","C|队列研究","D|现患研究","E|病例对照研究"],"answer":"CE","mine":"CE","wrong":false,"topics":["暴发与流行调查"]},{"no":22,"exam":"阶段测试 Z-1","type":"多选题","points":4.0,"stem":"病例对照研究时常采用匹配，匹配的目的是","options":["A|减少抽样误差","B|减低研究效率","C|避免出现混杂偏倚","D|增加抽样误差","E|使研究效率提高"],"answer":"CE","mine":"CE","wrong":false,"topics":["病例对照研究"]},{"no":23,"exam":"阶段测试 Z-1","type":"多选题","points":4.0,"stem":"疾病的散发是指","options":["A|较大地区内病例之间无明显的联系","B|发病呈历年一般水平","C|较大地区内年发病率未显著超过该地区前3年该病发病的平均水平","D|发病保持在历年一般水平的3-10倍之间","E|较小范围内的发病未超过其历年一般水平"],"answer":"ABC","mine":"ABC","wrong":false,"topics":[]},{"no":24,"exam":"阶段测试 Z-1","type":"多选题","points":4.0,"stem":"在队列研究中，评价某种暴露与某种疾病的联系的指标包括","options":["A|相对危险度（RR）","B|比值比（OR）","C|归因危险度（AR）","D|归因危险度百分比（AR%）","E|保护率（PR）"],"answer":"ACD","mine":"ACD","wrong":false,"topics":["队列研究"]},{"no":25,"exam":"阶段测试 Z-1","type":"多选题","points":4.0,"stem":"队列研究样本含量计算的影响因素主要有：","options":["A|一般人群中所研究疾病的发生率","B|病例组危险因子的暴露率","C|两组对象发病率之差","D|要求的检验显著性水平","E|要求的检验把握度"],"answer":"ACDE","mine":"ACDE","wrong":false,"topics":["队列研究"]},{"no":26,"exam":"阶段测试 Z-1","type":"多选题","points":4.0,"stem":"抽样调查的基本原则是","options":["A|抽样必须随机化","B|选好研究因素","C|样本必须足够大","D|尽量选择发病率低的疾病","E|所选择的目标人群总数不很多"],"answer":"AC","mine":"AC","wrong":false,"topics":["抽样方法与样本量"]},{"no":27,"exam":"阶段测试 Z-1","type":"多选题","points":4.0,"stem":"病例对照研究的优点是：","options":["A|病例对照研究费用少、出结果快","B|不需随访","C|需要长期随访","D|可用于罕见病的研究","E|可研究一种暴露与多种疾病之间的关系"],"answer":"ABD","mine":"AB","wrong":true,"topics":["病例对照研究"]},{"no":28,"exam":"阶段测试 Z-1","type":"多选题","points":4.0,"stem":"关于队列研究的偏倚问题，下列哪些是正确的？","options":["A|队列研究的结论一般可无条件地推及全人群","B|失访偏倚是队列研究中最常见的偏倚","C|回忆偏倚对队列研究的影响不大","D|要设法保证各组间信息质量的可比性，以减少信息偏倚的发生","E|混杂偏倚在资料分析阶段仍可设法控制"],"answer":"BCDE","mine":"BCDE","wrong":false,"topics":["队列研究","偏倚及其控制"]},{"no":29,"exam":"阶段测试 Z-1","type":"多选题","points":4.0,"stem":"关于描述性研究的叙述，下列哪些是正确的","options":["A|事先不设立对照组","B|属于观察性研究","C|可直接验证病因假设","D|抽样调查要求随机抽样","E|属于实验性研究"],"answer":"ABD","mine":"ABD","wrong":false,"topics":["描述性研究与个案"]},{"no":30,"exam":"阶段测试 Z-1","type":"多选题","points":4.0,"stem":"在队列研究中，对照选择的种类有：","options":["A|内对照","B|外对照","C|总人群对照","D|可疑病例对照","E|多重对照"],"answer":"ABCE","mine":"ABCE","wrong":false,"topics":["队列研究"]},{"no":1,"exam":"阶段测试P-2","type":"单选题","points":3.0,"stem":"某高校在某年秋季发生甲肝暴发，描述这次暴发严重性的常用最佳指标是","options":["A|死亡率","B|患病率","C|发病率","D|罹患率","E|生存率"],"answer":"D","mine":"D","wrong":false,"topics":["暴发与流行调查"]},{"no":2,"exam":"阶段测试P-2","type":"单选题","points":3.0,"stem":"判断因素与疾病的因果联系时，必需条件是","options":["A|联系的重复性","B|联系的强度","C|时间顺序—先“因”后“果”","D|联系的合理性","E|联系的剂量-反应关系"],"answer":"C","mine":"C","wrong":false,"topics":["因果推断"]},{"no":3,"exam":"阶段测试P-2","type":"单选题","points":3.0,"stem":"流行病学的描述性研究不包括","options":["A|队列研究","B|普查","C|病例报告","D|个例调查","E|现况调查"],"answer":"A","mine":"A","wrong":false,"topics":["暴发与流行调查","描述性研究与个案"]},{"no":4,"exam":"阶段测试P-2","type":"单选题","points":3.0,"stem":"个例调查的内容不包括","options":["A|核实诊断","B|追查传染来源和可能的传播途径","C|采取可行的有效的防治措施","D|与对照组进行对比观察","E|查明密切接触者，确定疫源地的范围"],"answer":"D","mine":"D","wrong":false,"topics":["描述性研究与个案"]},{"no":5,"exam":"阶段测试P-2","type":"单选题","points":3.0,"stem":"队列研究暴露人群的选择不包括","options":["A|一般人群","B|特殊暴露人群","C|职业人群","D|患有欲研究疾病的人群","E|有组织的团体"],"answer":"D","mine":"D","wrong":false,"topics":["队列研究"]},{"no":6,"exam":"阶段测试P-2","type":"单选题","points":3.0,"stem":"在病例对照研究中，匹配的主要目的是","options":["A|保证病例组与对照组有相同的样本量","B|提高统计效率，控制混杂因素的作用","C|便于研究对象回忆暴露因素","D|保证病例组与对照组有一致的研究因素","E|便于选择对照组"],"answer":"B","mine":"B","wrong":false,"topics":["病例对照研究"]},{"no":7,"exam":"阶段测试P-2","type":"单选题","points":3.0,"stem":"以医院为基础的病例对照研究，最易出现的偏倚是","options":["A|入院率偏倚","B|信息偏倚","C|混杂偏倚","D|诊断偏倚","E|观察偏倚"],"answer":"A","mine":"A","wrong":false,"topics":["病例对照研究","偏倚及其控制"]},{"no":8,"exam":"阶段测试P-2","type":"单选题","points":3.0,"stem":"下列哪类人群宜作为临床试验的研究对象","options":["A|老人","B|儿童","C|肝肾功能不全病人","D|孕妇","E|依从性好的病人"],"answer":"E","mine":"E","wrong":false,"topics":["临床试验与实验流行病学"]},{"no":9,"exam":"阶段测试P-2","type":"单选题","points":3.0,"stem":"通过筛检试验，可以","options":["A|对人群中的早期病人作出诊断","B|早期发现人群中的病人或高危个体","C|评价筛检实验的真实性","D|评价筛检实验的可靠性","E|了解筛检实验和金标准在诊断病人方面的符合程度"],"answer":"B","mine":"B","wrong":false,"topics":["筛检与诊断试验"]},{"no":10,"exam":"阶段测试P-2","type":"单选题","points":3.0,"stem":"在筛检试验中，并联试验是指","options":["A|当使用两个或两个以上的试验进行诊断时，其中只要一个试验为阳性，即诊断为阳性","B|同时使用两个试验","C|当使用两个或两个以上的试验进行诊断时，其中每个试验都呈阳性时才诊断为阳性","D|当使用两个或两个以上的试验进行诊断时，其中只要一个试验为阴性时，即诊断为阴性","E|以上都不对"],"answer":"A","mine":"A","wrong":false,"topics":["筛检与诊断试验"]},{"no":11,"exam":"阶段测试P-2","type":"单选题","points":3.0,"stem":"诊断试验的真实性是指","options":["A|重复多次试验获得相同结果的稳定程度","B|试验结果中真正有无疾病的概率","C|受试者的测定值与实际值的符合程度","D|观察者对结果判断的一致程度","E|诊断试验的随机误差"],"answer":"C","mine":"C","wrong":false,"topics":["筛检与诊断试验"]},{"no":12,"exam":"阶段测试P-2","type":"单选题","points":3.0,"stem":"一般情况下，下列几种抽样调查方法中抽样误差最小的是","options":["A|简单随机抽样","B|系统抽样","C|分层抽样","D|整群抽样","E|多级抽样"],"answer":"C","mine":"C","wrong":false,"topics":["抽样方法与样本量"]},{"no":13,"exam":"阶段测试P-2","type":"单选题","points":3.0,"stem":"病例对照研究中，表示暴露与疾病关联强度的指标是","options":["A|相对危险度（RR）","B|归因危险度（AR）","C|归因危险度百分比（AR%）","D|比值比（OR）","E|相关系数"],"answer":"D","mine":"D","wrong":false,"topics":["病例对照研究","因果推断"]},{"no":14,"exam":"阶段测试P-2","type":"单选题","points":3.0,"stem":"病例对照研究中，比值比（OR）的含义是","options":["A|病例组的发病率与对照组的发病率之比","B|病例组的发病率与对照组的发病率之差","C|病例组的暴露比值与对照组的暴露比值之比","D|对照组的暴露比值与病例组的暴露比值之比","E|病例组的暴露比值与对照组的暴露比值之差"],"answer":"C","mine":"C","wrong":false,"topics":["病例对照研究"]},{"no":15,"exam":"阶段测试P-2","type":"单选题","points":3.0,"stem":"病例对照研究中，病例组应首选","options":["A|现患病例","B|死亡病例","C|新发病例","D|死亡病例和现患病例","E|死亡病例和新发病例"],"answer":"C","mine":"C","wrong":false,"topics":["病例对照研究"]},{"no":16,"exam":"阶段测试P-2","type":"单选题","points":3.0,"stem":"关于普查的叙述，下列哪项是错误的","options":["A|是对某人群的全部人员所做的调查","B|可以早期发现病人","C|可帮助群众普及卫生知识","D|特别适合于调查罕见疾病","E|可描述疾病的分布特点"],"answer":"D","mine":"D","wrong":false,"topics":["现况调查与普查"]},{"no":17,"exam":"阶段测试P-2","type":"单选题","points":3.0,"stem":"在病例对照研究中，匹配的主要目的是","options":["A|保证病例组与对照组有相同的样本量","B|提高统计效率，控制混杂因素的作用","C|便于研究对象回忆暴露因素","D|保证病例组与对照组有一致的研究因素","E|便于选择对照组"],"answer":"B","mine":"B","wrong":false,"topics":["病例对照研究"]},{"no":18,"exam":"阶段测试P-2","type":"单选题","points":3.0,"stem":"流行病学实验研究中下列哪项不是其缺点","options":["A|盲法不易实施","B|随访时间长、研究人群依从性差","C|易引起医德和伦理学的争议","D|设计严格、实施困难、随访观察花费太大","E|用随机分组很难控制偏倚"],"answer":"E","mine":"E","wrong":false,"topics":["暴发与流行调查"]},{"no":19,"exam":"阶段测试P-2","type":"单选题","points":3.0,"stem":"人类历史上第一个被消灭的传染性疾病是","options":["A|麻疹","B|鼠疫","C|霍乱","D|天花","E|血吸虫病"],"answer":"D","mine":"D","wrong":false,"topics":["暴发与流行调查"]},{"no":20,"exam":"阶段测试P-2","type":"单选题","points":3.0,"stem":"假设要评价乙肝疫苗的接种效果，研究对象应选择","options":["A|乙肝患者","B|乙型肝炎发病率低的人群","C|曾患过乙型肝炎的人群","D|乙型肝炎高危人群","E|体内有乙型肝炎病毒保护性抗体的人群"],"answer":"D","mine":"D","wrong":false,"topics":[]},{"no":21,"exam":"阶段测试P-2","type":"单选题","points":3.0,"stem":"普查是指针对","options":["A|对某个人群的系统追踪观察","B|对某人群中的部分人进行调查","C|以发现隐性感染为目的的调查","D|对某人群中某事件的完全调查","E|对某人群的大部分人进行筛查"],"answer":"D","mine":"D","wrong":false,"topics":["现况调查与普查"]},{"no":22,"exam":"阶段测试P-2","type":"单选题","points":3.0,"stem":"下列哪项是流行病学的核心观点","options":["A|群体的观点","B|概率论的观点","C|以治疗疾病为主的特征","D|比较的观点","E|多病因论的观点"],"answer":"D","mine":"A","wrong":true,"topics":["暴发与流行调查"]},{"no":23,"exam":"阶段测试P-2","type":"单选题","points":3.0,"stem":"相邻几个国家在短时间内出现了大量的SARS病例，该疾病的流行强度为","options":["A|散发","B|暴发","C|流行","D|大流行","E|次流行"],"answer":"D","mine":"D","wrong":false,"topics":["暴发与流行调查"]},{"no":24,"exam":"阶段测试P-2","type":"单选题","points":3.0,"stem":"病例对照研究中，比值比（OR）的含义是","options":["A|病例组的发病率与对照组的发病率之比","B|病例组的发病率与对照组的发病率之差","C|病例组的暴露比值与对照组的暴露比值之比","D|对照组的暴露比值与病例组的暴露比值之比","E|病例组的暴露比值与对照组的暴露比值之差"],"answer":"C","mine":"C","wrong":false,"topics":["病例对照研究"]},{"no":25,"exam":"阶段测试P-2","type":"单选题","points":3.0,"stem":"匹配病例对照研究分为","options":["A|频数匹配和成组匹配","B|频数匹配和个体匹配","C|个体匹配和配对","D|频数匹配和配对","E|个体匹配和非匹配"],"answer":"B","mine":"B","wrong":false,"topics":["病例对照研究"]},{"no":26,"exam":"阶段测试P-2","type":"多选题","points":5.0,"stem":"临床试验的分期包括","options":["A|Ⅳ期临床试验","B|I期临床试验","C|Ⅱ期临床试验","D|Ⅲ期临床试验","E|0期临床试验（动物实验）"],"answer":"ABCD","mine":"ABCD","wrong":false,"topics":["临床试验与实验流行病学"]},{"no":27,"exam":"阶段测试P-2","type":"多选题","points":5.0,"stem":"某一特定的筛检试验，当用于患病率较高的人群时，以下叙述哪项是正确的","options":["A|阳性预测值升高","B|阳性预测值降低","C|阴性预测值降低","D|阴性预测值升高","E|阴性预测值不变"],"answer":"AC","mine":"AC","wrong":false,"topics":["筛检与诊断试验","疾病频率指标"]},{"no":28,"exam":"阶段测试P-2","type":"多选题","points":5.0,"stem":"疾病呈地方性的形式有","options":["A|自然疫源性","B|统计地方性","C|区域性","D|自然地方性","E|自然统计性"],"answer":"ABD","mine":"ABD","wrong":false,"topics":["暴发与流行调查"]},{"no":29,"exam":"阶段测试P-2","type":"多选题","points":5.0,"stem":"普查的优点包括","options":["A|能够发现该人群中的全部病例并及时给予治疗","B|能够全面描述该人群中某病的流行特点","C|可观察多个因素与疾病的关系","D|可向群众传播防病知识","E|特别适用于罕见疾病的研究"],"answer":"ABCD","mine":"ABCD","wrong":false,"topics":["现况调查与普查"]},{"no":30,"exam":"阶段测试P-2","type":"多选题","points":5.0,"stem":"病例对照研究中常见的偏倚有","options":["A|奈曼偏倚","B|回忆偏倚","C|入院率偏倚","D|失访偏倚","E|混杂偏倚"],"answer":"ABCE","mine":"ABE","wrong":true,"topics":["病例对照研究","偏倚及其控制"]},{"no":1,"exam":"阶段测试D-2","type":"单选题","points":3.5,"stem":"在病因研究的轮状模型中，强调宿主与下列哪种因素的关系","options":["A|生物因素","B|物理因素","C|精神因素","D|化学因素","E|环境因素"],"answer":"E","mine":"E","wrong":false,"topics":["因果推断"]},{"no":2,"exam":"阶段测试D-2","type":"单选题","points":3.5,"stem":"判断因素与疾病的因果联系时，必需条件是","options":["A|联系的重复性","B|联系的强度","C|时间顺序—先“因”后“果”","D|联系的合理性","E|联系的剂量-反应关系"],"answer":"C","mine":"C","wrong":false,"topics":["因果推断"]},{"no":3,"exam":"阶段测试D-2","type":"单选题","points":3.5,"stem":"按照一定的顺序，固定的每隔一定数量抽查一个观察单元进入样本的抽样方法称为","options":["A|单纯随机抽样","B|分层抽样","C|整群抽样","D|系统抽样","E|多阶段抽样"],"answer":"D","mine":"D","wrong":false,"topics":["抽样方法与样本量"]},{"no":4,"exam":"阶段测试D-2","type":"单选题","points":3.5,"stem":"流行病学的描述性研究不包括","options":["A|队列研究","B|普查","C|病例报告","D|个例调查","E|现况调查"],"answer":"A","mine":"A","wrong":false,"topics":["暴发与流行调查","描述性研究与个案"]},{"no":5,"exam":"阶段测试D-2","type":"单选题","points":3.5,"stem":"真阳性率又称为","options":["A|漏诊率","B|灵敏度","C|误诊率","D|特异度","E|阴性预测值"],"answer":"B","mine":"B","wrong":false,"topics":[]},{"no":6,"exam":"阶段测试D-2","type":"单选题","points":3.5,"stem":"诊断试验的真实性是指","options":["A|重复多次试验获得相同结果的稳定程度","B|试验结果中真正有无疾病的概率","C|受试者的测定值与实际值的符合程度","D|观察者对结果判断的一致程度","E|诊断试验的随机误差"],"answer":"C","mine":"C","wrong":false,"topics":["筛检与诊断试验"]},{"no":7,"exam":"阶段测试D-2","type":"单选题","points":3.5,"stem":"慢性病的三级预防措施是","options":["A|病因预防、“三早”预防、临床预防","B|病因预防、“三早”预防、心理治疗","C|早发现、早治疗、预防并发症","D|早发现、对症治疗、心理治疗","E|早发现、早治疗、对症防治"],"answer":"A","mine":"A","wrong":false,"topics":["三级预防与防制策略"]},{"no":8,"exam":"阶段测试D-2","type":"单选题","points":3.5,"stem":"下列哪一项属于二级预防的主要措施","options":["A|预防接种","B|合理营养","C|消除病因","D|定期体检","E|保护环境"],"answer":"D","mine":"D","wrong":false,"topics":["三级预防与防制策略"]},{"no":9,"exam":"阶段测试D-2","type":"单选题","points":3.5,"stem":"入院率偏倚又称为","options":["A|伯克森偏倚","B|奈曼偏倚","C|暴露偏倚","D|诱导偏倚","E|错分偏倚"],"answer":"A","mine":"A","wrong":false,"topics":["偏倚及其控制"]},{"no":10,"exam":"阶段测试D-2","type":"单选题","points":3.5,"stem":"在进行临床试验时的基本原则是","options":["A|一般不需要设立对照组","B|实验组和对照不需随机分组","C|试验组要有代表性，而对照组可以不需要","D|试验组和对照组的选择都有代表性，且两组是均衡可比的","E|试验组可以任意选择，但对照组的选择必须有代表性"],"answer":"D","mine":"D","wrong":false,"topics":["临床试验与实验流行病学"]},{"no":11,"exam":"阶段测试D-2","type":"单选题","points":3.5,"stem":"筛检的定义是","options":["A|在大量人群中通过快速的试验和其他方法，去发现那些未被识别的患者、可疑患者或有缺陷的人","B|在大量人群中通过快速的诊断试验确诊患者的过程","C|对某个人群的全部人员进行调查","D|在大量人群中通过快速的试验或其他方法确诊患者的过程","E|在某个人群中随机抽取一部分人进行检查的过程"],"answer":"A","mine":"A","wrong":false,"topics":["筛检与诊断试验"]},{"no":12,"exam":"阶段测试D-2","type":"单选题","points":3.5,"stem":"异质性检验的目的是","options":["A|检查各个独立研究的统计学是否存在异质性","B|检查各个独立研究的结果是否具有可合并性","C|检查各个独立研究的干预措施是否存在异质性","D|检查各个独立研究的研究对象临床特征是否存在异质性","E|检查各个独立研究的方法学是否存在异质性"],"answer":"B","mine":"B","wrong":false,"topics":["循证与Meta分析"]},{"no":13,"exam":"阶段测试D-2","type":"单选题","points":3.5,"stem":"下列哪一项不属于二级预防的主要措施","options":["A|普查","B|筛检","C|设立专科门诊","D|定期体检","E|康复治疗"],"answer":"E","mine":"E","wrong":false,"topics":["三级预防与防制策略"]},{"no":14,"exam":"阶段测试D-2","type":"单选题","points":3.5,"stem":"传染期是指","options":["A|最短至最长潜伏期之间的时间","B|病人能排出病原体的整个时期","C|从感染病原体到症状出现的时期","D|从临床症状出现到停止排出病原体的时期","E|从症状消失到完全消失的时期"],"answer":"B","mine":"B","wrong":false,"topics":["暴发与流行调查"]},{"no":15,"exam":"阶段测试D-2","type":"单选题","points":3.5,"stem":"构成“传染过程”的必备因素有","options":["A|传染源、传播途径、易感人群","B|微生物、媒介、宿主","C|寄生虫、中间宿主、终末宿主","D|病原体、机体","E|病人、污染物、外界环境"],"answer":"D","mine":"D","wrong":false,"topics":["暴发与流行调查"]},{"no":16,"exam":"阶段测试D-2","type":"单选题","points":3.5,"stem":"确定对传染病接触者留验检疫或医学观察的主要依据，是该传染病的","options":["A|传染期","B|临床症状期","C|潜伏期","D|恢复期","E|病原携带期"],"answer":"C","mine":"C","wrong":false,"topics":["暴发与流行调查"]},{"no":17,"exam":"阶段测试D-2","type":"单选题","points":3.6,"stem":"病原携带者是指","options":["A|由于过去受到感染而对某病有免疫力的个体","B|通过自然的或人工的方式而获得被动免疫的个体","C|无任何症状而能排出病原体的人","D|传染性相对较小的个体","E|急性期病人"],"answer":"C","mine":"C","wrong":false,"topics":[]},{"no":18,"exam":"阶段测试D-2","type":"单选题","points":3.6,"stem":"病原体进入宿主机体，并与之相互作用的过程是","options":["A|传播过程","B|传染过程","C|传染期","D|流行过程","E|隔离期"],"answer":"B","mine":"B","wrong":false,"topics":[]},{"no":19,"exam":"阶段测试D-2","type":"单选题","points":3.6,"stem":"流行病学中的偏倚是指","options":["A|抽样误差","B|随机误差","C|数据误差","D|系统误差","E|逻辑误差"],"answer":"D","mine":"D","wrong":false,"topics":["偏倚及其控制","暴发与流行调查"]},{"no":20,"exam":"阶段测试D-2","type":"单选题","points":3.6,"stem":"阴性预测值是指","options":["A|诊断试验结果为阳性的对象中真正病人所占的比例","B|诊断试验出现阳性结果的机会是非病人的多少倍","C|诊断试验出现阴性结果的机会是非病人的多少倍","D|诊断试验结果为阴性的对象中真正无病所占的比例","E|同一批研究对象两次诊断结果均为阳性与均为阴性的人数之和占所有进行诊断试验人数的比率"],"answer":"D","mine":"D","wrong":false,"topics":["筛检与诊断试验"]},{"no":21,"exam":"阶段测试D-2","type":"单选题","points":3.6,"stem":"传染病在人群中发生流行的基本条件是","options":["A|传染源、传播途径、环境","B|必须有易感者的存在","C|必须有传染来源","D|在外界因素影响下，传染源、传播途径和易感人群3个环节互相联系","E|病原体有机会侵犯机体"],"answer":"D","mine":"D","wrong":false,"topics":["暴发与流行调查"]},{"no":22,"exam":"阶段测试D-2","type":"单选题","points":3.6,"stem":"垂直传播是指","options":["A|经胎盘传播","B|上行性传播","C|分娩时引起的传播","D|经胎盘传播与上行性传播","E|经胎盘传播、分娩时引起的传播与上行性传播"],"answer":"E","mine":"E","wrong":false,"topics":[]},{"no":23,"exam":"阶段测试D-2","type":"单选题","points":3.6,"stem":"正确诊断指数（Youden指数）等于","options":["A|灵敏度+特异度-1","B|符合率+灵敏度","C|阳性预测值+阴性预测值-1","D|符合率+特异度","E|阴性预测值+特异度-1"],"answer":"A","mine":"A","wrong":false,"topics":[]},{"no":24,"exam":"阶段测试D-2","type":"单选题","points":3.6,"stem":"传染病的潜伏期是指","options":["A|最短至最长潜伏期之间的时间","B|病人能排出病原体的整个时期","C|病原体侵入至机体最早出现临床症状的时期","D|从临床症状出现到停止排出病原体的时期","E|从症状开始消失到完全消失的时期"],"answer":"C","mine":"C","wrong":false,"topics":["暴发与流行调查"]},{"no":25,"exam":"阶段测试D-2","type":"单选题","points":3.6,"stem":"循证医学实践中应用最佳证据时，无需重点考虑的因素是","options":["A|临床医生的经验","B|患者的意愿与经济承受能力","C|医疗环境与技术条件","D|研究证据的发表期刊等级","E|患者的病情病理生理特点"],"answer":"D","mine":"D","wrong":false,"topics":["循证与Meta分析"]},{"no":26,"exam":"阶段测试D-2","type":"单选题","points":3.6,"stem":"土壤中缺碘的地区往往有地方性甲状腺肿存在，称此为","options":["A|自然疫源性","B|自然地方性","C|统计地方性","D|输入性","E|传入或带入"],"answer":"B","mine":"B","wrong":false,"topics":["暴发与流行调查"]},{"no":27,"exam":"阶段测试D-2","type":"多选题","points":2.0,"stem":"下列哪些属于传染病的水平传播途径","options":["A|经水传播","B|空气传播","C|食物传播","D|母婴传播","E|胎盘传播"],"answer":"ABC","mine":"ABC","wrong":false,"topics":["暴发与流行调查"]},{"no":28,"exam":"阶段测试D-2","type":"多选题","points":2.0,"stem":"临床试验的对照类型有","options":["A|安慰剂对照","B|交叉对照","C|外部对照","D|标准对照","E|自身对照"],"answer":"ABDE","mine":"ABCDE","wrong":true,"topics":["临床试验与实验流行病学"]},{"no":29,"exam":"阶段测试D-2","type":"多选题","points":2.0,"stem":"下列哪些是实验流行病学的范畴","options":["A|动物实验","B|现况调查","C|社区试验","D|现场试验","E|临床试验"],"answer":"CDE","mine":"CDE","wrong":false,"topics":["临床试验与实验流行病学","暴发与流行调查"]},{"no":30,"exam":"阶段测试D-2","type":"多选题","points":2.0,"stem":"几个诊断试验联合使用时，下列叙述哪些正确？","options":["A|串联可提高特异度","B|并联可提高灵敏度","C|串联时每一试验均为阳性时才诊断为阳性","D|并联时任何一个试验阳性时即诊断为阳性","E|串联可提高灵敏度"],"answer":"ABCD","mine":"ABCD","wrong":false,"topics":[]},{"no":1,"exam":"阶段测试X-2","type":"单选题","points":3.3,"stem":"关于临床试验的对照组，下列哪项是正确的","options":["A|由人群中的非病例组成","B|由患病的病人组成，但干预因素与试验组不同","C|与病人同时入院的非某病的病例","D|患某病的较轻型病例","E|对照组的设立是为了防止抽样误差"],"answer":"B","mine":"B","wrong":false,"topics":["临床试验与实验流行病学"]},{"no":2,"exam":"阶段测试X-2","type":"单选题","points":3.3,"stem":"实验性研究不具备以下哪个特征","options":["A|前瞻性随访","B|盲法","C|施加干预措施","D|随机分组","E|运用比值比进行分析与评价"],"answer":"E","mine":"E","wrong":false,"topics":[]},{"no":3,"exam":"阶段测试X-2","type":"单选题","points":3.3,"stem":"临床试验的盲法是指","options":["A|参与研究的人员全部为盲人","B|实验者见不到研究对象","C|负责安排和设计实验的人不知道研究的目的","D|调查者或研究对象或资料分析者不知道分组情况","E|研究对象见不到实验者"],"answer":"D","mine":"D","wrong":false,"topics":["临床试验与实验流行病学"]},{"no":4,"exam":"阶段测试X-2","type":"单选题","points":3.3,"stem":"下列哪一项不是随机分组的目的","options":["A|减少混杂偏倚","B|使研究对象有同等机会被分配到实验组和对照组","C|排除主观意愿因素对分组的影响","D|便于控制实验条件","E|使实验组与对照组具有可比性"],"answer":"D","mine":"D","wrong":false,"topics":["抽样方法与样本量"]},{"no":5,"exam":"阶段测试X-2","type":"单选题","points":3.3,"stem":"在临床试验中，使用安慰剂对照目的是","options":["A|减少样本含量","B|不会受到道德的限制","C|减少由研究对象主观心理因素所导致的偏倚","D|有利于增加实验组的治愈率","E|有利于降低对照组的治愈率"],"answer":"C","mine":"C","wrong":false,"topics":["临床试验与实验流行病学"]},{"no":6,"exam":"阶段测试X-2","type":"单选题","points":3.3,"stem":"以下哪种流行病学研究会应用到随机分组","options":["A|现场试验","B|队列研究","C|抽样调查","D|病例对照研究","E|个案报告"],"answer":"A","mine":"A","wrong":false,"topics":["暴发与流行调查","抽样方法与样本量"]},{"no":7,"exam":"阶段测试X-2","type":"单选题","points":3.3,"stem":"临床试验中对照组受试对象服用了实验组的干预药物，这样会给研究引入的偏倚是","options":["A|干扰","B|混杂偏倚","C|沾染","D|失访偏倚","E|回忆偏倚"],"answer":"C","mine":"C","wrong":false,"topics":["临床试验与实验流行病学","偏倚及其控制"]},{"no":8,"exam":"阶段测试X-2","type":"单选题","points":3.3,"stem":"对病因不明的疾病，描述性研究的主要用途是","options":["A|因果推断","B|验证病因假设","C|寻找病因线索，提出病因假设","D|干预效果评价","E|检验病因假设"],"answer":"C","mine":"C","wrong":false,"topics":["因果推断","描述性研究与个案"]},{"no":9,"exam":"阶段测试X-2","type":"单选题","points":3.3,"stem":"流行病学三角模型包含的三大因素是","options":["A|机体、生物环境和社会环境","B|宿主、环境和传播媒介","C|宿主、环境和致病因素","D|遗传、环境和社会","E|遗传、环境和人群"],"answer":"C","mine":"C","wrong":false,"topics":["暴发与流行调查"]},{"no":10,"exam":"阶段测试X-2","type":"单选题","points":3.3,"stem":"下列哪项是病因的流行病学定义","options":["A|物理因素","B|化学因素","C|病原微生物","D|心理因素","E|能使人群发病概率增加的因素"],"answer":"E","mine":"E","wrong":false,"topics":["因果推断","暴发与流行调查"]},{"no":11,"exam":"阶段测试X-2","type":"单选题","points":3.3,"stem":"验证病因假设的最可靠的方法是","options":["A|病例对照研究","B|实验流行病学","C|动物实验","D|抽样调查","E|队列研究"],"answer":"B","mine":"B","wrong":false,"topics":["因果推断"]},{"no":12,"exam":"阶段测试X-2","type":"单选题","points":3.3,"stem":"病因研究时，建立和验证病因假设时常用的推理方法为","options":["A|描述三间分布的特征","B|科学实验四法","C|假设演绎法和Mill准则","D|一般演绎法","E|循证医学的方法"],"answer":"C","mine":"C","wrong":false,"topics":["因果推断"]},{"no":13,"exam":"阶段测试X-2","type":"单选题","points":3.3,"stem":"下列哪项不是因果关联的推断标准","options":["A|关联的时间顺序","B|关联的合理性","C|关联的可重复性与特异性","D|样本大小","E|关联强度"],"answer":"D","mine":"D","wrong":false,"topics":["因果推断"]},{"no":14,"exam":"阶段测试X-2","type":"单选题","points":3.3,"stem":"筛检的定义是","options":["A|在大量人群中通过快速的试验和其他方法，去发现那些未被识别的患者、可疑患者或有缺陷的人","B|在大量人群中通过快速的诊断试验确诊患者的过程","C|对某个人群的全部人员进行调查","D|在大量人群中通过快速的试验或其他方法确诊患者的过程","E|在某个人群中随机抽取一部分人进行检查的过程"],"answer":"A","mine":"A","wrong":false,"topics":["筛检与诊断试验"]},{"no":15,"exam":"阶段测试X-2","type":"单选题","points":3.3,"stem":"评价诊断试验收益的主要指标是","options":["A|灵敏度","B|特异度","C|正确指数","D|似然比","E|预测值"],"answer":"E","mine":"E","wrong":false,"topics":[]},{"no":16,"exam":"阶段测试X-2","type":"单选题","points":3.3,"stem":"关于提高诊断试验效率的方法，下列哪项是错误的？","options":["A|增大样本含量","B|选择患病率高的人群","C|采用联合试验","D|串联试验","E|并联试验"],"answer":"A","mine":"A","wrong":false,"topics":[]},{"no":17,"exam":"阶段测试X-2","type":"单选题","points":3.3,"stem":"筛检适用于","options":["A|无有效治疗方法的疾病","B|检测方法复杂、检测成本高的疾病","C|早期诊断可改善预后的疾病","D|患病率低的疾病","E|任何疾病"],"answer":"C","mine":"C","wrong":false,"topics":["筛检与诊断试验"]},{"no":18,"exam":"阶段测试X-2","type":"单选题","points":3.3,"stem":"实际有病，用该诊断试验正确判为阳性的能力称","options":["A|特异度","B|阳性似然比","C|阳性结果的预测值","D|真阳性率","E|阴性结果的预测值"],"answer":"D","mine":"D","wrong":false,"topics":[]},{"no":19,"exam":"阶段测试X-2","type":"单选题","points":3.3,"stem":"在筛检试验中，并联试验是指","options":["A|当使用两个或两个以上的试验进行诊断时，其中只要一个试验为阳性，即诊断为阳性","B|同时使用两个试验","C|当使用两个或两个以上的试验进行诊断时，其中每个试验都呈阳性时才诊断为阳性","D|当使用两个或两个以上的试验进行诊断时，其中只要一个试验为阴性时，即诊断为阴性","E|以上都不对"],"answer":"A","mine":"A","wrong":false,"topics":["筛检与诊断试验"]},{"no":20,"exam":"阶段测试X-2","type":"单选题","points":3.3,"stem":"诊断试验的可靠性是指","options":["A|重复多次试验获得相同结果的稳定程度","B|试验结果中真正有无疾病的概率","C|受试者的测定值与实际值的符合程度","D|诊断试验的随机误差","E|观察者对结果判断的一致程度"],"answer":"A","mine":"A","wrong":false,"topics":["筛检与诊断试验"]},{"no":21,"exam":"阶段测试X-2","type":"单选题","points":3.4,"stem":"病原携带者作为传染源的意义大小，主要取决于","options":["A|所携带病原体的型别、毒力","B|排出病原体数量的多少","C|有无间接排出病原体","D|病原携带者的职业，个人卫生习惯以及当地卫生防疫工作的质量","E|携带病原体时间的长短"],"answer":"D","mine":"D","wrong":false,"topics":["暴发与流行调查"]},{"no":22,"exam":"阶段测试X-2","type":"单选题","points":3.4,"stem":"传染病病人传染性最强的时期是","options":["A|潜伏期","B|潜伏期末","C|临床症状期","D|症状消失期","E|恢复期"],"answer":"C","mine":"C","wrong":false,"topics":["暴发与流行调查"]},{"no":23,"exam":"阶段测试X-2","type":"单选题","points":3.4,"stem":"传染病的流行过程是指","options":["A|传染源不断向外界排出病原体的过程","B|病原体沿—定传播途径扩散的过程","C|易感人群受到病原体侵袭而发病的过程","D|指病原体从传染源体内排出，经过一定的传播途径，侵入易感者而形成新的感染，并不断发展的过程","E|病原体在外界环境中不断繁殖的过程"],"answer":"D","mine":"D","wrong":false,"topics":["暴发与流行调查"]},{"no":24,"exam":"阶段测试X-2","type":"单选题","points":3.4,"stem":"传播途径是指","options":["A|病原体更换宿主的过程","B|病原体自传染源排出的过程","C|病原体更换宿主在外界环境下所经历的途径","D|病原体侵入易感者的过程","E|以上都不是"],"answer":"C","mine":"C","wrong":false,"topics":[]},{"no":25,"exam":"阶段测试X-2","type":"单选题","points":3.4,"stem":"传染期是指","options":["A|最短至最长潜伏期之间的时间","B|病人能排出病原体的整个时期","C|从感染病原体到症状出现的时期","D|从临床症状出现到停止排出病原体的时期","E|从症状消失到完全消失的时期"],"answer":"B","mine":"B","wrong":false,"topics":["暴发与流行调查"]},{"no":26,"exam":"阶段测试X-2","type":"单选题","points":3.4,"stem":"构成“传染过程”的必备因素有","options":["A|传染源、传播途径、易感人群","B|微生物、媒介、宿主","C|寄生虫、中间宿主、终末宿主","D|病原体、机体","E|病人、污染物、外界环境"],"answer":"D","mine":"D","wrong":false,"topics":["暴发与流行调查"]},{"no":27,"exam":"阶段测试X-2","type":"单选题","points":3.4,"stem":"慢性病的三级预防措施是","options":["A|病因预防、“三早”预防、临床预防","B|病因预防、“三早”预防、心理治疗","C|早发现、早治疗、预防并发症","D|早发现、对症治疗、心理治疗","E|早发现、早治疗、对症防治"],"answer":"A","mine":"A","wrong":false,"topics":["三级预防与防制策略"]},{"no":28,"exam":"阶段测试X-2","type":"单选题","points":3.4,"stem":"下列哪一项属于二级预防的主要措施","options":["A|预防接种","B|合理营养","C|消除病因","D|定期体检","E|保护环境"],"answer":"D","mine":"D","wrong":false,"topics":["三级预防与防制策略"]},{"no":29,"exam":"阶段测试X-2","type":"单选题","points":3.4,"stem":"如果漏斗图呈左右对称的倒漏斗状，提示","options":["A|meta分析统计学检验效能不够","B|meta分析的各个独立研究的同质性差","C|meta分析的合并效应值没有统计学意义","D|meta分析不存在明显的发表偏倚","E|meta分析的结果存在明显的发表偏倚"],"answer":"D","mine":"D","wrong":false,"topics":[]},{"no":30,"exam":"阶段测试X-2","type":"单选题","points":3.4,"stem":"异质性检验的目的是","options":["A|检查各个独立研究的统计学是否存在异质性","B|检查各个独立研究的结果是否具有可合并性","C|检查各个独立研究的干预措施是否存在异质性","D|检查各个独立研究的研究对象临床特征是否存在异质性","E|检查各个独立研究的方法学是否存在异质性"],"answer":"B","mine":"B","wrong":false,"topics":["循证与Meta分析"]},{"no":1,"exam":"阶段测试 Z-2","type":"单选题","points":3.3,"stem":"对可疑因素的流行病学病因研究中，可用观察性研究和实验性研究的方法，这两种方法之间最主要的区别在于实验性研究时?","options":["A|试验组和对照组人群数量是相等的","B|做前瞻性研究","C|试验组和对照组人群是可比的","D|人为干预","E|有对照组"],"answer":"D","mine":"D","wrong":false,"topics":["因果推断","暴发与流行调查"]},{"no":2,"exam":"阶段测试 Z-2","type":"单选题","points":3.3,"stem":"流行病学实验研究中，实验组与对照组的最大不同是","options":["A|样本量不同","B|观察指标不同","C|干预措施不同","D|实验终点不同","E|观察对象的构成不同"],"answer":"C","mine":"C","wrong":false,"topics":["暴发与流行调查"]},{"no":3,"exam":"阶段测试 Z-2","type":"单选题","points":3.3,"stem":"在研究抗心律不齐药物的药效时，选择研究对象正确的是","options":["A|最好选择近期心律不齐频繁发作的病人","B|最好不要选择近期心律不齐频繁发作的病人","C|可用孕妇作为研究对象","D|样本量越大，结果越能说明问题","E|病人的年龄和性别对研究结果影响不大"],"answer":"A","mine":"B","wrong":true,"topics":[]},{"no":4,"exam":"阶段测试 Z-2","type":"单选题","points":3.4,"stem":"关于单盲法描述不正确的是","options":["A|单盲法简便，容易进行","B|单盲法是指观察者不知道分组情况和研究对象接受处理情况","C|单盲法是指研究对象不知道分组情况和研究对象接受处理情况","D|单盲法对受试者的健康和安全有利","E|单盲法可以去除来自研究对象的偏倚"],"answer":"B","mine":"B","wrong":false,"topics":[]},{"no":5,"exam":"阶段测试 Z-2","type":"单选题","points":3.3,"stem":"假阴性率也称为","options":["A|灵敏度","B|特异度","C|漏诊率","D|误诊率","E|约登指数"],"answer":"C","mine":"C","wrong":false,"topics":[]},{"no":6,"exam":"阶段测试 Z-2","type":"单选题","points":3.4,"stem":"一项筛检试验，其灵敏度为80%，特异度为90%，将其用于患病率为1‰的人群中进行筛查。该试验的误诊率为","options":["A|0.0079","B|0.1","C|0.2","D|0.25","E|0.9998"],"answer":"B","mine":"B","wrong":false,"topics":["筛检与诊断试验","疾病频率指标"]},{"no":7,"exam":"阶段测试 Z-2","type":"单选题","points":3.3,"stem":"当对某一疾病进行筛检时，有较长的临床前期的病例比临床前期短的病例生存期长。当用这类病例来评价筛检的效果时可能存在","options":["A|暴露怀疑偏倚","B|过度诊断偏倚","C|志愿者偏倚","D|生存长短偏倚","E|病程长短偏倚"],"answer":"E","mine":"E","wrong":false,"topics":["筛检与诊断试验"]},{"no":8,"exam":"阶段测试 Z-2","type":"单选题","points":3.3,"stem":"构成“传染过程”的必备因素有","options":["A|传染源、传播途径、易感人群","B|微生物、媒介、宿主","C|寄生虫、中间宿主、终末宿主","D|病原体、机体","E|病人、污染物、外界环境"],"answer":"D","mine":"D","wrong":false,"topics":["暴发与流行调查"]},{"no":9,"exam":"阶段测试 Z-2","type":"单选题","points":4.0,"stem":"构成流行过程的必备因素是","options":["A|传染源、传播途径和易感人群","B|病原体和机体","C|病原体、传播途径和易感者","D|微生物、媒介和宿主","E|病人、污染物和易感者"],"answer":"A","mine":"A","wrong":false,"topics":["暴发与流行调查"]},{"no":10,"exam":"阶段测试 Z-2","type":"单选题","points":3.4,"stem":"传染病病人传染性最强的时期是","options":["A|潜伏期","B|潜伏期末","C|临床症状期","D|症状消失期","E|恢复期"],"answer":"C","mine":"C","wrong":false,"topics":["暴发与流行调查"]},{"no":11,"exam":"阶段测试 Z-2","type":"单选题","points":3.3,"stem":"经空气传播的疾病的流行特征是：（）","options":["A|疾病的发生与季节有关，多见于冬春季","B|传播广泛，发病率高","C|在未经免疫的人群中，发病率呈周期性变化","D|儿童多发","E|以上都是"],"answer":"E","mine":"E","wrong":false,"topics":["暴发与流行调查"]},{"no":12,"exam":"阶段测试 Z-2","type":"单选题","points":3.4,"stem":"以下哪项不是疫源地消灭必须具备的条件","options":["A|传染源被移走或不再排出病原体","B|传染源排于外环境中的病原体被消灭","C|所有易感接触者经过该病最长潜伏期未出现新病例或被证明未受感染","D|传染源已完全治愈","E|以上均不是"],"answer":"D","mine":"D","wrong":false,"topics":["暴发与流行调查"]},{"no":13,"exam":"阶段测试 Z-2","type":"单选题","points":3.3,"stem":"下列哪项是病因的最确切含义","options":["A|病原微生物","B|物理因子","C|化学因子","D|心理因素","E|凡能使人们发病概率增加的因子"],"answer":"E","mine":"B","wrong":true,"topics":["因果推断"]},{"no":14,"exam":"阶段测试 Z-2","type":"单选题","points":3.3,"stem":"疾病轮状模型的外环是","options":["A|环境因素","B|宿主","C|遗传因素","D|特异病原体","E|病原微生物"],"answer":"A","mine":"A","wrong":false,"topics":[]},{"no":15,"exam":"阶段测试 Z-2","type":"单选题","points":3.3,"stem":"实践循证医学的核心是","options":["A|素质良好的临床医生","B|最佳的研究证据","C|新药物或新医疗器械","D|患者的参与和合作","E|必要的医疗环境和条件"],"answer":"B","mine":"B","wrong":false,"topics":["循证与Meta分析"]},{"no":16,"exam":"阶段测试 Z-2","type":"单选题","points":3.4,"stem":"meta分析中进行异质性检验的目的是","options":["A|评价独立研究结果的可靠性","B|检验各个独立研究的结果是否具有可合并性","C|评价一定假设条件下所获效应合并值的稳定性","D|计算偏倚的大小","E|分析效应合并值的语言偏倚"],"answer":"B","mine":"B","wrong":false,"topics":["循证与Meta分析"]},{"no":17,"exam":"阶段测试 Z-2","type":"多选题","points":4.0,"stem":"常用的随机抽样方法包括","options":["A|单纯随机抽样","B|分层抽样","C|系统抽样","D|随意抽样","E|整群抽样"],"answer":"ABCE","mine":"ABCE","wrong":false,"topics":["抽样方法与样本量"]},{"no":18,"exam":"阶段测试 Z-2","type":"多选题","points":4.0,"stem":"病例对照研究中的信息偏倚的来源主要有：","options":["A|回忆偏倚","B|病例诊断错误","C|无应答","D|调查者偏倚","E|测量仪器误差"],"answer":"ADE","mine":"ABDE","wrong":true,"topics":["病例对照研究","偏倚及其控制"]},{"no":19,"exam":"阶段测试 Z-2","type":"多选题","points":5.0,"stem":"下列哪些是实验流行病学的范畴","options":["A|动物实验","B|现况调查","C|社区试验","D|现场试验","E|临床试验"],"answer":"CDE","mine":"CDE","wrong":false,"topics":["临床试验与实验流行病学","暴发与流行调查"]},{"no":20,"exam":"阶段测试 Z-2","type":"多选题","points":5.0,"stem":"临床试验的对照类型有","options":["A|安慰剂对照","B|交叉对照","C|外部对照","D|标准对照","E|自身对照"],"answer":"ABDE","mine":"ABCDE","wrong":true,"topics":["临床试验与实验流行病学"]},{"no":21,"exam":"阶段测试 Z-2","type":"多选题","points":5.0,"stem":"设暴露组的发病率为Ie,未暴露组的发病率为Io，则有：","options":["A|相对危险度=Ie / Io","B|OR=Ie - Io","C|归因危险度=Ie - Io","D|归因危险百分比=(Ie - Io)/ Ie*100%","E|OR= Ie * Io"],"answer":"ACD","mine":"ACD","wrong":false,"topics":["疾病频率指标"]},{"no":22,"exam":"阶段测试 Z-2","type":"多选题","points":5.0,"stem":"以下哪些是评价筛检的指标？","options":["A|真阳性率","B|真阴性率","C|似然比","D|预测值","E|患病率"],"answer":"ABCD","mine":"ABCD","wrong":false,"topics":["筛检与诊断试验"]},{"no":23,"exam":"阶段测试 Z-2","type":"多选题","points":5.0,"stem":"几个诊断试验联合使用时，下列叙述哪些正确？","options":["A|串联可提高特异度","B|并联可提高灵敏度","C|串联时每一试验均为阳性时才诊断为阳性","D|并联时任何一个试验阳性时即诊断为阳性","E|串联可提高灵敏度"],"answer":"ABCD","mine":"ABCD","wrong":false,"topics":[]},{"no":24,"exam":"阶段测试 Z-2","type":"多选题","points":4.0,"stem":"下列可出现暴发的疾病是","options":["A|甲型病毒性肝炎","B|狂犬病","C|食物中毒","D|细菌性痢疾","E|艾滋病"],"answer":"ACD","mine":"ACE","wrong":true,"topics":["暴发与流行调查"]},{"no":25,"exam":"阶段测试 Z-2","type":"多选题","points":4.0,"stem":"传染病的传染源包括","options":["A|传染病病人","B|病原携带者","C|易感者","D|健康者","E|被感染的动物"],"answer":"ABE","mine":"ABE","wrong":false,"topics":["暴发与流行调查"]},{"no":26,"exam":"阶段测试 Z-2","type":"多选题","points":5.0,"stem":"下列哪些属于传染病的水平传播途径","options":["A|经水传播","B|空气传播","C|食物传播","D|母婴传播","E|胎盘传播"],"answer":"ABC","mine":"ABC","wrong":false,"topics":["暴发与流行调查"]}];
+const list=document.getElementById('list'),sc=document.getElementById('sc');
+let view='all', order=DATA.map((_,i)=>i), revealAllOn=false;
+
+function matches(q){
+  if(view==='wrong') return q.wrong;
+  if(view==='single') return q.type.indexOf('单选')>=0;
+  if(view==='multi') return q.type.indexOf('多选')>=0;
+  return true;
+}
+function render(){
+  const rows=order.map(i=>DATA[i]).filter(matches);
+  list.innerHTML='';
+  if(!rows.length){list.innerHTML='<p class="empty">没有符合条件的题目。</p>';}
+  rows.forEach(q=>{
+    const ans=new Set(q.answer.split(''));
+    const mine=new Set((q.mine||'').split('').filter(Boolean));
+    const card=document.createElement('div');
+    card.className='card'+(q.wrong?' wrong':'')+(revealAllOn?' ans-on':'');
+    const opts=q.options.map(o=>{
+      const[k,...rest]=o.split('|'); const v=rest.join('|');
+      let cls='opt';
+      if(ans.has(k)) cls+=' right';
+      if(q.wrong&&mine.has(k)&&!ans.has(k)) cls+=' wrongpick';
+      if(q.wrong&&ans.has(k)&&!mine.has(k)) cls+=' missed';
+      return `<div class="${cls}"><span class="k">${k}</span><span>${v}</span></div>`;
+    }).join('');
+    const tps=q.topics.map(t=>`<span class="tag tp">${t}</span>`).join('');
+    card.innerHTML=`
+      <div class="hd">
+        <span class="tag ${q.type.indexOf('多选')>=0?'m':'s'}">${q.type}</span>
+        <span class="tag">${q.points} 分</span>
+        <span class="tag">${q.exam}</span>
+        ${q.wrong?'<span class="tag bad">我错过</span>':''}
+        ${tps}
+      </div>
+      <p class="q">${q.stem}</p>
+      ${opts}
+      <div class="ans">
+        <div class="ansline">标准答案：<b>${q.answer}</b></div>
+        <div class="mine ${q.wrong?'':'ok'}">我当时选：${q.mine||'—'}${q.wrong?'（错）':'（对）'}</div>
+      </div>
+      <button class="show">显示答案</button>`;
+    card.querySelector('.show').addEventListener('click',e=>{
+      card.classList.toggle('ans-on');
+      e.target.textContent=card.classList.contains('ans-on')?'收起答案':'显示答案';
+    });
+    if(card.classList.contains('ans-on')) card.querySelector('.show').textContent='收起答案';
+    list.appendChild(card);
+  });
+  sc.textContent=`显示 ${rows.length} / ${DATA.length}`;
+}
+function setView(v,btn){
+  view=v;
+  ['fAll','fWrong','fSingle','fMulti'].forEach(id=>document.getElementById(id).classList.toggle('on',id===btn));
+  render();
+}
+document.getElementById('fAll').onclick=e=>setView('all','fAll');
+document.getElementById('fWrong').onclick=e=>setView('wrong','fWrong');
+document.getElementById('fSingle').onclick=e=>setView('single','fSingle');
+document.getElementById('fMulti').onclick=e=>setView('multi','fMulti');
+document.getElementById('shuffle').onclick=()=>{
+  const a=order.slice();
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  order=a; revealAllOn=false;
+  document.getElementById('revealAll').textContent='全部显示答案';
+  render();
+};
+document.getElementById('revealAll').onclick=e=>{
+  revealAllOn=!revealAllOn;
+  e.target.textContent=revealAllOn?'全部收起答案':'全部显示答案';
+  render();
+};
+render();
+</script>
+</body>
+</html>

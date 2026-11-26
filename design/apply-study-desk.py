@@ -28,6 +28,8 @@ PAGES = {
     "odontogenic/index.html": "odontogenic",
     "premed/index.html": "premed-guide",
     "premed/quiz.html": "premed-quiz",
+    "epi/index.html": "epi-guide",
+    "epi/quiz.html": "epi-quiz",
     "pharm/index.html": "pharm",
     "pharm/guide/index.html": "pharm-guide",
     "pharm/mock/index.html": "pharm-mock",

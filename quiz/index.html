@@ -377,18 +377,25 @@ body.study-page {
 }
 .study-page :is(.opt.sel, button.opt:hover):not(.right, .wrong, .wrongpick) { background: var(--desk-fold); }
 .study-page .opt :is(.lb, .k) { color: var(--desk-accent); }
-.study-page:not([data-desk-page="premed-quiz"]) .opt.right,
+/* Masked pages answer nothing until the card is opened: data-desk-mask="on". */
+.study-page:not([data-desk-mask="on"]) .opt.right,
 .study-page .card.ans-on .opt.right {
   background: var(--okbg);
   border-color: var(--ok);
 }
-.study-page:not([data-desk-page="premed-quiz"]) .opt.right :is(.k, .lb),
+.study-page:not([data-desk-mask="on"]) .opt.right :is(.k, .lb),
 .study-page .card.ans-on .opt.right :is(.k, .lb) { color: var(--ok); }
 .study-page :is(.opt.wrong, .card.ans-on .opt.wrongpick) {
   background: var(--badbg);
   border-color: var(--bad);
 }
 .study-page :is(.opt.wrong, .card.ans-on .opt.wrongpick) :is(.k, .lb) { color: var(--bad); }
+/* Missed a correct option on a wrong answer: amber, distinct from the answer green. */
+.study-page .card.ans-on .opt.missed {
+  background: var(--warnbg);
+  border-color: var(--warn);
+}
+.study-page .card.ans-on .opt.missed :is(.k, .lb) { color: var(--warn); }
 .study-page .opt.mine:not(.right, .wrong, .wrongpick) { background: var(--warnbg); border-color: var(--warn); }
 .study-page .card.ok { border-left: 3px solid var(--ok); }
 .study-page .card.wrong { border-left: 3px solid var(--bad); }

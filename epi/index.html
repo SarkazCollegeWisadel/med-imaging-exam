@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>临床流行病学 · 学习指南</title>
+<style>
+@font-face{font-family:"Desk Song";src:local("STSong"),local("华文宋体");font-weight:400;font-display:swap}
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:eg-out .2s ease both}
+::view-transition-new(root){animation:eg-in .36s cubic-bezier(.22,1,.36,1) both}
+@keyframes eg-out{to{opacity:0;transform:translateY(-4px)}}
+@keyframes eg-in{from{opacity:0;transform:translateY(9px)}}
+:root{color-scheme:light;--ink:#2d272e;--muted:#665861;--accent:#60475a;--line:#dcd1da;--paper:#fffdfd;--song:"Desk Song","STSong","华文宋体","Songti SC",SimSun,serif}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:radial-gradient(ellipse at 85% 0,#eee5ed,transparent 52rem),#f4f1f2;color:var(--ink);font:15px/1.68 "Segoe UI Variable","Microsoft YaHei",sans-serif}
+.desk{width:min(100% - 34px,820px);margin:auto;padding:18px 0 44px}
+.hero{position:relative;isolation:isolate;overflow:hidden;padding:22px 0 18px}
+.hero h1{margin:0;font:400 clamp(30px,5.2vw,46px)/1.1 var(--song);letter-spacing:-.03em}
+.hero p{margin:6px 0 0;color:var(--muted);font-size:14px}
+.fold{position:absolute;z-index:-1;pointer-events:none;right:0;top:0;width:clamp(110px,42%,300px);height:100%;background:linear-gradient(142deg,#decbd8 15%,#eee4ec 15% 40%,#dbcbd7 40% 52%,#f9f6f9 53%);clip-path:polygon(0 81%,32% 19%,48% 34%,58% 7%,82% 24%,100% 0,100% 71%,76% 55%,53% 100%,29% 83%);opacity:.6}
+h2{margin:0 0 10px;font:400 24px/1.25 var(--song);text-wrap:pretty}
+h2.part{margin-top:26px;padding-top:16px;border-top:1px solid var(--line)}
+h3{margin:16px 0 7px;font:400 18px/1.3 var(--song)}
+p{margin:7px 0}
+.lede{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:14px 16px;box-shadow:0 4px 15px #432a3d08;margin-bottom:14px}
+.lede p:first-child{margin-top:0}
+.lede p:last-child{margin-bottom:0}
+.lede b{font-weight:650}
+.lede em{font-style:normal;color:var(--accent);font-weight:650}
+table{width:100%;border-collapse:collapse;margin:8px 0;font-size:14px}
+th,td{padding:6px 8px;border-bottom:1px solid #e9e1e7;text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:630;font-size:12.5px;border-bottom-color:var(--line)}
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bar{background:#eee7ec;border-radius:100px;height:7px;overflow:hidden;min-width:60px}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:100px;opacity:.8}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+.acts a{display:inline-flex;align-items:center;min-height:38px;padding:5px 14px;border:1px solid #8d718b60;border-radius:100px;background:#ffffffc4;color:var(--accent);text-decoration:none;font-size:14px;box-shadow:0 2px 7px #4e334310}
+.acts a:hover{background:#fff}
+ol li,ul li{margin:5px 0}
+.k{background:#eee7ec;border-radius:5px;padding:1px 6px;font-variant-numeric:tabular-nums;font-size:13px}
+.gap{background:#fbf3ea;border-left:3px solid #b98c4e;border-radius:7px;padding:10px 13px;margin:10px 0;font-size:14px}
+.foot{margin-top:22px;padding-top:11px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px;line-height:1.75}
+@media(max-width:520px){.desk{width:calc(100% - 24px)}table{font-size:13px}th,td{padding:5px 6px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<style>
+.study-desk-nav{display:block;position:relative;background:#f2edf1;color:#463747;border-bottom:1px solid #8d718b38;padding:8px clamp(12px,4vw,48px);font:14px/1.5 system-ui,"Microsoft YaHei",sans-serif}
+.study-desk-nav .study-desk-links{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;max-width:1440px;margin:auto}
+.study-desk-nav a{display:inline-flex;align-items:center;min-height:34px;padding:3px 10px;border:1px solid #8d718b60;border-radius:100px;background:#ffffff87;color:#4c3c4a;text-decoration:none;white-space:nowrap}
+.study-desk-nav a:hover{background:#fff}
+</style>
+<style id="study-desk-theme">
+@font-face {
+  font-family: "Desk Song";
+  src: local("STSong"), local("华文宋体");
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --desk-bg: #f3f0f1;
+  --desk-paper: #fffdfd;
+  --desk-ink: #2d272e;
+  --desk-muted: #625561;
+  --desk-line: #dcd1da;
+  --desk-fold: #ede4eb;
+  --desk-accent: #60475a;
+  --desk-hover: #75576e;
+  --desk-glass: linear-gradient(151deg, #fffdfdf2, #eee6eddb);
+  --desk-shadow: 0 2px 4px #392f3609, 0 8px 24px #392f3608;
+  --desk-song: "Desk Song", "STSong", "华文宋体", "Songti SC", SimSun, serif;
+  --desk-width: 820px;
+  --desk-spring: cubic-bezier(.18, 1.24, .32, 1);
+  --desk-spring-press: cubic-bezier(.2, 1.45, .47, 1);
+
+  /* Existing pages use several names for the same roles. */
+  --bg: var(--desk-bg);
+  --card: var(--desk-paper);
+  --card2: var(--desk-fold);
+  --ink: var(--desk-ink);
+  --tx: var(--desk-ink);
+  --sub: var(--desk-muted);
+  --dim: var(--desk-muted);
+  --line: var(--desk-line);
+  --hl: var(--desk-accent);
+  --hl2: var(--desk-accent);
+  --acc: var(--desk-accent);
+  --accent: var(--desk-accent);
+  --code: var(--desk-fold);
+  --ok: #226040;
+  --okbg: #e8f4eb;
+  --bad: #922f34;
+  --badbg: #faebec;
+  --warn: #744c1b;
+  --warnbg: #f7f0e3;
+}
+
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:desk-page-out .2s ease both}
+::view-transition-new(root){animation:desk-page-in .36s cubic-bezier(.22,1,.36,1) both}
+@keyframes desk-page-out{to{opacity:0;transform:translateY(-4px)}}
+@keyframes desk-page-in{from{opacity:0;transform:translateY(9px)}}
+@media(prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+
+.pleats{position:absolute;z-index:-1;overflow:hidden;right:-1px;bottom:23px;width:clamp(160px,27vw,370px);height:100px;pointer-events:none;opacity:.86}
+.pleats i{position:absolute;inset:0}
+.pleats i:nth-child(1){clip-path:polygon(0 88%,42% 13%,33% 100%);background:linear-gradient(130deg,#c5b5c496,#efeaed)}
+.pleats i:nth-child(2){clip-path:polygon(33% 100%,42% 13%,62% 29%);background:linear-gradient(130deg,#c0abba,#e9e0e7)}
+.pleats i:nth-child(3){clip-path:polygon(33% 100%,62% 29%,62% 75%);background:linear-gradient(140deg,#eee5ec,#d4c4d0)}
+.pleats i:nth-child(4){clip-path:polygon(62% 29%,83% 0,62% 75%);background:linear-gradient(125deg,#c7b2c2,#eee5ec)}
+.pleats i:nth-child(5){clip-path:polygon(62% 75%,83% 0,100% 56%);background:linear-gradient(120deg,#d5c4d0,#f4eff4)}
+
+body.study-page {
+  background: radial-gradient(ellipse at 85% 0, #eee6ed, transparent 550px), var(--desk-bg);
+  color: var(--desk-ink);
+  font-family: "Segoe UI Variable", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.study-page :is(h1, h2, .stem, .st, .ask, .card header h3, .ans .dx),
+.study-page[data-desk-page="premed-quiz"] .q,
+.study-page[data-desk-page="odontogenic"] .card > .q {
+  font-family: var(--desk-song);
+  font-weight: 400;
+  text-wrap: pretty;
+}
+
+.study-page :is(h1, h2, h3, h4) { color: var(--desk-ink); }
+.study-page a { color: var(--desk-accent); }
+.study-page :is(.sub, .foot, .src, .hint, .cap, figcaption, .who) { color: var(--desk-muted); }
+.study-page :is(a, button, summary, input, textarea):focus-visible {
+  outline: 2px solid var(--desk-accent);
+  outline-offset: 3px;
+}
+
+.study-page .study-desk-nav {
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+  padding-inline: clamp(10px, 3vw, 22px);
+  border-bottom: 0;
+}
+
+.study-page .study-desk-nav::after {
+  content: "";
+  position: absolute;
+  inset: auto max(12px, calc((100% - var(--desk-width)) / 2)) 0;
+  border-bottom: 1px solid var(--desk-line);
+  pointer-events: none;
+}
+
+.study-page .study-desk-links { max-width: var(--desk-width); }
+.study-page .study-desk-links > span {
+  margin-inline-start: auto;
+  color: var(--desk-muted);
+  font-size: .83em;
+}
+
+.study-page :is(.study-desk-nav a, .btn, .bar button, .tools button, .chip, .acts button, .copy, .jump a, :where(#toTop)) {
+  min-height: 34px;
+  border: 1px solid var(--desk-line);
+  border-radius: 100px;
+  background: var(--desk-glass);
+  color: var(--desk-accent);
+  box-shadow: inset 0 1px 0 #fff, 0 2px 5px #5034480d;
+  transition: transform .26s var(--desk-spring-press), background-color .18s, border-color .18s;
+}
+
+.study-page :is(.study-desk-nav a, .btn, .bar button, .tools button, .chip, .acts button, .copy, .jump a, :where(#toTop)):hover {
+  background: #fff;
+  border-color: #af96aa;
+}
+
+.study-page :is(.btn, .bar button, .tools button, .chip, .acts button, .copy, :where(#toTop)):active {
+  transform: scale(.965);
+}
+
+.study-page :is(.btn.on, .bar button.on, .bar button.primary, .tools button.on, .chip.on, .acts button.on) {
+  background: var(--desk-accent);
+  border-color: var(--desk-accent);
+  color: #fff;
+  box-shadow: none;
+}
+
+.study-page :is(.btn.on, .bar button.on, .bar button.primary, .tools button.on, .chip.on, .acts button.on):hover {
+  background: var(--desk-hover);
+  color: #fff;
+}
+
+.study-page :is(.copy.done, .acts button.ok) {
+  background: var(--okbg);
+  border-color: var(--ok);
+  color: var(--ok);
+}
+
+.study-page :is(.acts button.bad, .acts button.wrong) {
+  background: var(--badbg);
+  border-color: var(--bad);
+  color: var(--bad);
+}
+
+.study-page button:disabled { opacity: .55; }
+
+.study-page > :is(header, .top),
+.study-page .study-hero,
+.study-page[data-desk-page="premed-quiz"] > .bar {
+  position: relative;
+  isolation: isolate;
+  z-index: auto;
+  max-width: var(--desk-width);
+  margin: 10px auto 14px;
+  padding: clamp(16px, 3vw, 27px);
+  border: 1px solid var(--desk-line);
+  border-radius: 13px;
+  background: linear-gradient(135deg, #fffdfd 46%, #f0e8ef);
+  box-shadow: var(--desk-shadow);
+}
+
+/* A fold on the heading surface leaves the exercise and source areas quiet. */
+.study-page > :is(header, .top)::after,
+.study-page .study-hero::after,
+.study-page[data-desk-page="premed-quiz"] > .bar::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  width: min(33%, 185px);
+  height: 100%;
+  background: linear-gradient(142deg, #d5c3d1 13%, #eee5ed 13% 38%, #d9c8d5 38% 51%, #f1eaf0 51%);
+  clip-path: polygon(66% 0, 100% 0, 100% 82%, 59% 100%, 0 100%, 42% 61%);
+  border-radius: 0 13px 13px 0;
+  opacity: .53;
+  pointer-events: none;
+}
+
+.study-page > :is(header, .top) h1,
+.study-page .study-hero h1,
+.study-page[data-desk-page="premed-quiz"] .bar h1 {
+  margin: 0 0 6px;
+  padding: 0;
+  border: 0;
+  color: var(--desk-ink);
+  font: 400 clamp(26px, 4.8vw, 43px)/1.2 var(--desk-song);
+  letter-spacing: -.025em;
+  overflow-wrap: anywhere;
+}
+
+.study-page > header .wrap { padding-inline: 0; }
+.study-page > :is(header, .top, .study-hero) :is(.sub, p) { color: var(--desk-muted); }
+.study-page .study-hero .sub { margin-bottom: 0; }
+.study-page .wrap { max-width: var(--desk-width); }
+.study-page .study-course-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 12px;
+}
+.study-page .study-course-links a {
+  padding: 7px 10px;
+  background: #fffdfd99;
+  border: 1px solid var(--desk-line);
+  border-radius: 7px;
+  color: var(--desk-accent);
+  font-size: .82em;
+  text-decoration: none;
+}
+.study-page .study-course-links a:hover { background: var(--desk-fold); }
+
+.study-page .bar,
+.study-page .tools,
+.study-page .filters,
+.study-page > nav:not(.study-desk-nav),
+.study-page .jump,
+.study-page #score.score {
+  position: static;
+  inset: auto;
+  z-index: auto;
+}
+
+.study-page :is(.bar, .tools, .filters, .jump) { color: var(--desk-muted); }
+.study-page :is(.tools, .filters, .jump) { align-items: center; }
+.study-page .tools { margin-top: 12px; }
+.study-page .filters { padding-block: 9px; }
+.study-page .bar {
+  background: var(--desk-glass);
+  backdrop-filter: blur(18px) saturate(135%);
+  border: 1px solid var(--desk-line);
+  border-radius: 10px;
+  padding: 7px 9px;
+}
+.study-page .bar .score { color: var(--ok); font-family: system-ui, sans-serif; letter-spacing: 0; }
+.study-page .bar .sc { color: var(--desk-ink); }
+.study-page header .bar { margin-top: 12px; }
+.study-page > nav:not(.study-desk-nav) {
+  max-width: var(--desk-width);
+  margin: 0 auto;
+  background: transparent;
+  border-color: var(--desk-line);
+}
+.study-page > nav:not(.study-desk-nav) a {
+  background: var(--desk-fold);
+  color: var(--desk-accent);
+  border: 1px solid var(--desk-line);
+}
+.study-page > nav:not(.study-desk-nav) a:hover,
+.study-page > nav:not(.study-desk-nav) a.hl {
+  background: var(--desk-accent);
+  color: #fff;
+}
+.study-page .jump {
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: var(--desk-width);
+  margin: 8px auto 0;
+  padding-inline: 14px;
+}
+.study-page .study-section-jump { margin-top: 12px; padding: 0; }
+.study-page .jump a { display: inline-flex; align-items: center; }
+.study-page #toTop {
+  position: static;
+  justify-content: center;
+  margin: 12px auto;
+}
+
+.study-page :is(.qi, .card, .b1box, .essay, .hero, .q:has(> .qh), details.sec, details.honesty, #toc) {
+  background: var(--desk-paper);
+  border: 1px solid var(--desk-line);
+  border-radius: 13px;
+  box-shadow: var(--desk-shadow);
+}
+.study-page .sec .card { border-width: 1px 0 0; border-radius: 0; box-shadow: none; }
+.study-page :is(.qi img, .imgs img, .card > img) { border-color: var(--desk-line); }
+.study-page :is(.stem, .st, .ask, .card header h3) {
+  font-size: clamp(17px, 2.35vw, 20px);
+  line-height: 1.48;
+}
+.study-page :is(.tag:not(.warn, .ok, .n, .g, .bad), .b.sub) {
+  background: var(--desk-fold);
+  color: var(--desk-accent);
+  border-color: #d8c9d6;
+}
+.study-page :is(.tag.warn, .noimg, .b.warn) {
+  background: var(--warnbg);
+  color: var(--warn);
+  border-color: #d7bd91;
+}
+.study-page :is(.tag.g, .tag.ok, .b.exam) { background: var(--okbg); color: var(--ok); }
+.study-page :is(.tag.bad, .tag.n) { background: var(--badbg); color: var(--bad); }
+.study-page .opt {
+  background: #fdfafb;
+  border-color: var(--desk-line);
+  color: var(--desk-ink);
+}
+.study-page :is(.opt.sel, button.opt:hover):not(.right, .wrong, .wrongpick) { background: var(--desk-fold); }
+.study-page .opt :is(.lb, .k) { color: var(--desk-accent); }
+/* Masked pages answer nothing until the card is opened: data-desk-mask="on". */
+.study-page:not([data-desk-mask="on"]) .opt.right,
+.study-page .card.ans-on .opt.right {
+  background: var(--okbg);
+  border-color: var(--ok);
+}
+.study-page:not([data-desk-mask="on"]) .opt.right :is(.k, .lb),
+.study-page .card.ans-on .opt.right :is(.k, .lb) { color: var(--ok); }
+.study-page :is(.opt.wrong, .card.ans-on .opt.wrongpick) {
+  background: var(--badbg);
+  border-color: var(--bad);
+}
+.study-page :is(.opt.wrong, .card.ans-on .opt.wrongpick) :is(.k, .lb) { color: var(--bad); }
+/* Missed a correct option on a wrong answer: amber, distinct from the answer green. */
+.study-page .card.ans-on .opt.missed {
+  background: var(--warnbg);
+  border-color: var(--warn);
+}
+.study-page .card.ans-on .opt.missed :is(.k, .lb) { color: var(--warn); }
+.study-page .opt.mine:not(.right, .wrong, .wrongpick) { background: var(--warnbg); border-color: var(--warn); }
+.study-page .card.ok { border-left: 3px solid var(--ok); }
+.study-page .card.wrong { border-left: 3px solid var(--bad); }
+.study-page .ans {
+  background: linear-gradient(148deg, #fbf5f9, var(--desk-fold));
+  border-color: #bca3b6;
+  color: var(--desk-ink);
+  transform-origin: top center;
+}
+.study-page .ans.warn { background: var(--warnbg); border-color: var(--warn); }
+.study-page .ansline b { color: var(--ok); }
+.study-page .mine { color: var(--desk-muted); }
+.study-page :is(.note.srcbox, .note.mid, .note.none, .ans .src, .src.no, .card .src:not(span), .prompt, .b1lead) {
+  background: #f4eef3;
+  color: var(--desk-muted);
+  border-color: #cdbac9;
+}
+.study-page .note.srcbox code {
+  background: #e8dce6;
+  color: #493646;
+  overflow-wrap: anywhere;
+}
+.study-page .src::before,
+.study-page .src.no::before { color: var(--desk-muted); }
+.study-page :is(details pre, code, th) { background: #f2ebf0; }
+.study-page :is(th, td) { border-color: var(--desk-line); }
+.study-page :is(h2.part, article h2) {
+  background: linear-gradient(113deg, var(--desk-fold) 64%, transparent 64%);
+  border-color: #aa8fa3;
+}
+
+.study-page[data-desk-page="premed-guide"] :is(main p, main li, td, strong) { color: var(--desk-ink); }
+.study-page[data-desk-page="premed-guide"] :is(blockquote, blockquote p, th) { color: var(--desk-muted); }
+.study-page[data-desk-page="premed-guide"] :is(blockquote, tr:nth-child(even) td) { background: #f4edf2; border-color: var(--desk-line); }
+.study-page[data-desk-page="premed-guide"] :is(code, hr, .foot) { border-color: var(--desk-line); }
+.study-page[data-desk-page="premed-guide"] code { color: var(--desk-accent); }
+.study-page[data-desk-page="premed-guide"] .go a { background: var(--desk-accent); color: #fff; }
+.study-page[data-desk-page="premed-guide"] .go a:hover { background: var(--desk-hover); }
+
+.study-page[data-desk-page="premed-quiz"] .q {
+  font-size: clamp(17px, 2.35vw, 20px);
+  line-height: 1.48;
+}
+.study-page[data-desk-page="premed-quiz"] .bar h1 {
+  display: flex;
+  flex-wrap: wrap;
+}
+.study-page[data-desk-page="premed-quiz"] .bar h1 span {
+  color: var(--desk-muted);
+  font-family: system-ui, sans-serif;
+}
+.study-page[data-desk-page="premed-quiz"] .bar h1 .score { color: var(--ok); }
+.study-page[data-desk-page="premed-quiz"] .hd { color: var(--desk-muted); }
+.study-page[data-desk-page="premed-quiz"] button.show {
+  background: var(--desk-accent);
+  border-color: var(--desk-accent);
+  color: #fff;
+}
+.study-page[data-desk-page="premed-quiz"] button.show:hover { background: var(--desk-hover); }
+.study-page[data-desk-page="odontogenic"] #score {
+  max-width: var(--desk-width);
+  margin: 0 auto 12px;
+  background: var(--desk-glass);
+  border: 1px solid var(--desk-line);
+  border-radius: 11px;
+}
+.study-page[data-desk-page="odontogenic"] .card > .q { font-size: 20px; }
+.study-page.hide-ans[data-desk-page="imaging-list"] .ans b { background: #d9ccd6; color: transparent; }
+.study-page[data-desk-page="imaging-quiz"] :is(.prompt b, summary) { color: var(--desk-accent); }
+.study-page[data-desk-page="imaging-quiz"] details { background: #f5eef4; border-color: var(--desk-line); }
+.study-page[data-desk-page="imaging-quiz"] details .ans { background: transparent; color: var(--desk-accent); font-family: var(--desk-song); font-size: 18px; }
+.study-page[data-desk-page="pharm"] details { border: 1px solid var(--desk-line); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .study-page .ans.on,
+  .study-page:not(:has(#revealAll.on)) .ans.show,
+  .study-page:not(.showAll) .card.shown .ans,
+  .study-page[data-desk-page="imaging-quiz"] details[open] > p:first-of-type {
+    animation: desk-unfold .34s cubic-bezier(.19, 1, .36, 1) both;
+  }
+  .study-page:has(#showAll.on) .ans.on { animation: none; }
+}
+
+@keyframes desk-unfold {
+  from { opacity: .28; transform: perspective(460px) rotateX(-30deg); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 860px) {
+  .study-page > :is(header, .top),
+  .study-page[data-desk-page="premed-quiz"] > .bar { margin-inline: 12px; }
+  .study-page[data-desk-page="odontogenic"] #score { margin-inline: 14px; }
+}
+
+@media (max-width: 540px) {
+  .pleats { height: 65px; width: 155px; opacity: .65; bottom: 27px; }
+}
+
+@media (max-width: 520px) {
+  .study-page .study-desk-links { gap: 5px 9px; }
+  .study-page .study-desk-links > span { margin-inline-start: 0; }
+  .study-page > :is(header, .top),
+  .study-page .study-hero,
+  .study-page[data-desk-page="premed-quiz"] > .bar { padding: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .study-page :is(a, button) { transition: none !important; }
+}
+
+/* Standalone study pages that use the shared navigation without a local shell. */
+.study-page:is([data-desk-page="patho"], [data-desk-page="premed-environment"]) .study-desk-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+.study-page:is([data-desk-page="patho"], [data-desk-page="premed-environment"]) .study-desk-links a {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 12px;
+  text-decoration: none;
+}
+.study-page[data-desk-page="premed-environment"] { margin: 0; line-height: 1.65; }
+.study-page[data-desk-page="premed-environment"] main {
+  box-sizing: border-box;
+  max-width: var(--desk-width);
+  margin: auto;
+  padding: 12px 16px 28px;
+}
+.study-page[data-desk-page="premed-environment"] .card { padding: 12px 15px; margin-block: 10px; }
+.study-page[data-desk-page="premed-environment"] .card h3 { margin: 0; font-size: 18px; }
+.study-page[data-desk-page="premed-environment"] summary { cursor: pointer; padding: 4px 0; color: var(--desk-accent); }
+.study-page[data-desk-page="patho"] .card.key { border-inline-start: 3px solid var(--desk-accent); }
+.study-page[data-desk-page="patho"] .card > .q { font-family: var(--desk-song); }
+.study-page[data-desk-page="patho"] .bar button.primary { color: var(--desk-paper); }
+.study-page:is([data-desk-page="pharm-endodontic"], [data-desk-page="pharm-perio"]) :is(.card .body th, .numt th) {
+  background: var(--desk-fold);
+  color: var(--desk-ink);
+}
+</style>
+</head>
+<body class="study-page" data-desk-page="epi-guide">
+<div class="study-desk-nav" role="navigation" aria-label="学习台导航"><div class="study-desk-links"><a href="../index.html">← 返回学习台</a><a href="../learn/index.html">帮学总入口</a><a href="./index.html">临床流行病学</a><span>学习指南</span></div></div>
+<main class="desk">
+<header class="hero">
+<div class="fold" aria-hidden="true"></div>
+<h1>临床流行病学</h1>
+<p>8 场阶段测试 · 236 道真题 · 平台标准答案</p>
+</header>
+
+<section class="lede">
+<p><b>这门课和影像学、预防医学都不是一种考试。</b>影像学靠看图认征象，预防医学靠记类别与别名；流行病学靠<em>把题干关键词映射到研究设计类型，再套那个设计对应的指标与偏倚</em>。题干往往就是一句定义或一个小情境，答案是「哪个设计」「哪个指标」「哪个偏倚」。</p>
+<p>本次全部材料来自 OCS「考试 → 已完成 → 查看试卷详情」，是<em>真实考过的卷子</em>，含我的作答与标准答案。不是教辅模拟题，也不是作业。</p>
+</section>
+
+<h2>一、这 8 场到底是什么</h2>
+<table>
+<thead><tr><th>场次</th><th class="num">题量</th><th class="num">得分</th><th class="num">得分率%</th></tr></thead>
+<tbody><tr><td>阶段测试P-1</td><td class="num">30</td><td class="num">87.0</td><td class="num">87.0</td></tr><tr><td>阶段测试D-1</td><td class="num">30</td><td class="num">94.0</td><td class="num">94.0</td></tr><tr><td>阶段测试X-1</td><td class="num">30</td><td class="num">100.0</td><td class="num">100.0</td></tr><tr><td>阶段测试 Z-1</td><td class="num">30</td><td class="num">98.0</td><td class="num">98.0</td></tr><tr><td>阶段测试P-2</td><td class="num">30</td><td class="num">94.5</td><td class="num">94.5</td></tr><tr><td>阶段测试D-2</td><td class="num">30</td><td class="num">98.0</td><td class="num">98.0</td></tr><tr><td>阶段测试X-2</td><td class="num">30</td><td class="num">100.0</td><td class="num">100.0</td></tr><tr><td>阶段测试 Z-2</td><td class="num">26</td><td class="num">80.4</td><td class="num">80.4</td></tr></tbody>
+</table>
+<p>题型只有两种：单选 <span class="k">192</span> 道、多选 <span class="k">44</span> 道，满分均为 100。8 场合计 <span class="k">236</span> 题，按题干指纹去重后是 <span class="k">190</span> 个考点，<b>重复率 19.5%</b>。</p>
+
+<h2 class="part">二、重复率说明了什么</h2>
+<p>37 组题干在多场出现，其中 9 组横跨 3 场。最集中的是 <b>D-2 与 X-2</b>（重复 6 题）、<b>P-1 / D-1 / Z-1</b> 三个「-1」场次之间也有成簇重复。</p>
+<p>这不代表会继续考原题，而是说明<b>出题池有限、考点集中在少数几类设计上</b>。把这 190 个唯一考点吃透，比刷三百道教辅题有用。</p>
+
+<h2 class="part">三、考点分布（可重叠归类）</h2>
+<table>
+<thead><tr><th>考点</th><th class="num">题数</th><th class="num">占比</th><th>相对量</th></tr></thead>
+<tbody><tr><td>暴发与流行调查</td><td class="num">61</td><td class="num">25.8%</td><td><div class="bar"><i style="width:100%"></i></div></td></tr><tr><td>病例对照研究</td><td class="num">36</td><td class="num">15.3%</td><td><div class="bar"><i style="width:59%"></i></div></td></tr><tr><td>队列研究</td><td class="num">27</td><td class="num">11.4%</td><td><div class="bar"><i style="width:44%"></i></div></td></tr><tr><td>疾病频率指标</td><td class="num">19</td><td class="num">8.1%</td><td><div class="bar"><i style="width:31%"></i></div></td></tr><tr><td>筛检与诊断试验</td><td class="num">15</td><td class="num">6.4%</td><td><div class="bar"><i style="width:25%"></i></div></td></tr><tr><td>抽样方法与样本量</td><td class="num">15</td><td class="num">6.4%</td><td><div class="bar"><i style="width:25%"></i></div></td></tr><tr><td>因果推断</td><td class="num">14</td><td class="num">5.9%</td><td><div class="bar"><i style="width:23%"></i></div></td></tr><tr><td>临床试验与实验流行病学</td><td class="num">14</td><td class="num">5.9%</td><td><div class="bar"><i style="width:23%"></i></div></td></tr><tr><td>现况调查与普查</td><td class="num">10</td><td class="num">4.2%</td><td><div class="bar"><i style="width:16%"></i></div></td></tr><tr><td>偏倚及其控制</td><td class="num">10</td><td class="num">4.2%</td><td><div class="bar"><i style="width:16%"></i></div></td></tr><tr><td>描述性研究与个案</td><td class="num">8</td><td class="num">3.4%</td><td><div class="bar"><i style="width:13%"></i></div></td></tr><tr><td>三级预防与防制策略</td><td class="num">5</td><td class="num">2.1%</td><td><div class="bar"><i style="width:8%"></i></div></td></tr><tr><td>循证与Meta分析</td><td class="num">5</td><td class="num">2.1%</td><td><div class="bar"><i style="width:8%"></i></div></td></tr></tbody>
+</table>
+<p>前四位——病例对照、队列、暴发调查、疾病频率指标——合计占了一半以上。另有 31 题未落入以上类目。</p>
+
+<h2 class="part">四、出题偏好：老师怎么问</h2>
+<table>
+<thead><tr><th>句式</th><th class="num">题数</th><th class="num">占比</th></tr></thead>
+<tbody><tr><td>「属于／包括」正面归类</td><td class="num">38</td><td class="num">16.1%</td></tr><tr><td>「不属于／不包括／错误的是」反向排除</td><td class="num">24</td><td class="num">10.2%</td></tr><tr><td>「是指／含义／概念」定义题</td><td class="num">30</td><td class="num">12.7%</td></tr><tr><td>「最」字最佳答案</td><td class="num">20</td><td class="num">8.5%</td></tr><tr><td>数字／指标计算</td><td class="num">8</td><td class="num">3.4%</td></tr><tr><td>情境病例（人物+时间+地点）</td><td class="num">12</td><td class="num">5.1%</td></tr></tbody>
+</table>
+<p>三条最该记住：</p>
+<ol>
+<li><b>定义题占三成</b>（是指／含义／概念）。这类题不能靠感觉，必须能一字不差说出「暴露」「结局」「传染期」「筛检」的确切含义。</li>
+<li><b>反向排除题（不属于／不包括／错误的是）</b>比正向归类题更常见。看到「不包括」要立刻警觉——四个对的一个错，与四个错的一个对，思维方向相反。</li>
+<li><b>多选题是丢分主因</b>：9 道错的多选里，<b>漏选 3 道</b>、错选或换选 6 道。错选与换选更多，说明是边界判断不清，要回到定义本身。</li>
+</ol>
+
+<h2 class="part">五、我的错题与修正</h2>
+<p>共 <span class="k">15</span> 道。左是我当时的作答，右是标准答案。</p>
+<table>
+<thead><tr><th>位置</th><th>型</th><th>题干</th><th class="num">我 → 对</th></tr></thead>
+<tbody><tr><td> Z-1·27</td><td>多选</td><td>病例对照研究的优点是：</td><td class="num">AB → ABD</td></tr><tr><td> Z-2·3</td><td>单选</td><td>在研究抗心律不齐药物的药效时，选择研究对象正确的是</td><td class="num">B → A</td></tr><tr><td> Z-2·13</td><td>单选</td><td>下列哪项是病因的最确切含义</td><td class="num">B → E</td></tr><tr><td> Z-2·18</td><td>多选</td><td>病例对照研究中的信息偏倚的来源主要有：</td><td class="num">ABDE → ADE</td></tr><tr><td> Z-2·20</td><td>多选</td><td>临床试验的对照类型有</td><td class="num">ABCDE → ABDE</td></tr><tr><td> Z-2·24</td><td>多选</td><td>下列可出现暴发的疾病是</td><td class="num">ACE → ACD</td></tr><tr><td>D-1·4</td><td>单选</td><td>抽样单位为群体，再从群体中随机抽样的方法称为</td><td class="num">D → E</td></tr><tr><td>D-1·7</td><td>单选</td><td>病例对照研究中，比值比的含义是</td><td class="num">C → E</td></tr><tr><td>D-2·28</td><td>多选</td><td>临床试验的对照类型有</td><td class="num">ABCDE → ABDE</td></tr><tr><td>P-1·4</td><td>单选</td><td>在吸烟与某病关系的研究中，吸烟组的死亡率是5%，不吸烟组的死亡率是2%。 吸烟的归因危险度是</td><td class="num">D → B</td></tr><tr><td>P-1·26</td><td>多选</td><td>现况调查的目的和用途有</td><td class="num">AB → ABD</td></tr><tr><td>P-1·27</td><td>多选</td><td>临床试验的对照类型有</td><td class="num">BCDE → ABDE</td></tr><tr><td>P-1·30</td><td>多选</td><td>病例对照研究的优点是：</td><td class="num">ABDE → ABD</td></tr><tr><td>P-2·22</td><td>单选</td><td>下列哪项是流行病学的核心观点</td><td class="num">A → D</td></tr><tr><td>P-2·30</td><td>多选</td><td>病例对照研究中常见的偏倚有</td><td class="num">ABE → ABCE</td></tr></tbody>
+</table>
+
+<h2 class="part">六、怎么用这份材料</h2>
+<div class="acts">
+<a href="./quiz.html">进入 236 题抽查版 →</a>
+<a href="../learn/index.html">返回帮学总入口</a>
+</div>
+<ol>
+<li><b>先按场次过一遍</b>，不遮答案，看清每题问的是哪类设计、哪个指标。</li>
+<li><b>再只练错题</b>（抽查页有筛选按钮），15 道过两轮。</li>
+<li><b>最后打乱全量做</b>，检验是否能稳定认出设计类型。</li>
+</ol>
+
+<div class="gap">
+<b>客观边界，说清楚：</b>
+这 8 场是<b>阶段性测试</b>，不是期末卷。考试时间窗显示 2026-11-16 至 11-28，已全部交卷。期末是否同池出题<b>无法证实</b>——只能说同一位老师、同一课程、同一批考点，重复概率高。材料不含任何教辅或外推题，全部逐字取自平台。
+</div>
+
+<footer class="foot">
+数据来源：OCS 学习通《临床流行病学》(courseid 233766960) · 考试 → 已完成 → 查看试卷详情<br>
+抓取时间 2026-11-27 · 题干、选项、我的答案、正确答案均逐字保留 · 断网可用
+</footer>
+</main>
+</body>
+</html>

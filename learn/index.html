@@ -356,18 +356,25 @@ body.study-page {
 }
 .study-page :is(.opt.sel, button.opt:hover):not(.right, .wrong, .wrongpick) { background: var(--desk-fold); }
 .study-page .opt :is(.lb, .k) { color: var(--desk-accent); }
-.study-page:not([data-desk-page="premed-quiz"]) .opt.right,
+/* Masked pages answer nothing until the card is opened: data-desk-mask="on". */
+.study-page:not([data-desk-mask="on"]) .opt.right,
 .study-page .card.ans-on .opt.right {
   background: var(--okbg);
   border-color: var(--ok);
 }
-.study-page:not([data-desk-page="premed-quiz"]) .opt.right :is(.k, .lb),
+.study-page:not([data-desk-mask="on"]) .opt.right :is(.k, .lb),
 .study-page .card.ans-on .opt.right :is(.k, .lb) { color: var(--ok); }
 .study-page :is(.opt.wrong, .card.ans-on .opt.wrongpick) {
   background: var(--badbg);
   border-color: var(--bad);
 }
 .study-page :is(.opt.wrong, .card.ans-on .opt.wrongpick) :is(.k, .lb) { color: var(--bad); }
+/* Missed a correct option on a wrong answer: amber, distinct from the answer green. */
+.study-page .card.ans-on .opt.missed {
+  background: var(--warnbg);
+  border-color: var(--warn);
+}
+.study-page .card.ans-on .opt.missed :is(.k, .lb) { color: var(--warn); }
 .study-page .opt.mine:not(.right, .wrong, .wrongpick) { background: var(--warnbg); border-color: var(--warn); }
 .study-page .card.ok { border-left: 3px solid var(--ok); }
 .study-page .card.wrong { border-left: 3px solid var(--bad); }
@@ -571,6 +578,13 @@ body.study-page {
         <li><a href="../premed/index.html"><span><strong>预防医学学习指南</strong><small>大纲范围、已有作业与复习顺序</small></span><span class="arrow" aria-hidden="true">→</span></a></li>
         <li><a href="../premed/quiz.html"><span><strong>预防医学题目抽查</strong><small>77 道 · 第一章与第六章作业</small></span><span class="arrow" aria-hidden="true">→</span></a></li>
         <li><a href="../premed/environment.html"><span><strong>环境相关疾病大纲自测</strong><small>5 个回忆与案例练习 · 依据正式大纲</small></span><span class="arrow" aria-hidden="true">→</span></a></li>
+      </ul>
+    </section>
+    <section class="subject" data-keywords="流行病 流病 epi 队列 病例对照 偏倚 筛检 发病率 患病率 暴发 临床流行病学">
+      <header><h2>临床流行病学</h2><p>8 场阶段测试真题，按考点和错题练</p></header>
+      <ul class="resources">
+        <li><a href="../epi/index.html"><span><strong>流行病学学习指南</strong><small>236 道真题的考点分布、出题偏好与复习顺序</small></span><span class="arrow" aria-hidden="true">→</span></a></li>
+        <li><a href="../epi/quiz.html"><span><strong>流行病学真题抽查</strong><small>236 道 · 8 场阶段测试 · 可只看错题</small></span><span class="arrow" aria-hidden="true">→</span></a></li>
       </ul>
     </section>
     <section class="subject" data-keywords="英语 English EforGla CET 四级 六级 vocabulary 语之恋">
