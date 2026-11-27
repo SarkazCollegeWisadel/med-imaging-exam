@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>口腔材料学 · 期末复习指南</title>
+<style>* { box-sizing: border-box }
+:root { color-scheme: light }
+[hidden] { display: none !important }
+body { margin: 0; font: 16px/1.6 system-ui, 'Microsoft YaHei', sans-serif }
+.desk { width: min(900px, calc(100% - 28px)); margin: auto; padding: 1rem 0 3rem }
+.hero { position: relative; isolation: isolate; overflow: hidden; padding: .9rem 0 1rem }
+h1 { margin: 0; font-size: clamp(1.9rem, 6vw, 2.8rem) }
+h2 { margin: 0 0 .6rem; font-size: 1.45rem }
+p { margin: .5rem 0 }
+section { margin: 1rem 0 1.8rem }
+.lede, .question, .controls, .result { padding: clamp(.75rem, 3vw, 1.25rem); border: 1px solid var(--desk-line, #dcd1da); border-radius: 12px; background: var(--desk-paper, #fffdfd) }
+.fold { position: absolute; inset: 0 0 0 auto; width: 38%; z-index: -1; pointer-events: none }
+.button, button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: .35rem .8rem; font: inherit; cursor: pointer; border: 1px solid var(--desk-line, #dcd1da); border-radius: 8px; color: inherit; background: var(--desk-paper, #fffdfd); text-decoration: none }
+.primary, .button:not(.secondary) { background: var(--desk-accent, #60475a); color: white }
+button:disabled { cursor: default; opacity: .6 }
+button[aria-pressed="true"] { font-weight: bold; outline: 2px solid var(--desk-accent, #60475a); outline-offset: -2px }
+select, textarea, input { font: inherit }
+select, textarea { min-height: 44px; width: 100%; min-width: 0; color: inherit; background: var(--desk-paper, #fffdfd); border: 1px solid var(--desk-line, #dcd1da); border-radius: 6px; padding: .35rem .55rem }
+textarea { resize: vertical }
+*:focus-visible { outline: 2px solid var(--desk-accent, #60475a); outline-offset: 2px }
+.filters { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%, 145px),1fr)); gap: .6rem }
+.tools { display: flex; flex-wrap: wrap; gap: .55rem; align-items: center; margin-top: .75rem }
+.controls p, .meta { color: var(--desk-muted, #625561); font-size: .91rem }
+.question { margin: .8rem 0; min-width: 0; overflow-wrap: anywhere; scroll-margin-top: 1rem }
+.question h3 { margin: .45rem 0 .7rem; font-size: 1.06rem; line-height: 1.55 }
+.option { display: flex; gap: .65rem; align-items: baseline; min-height: 44px; padding: .45rem .6rem; margin: .3rem 0; border: 1px solid var(--desk-line, #dcd1da); border-radius: 7px; cursor: pointer }
+.option input { flex: none; margin: 0 }
+.option.chosen { outline: 2px solid var(--desk-accent, #60475a); outline-offset: -2px }
+.option.correct { border-color: #287248; background: #e9f5ed; color: #17442a }
+.option.incorrect { border-color: #a75147; background: #fff0ee; color: #762d24 }
+.feedback { border-top: 1px solid var(--desk-line, #dcd1da); margin-top: .65rem; padding-top: .45rem }
+.result { margin-bottom: .85rem }
+.metrics { margin: .35rem 0; font-weight: 600 }
+table { width: 100%; border-collapse: collapse; table-layout: fixed }
+th,td { text-align: left; vertical-align: top; border-bottom: 1px solid var(--desk-line, #dcd1da); padding: .55rem .4rem; overflow-wrap: anywhere }
+th[scope="row"] { font-weight: 600 }
+td:last-child, th:last-child { width: 22% }
+.chapters th:first-child { width: 36% }
+.chapters td:last-child, .chapters th:last-child { width: 20%; text-align: right }
+small { display: block; font-weight: 400; color: var(--desk-muted, #625561) }
+@media (max-width: 520px) {
+  .chapters td, .chapters th { font-size: .88rem }
+  .study-desk-links { flex-wrap: wrap }
+  ul { padding-inline-start: 1.25rem }
+}
+</style>
+<style id="study-desk-theme">
+@font-face {
+  font-family: "Desk Song";
+  src: local("STSong"), local("华文宋体");
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --desk-bg: #f3f0f1;
+  --desk-paper: #fffdfd;
+  --desk-ink: #2d272e;
+  --desk-muted: #625561;
+  --desk-line: #dcd1da;
+  --desk-fold: #ede4eb;
+  --desk-accent: #60475a;
+  --desk-hover: #75576e;
+  --desk-glass: linear-gradient(151deg, #fffdfdf2, #eee6eddb);
+  --desk-shadow: 0 2px 4px #392f3609, 0 8px 24px #392f3608;
+  --desk-song: "Desk Song", "STSong", "华文宋体", "Songti SC", SimSun, serif;
+  --desk-width: 820px;
+  --desk-spring: cubic-bezier(.18, 1.24, .32, 1);
+  --desk-spring-press: cubic-bezier(.2, 1.45, .47, 1);
+
+  /* Existing pages use several names for the same roles. */
+  --bg: var(--desk-bg);
+  --card: var(--desk-paper);
+  --card2: var(--desk-fold);
+  --ink: var(--desk-ink);
+  --tx: var(--desk-ink);
+  --sub: var(--desk-muted);
+  --dim: var(--desk-muted);
+  --line: var(--desk-line);
+  --hl: var(--desk-accent);
+  --hl2: var(--desk-accent);
+  --acc: var(--desk-accent);
+  --accent: var(--desk-accent);
+  --code: var(--desk-fold);
+  --ok: #226040;
+  --okbg: #e8f4eb;
+  --bad: #922f34;
+  --badbg: #faebec;
+  --warn: #744c1b;
+  --warnbg: #f7f0e3;
+}
+
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:desk-page-out .2s ease both}
+::view-transition-new(root){animation:desk-page-in .36s cubic-bezier(.22,1,.36,1) both}
+@keyframes desk-page-out{to{opacity:0;transform:translateY(-4px)}}
+@keyframes desk-page-in{from{opacity:0;transform:translateY(9px)}}
+@media(prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+
+.pleats{position:absolute;z-index:-1;overflow:hidden;right:-1px;bottom:23px;width:clamp(160px,27vw,370px);height:100px;pointer-events:none;opacity:.86}
+.pleats i{position:absolute;inset:0}
+.pleats i:nth-child(1){clip-path:polygon(0 88%,42% 13%,33% 100%);background:linear-gradient(130deg,#c5b5c496,#efeaed)}
+.pleats i:nth-child(2){clip-path:polygon(33% 100%,42% 13%,62% 29%);background:linear-gradient(130deg,#c0abba,#e9e0e7)}
+.pleats i:nth-child(3){clip-path:polygon(33% 100%,62% 29%,62% 75%);background:linear-gradient(140deg,#eee5ec,#d4c4d0)}
+.pleats i:nth-child(4){clip-path:polygon(62% 29%,83% 0,62% 75%);background:linear-gradient(125deg,#c7b2c2,#eee5ec)}
+.pleats i:nth-child(5){clip-path:polygon(62% 75%,83% 0,100% 56%);background:linear-gradient(120deg,#d5c4d0,#f4eff4)}
+
+body.study-page {
+  background: radial-gradient(ellipse at 85% 0, #eee6ed, transparent 550px), var(--desk-bg);
+  color: var(--desk-ink);
+  font-family: "Segoe UI Variable", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.study-page :is(h1, h2, .stem, .st, .ask, .card header h3, .ans .dx),
+.study-page[data-desk-page="premed-quiz"] .q,
+.study-page[data-desk-page="odontogenic"] .card > .q {
+  font-family: var(--desk-song);
+  font-weight: 400;
+  text-wrap: pretty;
+}
+
+.study-page :is(h1, h2, h3, h4) { color: var(--desk-ink); }
+.study-page a { color: var(--desk-accent); }
+.study-page :is(.sub, .foot, .src, .hint, .cap, figcaption, .who) { color: var(--desk-muted); }
+.study-page :is(a, button, summary, input, textarea):focus-visible {
+  outline: 2px solid var(--desk-accent);
+  outline-offset: 3px;
+}
+
+.study-page .study-desk-nav {
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+  padding-inline: clamp(10px, 3vw, 22px);
+  border-bottom: 0;
+}
+
+.study-page .study-desk-nav::after {
+  content: "";
+  position: absolute;
+  inset: auto max(12px, calc((100% - var(--desk-width)) / 2)) 0;
+  border-bottom: 1px solid var(--desk-line);
+  pointer-events: none;
+}
+
+.study-page .study-desk-links { max-width: var(--desk-width); }
+.study-page .study-desk-links > span {
+  margin-inline-start: auto;
+  color: var(--desk-muted);
+  font-size: .83em;
+}
+
+.study-page :is(.study-desk-nav a, .btn, .bar button, .tools button, .chip, .acts button, .copy, .jump a, :where(#toTop)) {
+  min-height: 34px;
+  border: 1px solid var(--desk-line);
+  border-radius: 100px;
+  background: var(--desk-glass);
+  color: var(--desk-accent);
+  box-shadow: inset 0 1px 0 #fff, 0 2px 5px #5034480d;
+  transition: transform .26s var(--desk-spring-press), background-color .18s, border-color .18s;
+}
+
+.study-page :is(.study-desk-nav a, .btn, .bar button, .tools button, .chip, .acts button, .copy, .jump a, :where(#toTop)):hover {
+  background: #fff;
+  border-color: #af96aa;
+}
+
+.study-page :is(.btn, .bar button, .tools button, .chip, .acts button, .copy, :where(#toTop)):active {
+  transform: scale(.965);
+}
+
+.study-page :is(.btn.on, .bar button.on, .bar button.primary, .tools button.on, .chip.on, .acts button.on) {
+  background: var(--desk-accent);
+  border-color: var(--desk-accent);
+  color: #fff;
+  box-shadow: none;
+}
+
+.study-page :is(.btn.on, .bar button.on, .bar button.primary, .tools button.on, .chip.on, .acts button.on):hover {
+  background: var(--desk-hover);
+  color: #fff;
+}
+
+.study-page :is(.copy.done, .acts button.ok) {
+  background: var(--okbg);
+  border-color: var(--ok);
+  color: var(--ok);
+}
+
+.study-page :is(.acts button.bad, .acts button.wrong) {
+  background: var(--badbg);
+  border-color: var(--bad);
+  color: var(--bad);
+}
+
+.study-page button:disabled { opacity: .55; }
+
+.study-page > :is(header, .top),
+.study-page .study-hero,
+.study-page[data-desk-page="premed-quiz"] > .bar {
+  position: relative;
+  isolation: isolate;
+  z-index: auto;
+  max-width: var(--desk-width);
+  margin: 10px auto 14px;
+  padding: clamp(16px, 3vw, 27px);
+  border: 1px solid var(--desk-line);
+  border-radius: 13px;
+  background: linear-gradient(135deg, #fffdfd 46%, #f0e8ef);
+  box-shadow: var(--desk-shadow);
+}
+
+/* A fold on the heading surface leaves the exercise and source areas quiet. */
+.study-page > :is(header, .top)::after,
+.study-page .study-hero::after,
+.study-page[data-desk-page="premed-quiz"] > .bar::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  width: min(33%, 185px);
+  height: 100%;
+  background: linear-gradient(142deg, #d5c3d1 13%, #eee5ed 13% 38%, #d9c8d5 38% 51%, #f1eaf0 51%);
+  clip-path: polygon(66% 0, 100% 0, 100% 82%, 59% 100%, 0 100%, 42% 61%);
+  border-radius: 0 13px 13px 0;
+  opacity: .53;
+  pointer-events: none;
+}
+
+.study-page > :is(header, .top) h1,
+.study-page .study-hero h1,
+.study-page[data-desk-page="premed-quiz"] .bar h1 {
+  margin: 0 0 6px;
+  padding: 0;
+  border: 0;
+  color: var(--desk-ink);
+  font: 400 clamp(26px, 4.8vw, 43px)/1.2 var(--desk-song);
+  letter-spacing: -.025em;
+  overflow-wrap: anywhere;
+}
+
+.study-page > header .wrap { padding-inline: 0; }
+.study-page > :is(header, .top, .study-hero) :is(.sub, p) { color: var(--desk-muted); }
+.study-page .study-hero .sub { margin-bottom: 0; }
+.study-page .wrap { max-width: var(--desk-width); }
+.study-page .study-course-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 12px;
+}
+.study-page .study-course-links a {
+  padding: 7px 10px;
+  background: #fffdfd99;
+  border: 1px solid var(--desk-line);
+  border-radius: 7px;
+  color: var(--desk-accent);
+  font-size: .82em;
+  text-decoration: none;
+}
+.study-page .study-course-links a:hover { background: var(--desk-fold); }
+
+.study-page .bar,
+.study-page .tools,
+.study-page .filters,
+.study-page > nav:not(.study-desk-nav),
+.study-page .jump,
+.study-page #score.score {
+  position: static;
+  inset: auto;
+  z-index: auto;
+}
+
+.study-page :is(.bar, .tools, .filters, .jump) { color: var(--desk-muted); }
+.study-page :is(.tools, .filters, .jump) { align-items: center; }
+.study-page .tools { margin-top: 12px; }
+.study-page .filters { padding-block: 9px; }
+.study-page .bar {
+  background: var(--desk-glass);
+  backdrop-filter: blur(18px) saturate(135%);
+  border: 1px solid var(--desk-line);
+  border-radius: 10px;
+  padding: 7px 9px;
+}
+.study-page .bar .score { color: var(--ok); font-family: system-ui, sans-serif; letter-spacing: 0; }
+.study-page .bar .sc { color: var(--desk-ink); }
+.study-page header .bar { margin-top: 12px; }
+.study-page > nav:not(.study-desk-nav) {
+  max-width: var(--desk-width);
+  margin: 0 auto;
+  background: transparent;
+  border-color: var(--desk-line);
+}
+.study-page > nav:not(.study-desk-nav) a {
+  background: var(--desk-fold);
+  color: var(--desk-accent);
+  border: 1px solid var(--desk-line);
+}
+.study-page > nav:not(.study-desk-nav) a:hover,
+.study-page > nav:not(.study-desk-nav) a.hl {
+  background: var(--desk-accent);
+  color: #fff;
+}
+.study-page .jump {
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: var(--desk-width);
+  margin: 8px auto 0;
+  padding-inline: 14px;
+}
+.study-page .study-section-jump { margin-top: 12px; padding: 0; }
+.study-page .jump a { display: inline-flex; align-items: center; }
+.study-page #toTop {
+  position: static;
+  justify-content: center;
+  margin: 12px auto;
+}
+
+.study-page :is(.qi, .card, .b1box, .essay, .hero, .q:has(> .qh), details.sec, details.honesty, #toc) {
+  background: var(--desk-paper);
+  border: 1px solid var(--desk-line);
+  border-radius: 13px;
+  box-shadow: var(--desk-shadow);
+}
+.study-page .sec .card { border-width: 1px 0 0; border-radius: 0; box-shadow: none; }
+.study-page :is(.qi img, .imgs img, .card > img) { border-color: var(--desk-line); }
+.study-page :is(.stem, .st, .ask, .card header h3) {
+  font-size: clamp(17px, 2.35vw, 20px);
+  line-height: 1.48;
+}
+.study-page :is(.tag:not(.warn, .ok, .n, .g, .bad), .b.sub) {
+  background: var(--desk-fold);
+  color: var(--desk-accent);
+  border-color: #d8c9d6;
+}
+.study-page :is(.tag.warn, .noimg, .b.warn) {
+  background: var(--warnbg);
+  color: var(--warn);
+  border-color: #d7bd91;
+}
+.study-page :is(.tag.g, .tag.ok, .b.exam) { background: var(--okbg); color: var(--ok); }
+.study-page :is(.tag.bad, .tag.n) { background: var(--badbg); color: var(--bad); }
+.study-page .opt {
+  background: #fdfafb;
+  border-color: var(--desk-line);
+  color: var(--desk-ink);
+}
+.study-page :is(.opt.sel, button.opt:hover):not(.right, .wrong, .wrongpick) { background: var(--desk-fold); }
+.study-page .opt :is(.lb, .k) { color: var(--desk-accent); }
+/* Masked pages answer nothing until the card is opened: data-desk-mask="on". */
+.study-page:not([data-desk-mask="on"]) .opt.right,
+.study-page .card.ans-on .opt.right {
+  background: var(--okbg);
+  border-color: var(--ok);
+}
+.study-page:not([data-desk-mask="on"]) .opt.right :is(.k, .lb),
+.study-page .card.ans-on .opt.right :is(.k, .lb) { color: var(--ok); }
+.study-page :is(.opt.wrong, .card.ans-on .opt.wrongpick) {
+  background: var(--badbg);
+  border-color: var(--bad);
+}
+.study-page :is(.opt.wrong, .card.ans-on .opt.wrongpick) :is(.k, .lb) { color: var(--bad); }
+/* Missed a correct option on a wrong answer: amber, distinct from the answer green. */
+.study-page .card.ans-on .opt.missed {
+  background: var(--warnbg);
+  border-color: var(--warn);
+}
+.study-page .card.ans-on .opt.missed :is(.k, .lb) { color: var(--warn); }
+.study-page .opt.mine:not(.right, .wrong, .wrongpick) { background: var(--warnbg); border-color: var(--warn); }
+.study-page .card.ok { border-left: 3px solid var(--ok); }
+.study-page .card.wrong { border-left: 3px solid var(--bad); }
+.study-page .ans {
+  background: linear-gradient(148deg, #fbf5f9, var(--desk-fold));
+  border-color: #bca3b6;
+  color: var(--desk-ink);
+  transform-origin: top center;
+}
+.study-page .ans.warn { background: var(--warnbg); border-color: var(--warn); }
+.study-page .ansline b { color: var(--ok); }
+.study-page .mine { color: var(--desk-muted); }
+.study-page :is(.note.srcbox, .note.mid, .note.none, .ans .src, .src.no, .card .src:not(span), .prompt, .b1lead) {
+  background: #f4eef3;
+  color: var(--desk-muted);
+  border-color: #cdbac9;
+}
+.study-page .note.srcbox code {
+  background: #e8dce6;
+  color: #493646;
+  overflow-wrap: anywhere;
+}
+.study-page .src::before,
+.study-page .src.no::before { color: var(--desk-muted); }
+.study-page :is(details pre, code, th) { background: #f2ebf0; }
+.study-page :is(th, td) { border-color: var(--desk-line); }
+.study-page :is(h2.part, article h2) {
+  background: linear-gradient(113deg, var(--desk-fold) 64%, transparent 64%);
+  border-color: #aa8fa3;
+}
+
+.study-page[data-desk-page="premed-guide"] :is(main p, main li, td, strong) { color: var(--desk-ink); }
+.study-page[data-desk-page="premed-guide"] :is(blockquote, blockquote p, th) { color: var(--desk-muted); }
+.study-page[data-desk-page="premed-guide"] :is(blockquote, tr:nth-child(even) td) { background: #f4edf2; border-color: var(--desk-line); }
+.study-page[data-desk-page="premed-guide"] :is(code, hr, .foot) { border-color: var(--desk-line); }
+.study-page[data-desk-page="premed-guide"] code { color: var(--desk-accent); }
+.study-page[data-desk-page="premed-guide"] .go a { background: var(--desk-accent); color: #fff; }
+.study-page[data-desk-page="premed-guide"] .go a:hover { background: var(--desk-hover); }
+
+.study-page[data-desk-page="premed-quiz"] .q {
+  font-size: clamp(17px, 2.35vw, 20px);
+  line-height: 1.48;
+}
+.study-page[data-desk-page="premed-quiz"] .bar h1 {
+  display: flex;
+  flex-wrap: wrap;
+}
+.study-page[data-desk-page="premed-quiz"] .bar h1 span {
+  color: var(--desk-muted);
+  font-family: system-ui, sans-serif;
+}
+.study-page[data-desk-page="premed-quiz"] .bar h1 .score { color: var(--ok); }
+.study-page[data-desk-page="premed-quiz"] .hd { color: var(--desk-muted); }
+.study-page[data-desk-page="premed-quiz"] button.show {
+  background: var(--desk-accent);
+  border-color: var(--desk-accent);
+  color: #fff;
+}
+.study-page[data-desk-page="premed-quiz"] button.show:hover { background: var(--desk-hover); }
+.study-page[data-desk-page="odontogenic"] #score {
+  max-width: var(--desk-width);
+  margin: 0 auto 12px;
+  background: var(--desk-glass);
+  border: 1px solid var(--desk-line);
+  border-radius: 11px;
+}
+.study-page[data-desk-page="odontogenic"] .card > .q { font-size: 20px; }
+.study-page.hide-ans[data-desk-page="imaging-list"] .ans b { background: #d9ccd6; color: transparent; }
+.study-page[data-desk-page="imaging-quiz"] :is(.prompt b, summary) { color: var(--desk-accent); }
+.study-page[data-desk-page="imaging-quiz"] details { background: #f5eef4; border-color: var(--desk-line); }
+.study-page[data-desk-page="imaging-quiz"] details .ans { background: transparent; color: var(--desk-accent); font-family: var(--desk-song); font-size: 18px; }
+.study-page[data-desk-page="pharm"] details { border: 1px solid var(--desk-line); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .study-page .ans.on,
+  .study-page:not(:has(#revealAll.on)) .ans.show,
+  .study-page:not(.showAll) .card.shown .ans,
+  .study-page[data-desk-page="imaging-quiz"] details[open] > p:first-of-type {
+    animation: desk-unfold .34s cubic-bezier(.19, 1, .36, 1) both;
+  }
+  .study-page:has(#showAll.on) .ans.on { animation: none; }
+}
+
+@keyframes desk-unfold {
+  from { opacity: .28; transform: perspective(460px) rotateX(-30deg); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 860px) {
+  .study-page > :is(header, .top),
+  .study-page[data-desk-page="premed-quiz"] > .bar { margin-inline: 12px; }
+  .study-page[data-desk-page="odontogenic"] #score { margin-inline: 14px; }
+}
+
+@media (max-width: 540px) {
+  .pleats { height: 65px; width: 155px; opacity: .65; bottom: 27px; }
+}
+
+@media (max-width: 520px) {
+  .study-page .study-desk-links { gap: 5px 9px; }
+  .study-page .study-desk-links > span { margin-inline-start: 0; }
+  .study-page > :is(header, .top),
+  .study-page .study-hero,
+  .study-page[data-desk-page="premed-quiz"] > .bar { padding: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .study-page :is(a, button) { transition: none !important; }
+}
+
+/* Standalone study pages that use the shared navigation without a local shell. */
+.study-page:is([data-desk-page="patho"], [data-desk-page="premed-environment"]) .study-desk-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+.study-page:is([data-desk-page="patho"], [data-desk-page="premed-environment"]) .study-desk-links a {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 12px;
+  text-decoration: none;
+}
+.study-page[data-desk-page="premed-environment"] { margin: 0; line-height: 1.65; }
+.study-page[data-desk-page="premed-environment"] main {
+  box-sizing: border-box;
+  max-width: var(--desk-width);
+  margin: auto;
+  padding: 12px 16px 28px;
+}
+.study-page[data-desk-page="premed-environment"] .card { padding: 12px 15px; margin-block: 10px; }
+.study-page[data-desk-page="premed-environment"] .card h3 { margin: 0; font-size: 18px; }
+.study-page[data-desk-page="premed-environment"] summary { cursor: pointer; padding: 4px 0; color: var(--desk-accent); }
+.study-page[data-desk-page="patho"] .card.key { border-inline-start: 3px solid var(--desk-accent); }
+.study-page[data-desk-page="patho"] .card > .q { font-family: var(--desk-song); }
+.study-page[data-desk-page="patho"] .bar button.primary { color: var(--desk-paper); }
+.study-page:is([data-desk-page="pharm-endodontic"], [data-desk-page="pharm-perio"]) :is(.card .body th, .numt th) {
+  background: var(--desk-fold);
+  color: var(--desk-ink);
+}
+</style>
+</head><body class="study-page" data-desk-page="dental-materials-guide">
+<nav class="study-desk-nav" aria-label="学习台导航"><div class="study-desk-links"><a href="../index.html">阅片工作台</a><a href="../learn/">帮学总入口</a><span aria-current="page">复习指南</span><a href="quiz.html">遮答练习</a></div></nav>
+<main class="desk">
+<header class="hero"><div class="fold" aria-hidden="true"></div><h1>口腔材料学 · 期末复习指南</h1><p>v1 · 2026 年 12 月 4 日周五 12:30–14:00</p></header>
+
+<section class="lede"><h2>先做阶段性测试，再补章节</h2>
+<p>先按“阶段性测试”做一遍 50 道单选。第二遍按教材章节做可判分练习，优先复习印模、模型与基托，再补金属和陶瓷。水门汀、复合树脂和根管材料在前两次作业有原题，练完把暂缺答案的题集中回查。</p>
+<p><a class="button" href="quiz.html?source=4">做阶段性测试</a> <a class="button secondary" href="quiz.html">选题练习</a> <a class="button secondary" href="quiz.html?kind=short">练简答</a></p></section>
+<section><h2>学习通题库</h2><p>175 道单选按平台出现次数计。按题干和全部选项文字去重后为 151 道；选项顺序变化也归为同题。110 条可判分（75 条平台公布答案、35 条教材参考答案），默认去重的判卷卷池有 86 道。其余 65 条仍可作答和标记，暂不计入分数。</p>
+<table><thead><tr><th scope="col">来源</th><th scope="col">原题</th><th scope="col">可判分</th></tr></thead><tbody><tr><th scope="row">第一次作业</th><td>25</td><td>0</td></tr><tr><th scope="row">第二次作业</th><td>25</td><td>0</td></tr><tr><th scope="row">第三次作业</th><td>50</td><td>50</td></tr><tr><th scope="row">第四次作业</th><td>25</td><td>25</td></tr><tr><th scope="row">阶段性测试</th><td>50</td><td>35</td></tr></tbody></table></section>
+<section><h2>按教材目录复习</h2><p>目录取自林红、邓旭亮主编《口腔材料学》第 3 版扫描本；页码为 PDF 物理页。学习通课程挂载的 2018 级大纲引用赵信义第 6 版；以主题对应，章节编号各自保留。每道题标记一个主要章节。题数按平台出现次数计，包含原平台重复题。</p>
+<table class="chapters"><thead><tr><th scope="col">教材章节</th><th scope="col">学习通对应内容</th><th scope="col">全部 / 阶段</th></tr></thead><tbody><tr><th scope="row">第一章-口腔材料基础<small>教材 PDF 28–47 页</small></th><td>第一单元 · 第一、二、三章</td><td>4 / 2</td></tr><tr><th scope="row">第二章-口腔材料性能<small>教材 PDF 48–75 页</small></th><td>第一单元 · 第一、二、三章</td><td>22 / 8</td></tr><tr><th scope="row">第三章-印模材料<small>教材 PDF 76–93 页</small></th><td>第五次课 · 印模材料</td><td>20 / 4</td></tr><tr><th scope="row">第四章-模型材料<small>教材 PDF 94–101 页</small></th><td>第六次课 · 模型材料（课件、教材）</td><td>19 / 5</td></tr><tr><th scope="row">第五章-牙科用蜡<small>教材 PDF 102–108 页</small></th><td>第六次课 · 对照旧考纲中的模型蜡</td><td>2 / 0</td></tr><tr><th scope="row">第六章-铸造包埋材料<small>教材 PDF 109–119 页</small></th><td>现有课程目录未见单列</td><td>0 / 0</td></tr><tr><th scope="row">第七章-义齿基托聚合物与合成树脂牙<small>教材 PDF 120–131 页</small></th><td>第七次课 · 义齿修复高分子材料（课件与教材）</td><td>24 / 8</td></tr><tr><th scope="row">第八章-义齿软衬材料及颌面赝复材料<small>教材 PDF 132–137 页</small></th><td>第七次课 · 按义齿修复高分子材料主题对读</td><td>3 / 1</td></tr><tr><th scope="row">第九章-口腔修复用金属材料<small>教材 PDF 138–159 页</small></th><td>第八次课 · 口腔修复金属材料（课件）</td><td>17 / 5</td></tr><tr><th scope="row">第十章-口腔陶瓷<small>教材 PDF 160–181 页</small></th><td>第九次课 · 口腔修复陶瓷材料</td><td>20 / 7</td></tr><tr><th scope="row">第十一章-树脂基牙齿充填材料<small>教材 PDF 182–200 页</small></th><td>第三次课 · 树脂基复合材料</td><td>13 / 4</td></tr><tr><th scope="row">第十二章-口腔粘接材料<small>教材 PDF 201–216 页</small></th><td>第三次课 · 作业涉及粘接，课程目录未单列</td><td>3 / 0</td></tr><tr><th scope="row">第十三章-牙科银汞合金<small>教材 PDF 217–227 页</small></th><td>现有课程目录未见单列</td><td>0 / 0</td></tr><tr><th scope="row">第十四章-牙科水门汀<small>教材 PDF 228–249 页</small></th><td>第二次课 · 五类水门汀与课件</td><td>16 / 6</td></tr><tr><th scope="row">第十五章-牙髓及根管治疗材料<small>教材 PDF 250–262 页</small></th><td>第四次课 · 根管充填材料（课件与配套 PDF）</td><td>12 / 0</td></tr><tr><th scope="row">第十六章-口腔植入材料<small>教材 PDF 263–279 页</small></th><td>现有课程目录未见单列</td><td>0 / 0</td></tr><tr><th scope="row">第十七章-口腔正畸材料<small>教材 PDF 280–287 页</small></th><td>现有课程目录未见单列</td><td>0 / 0</td></tr><tr><th scope="row">第十八章-预防保健材料<small>教材 PDF 288–297 页</small></th><td>现有课程目录未见单列</td><td>0 / 0</td></tr><tr><th scope="row">第十九章-切削与研磨<small>教材 PDF 298–303 页</small></th><td>现有课程目录未见单列</td><td>0 / 0</td></tr><tr><th scope="row">第二十章-辅助材料<small>教材 PDF 304–311 页</small></th><td>现有课程目录未见单列</td><td>0 / 0</td></tr></tbody></table></section>
+<section><h2>简答自评与复习缺口</h2><ul>
+<li>学习通备份中的 5 套题均为单选。另有 9 张简答自评卡，按课程旧考纲的能力点和教材目录整理，可先写后揭开要点，再记掌握情况。</li>
+<li>课程挂载的 2018 级考试大纲记载理论考试 90 分钟，约 61 题，含单选、多选、填空、B1 和简答；该版本的分值和题量仅供对照。本届已知考试时间见页首。老师说本周会讲注意事项，详细范围待补入 v2。</li>
+<li>课件按学习通章节快照定位到水门汀、根充、模型、义齿高分子和金属材料等章节。资料区快照另列《第一、二章课后作业.docx》。课件正文与该附件本次未取到；本页没有引用未取得的正文。</li>
+<li>原题来自 2026-11-17 的已完成作业备份。2026-11-27 重查时超星域名连接中断，之后可能新增的任务、答案或课堂通知待核。平台真实多选、填空、B1 和简答试题待补。</li>
+<li>先核阶段性测试第 20 题（氧化锌丁香酚制剂类型）、第 21 题（选项 D 原文疑有错字）、第 28 题（缓凝剂选项缺浓度条件）、第 36 题（固化方案随产品与教学口径变化）、第 49 题（D、E 的表述都需核对）。保留题面，当前均不计分。</li>
+</ul></section>
+</main>
+</body></html>
